@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>独立开发 — ASH Studio Creative</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<canvas id="dot-canvas"></canvas>
+<div class="page-wrap">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-logo-group"><span class="nav-logo">Ash_Studio</span><span class="nav-available"><span class="nav-available-dot"></span><span data-i18n="nav_available">接受项目合作</span></span></div>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav_ui">UI设计</a></li>
+        <li><a href="dev.html" class="active" data-i18n="nav_dev">独立开发</a></li>
+        <li><a href="photography.html" data-i18n="nav_photo">摄影</a></li>
+        <li><a href="about.html" data-i18n="nav_about">关于</a></li>
+        <li><span class="nav-dot"></span></li>
+        <li><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN</button></li>
+        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我们</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="container">
+      <p class="page-header-tag fade-up" data-i18n="dev_tag">Selected Works</p>
+      <h1 class="page-header-title fade-up" data-i18n="dev_title">Independent Dev</h1>
+      <p class="page-header-sub fade-up" data-i18n="dev_subtitle">独立开发的工具、游戏与应用——从零构建，由设计驱动，以体验为终点。</p>
+    </div>
+  </header>
+
+  <!-- PROJECTS -->
+  <section class="projects">
+    <div class="container">
+
+      <article class="project-item">
+        <div class="project-img-wrap">
+          <div class="project-img ph-2"></div>
+        </div>
+        <div class="project-info">
+          <p class="project-meta" data-i18n="void_meta">01 / 2024 &nbsp;—&nbsp; Game Development</p>
+          <h2 class="project-title" data-i18n="void_title">Void Runner</h2>
+          <p class="project-desc" data-i18n="void_desc">由小型独立团队全程开发的横版运动平台游戏，专注于高对比度视觉层次与精密的物理碰撞机制，在极简画面中构建丰富的操作张力。</p>
+          <a href="project-void-runner.html" class="project-link" data-i18n="void_link">查看详情 →</a>
+        </div>
+      </article>
+
+      <article class="project-item rev">
+        <div class="project-img-wrap">
+          <div class="project-img ph-4"></div>
+        </div>
+        <div class="project-info">
+          <p class="project-meta" data-i18n="syntax_meta">02 / 2023 &nbsp;—&nbsp; Developer Tool</p>
+          <h2 class="project-title" data-i18n="syntax_title">Syntax Theme</h2>
+          <p class="project-desc" data-i18n="syntax_desc">为长时间编程设计的高对比度深色代码主题，通过精心调校的色调层次让眼睛舒适地沉浸其中，支持 VS Code / Neovim / JetBrains。</p>
+          <a href="project-syntax-theme.html" class="project-link" data-i18n="syntax_link">查看详情 →</a>
+        </div>
+      </article>
+
+      <article class="project-item">
+        <div class="project-img-wrap">
+          <div class="project-img ph-1"></div>
+        </div>
+        <div class="project-info">
+          <p class="project-meta" data-i18n="orbit_meta">03 / 2023 &nbsp;—&nbsp; Web Application</p>
+          <h2 class="project-title" data-i18n="orbit_title">Orbit CMS</h2>
+          <p class="project-desc" data-i18n="orbit_desc">为小型创意团队设计的轻量级内容管理系统，以编辑体验为优先，将发布流程压缩到最小摩擦。</p>
+          <a href="project-orbit-cms.html" class="project-link" data-i18n="orbit_link">查看详情 →</a>
+        </div>
+      </article>
+
+      <article class="project-item rev">
+        <div class="project-img-wrap">
+          <div class="project-img ph-3"></div>
+        </div>
+        <div class="project-info">
+          <p class="project-meta" data-i18n="echo_meta">04 / 2022 &nbsp;—&nbsp; CLI Tool</p>
+          <h2 class="project-title" data-i18n="echo_title">Echo CLI</h2>
+          <p class="project-desc" data-i18n="echo_desc">面向设计师的命令行工具集，将重复性的文件批处理、资源导出与格式转换压缩为一行指令。</p>
+          <a href="project-echo-cli.html" class="project-link" data-i18n="echo_link">查看详情 →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Ash_Studio</div>
+      <div class="footer-cols">
+        <div class="footer-col"><ul>
+          <li><a href="mailto:hello@ash.design" data-i18n="footer_email">电子邮件</a></li>
+          <li><a href="#" data-i18n="footer_resume">个人简历</a></li>
+          <li><a href="#" data-i18n="footer_links">其他链接</a></li>
+        </ul></div>
+        <div class="footer-col"><ul>
+          <li><a href="index.html" data-i18n="footer_ui">UI设计</a></li>
+          <li><a href="dev.html" data-i18n="footer_dev">独立开发</a></li>
+        </ul></div>
+        <div class="footer-col"><ul>
+          <li><a href="photography.html" data-i18n="footer_photo">摄影</a></li>
+          <li><a href="about.html" data-i18n="footer_about">关于</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-copy" data-i18n="footer_copy">© 2026 ASH</div>
+    </div>
+  </footer>
+
+</div>
+<script src="js/dot-grid.js"></script>
+<script src="js/smooth-scroll.js"></script>
+<script src="js/language.js"></script>
+</body>
+</html>

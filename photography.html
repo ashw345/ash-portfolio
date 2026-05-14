@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>摄影 — ASH Studio Creative</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<canvas id="dot-canvas"></canvas>
+<div class="page-wrap">
+
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-logo-group"><span class="nav-logo">Ash_Studio</span><span class="nav-available"><span class="nav-available-dot"></span><span data-i18n="nav_available">接受项目合作</span></span></div>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav_ui">UI设计</a></li>
+        <li><a href="dev.html" data-i18n="nav_dev">独立开发</a></li>
+        <li><a href="photography.html" class="active" data-i18n="nav_photo">摄影</a></li>
+        <li><a href="about.html" data-i18n="nav_about">关于</a></li>
+        <li><span class="nav-dot"></span></li>
+        <li><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN</button></li>
+        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我们</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="blank-page">
+    <div class="blank-ghost">Photo</div>
+    <p class="blank-label" data-i18n="photo_label">页面设计中 &nbsp;·&nbsp; Coming Soon</p>
+    <a href="index.html" class="blank-back" data-i18n="photo_back">← 返回首页</a>
+  </div>
+
+</div>
+<script src="js/dot-grid.js"></script>
+<script src="js/smooth-scroll.js"></script>
+<script src="js/language.js"></script>
+</body>
+</html>

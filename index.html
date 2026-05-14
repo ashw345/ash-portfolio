@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI Design — ASH Studio Creative</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<canvas id="dot-canvas"></canvas>
+<div class="page-wrap">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-logo-group"><span class="nav-logo">Ash_Studio</span><span class="nav-available"><span class="nav-available-dot"></span><span data-i18n="nav_available">接受项目合作</span></span></div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" data-i18n="nav_ui">UI设计</a></li>
+        <li><a href="dev.html" data-i18n="nav_dev">独立开发</a></li>
+        <li><a href="photography.html" data-i18n="nav_photo">摄影</a></li>
+        <li><a href="about.html" data-i18n="nav_about">关于</a></li>
+        <li><span class="nav-dot"></span></li>
+        <li><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN</button></li>
+        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我们</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="container">
+      <p class="page-header-tag fade-up" data-i18n="ui_tag">Selected Works</p>
+      <h1 class="page-header-title fade-up" data-i18n="ui_title">UIUX Design</h1>
+      <p class="page-header-sub fade-up" data-i18n="ui_subtitle">界面设计、设计系统与交互原型——追求每一个像素背后的逻辑与克制。</p>
+    </div>
+  </header>
+
+  <!-- PROJECTS -->
+  <section class="projects">
+    <div class="container">
+
+      <article class="project-item">
+        <div class="project-img-wrap">
+          <div class="project-img ph-1"></div>
+        </div>
+        <div class="project-info">
+          <p class="project-meta" data-i18n="nexus_meta">01 / 2024 &nbsp;—&nbsp; Design System</p>
+          <h2 class="project-title" data-i18n="nexus_title">Nexus UI</h2>
+          <p class="project-desc" data-i18n="nexus_desc">为金融科技团队构建的全面设计系统，强调严格的网格布局和以数据可视化为核心的组件规范，确保跨平台的一致性与可扩展性。</p>
+          <a href="project-nexus-ui.html" class="project-link" data-i18n="nexus_link">查看详情 →</a>
+        </div>
+      </article>
+
+      <article class="project-item rev">
+        <div class="project-img-wrap">
+          <div class="project-img ph-3"></div>
+        </div>
+        <div class="project-info">
+          <p class="project-meta" data-i18n="silent_meta">02 / 2023 &nbsp;—&nbsp; Interaction Design</p>
+          <h2 class="project-title" data-i18n="silent_title">Silent Forms</h2>
+          <p class="project-desc" data-i18n="silent_desc">为 SaaS 产品设计的零摩擦表单交互，通过实时反馈与渐进式验证让用户在不感知错误的情况下完成复杂数据录入。</p>
+          <a href="project-silent-forms.html" class="project-link" data-i18n="silent_link">查看详情 →</a>
+        </div>
+      </article>
+
+      <article class="project-item">
+        <div class="project-img-wrap">
+          <div class="project-img ph-2"></div>
+        </div>
+        <div class="project-info">
+          <p class="project-meta" data-i18n="grid_meta">03 / 2023 &nbsp;—&nbsp; Data Visualization</p>
+          <h2 class="project-title" data-i18n="grid_title">Grid Atlas</h2>
+          <p class="project-desc" data-i18n="grid_desc">开源数据网格组件库，为企业级应用提供高性能、可定制的表格解决方案，支持百万级数据行的秒级渲染。</p>
+          <a href="project-grid-atlas.html" class="project-link" data-i18n="grid_link">查看详情 →</a>
+        </div>
+      </article>
+
+      <article class="project-item rev">
+        <div class="project-img-wrap">
+          <div class="project-img ph-4"></div>
+        </div>
+        <div class="project-info">
+          <p class="project-meta" data-i18n="mono_meta">04 / 2022 &nbsp;—&nbsp; Dashboard Design</p>
+          <h2 class="project-title" data-i18n="mono_title">Mono Dash</h2>
+          <p class="project-desc" data-i18n="mono_desc">面向数据分析师的极简仪表板框架，将复杂的多维度信息浓缩到关键指标与趋势线上，强调一眼洞察。</p>
+          <a href="project-mono-dash.html" class="project-link" data-i18n="mono_link">查看详情 →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Ash_Studio</div>
+      <div class="footer-cols">
+        <div class="footer-col"><ul>
+          <li><a href="mailto:hello@ash.design" data-i18n="footer_email">电子邮件</a></li>
+          <li><a href="#" data-i18n="footer_resume">个人简历</a></li>
+          <li><a href="#" data-i18n="footer_links">其他链接</a></li>
+        </ul></div>
+        <div class="footer-col"><ul>
+          <li><a href="index.html" data-i18n="footer_ui">UI设计</a></li>
+          <li><a href="dev.html" data-i18n="footer_dev">独立开发</a></li>
+        </ul></div>
+        <div class="footer-col"><ul>
+          <li><a href="photography.html" data-i18n="footer_photo">摄影</a></li>
+          <li><a href="about.html" data-i18n="footer_about">关于</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-copy" data-i18n="footer_copy">© 2026 ASH</div>
+    </div>
+  </footer>
+
+</div>
+<script src="js/dot-grid.js"></script>
+<script src="js/smooth-scroll.js"></script>
+<script src="js/language.js"></script>
+</body>
+</html>

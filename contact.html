@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>联系我们 — ASH</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<canvas id="dot-canvas"></canvas>
+
+<div class="page-wrap">
+
+  <!-- ========== NAV ========== -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-logo-group"><span class="nav-logo">Ash_Studio</span><span class="nav-available"><span class="nav-available-dot"></span><span data-i18n="nav_available">接受项目合作</span></span></div>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav_ui">UI设计</a></li>
+        <li><a href="dev.html" data-i18n="nav_dev">独立开发</a></li>
+        <li><a href="photography.html" data-i18n="nav_photo">摄影</a></li>
+        <li><a href="about.html" data-i18n="nav_about">关于</a></li>
+        <li><span class="nav-dot"></span></li>
+        <li><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN/中</button></li>
+        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我们</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="contact-wrap">
+    <div class="container">
+      <h1 class="contact-title fade-up" data-i18n="contact_title">Let's<br>Talk.</h1>
+
+      <div class="contact-list">
+
+        <div class="contact-row">
+          <span class="contact-label" data-i18n="contact_email_label">Email</span>
+          <a href="mailto:hello@ash.design" class="contact-val">hello@ash.design</a>
+        </div>
+
+        <div class="contact-row">
+          <span class="contact-label" data-i18n="contact_wechat_label">微信</span>
+          <span class="contact-val">ash_studio</span>
+        </div>
+
+        <div class="contact-row">
+          <span class="contact-label">Behance</span>
+          <a href="https://behance.net" target="_blank" class="contact-val">behance.net/ash</a>
+        </div>
+
+        <div class="contact-row">
+          <span class="contact-label">Dribbble</span>
+          <a href="https://dribbble.com" target="_blank" class="contact-val">dribbble.com/ash</a>
+        </div>
+
+        <div class="contact-row">
+          <span class="contact-label" data-i18n="contact_cv_label">简历</span>
+          <a href="#" class="contact-val" data-i18n="contact_cv_link">Download CV →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Ash_Studio</div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <ul>
+            <li><a href="mailto:hello@ash.design" data-i18n="footer_email">电子邮件</a></li>
+            <li><a href="#" data-i18n="footer_resume">个人简历</a></li>
+            <li><a href="#" data-i18n="footer_links">其他链接</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <ul>
+            <li><a href="index.html" data-i18n="footer_ui">UI设计</a></li>
+            <li><a href="dev.html" data-i18n="footer_dev">独立开发</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <ul>
+            <li><a href="photography.html" data-i18n="footer_photo">摄影</a></li>
+            <li><a href="about.html" data-i18n="footer_about">关于</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-copy" data-i18n="footer_copy">© 2026 ASH</div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="js/dot-grid.js"></script>
+<script src="js/smooth-scroll.js"></script>
+<script src="js/language.js"></script>
+</body>
+</html>
