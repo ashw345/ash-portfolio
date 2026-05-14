@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lyft 街景模式 — ASH Studio</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/project-detail.css" />
+</head>
+<body>
+<canvas id="dot-canvas"></canvas>
+<div class="page-wrap">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-logo-group">
+        <span class="nav-logo">Ash_Studio</span>
+        <span class="nav-available">
+          <span class="nav-available-dot"></span>
+          <span data-i18n="nav_available">接受项目合作</span>
+        </span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" data-i18n="nav_ui">UI设计</a></li>
+        <li><a href="dev.html" data-i18n="nav_dev">独立开发</a></li>
+        <li><a href="photography.html" data-i18n="nav_photo">摄影</a></li>
+        <li><a href="about.html" data-i18n="nav_about">关于</a></li>
+        <li><span class="nav-dot"></span></li>
+        <li><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN/中</button></li>
+        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我们</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ① HERO —— 1440×640px 图 -->
+  <section class="pd-hero">
+    <div class="pd-hero-img">
+      <!-- 替换 src 为你的 hero 图片路径 -->
+      <img src="images/lyft-hero.jpg" alt="Lyft 街景模式" />
+    </div>
+    <div class="container">
+      <div class="pd-hero-info">
+        <p class="pd-meta">01 / 2023 &nbsp;—&nbsp; UIUX · Mobile</p>
+        <h1 class="pd-title" data-i18n-zh="Lyft 街景模式" data-i18n-en="Lyft Street View">Lyft 街景模式</h1>
+        <p class="pd-tagline" data-i18n-zh="解决用户在打车过程中难以找到司机和上车点的问题，让打车更简单。" data-i18n-en="Solving the problem of passengers struggling to locate their driver and pickup point.">解决用户在打车过程中难以找到司机和上车点的问题，让打车更简单。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② OVERVIEW —— 纯文字，无图 -->
+  <section class="pd-section">
+    <div class="container">
+      <div class="pd-overview">
+        <p class="pd-overview-text" data-i18n-zh="为 Lyft 网约车进行迭代设计，分析当前版本问题，并根据问题和目标人群定制创新解决方案。本项目由我独立完成，是未落地的学生项目。" data-i18n-en="Iterative redesign of Lyft's ride-hailing app, analyzing current pain points and crafting innovative solutions. Completed independently as an academic concept project.">为 Lyft 网约车进行迭代设计，分析当前版本问题，并根据问题和目标人群定制创新解决方案。本项目由我独立完成，是未落地的学生项目。</p>
+        <div class="pd-meta-grid">
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="我负责" data-i18n-en="Role">我负责</span>
+            <span class="pd-meta-value" data-i18n-zh="用户研究 / AB测试 / UI设计" data-i18n-en="User Research / AB Test / UI Design">用户研究 / AB测试 / UI设计</span>
+          </div>
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="项目类型" data-i18n-en="Type">项目类型</span>
+            <span class="pd-meta-value" data-i18n-zh="学校项目" data-i18n-en="Academic Project">学校项目</span>
+          </div>
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="时长" data-i18n-en="Duration">时长</span>
+            <span class="pd-meta-value">2023.09 — 2023.10</span>
+          </div>
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="工具" data-i18n-en="Tools">工具</span>
+            <span class="pd-meta-value">Figma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ PROBLEM —— 文字 + 两张对比图（各 540×960px） -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Problem</span>
+      <h2 class="pd-section-title" data-i18n-zh="现有问题分析" data-i18n-en="Problem Analysis">现有问题分析</h2>
+      <p class="pd-body" data-i18n-zh="乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。" data-i18n-en="Passengers struggle to accurately locate their driver and pickup spot—too many cars at busy intersections, and unfamiliar streets cause disorientation.">乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。</p>
+      <!-- 两张并排对比图，各 540×960px，可以只放一张或两张 -->
+      <div class="pd-img-2col">
+        <div class="pd-img-wrap">
+          <img src="images/lyft-problem-1.jpg" alt="现有问题场景一" />
+          <p class="pd-img-caption" data-i18n-zh="场景一：繁忙路口" data-i18n-en="Scenario 1: Busy Intersection">场景一：繁忙路口</p>
+        </div>
+        <div class="pd-img-wrap">
+          <img src="images/lyft-problem-2.jpg" alt="现有问题场景二" />
+          <p class="pd-img-caption" data-i18n-zh="场景二：陌生街道" data-i18n-en="Scenario 2: Unfamiliar Street">场景二：陌生街道</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ GOAL —— 纯文字，大字突出，无图 -->
+  <section class="pd-section pd-section--goal">
+    <div class="container">
+      <div class="pd-goal">
+        <span class="pd-goal-label">Goal</span>
+        <p class="pd-goal-text" data-i18n-zh="优化乘客找到上车点的路径，并且使用户更了解司机的位置。" data-i18n-en="Optimize the passenger's path to the pickup point and help users better understand the driver's location.">优化乘客找到上车点的路径，并且使用户更了解司机的位置。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ FEATURES —— 每个功能：左文右图（图 540×960px）或左图右文，可插视频 -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Solution</span>
+
+      <!-- 功能一：图在右 -->
+      <div class="pd-feature">
+        <div class="pd-feature-info">
+          <span class="pd-feature-num">01</span>
+          <h3 class="pd-feature-title" data-i18n-zh="司机位置街景" data-i18n-en="Driver Location Street View">司机位置街景</h3>
+          <p class="pd-feature-desc" data-i18n-zh="当司机前往上车点时，用户可以在街景中看到司机汽车模型的精确位置，车辆下方显示进行路径，让用户了解司机来的具体方向和停车位置。" data-i18n-en="When the driver heads to the pickup point, users can see the driver's car in street view with a path indicator showing direction and parking spot.">当司机前往上车点时，用户可以在街景中看到司机汽车模型的精确位置，车辆下方显示进行路径，让用户了解司机来的具体方向和停车位置。</p>
+        </div>
+        <div class="pd-feature-media">
+          <!-- 静态图用 img，动态演示用下方 video 标签 -->
+          <img src="images/lyft-feature-1.jpg" alt="司机位置街景" />
+          <!-- 如果是视频：
+          <video autoplay loop muted playsinline>
+            <source src="images/lyft-feature-1.mp4" type="video/mp4" />
+          </video>
+          -->
+        </div>
+      </div>
+
+      <!-- 功能二：图在左（加 .pd-feature--rev） -->
+      <div class="pd-feature pd-feature--rev">
+        <div class="pd-feature-info">
+          <span class="pd-feature-num">02</span>
+          <h3 class="pd-feature-title" data-i18n-zh="上车点街景导航" data-i18n-en="Pickup Point Street View Navigation">上车点街景导航</h3>
+          <p class="pd-feature-desc" data-i18n-zh="用户可以通过街景查看上车点周边的实际环境，配合指引箭头步行导航，减少在陌生地点的迷失感。" data-i18n-en="Users can view the actual surroundings of the pickup point via street view with walking navigation arrows to reduce disorientation.">用户可以通过街景查看上车点周边的实际环境，配合指引箭头步行导航，减少在陌生地点的迷失感。</p>
+        </div>
+        <div class="pd-feature-media">
+          <video autoplay loop muted playsinline>
+            <source src="images/lyft-feature-2.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ⑥ FLOW —— 完整流程宽图，1440×700px -->
+  <section class="pd-section pd-section--flow">
+    <div class="container">
+      <span class="pd-section-label">Flow</span>
+      <h2 class="pd-section-title" data-i18n-zh="完整流程" data-i18n-en="Full Flow">完整流程</h2>
+    </div>
+    <!-- 宽图不受 container 限制，全出血 -->
+    <div class="pd-flow-img">
+      <img src="images/lyft-flow.jpg" alt="完整流程" />
+    </div>
+  </section>
+
+  <!-- 返回 + 下一个项目 -->
+  <div class="pd-nav-bottom">
+    <div class="container">
+      <a href="index.html" class="pd-back" data-i18n-zh="← 返回 UI 设计" data-i18n-en="← Back to UI Design">← 返回 UI 设计</a>
+      <a href="project-skygo.html" class="pd-next" data-i18n-zh="下一个项目 →" data-i18n-en="Next Project →">下一个项目 →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Ash_Studio</div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <ul>
+            <li><a href="mailto:hello@ash.design" data-i18n="footer_email">电子邮件</a></li>
+            <li><a href="#" data-i18n="footer_resume">个人简历</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <ul>
+            <li><a href="index.html" data-i18n="footer_ui">UI设计</a></li>
+            <li><a href="dev.html" data-i18n="footer_dev">独立开发</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <ul>
+            <li><a href="photography.html" data-i18n="footer_photo">摄影</a></li>
+            <li><a href="about.html" data-i18n="footer_about">关于</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-copy" data-i18n="footer_copy">© 2026 ASH</div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="js/dot-grid.js"></script>
+<script src="js/smooth-scroll.js"></script>
+<script src="js/language.js"></script>
+<script>
+  // 详情页双语切换（data-i18n-zh / data-i18n-en）
+  function applyDetailLang() {
+    const lang = localStorage.getItem('lang') || 'zh';
+    document.querySelectorAll('[data-i18n-zh]').forEach(el => {
+      el.textContent = lang === 'zh' ? el.dataset.i18nZh : el.dataset.i18nEn;
+    });
+  }
+  document.addEventListener('DOMContentLoaded', applyDetailLang);
+  const _orig = window.setLanguage;
+  window.setLanguage = function(lang) { _orig(lang); applyDetailLang(); };
+</script>
+</body>
+</html>
