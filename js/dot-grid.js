@@ -33,8 +33,12 @@ class DotGrid {
     this.SPRING_K   = 18;
     this.DECAY      = 8.5;
 
-    // 颜色：所有点统一，不随鼠标变化
-    this.BASE_A     = 0.067;
+    // 颜色：深色背景用白点，浅色背景用黑点
+    // 检测：project-detail.css 已加载 且 非 theme-gradient → 深色页
+    const isDark = !!document.querySelector('link[href*="project-detail"]')
+                   && !document.body.classList.contains('theme-gradient');
+    this.DOT_RGB    = isDark ? '255,255,255' : '0,0,0';
+    this.BASE_A     = isDark ? 0.07 : 0.047;  // 白点在深色背景上稍亮一点
     this.HOVER_A    = 0;     // 关闭近鼠标加深效果
 
     // 闲置波浪：三频叠加，大振幅，明显可见
@@ -50,6 +54,10 @@ class DotGrid {
     this.mouseOnPage = false;
     this.lastFrame   = performance.now();
     this.dpr         = Math.min(window.devicePixelRatio || 1, 2);
+
+    // 暴露给外部（像素猫读取最近点位置）
+    this.nearestDot  = null;   // {x, y} in document space, or null
+    window.dotGrid   = this;
 
     this.resize();
     this.bindEvents();
@@ -196,7 +204,7 @@ class DotGrid {
       if (d.y >= viewTop - 10 && d.y <= viewBot + 10) {
         ctx.beginPath();
         ctx.arc(d.x, d.y, DOT_R, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,0,0,${Math.min(alpha, 0.27).toFixed(3)})`;
+        ctx.fillStyle = `rgba(${this.DOT_RGB},${Math.min(alpha, 0.19).toFixed(3)})`;
         ctx.fill();
       }
     }

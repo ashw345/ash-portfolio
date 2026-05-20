@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/project-detail.css" />
 </head>
-<body>
+<body class="theme-gradient">
 <canvas id="dot-canvas"></canvas>
 <div class="page-wrap">
 
@@ -32,6 +32,7 @@
       </ul>
     </div>
   </nav>
+
 
   <!-- ① HERO —— 1440×640px 图 -->
   <section class="pd-hero">
@@ -81,8 +82,8 @@
       <span class="pd-section-label">Problem</span>
       <h2 class="pd-section-title" data-i18n-zh="现有问题分析" data-i18n-en="Problem Analysis">现有问题分析</h2>
       <p class="pd-body" data-i18n-zh="乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。" data-i18n-en="Passengers struggle to accurately locate their driver and pickup spot—too many cars at busy intersections, and unfamiliar streets cause disorientation.">乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。</p>
-      <!-- 两张并排对比图，各 540×960px，可以只放一张或两张 -->
-      <div class="pd-img-2col">
+      <!-- 三张并排手机比例图，各 540×960px -->
+      <div class="pd-img-3col">
         <div class="pd-img-wrap">
           <img src="images/lyft-problem-1.jpg" alt="现有问题场景一" />
           <p class="pd-img-caption" data-i18n-zh="场景一：繁忙路口" data-i18n-en="Scenario 1: Busy Intersection">场景一：繁忙路口</p>
@@ -90,6 +91,10 @@
         <div class="pd-img-wrap">
           <img src="images/lyft-problem-2.jpg" alt="现有问题场景二" />
           <p class="pd-img-caption" data-i18n-zh="场景二：陌生街道" data-i18n-en="Scenario 2: Unfamiliar Street">场景二：陌生街道</p>
+        </div>
+        <div class="pd-img-wrap">
+          <img src="images/lyft-problem-3.jpg" alt="现有问题场景三" />
+          <p class="pd-img-caption" data-i18n-zh="场景三：地点模糊" data-i18n-en="Scenario 3: Ambiguous Location">场景三：地点模糊</p>
         </div>
       </div>
     </div>
@@ -105,43 +110,301 @@
     </div>
   </section>
 
-  <!-- ⑤ FEATURES —— 每个功能：左文右图（图 540×960px）或左图右文，可插视频 -->
+  <!-- ⑤ COLOR SCHEMES —— 3套配色方案 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label">Solution</span>
+      <span class="pd-section-label">Exploration</span>
+      <h2 class="pd-section-title" data-i18n-zh="配色方案探索" data-i18n-en="Color Schemes Exploration">配色方案探索</h2>
+      <p class="pd-body" data-i18n-zh="在项目初期，我们探索了三套不同的配色方向，从能量感的粉色系，到专业稳重的蓝色系，再到温暖友好的橙色系，最终选择了粉色作为品牌主色，以传达安全、即时和活力的设计理念。" data-i18n-en="During the early exploration phase, we tested three color directions—from energetic pink tones, to professional blue, to warm orange—ultimately choosing pink as the brand color to convey safety, immediacy, and dynamism.">在项目初期，我们探索了三套不同的配色方向，从能量感的粉色系，到专业稳重的蓝色系，再到温暖友好的橙色系，最终选择了粉色作为品牌主色，以传达安全、即时和活力的设计理念。</p>
 
-      <!-- 功能一：图在右 -->
-      <div class="pd-feature">
-        <div class="pd-feature-info">
-          <span class="pd-feature-num">01</span>
-          <h3 class="pd-feature-title" data-i18n-zh="司机位置街景" data-i18n-en="Driver Location Street View">司机位置街景</h3>
-          <p class="pd-feature-desc" data-i18n-zh="当司机前往上车点时，用户可以在街景中看到司机汽车模型的精确位置，车辆下方显示进行路径，让用户了解司机来的具体方向和停车位置。" data-i18n-en="When the driver heads to the pickup point, users can see the driver's car in street view with a path indicator showing direction and parking spot.">当司机前往上车点时，用户可以在街景中看到司机汽车模型的精确位置，车辆下方显示进行路径，让用户了解司机来的具体方向和停车位置。</p>
+      <div class="pd-scheme-grid">
+        <!-- 方案一：粉色能量系 -->
+        <div class="pd-scheme-card">
+          <div class="pd-scheme-header">
+            <span class="pd-scheme-name" data-i18n-zh="方案一：粉色能量" data-i18n-en="Scheme 1: Pink Energy">方案一：粉色能量</span>
+          </div>
+          <div class="pd-scheme-colors">
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#FF00BF;"></div>
+              <span>#FF00BF</span>
+            </div>
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#FFFFFF; border:1px solid var(--border);"></div>
+              <span>#FFFFFF</span>
+            </div>
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#F5F5F5;"></div>
+              <span>#F5F5F5</span>
+            </div>
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#111111;"></div>
+              <span>#111111</span>
+            </div>
+          </div>
+          <div class="pd-scheme-desc" data-i18n-zh="✓ 选定方案<br>能量感强、易识别、体现活力与安全" data-i18n-en="✓ Selected<br>High energy, easily recognizable, conveys dynamism and safety">✓ 选定方案<br>能量感强、易识别、体现活力与安全</div>
         </div>
-        <div class="pd-feature-media">
-          <!-- 静态图用 img，动态演示用下方 video 标签 -->
-          <img src="images/lyft-feature-1.jpg" alt="司机位置街景" />
-          <!-- 如果是视频：
-          <video autoplay loop muted playsinline>
-            <source src="images/lyft-feature-1.mp4" type="video/mp4" />
-          </video>
-          -->
+
+        <!-- 方案二：蓝色专业系 -->
+        <div class="pd-scheme-card">
+          <div class="pd-scheme-header">
+            <span class="pd-scheme-name" data-i18n-zh="方案二：蓝色专业" data-i18n-en="Scheme 2: Blue Professional">方案二：蓝色专业</span>
+          </div>
+          <div class="pd-scheme-colors">
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#0066FF;"></div>
+              <span>#0066FF</span>
+            </div>
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#FFFFFF; border:1px solid var(--border);"></div>
+              <span>#FFFFFF</span>
+            </div>
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#F0F4FF;"></div>
+              <span>#F0F4FF</span>
+            </div>
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#1A1A2E;"></div>
+              <span>#1A1A2E</span>
+            </div>
+          </div>
+          <div class="pd-scheme-desc" data-i18n-zh="稳重专业、信任感强<br>但缺少活力感，不够突出" data-i18n-en="Professional and trustworthy<br>but lacks energy and uniqueness">稳重专业、信任感强<br>但缺少活力感，不够突出</div>
+        </div>
+
+        <!-- 方案三：橙色温暖系 -->
+        <div class="pd-scheme-card">
+          <div class="pd-scheme-header">
+            <span class="pd-scheme-name" data-i18n-zh="方案三：橙色温暖" data-i18n-en="Scheme 3: Orange Warm">方案三：橙色温暖</span>
+          </div>
+          <div class="pd-scheme-colors">
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#FF8C00;"></div>
+              <span>#FF8C00</span>
+            </div>
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#FFFFFF; border:1px solid var(--border);"></div>
+              <span>#FFFFFF</span>
+            </div>
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#FFF5E6;"></div>
+              <span>#FFF5E6</span>
+            </div>
+            <div class="pd-scheme-color-row">
+              <div class="pd-scheme-color" style="background:#2C2C2C;"></div>
+              <span>#2C2C2C</span>
+            </div>
+          </div>
+          <div class="pd-scheme-desc" data-i18n-zh="温暖友好、适合社交<br>但在高速移动场景识别性不足" data-i18n-en="Warm and friendly, social<br>but lacks quick recognition in fast-paced scenarios">温暖友好、适合社交<br>但在高速移动场景识别性不足</div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- 功能二：图在左（加 .pd-feature--rev） -->
-      <div class="pd-feature pd-feature--rev">
-        <div class="pd-feature-info">
-          <span class="pd-feature-num">02</span>
-          <h3 class="pd-feature-title" data-i18n-zh="上车点街景导航" data-i18n-en="Pickup Point Street View Navigation">上车点街景导航</h3>
-          <p class="pd-feature-desc" data-i18n-zh="用户可以通过街景查看上车点周边的实际环境，配合指引箭头步行导航，减少在陌生地点的迷失感。" data-i18n-en="Users can view the actual surroundings of the pickup point via street view with walking navigation arrows to reduce disorientation.">用户可以通过街景查看上车点周边的实际环境，配合指引箭头步行导航，减少在陌生地点的迷失感。</p>
+  <!-- ⑥ DESIGN SYSTEM —— 配色 / 字体 / 组件规范 -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Design System</span>
+      <h2 class="pd-section-title" data-i18n-zh="视觉设计规范" data-i18n-en="Visual Design System">视觉设计规范</h2>
+      <p class="pd-body" data-i18n-zh="围绕"清晰、安全、即时"的设计理念，构建了一套以高对比度黑白为主、辅以品牌粉色作为关键交互色的视觉系统。强调信息层级的清晰可读与移动场景下的快速识别。" data-i18n-en="Built around the design principles of clarity, safety, and immediacy, this system uses high-contrast black and white as the foundation, with brand pink as the key interaction color. It emphasizes clear information hierarchy and quick recognition in mobile contexts.">围绕"清晰、安全、即时"的设计理念，构建了一套以高对比度黑白为主、辅以品牌粉色作为关键交互色的视觉系统。强调信息层级的清晰可读与移动场景下的快速识别。</p>
+
+      <div class="pd-system-grid">
+        <!-- Colors column -->
+        <div class="pd-system-col">
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">Primary</span>
+              <span class="pd-system-hex">#FF00BF</span>
+            </div>
+            <div class="pd-color-block" style="background:#FF00BF"></div>
+            <div class="pd-color-shades">
+              <span style="background:#1a0014"></span>
+              <span style="background:#330029"></span>
+              <span style="background:#66004d"></span>
+              <span style="background:#990073"></span>
+              <span style="background:#cc0099"></span>
+              <span style="background:#FF00BF"></span>
+              <span style="background:#ff33cc"></span>
+              <span style="background:#ff66d9"></span>
+              <span style="background:#ff99e6"></span>
+              <span style="background:#ffccf2"></span>
+            </div>
+          </div>
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">Secondary</span>
+              <span class="pd-system-hex">#FFFFFF</span>
+            </div>
+            <div class="pd-color-block" style="background:#FFFFFF; border:1px solid var(--border)"></div>
+          </div>
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">Neutral</span>
+              <span class="pd-system-hex">#777777</span>
+            </div>
+            <div class="pd-color-block" style="background:#777"></div>
+          </div>
         </div>
-        <div class="pd-feature-media">
-          <video autoplay loop muted playsinline>
-            <source src="images/lyft-feature-2.mp4" type="video/mp4" />
-          </video>
+
+        <!-- Typography column -->
+        <div class="pd-system-col">
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">Headline</span>
+              <span class="pd-system-hex">Syne</span>
+            </div>
+            <div class="pd-type-sample" style="font-family:'Syne',sans-serif; font-weight:800;">Aa</div>
+          </div>
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">Body</span>
+              <span class="pd-system-hex">Inter</span>
+            </div>
+            <div class="pd-type-sample" style="font-family:-apple-system,'Inter',sans-serif; font-weight:500;">Aa</div>
+          </div>
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">Label</span>
+              <span class="pd-system-hex">JetBrains Mono</span>
+            </div>
+            <div class="pd-type-sample" style="font-family:'JetBrains Mono',monospace;">Aa</div>
+          </div>
+        </div>
+
+        <!-- Components column -->
+        <div class="pd-system-col">
+          <div class="pd-system-card pd-system-card--components">
+            <div class="pd-btn-group">
+              <button class="pd-demo-btn pd-demo-btn--primary">Primary</button>
+              <button class="pd-demo-btn pd-demo-btn--secondary">Secondary</button>
+              <button class="pd-demo-btn pd-demo-btn--inverted">Inverted</button>
+              <button class="pd-demo-btn pd-demo-btn--outlined">Outlined</button>
+            </div>
+          </div>
+          <div class="pd-system-card pd-system-card--components">
+            <div class="pd-demo-rows">
+              <div class="pd-demo-row" style="width:80%"></div>
+              <div class="pd-demo-row" style="width:60%"></div>
+              <div class="pd-demo-row" style="width:45%"></div>
+            </div>
+          </div>
+          <div class="pd-system-card pd-system-card--components">
+            <div class="pd-icon-row">
+              <span class="pd-demo-icon">✎</span>
+              <span class="pd-demo-icon">⌂</span>
+              <span class="pd-demo-icon">⊕</span>
+              <span class="pd-demo-icon">⌫</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search + tab bar column -->
+        <div class="pd-system-col">
+          <div class="pd-system-card pd-system-card--components">
+            <div class="pd-demo-search">
+              <span class="pd-demo-search-icon">⌕</span>
+              <span class="pd-demo-search-text">Search</span>
+            </div>
+          </div>
+          <div class="pd-system-card pd-system-card--components">
+            <div class="pd-demo-tabbar">
+              <span class="pd-demo-icon">⌂</span>
+              <span class="pd-demo-icon">⌕</span>
+              <span class="pd-demo-icon">○</span>
+            </div>
+          </div>
+          <div class="pd-system-card pd-system-card--components">
+            <div class="pd-demo-label-row">
+              <span class="pd-demo-pill">✎</span>
+              <span class="pd-demo-pill">✎ Label</span>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
+  <!-- ⑥ FEATURES — 轮播 -->
+  <section class="pd-section pd-section--solution">
+    <!-- 侧边按钮：在 section 级别，位于 container gutter 内 -->
+    <button class="pd-carousel-side-btn pd-carousel-side-btn--prev pd-carousel-prev" aria-label="上一个">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14L7 9L11 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="pd-carousel-side-btn pd-carousel-side-btn--next pd-carousel-next" aria-label="下一个">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4L11 9L7 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div class="container">
+
+      <div class="pd-carousel">
+        <div class="pd-carousel-track">
+
+          <!-- Slide 01 -->
+          <div class="pd-carousel-slide">
+            <div class="pd-feature">
+              <div class="pd-feature-info">
+                <span class="pd-feature-num">解决方案  Solution  01</span>
+                <h3 class="pd-feature-title" data-i18n-zh="司机位置街景" data-i18n-en="Driver Location Street View">司机位置街景</h3>
+                <p class="pd-feature-desc" data-i18n-zh="当司机前往上车点时，用户可以在街景中看到司机汽车模型的精确位置，车辆下方显示进行路径，让用户了解司机来的具体方向和停车位置。" data-i18n-en="When the driver heads to the pickup point, users can see the driver's car in street view with a path indicator showing direction and parking spot.">当司机前往上车点时，用户可以在街景中看到司机汽车模型的精确位置，车辆下方显示进行路径，让用户了解司机来的具体方向和停车位置。</p>
+              </div>
+              <div class="pd-feature-media">
+                <img src="images/lyft-feature-1.jpg" alt="司机位置街景" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 02 -->
+          <div class="pd-carousel-slide">
+            <div class="pd-feature">
+              <div class="pd-feature-info">
+                <span class="pd-feature-num">解决方案  Solution  02</span>
+                <h3 class="pd-feature-title" data-i18n-zh="上车点街景导航" data-i18n-en="Pickup Point Street View Navigation">上车点街景导航</h3>
+                <p class="pd-feature-desc" data-i18n-zh="用户可以通过街景查看上车点周边的实际环境，配合指引箭头步行导航，减少在陌生地点的迷失感。" data-i18n-en="Users can view the actual surroundings of the pickup point via street view with walking navigation arrows to reduce disorientation.">用户可以通过街景查看上车点周边的实际环境，配合指引箭头步行导航，减少在陌生地点的迷失感。</p>
+              </div>
+              <div class="pd-feature-media">
+                <video autoplay loop muted playsinline>
+                  <source src="images/lyft-feature-2.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.pd-carousel-track -->
+      </div><!-- /.pd-carousel -->
+
+      <!-- 指示点 -->
+      <div class="pd-carousel-dots">
+        <button class="pd-carousel-dot is-active" aria-label="第1页"></button>
+        <button class="pd-carousel-dot" aria-label="第2页"></button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ⑦ SCREENS — 横向滚动截图总览 -->
+  <section class="pd-section pd-section--screens">
+    <!-- 侧边按钮 -->
+    <button class="pd-screens-btn pd-screens-btn--prev is-disabled" aria-label="向左滚动">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14L7 9L11 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="pd-screens-btn pd-screens-btn--next" aria-label="向右滚动">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4L11 9L7 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div class="container">
+      <span class="pd-section-label">Screens</span>
+      <h2 class="pd-section-title" data-i18n-zh="页面展示" data-i18n-en="Screen Gallery">页面展示</h2>
+    </div>
+    <div class="pd-screens-scroll">
+      <div class="pd-screens-track">
+        <img class="pd-screen" src="images/lyft-feature-1.jpg" alt="Screen 01" />
+        <div class="pd-screen-empty"></div>
+        <div class="pd-screen-empty"></div>
+        <div class="pd-screen-empty"></div>
+        <div class="pd-screen-empty"></div>
+        <div class="pd-screen-empty"></div>
+      </div>
+    </div>
+    <div class="pd-screens-progress">
+      <div class="pd-screens-progress-bar"></div>
     </div>
   </section>
 
@@ -196,8 +459,11 @@
 </div>
 
 <script src="js/dot-grid.js"></script>
+<script src="js/blob-bg.js"></script>
 <script src="js/smooth-scroll.js"></script>
 <script src="js/language.js"></script>
+<script src="js/solution-carousel.js"></script>
+<script src="js/pixel-cat.js"></script>
 <script>
   // 详情页双语切换（data-i18n-zh / data-i18n-en）
   function applyDetailLang() {

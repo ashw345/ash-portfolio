@@ -113,7 +113,7 @@
       snap(e.deltaY > 0 ? 1 : -1);
       lockNav();
     } else {
-      targetY = clamp(targetY + e.deltaY * 0.5);
+      targetY = clamp(targetY + e.deltaY * 0.8);
       startAnim();
     }
   }, { passive: false });
@@ -146,5 +146,20 @@
       });
     }
   });
+
+  /* ── Nav scroll opacity ──────────────────────────────── */
+  (function () {
+    var nav = document.querySelector('.nav');
+    if (!nav) return;
+    function updateNavState() {
+      if (window.scrollY > 20) {
+        nav.classList.add('nav--scrolled');
+      } else {
+        nav.classList.remove('nav--scrolled');
+      }
+    }
+    window.addEventListener('scroll', updateNavState, { passive: true });
+    updateNavState();
+  })();
 
 })();

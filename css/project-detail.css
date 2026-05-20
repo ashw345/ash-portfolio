@@ -103,24 +103,91 @@
   line-height: 1.6;
 }
 
-/* ── Problem images (2-col) ────────────────────────── */
-.pd-img-2col {
+/* ── Problem images (3-col 手机比例) ───────────────── */
+.pd-img-2col,
+.pd-img-3col {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 .pd-img-wrap img {
   width: 100%;
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 375 / 812;
   object-fit: cover;
   background: #141414;
   display: block;
+  border-radius: 24px;
 }
 .pd-img-caption {
   font-size: 12px;
   color: var(--muted);
   letter-spacing: 0.05em;
   margin-top: 12px;
+}
+
+/* ── Color Schemes ─────────────────────────────── */
+.pd-scheme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+.pd-scheme-card {
+  background: #fafafa;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.pd-scheme-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pd-scheme-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.pd-scheme-colors {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pd-scheme-color-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pd-scheme-color {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.pd-scheme-color-row span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+.pd-scheme-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.pd-scheme-card:first-child .pd-scheme-desc {
+  color: var(--text);
+  font-weight: 600;
 }
 
 /* ── Goal ──────────────────────────────────────────── */
@@ -146,7 +213,155 @@
   line-height: 1.3;
   letter-spacing: -0.02em;
   color: #ffffff;
-  max-width: 760px;
+  max-width: 100%;
+}
+
+/* ── Design System ─────────────────────────────────── */
+.pd-system-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.pd-system-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.pd-system-card {
+  background: #f4f4f2;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+.pd-system-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.pd-system-name {
+  font-family: 'JetBrains Mono', monospace, 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #111;
+}
+.pd-system-hex {
+  font-family: 'JetBrains Mono', monospace, sans-serif;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Color block + shades */
+.pd-color-block {
+  flex: 1;
+  min-height: 80px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+.pd-color-shades {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+  height: 18px;
+}
+.pd-color-shades span {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+}
+
+/* Typography giant Aa */
+.pd-type-sample {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(64px, 6vw, 96px);
+  line-height: 1;
+  color: #111;
+}
+
+/* Component demos */
+.pd-system-card--components {
+  align-items: center;
+  justify-content: center;
+}
+.pd-btn-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+.pd-demo-btn {
+  font-family: 'JetBrains Mono', monospace, sans-serif;
+  font-size: 11px;
+  padding: 10px 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+.pd-demo-btn--primary { background: #fff; color: #111; }
+.pd-demo-btn--secondary { background: #e3e3df; color: #111; }
+.pd-demo-btn--inverted { background: #fff; color: #111; }
+.pd-demo-btn--outlined { background: transparent; color: #111; border: 1px solid #111; }
+
+.pd-demo-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.pd-demo-row {
+  height: 8px;
+  background: #d6d6d2;
+  border-radius: 4px;
+}
+.pd-icon-row, .pd-demo-tabbar {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.pd-demo-icon {
+  font-size: 18px;
+  color: #111;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #fff;
+}
+.pd-demo-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 40px;
+  background: #fff;
+  border-radius: 999px;
+  padding: 0 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.pd-demo-label-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.pd-demo-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 11px;
+  color: #111;
 }
 
 /* ── Features ──────────────────────────────────────── */
@@ -167,10 +382,11 @@
 
 .pd-feature-num {
   display: block;
-  font-family: 'Syne', sans-serif;
+  font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 16px;
 }
@@ -196,11 +412,12 @@
 .pd-feature-media img,
 .pd-feature-media video {
   width: 100%;
-  max-width: 320px;
-  aspect-ratio: 9 / 16;
+  max-width: 292px;
+  aspect-ratio: 375 / 812;
   object-fit: cover;
   background: #141414;
   display: block;
+  border-radius: 24px;
 }
 
 /* ── Flow (全出血宽图) ─────────────────────────────── */
@@ -247,4 +464,448 @@ html[lang="zh-CN"] .pd-section-title,
 html[lang="zh-CN"] .pd-feature-title,
 html[lang="zh-CN"] .pd-goal-text {
   font-weight: 100;
+}
+
+/* =====================================================
+   PROJECT SKIN THEMES
+   用法：在项目详情页的 <body> 加 class：
+     theme-light    → 白底黑字（默认，不加也一样）
+     theme-dark     → 黑底白字（适合严肃/科技感项目）
+     theme-gradient → 弥散渐变浅底（适合活泼/创意项目）
+   ===================================================== */
+
+/* ── DARK SKIN ──────────────────────────────────────
+   严肃、科技感、高对比度黑底
+   ─────────────────────────────────────────────────── */
+body.theme-dark {
+  background: #0d0d0d;
+  color: #edebe6;
+  --bg:     #0d0d0d;
+  --text:   #edebe6;
+  --muted:  #555555;
+  --border: rgba(255,255,255,0.08);
+}
+
+/* nav */
+body.theme-dark .nav {
+  background: rgba(13,13,13,0.82);
+  border-bottom-color: rgba(255,255,255,0.06);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* section 分割线 */
+body.theme-dark .pd-section {
+  border-top-color: rgba(255,255,255,0.07);
+}
+body.theme-dark .pd-nav-bottom {
+  border-top-color: rgba(255,255,255,0.07);
+}
+body.theme-dark .pd-meta-grid {
+  border-top-color: rgba(255,255,255,0.07);
+}
+
+/* overview / body text */
+body.theme-dark .pd-overview-text,
+body.theme-dark .pd-body,
+body.theme-dark .pd-tagline,
+body.theme-dark .pd-feature-desc {
+  color: #a0a0a0;
+}
+
+/* meta label / section label */
+body.theme-dark .pd-meta,
+body.theme-dark .pd-meta-label,
+body.theme-dark .pd-section-label,
+body.theme-dark .pd-feature-num {
+  color: #4a4a4a;
+}
+
+/* Design system cards */
+body.theme-dark .pd-system-card {
+  background: #161616;
+}
+body.theme-dark .pd-system-name {
+  color: #edebe6;
+}
+body.theme-dark .pd-type-sample {
+  color: #edebe6;
+}
+body.theme-dark .pd-demo-row {
+  background: #2a2a2a;
+}
+body.theme-dark .pd-demo-icon {
+  background: #222222;
+  color: #edebe6;
+}
+body.theme-dark .pd-demo-search {
+  background: #1a1a1a;
+}
+body.theme-dark .pd-demo-pill {
+  background: #1a1a1a;
+  color: #edebe6;
+}
+
+/* Color scheme cards */
+body.theme-dark .pd-scheme-card {
+  background: #141414;
+  border-color: rgba(255,255,255,0.07);
+}
+body.theme-dark .pd-scheme-desc {
+  border-top-color: rgba(255,255,255,0.07);
+}
+
+/* Goal section: dark下用更深的背景强调 */
+body.theme-dark .pd-section--goal {
+  background: #080808;
+}
+
+/* footer */
+body.theme-dark .footer .container {
+  border-top-color: rgba(255,255,255,0.07);
+}
+
+/* ── GRADIENT SKIN ──────────────────────────────────
+   弥散渐变浅底，活泼/创意项目
+   blob-bg.js 负责绘制 canvas；CSS 负责页面层透明化
+   ─────────────────────────────────────────────────── */
+body.theme-gradient {
+  background: #ffffff;
+}
+
+/* page-wrap 透明，让 blob canvas 透出 */
+body.theme-gradient .page-wrap {
+  background: transparent;
+}
+
+/* nav 毛玻璃感更强 */
+body.theme-gradient .nav {
+  background: rgba(245,243,239,0.78);
+  backdrop-filter: blur(32px) saturate(140%);
+  -webkit-backdrop-filter: blur(32px) saturate(140%);
+  border-bottom-color: rgba(255,255,255,0.50);
+}
+body.theme-gradient .nav.nav--scrolled {
+  background: rgba(245,243,239,0.95);
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+
+/* Design system & scheme cards → glassmorphism */
+body.theme-gradient .pd-system-card,
+body.theme-gradient .pd-scheme-card {
+  background: rgba(255,255,255,0.58);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  border: 1px solid rgba(255,255,255,0.65);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+}
+
+/* feature media 不做特殊处理，手机截图本身有深色背景 */
+
+/* theme-gradient：隐藏点状网格 */
+body.theme-gradient #dot-canvas {
+  display: none;
+}
+
+/* theme-gradient：全局磨砂噪点叠加层（样式由 blob-bg.js 注入） */
+
+/* Blob canvas（由 blob-bg.js 创建） */
+#blob-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  filter: blur(22px) saturate(125%);
+}
+#blob-canvas.ready {
+  opacity: 1;
+}
+
+/* ── 深色项目页：移除所有分割线 ──────────────────────
+   覆盖所有非 theme-gradient 的项目详情页
+   ─────────────────────────────────────────────────── */
+body:not(.theme-gradient) .pd-section {
+  border-top: none;
+}
+body:not(.theme-gradient) .pd-feature {
+  border-top: none;
+}
+body:not(.theme-gradient) .pd-nav-bottom {
+  border-top: none;
+}
+body:not(.theme-gradient) .footer .container {
+  border-top: none;
+}
+
+/* ── 弥散渐变页：同样移除所有分割线 ─────────────────── */
+body.theme-gradient .pd-section {
+  border-top: none;
+}
+body.theme-gradient .pd-feature {
+  border-top: none;
+}
+body.theme-gradient .pd-nav-bottom {
+  border-top: none;
+}
+body.theme-gradient .footer .container {
+  border-top: none;
+}
+
+/* ── 深色项目页：meta-grid 改为框线容器 ──────────────
+   用边框 + 微背景包裹「我负责 / 项目类型 / 时长 / 工具」
+   ─────────────────────────────────────────────────── */
+body:not(.theme-gradient) .pd-meta-grid {
+  border-top: none;
+  border: 0.5px solid rgba(255,255,255,0.09);
+  border-radius: 12px;
+  padding: 32px 40px;
+  background: rgba(255,255,255,0.025);
+  margin-top: 48px;
+}
+
+/* 弥散渐变页同样改为框线容器，去掉分割线 */
+body.theme-gradient .pd-meta-grid {
+  border-top: none;
+  border: 0.5px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 32px 40px;
+  background: rgba(255,255,255,0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  margin-top: 48px;
+}
+
+/* =====================================================
+   SOLUTION CAROUSEL
+   ===================================================== */
+
+/* 头部：标签左，计数器右 */
+.pd-solution-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.pd-solution-header .pd-section-label {
+  margin-bottom: 0;
+}
+.pd-carousel-counter {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+/* Section 级别定位：按钮在 container gutter 内，不压文字 */
+.pd-section--solution {
+  position: relative;
+}
+.pd-section--screens {
+  position: relative;
+}
+
+/* 侧边箭头按钮（Solution + Screens 共用） */
+.pd-carousel-side-btn,
+.pd-screens-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.32);
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, opacity 0.2s, transform 0.2s;
+  padding: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+}
+.pd-carousel-side-btn:hover,
+.pd-screens-btn:hover {
+  background: rgba(255,255,255,0.28);
+  transform: translateY(-50%) scale(1.07);
+}
+.pd-carousel-side-btn.is-disabled,
+.pd-screens-btn.is-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Solution 按钮：左右各 20px，完全在 gutter 内 */
+.pd-carousel-side-btn--prev { left: 20px; }
+.pd-carousel-side-btn--next { right: 20px; }
+
+/* Screens 按钮：同位置 */
+.pd-screens-btn--prev { left: 20px; }
+.pd-screens-btn--next { right: 20px; }
+
+/* theme-gradient 浅色页：白色卡片按钮，阴影区分背景 */
+body.theme-gradient .pd-carousel-side-btn,
+body.theme-gradient .pd-screens-btn {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.10);
+  color: #111111;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.14), 0 1px 4px rgba(0,0,0,0.07);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+body.theme-gradient .pd-carousel-side-btn:hover,
+body.theme-gradient .pd-screens-btn:hover {
+  background: #f7f7f7;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.08);
+  transform: translateY(-50%) scale(1.07);
+}
+
+/* 视口太窄时隐藏按钮 */
+@media (max-width: 900px) {
+  .pd-carousel-side-btn,
+  .pd-screens-btn { display: none; }
+}
+
+/* 轮播容器 */
+.pd-carousel {
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+.pd-carousel.is-grabbing,
+.pd-carousel:active {
+  cursor: grabbing;
+}
+.pd-carousel-track {
+  display: flex;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.pd-carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+/* 轮播内的 feature：重置边框 & padding */
+.pd-section--solution .pd-feature {
+  border-top: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.pd-section--solution .pd-feature:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* 指示点 */
+.pd-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+.pd-carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.35;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  border: none;
+  padding: 0;
+}
+.pd-carousel-dot.is-active {
+  opacity: 1;
+  transform: scale(1.3);
+  background: var(--text);
+}
+
+/* =====================================================
+   SCREENS — 手机截图横向滚动画廊
+   ===================================================== */
+.pd-section--screens .container {
+  margin-bottom: 40px;
+}
+.pd-screens-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline-start: 48px;
+  padding: 0 0 40px;
+  scrollbar-width: none;
+}
+.pd-screens-scroll::-webkit-scrollbar { display: none; }
+
+.pd-screens-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  padding-inline-start: 48px;
+  padding-inline-end: 48px;
+}
+
+.pd-screen {
+  width: 292px;
+  aspect-ratio: 375 / 812;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  background: #1a1a1a;
+  border-radius: 24px;
+}
+
+/* 占位格（还没有截图时显示） */
+.pd-screen-empty {
+  width: 292px;
+  aspect-ratio: 375 / 812;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  scroll-snap-align: start;
+}
+
+/* theme-gradient 下，screens 颜色反转 */
+body.theme-gradient .pd-screen-empty {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.08);
+}
+body.theme-gradient .pd-screen {
+  background: #e8e8e8;
+}
+
+/* Screens 进度条 */
+.pd-screens-progress {
+  height: 1.5px;
+  background: rgba(255,255,255,0.08);
+  margin: 20px 0 0;
+  padding: 0 48px;
+  border-radius: 1px;
+  overflow: hidden;
+}
+.pd-screens-progress-bar {
+  height: 100%;
+  background: var(--muted);
+  border-radius: 1px;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+body.theme-gradient .pd-screens-progress {
+  background: rgba(0,0,0,0.08);
+}
+body.theme-gradient .pd-screens-progress-bar {
+  background: rgba(0,0,0,0.35);
 }
