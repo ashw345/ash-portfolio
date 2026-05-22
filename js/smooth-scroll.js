@@ -145,6 +145,44 @@
         startAnim();
       });
     }
+
+    /* ── Project title & image → navigate to detail page ── */
+    document.querySelectorAll('.project-item').forEach(function (item) {
+      var link = item.querySelector('.project-link');
+      if (!link) return;
+      var href = link.getAttribute('href');
+
+      var title = item.querySelector('.project-title');
+      if (title) {
+        title.addEventListener('click', function () {
+          window.location.href = href;
+        });
+      }
+
+      var imgWrap = item.querySelector('.project-img-wrap');
+      if (imgWrap) {
+        imgWrap.addEventListener('click', function () {
+          window.location.href = href;
+        });
+      }
+
+      /* ── Centered letter-spacing hover ── */
+      if (title) {
+        title.addEventListener('mouseenter', function () {
+          var before = title.getBoundingClientRect().width;
+          title.style.letterSpacing = '0.06em';
+          var after = title.getBoundingClientRect().width;
+          var shift = (after - before) / 2;
+          title.style.transform = 'translateX(-' + shift + 'px)';
+          title.classList.add('is-hovered');
+        });
+        title.addEventListener('mouseleave', function () {
+          title.style.letterSpacing = '';
+          title.style.transform = '';
+          title.classList.remove('is-hovered');
+        });
+      }
+    });
   });
 
   /* ── Nav scroll opacity ──────────────────────────────── */

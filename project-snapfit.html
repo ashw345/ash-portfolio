@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>闪电健身 SnapFIT — ASH Studio</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/project-detail.css" />
+  <style>
+    /* ── SnapFIT 品牌色覆盖 ── */
+    :root {
+      --accent: #C1FF00;
+    }
+    /* Flow — 三列布局：标题 | 视频 | 导航 */
+    .snapfit-flow-row {
+      display: flex;
+      align-items: center;
+      gap: 226px;
+    }
+    .snapfit-flow-info {
+      flex-shrink: 0;
+    }
+    .snapfit-flow-info .pd-section-label {
+      display: block;
+      margin-bottom: 12px;
+    }
+    .snapfit-flow-info .pd-section-title {
+      margin-bottom: 0;
+      white-space: nowrap;
+    }
+    .snapfit-flow-video {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse; /* nav 在左，video 在右 */
+      gap: 48px;
+    }
+    .snapfit-flow-clip {
+      width: 286px;
+      height: 642px;
+      overflow: hidden;
+      border-radius: 36px;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .snapfit-flow-clip video {
+      width: 286px;
+      height: 618px;
+      flex-shrink: 0;
+      object-fit: cover;
+      object-position: center center;
+      transform: scale(1.0629) translateX(1px) translateY(2px);
+      transform-origin: center center;
+    }
+    /* ── 用户引言卡片 ── */
+    .snapfit-quotes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .snapfit-quote-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0;
+      padding: 36px 28px 28px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .snapfit-quote-avatar {
+      width: 186px;
+      height: 186px;
+      flex-shrink: 0;
+      margin-bottom: 20px;
+      object-fit: contain;
+      display: block;
+    }
+    .snapfit-quote-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+    .snapfit-quote-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .snapfit-quote-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.01em;
+    }
+    .snapfit-quote-tag {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.03em;
+    }
+    .snapfit-quote-text {
+      display: block;
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+      margin: 6px 0 0;
+    }
+    .snapfit-quote-pain {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #C1FF00;
+      background: rgba(193,255,0,0.08);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-top: 4px;
+    }
+    .snapfit-quote-voice {
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.7) !important;
+      margin: 10px 0 0;
+      display: block !important;
+      visibility: visible !important;
+    }
+
+    /* ── Design System 重排 ── */
+    .snapfit-ds-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+      align-items: stretch;
+    }
+    .snapfit-ds-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .snapfit-ds-col--fill {
+      height: 100%;
+    }
+    .snapfit-ds-col--fill .snapfit-ds-placeholder {
+      flex: 1;
+      height: auto;
+    }
+    .snapfit-ds-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 4px;
+    }
+    .snapfit-type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      padding: 8px 0 4px;
+      font-family: -apple-system, 'SF Pro Text', sans-serif;
+    }
+    .snapfit-type-sample {
+      font-size: 40px;
+      color: #ffffff;
+      line-height: 1;
+      font-family: -apple-system, 'SF Pro Text', sans-serif;
+    }
+    .snapfit-type-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.03em;
+    }
+    .snapfit-ds-placeholder {
+      background: rgba(255,255,255,0.04);
+      border: 1.5px dashed rgba(255,255,255,0.12);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .snapfit-ds-placeholder--mid {
+      height: 220px;
+    }
+    .snapfit-ds-placeholder--short {
+      height: 136px;
+    }
+    .snapfit-ds-placeholder-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.06em;
+    }
+
+    /* 左侧章节导航（右对齐） */
+    .snapfit-flow-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      position: relative;
+    }
+    .snapfit-flow-nav::before {
+      content: '';
+      position: absolute;
+      right: 3px;
+      top: 18px;
+      bottom: 18px;
+      width: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+    .snapfit-nav-item {
+      display: flex;
+      flex-direction: row-reverse; /* dot 在右，text 在左 */
+      align-items: center;
+      gap: 14px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 13px 0;
+      text-align: right;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.25s;
+      position: relative;
+    }
+    .snapfit-nav-item:hover { color: rgba(255,255,255,0.80); }
+
+    /* 解决方案左右按钮：与手机屏幕高度中点对齐 */
+    /* section padding=96px, 手机高=292*(844/390)≈632px, 中点=96+316=412px */
+    /* dots占46px，section总高≈870px，50%=435px，需上移23px */
+    .pd-section--solution .pd-carousel-side-btn {
+      top: calc(50% - 23px);
+    }
+
+    /* 解决方案轮播：让 carousel 横跨屏幕，mask 在屏幕边缘渐变 */
+    .pd-section--solution .container {
+      max-width: none;
+      padding: 0;
+    }
+    .pd-section--solution .pd-carousel {
+      -webkit-mask-image: linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%);
+              mask-image: linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%);
+    }
+    /* slide 内的内容用 max-width 居中，左右 48px padding，与上下 section 对齐 */
+    .pd-section--solution .pd-carousel-slide {
+      box-sizing: border-box;
+    }
+    .pd-section--solution .pd-carousel-slide .pd-feature {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 48px;
+      padding-right: 48px;
+      box-sizing: border-box;
+    }
+    /* dots 也需要重新对齐到 container 范围 */
+    .pd-section--solution .pd-carousel-dots {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* SCREENS 区域：手机框白色描边 + 390/844 比例 */
+    .pd-section--screens .pd-screen-empty,
+    .pd-section--screens .pd-screen {
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 36px;
+      box-sizing: border-box;
+      aspect-ratio: 390 / 844;
+    }
+
+    /* SCREENS 区域：手机容器左边距对齐标题左侧（用 CSS var，JS 计算精确值） */
+    .pd-section--screens .pd-screens-track {
+      padding-inline-start: var(--screens-offset, 48px);
+      padding-inline-end: var(--screens-offset, 48px);
+    }
+    .pd-section--screens .pd-screens-scroll {
+      scroll-padding-inline-start: var(--screens-offset, 48px);
+    }
+
+    .snapfit-nav-item.is-active { color: #ffffff; }
+    .snapfit-nav-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .snapfit-nav-item.is-active .snapfit-nav-dot {
+      background: #C1FF00;
+      transform: scale(1.3);
+    }
+    .snapfit-nav-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+    .snapfit-nav-label {
+      font-size: 15px;
+      line-height: 1;
+      white-space: nowrap;
+      font-weight: 400;
+    }
+    .snapfit-nav-item.is-active .snapfit-nav-label {
+      font-weight: 700;
+    }
+    .snapfit-nav-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      opacity: 0.5;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="theme-dark">
+<canvas id="dot-canvas"></canvas>
+<div class="page-wrap">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-logo-group">
+        <span class="nav-logo">Ash_Studio</span>
+        <span class="nav-available">
+          <span class="nav-available-dot"></span>
+          <span data-i18n="nav_available">接受项目合作</span>
+        </span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" data-i18n="nav_ui">UI设计</a></li>
+        <li><a href="dev.html" data-i18n="nav_dev">独立开发</a></li>
+        <li><a href="photography.html" data-i18n="nav_photo">摄影</a></li>
+        <li><a href="about.html" data-i18n="nav_about">关于</a></li>
+        <li><span class="nav-dot"></span></li>
+        <li><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN/中</button></li>
+        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我们</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ① HERO -->
+  <section class="pd-hero">
+    <div class="pd-hero-img">
+      <img src="images/snapfit-hero-detail.jpg" alt="SnapFIT 闪电健身" style="object-position: center center;" />
+    </div>
+    <div class="container">
+      <div class="pd-hero-info">
+        <p class="pd-meta">01 / 2024 &nbsp;—&nbsp; UIUX · Mobile</p>
+        <h1 class="pd-title" data-i18n-zh="闪电健身 SnapFIT" data-i18n-en="SnapFIT Fitness">闪电健身 SnapFIT</h1>
+        <p class="pd-tagline" data-i18n-zh="即时健身社交 APP，通过 PK 对战与角色养成机制，让运动变得有趣、有仪式感。" data-i18n-en="An instant fitness social app for young users, making workouts fun and ceremonial through PK battles and character growth mechanics.">即时健身社交 APP，通过 PK 对战与角色养成机制，让运动变得有趣、有仪式感。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② OVERVIEW -->
+  <section class="pd-section">
+    <div class="container">
+      <div class="pd-overview">
+        <p class="pd-overview-text" data-i18n-zh="SnapFIT 是一款面向 Z 世代的即时健身社交产品，融合游戏化机制与真实运动数据，让每一次锻炼都有反馈感和成就感。本项目由我独立完成，是未落地的学生项目。" data-i18n-en="SnapFIT is an instant fitness social product for Gen Z, combining gamification with real workout data to make every session rewarding and satisfying. Completed independently as an academic concept project.">SnapFIT 是一款面向 Z 世代的即时健身社交产品，融合游戏化机制与真实运动数据，让每一次锻炼都有反馈感和成就感。本项目由我独立完成，是未落地的学生项目。</p>
+        <div class="pd-meta-grid">
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="我负责" data-i18n-en="Role">我负责</span>
+            <span class="pd-meta-value" data-i18n-zh="用户研究 / 交互设计 / UI设计" data-i18n-en="User Research / Interaction / UI Design">用户研究 / 交互设计 / UI设计</span>
+          </div>
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="项目类型" data-i18n-en="Type">项目类型</span>
+            <span class="pd-meta-value" data-i18n-zh="学校项目" data-i18n-en="Academic Project">学校项目</span>
+          </div>
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="时长" data-i18n-en="Duration">时长</span>
+            <span class="pd-meta-value">2024.01 — 2024.04</span>
+          </div>
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="工具" data-i18n-en="Tools">工具</span>
+            <span class="pd-meta-value">Figma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ PROBLEM -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Problem</span>
+      <h2 class="pd-section-title" data-i18n-zh="现有问题分析" data-i18n-en="Problem Analysis">现有问题分析</h2>
+      <p class="pd-body" data-i18n-zh="年轻用户缺乏持续健身的动力——传统健身 APP 数据枯燥、缺少社交反馈，用户很容易在前两周放弃。我们需要找到一种方式让运动本身变得有趣、有仪式感。" data-i18n-en="Young users lack sustained motivation to exercise—traditional fitness apps feel dry and antisocial, leading most users to quit within the first two weeks. The challenge is making workouts inherently fun and rewarding.">年轻用户缺乏持续健身的动力——传统健身 APP 数据枯燥、缺少社交反馈，用户很容易在前两周放弃。我们需要找到一种方式让运动本身变得有趣、有仪式感。</p>
+      <div class="snapfit-quotes">
+
+        <div class="snapfit-quote-card">
+          <img class="snapfit-quote-avatar" src="images/snapfit-avatar-1.png" alt="Sherry" />
+          <div class="snapfit-quote-body">
+            <div class="snapfit-quote-meta">
+              <span class="snapfit-quote-name">Sherry</span>
+              <span class="snapfit-quote-tag" data-i18n-zh="大学生 · 22岁" data-i18n-en="College Student · 22">大学生 · 22岁</span>
+            </div>
+            <span class="snapfit-quote-pain">缺乏持续动力</span>
+            <div class="snapfit-quote-voice">"坚持运动好难，但打游戏我可以连续三小时都不累——为什么健身就是做不到呢？"</div>
+          </div>
+        </div>
+
+        <div class="snapfit-quote-card">
+          <img class="snapfit-quote-avatar" src="images/snapfit-avatar-2.png" alt="Marcus" />
+          <div class="snapfit-quote-body">
+            <div class="snapfit-quote-meta">
+              <span class="snapfit-quote-name">Marcus</span>
+              <span class="snapfit-quote-tag" data-i18n-zh="上班族 · 26岁" data-i18n-en="Office Worker · 26">上班族 · 26岁</span>
+            </div>
+            <span class="snapfit-quote-pain">数据枯燥，缺少社交反馈</span>
+            <div class="snapfit-quote-voice">"APP 每天就给我看数字，但这些数字跟我有什么关系？没有人在乎我练了多少。"</div>
+          </div>
+        </div>
+
+        <div class="snapfit-quote-card">
+          <img class="snapfit-quote-avatar" src="images/snapfit-avatar-3.png" alt="Amy" style="width:191px;height:191px;" />
+          <div class="snapfit-quote-body">
+            <div class="snapfit-quote-meta">
+              <span class="snapfit-quote-name">Amy</span>
+              <span class="snapfit-quote-tag" data-i18n-zh="自由职业 · 24岁" data-i18n-en="Freelancer · 24">自由职业 · 24岁</span>
+            </div>
+            <span class="snapfit-quote-pain">前两周流失率极高</span>
+            <div class="snapfit-quote-voice">"我下了好多健身 APP，但两周之后就彻底忘了它们的存在——实在提不起劲。"</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ GOAL -->
+  <section class="pd-section pd-section--goal">
+    <div class="container">
+      <div class="pd-goal">
+        <span class="pd-goal-label">Goal</span>
+        <p class="pd-goal-text" data-i18n-zh="通过游戏化机制与社交对战，让用户在运动中获得即时反馈与成就感，提升健身坚持率。" data-i18n-en="Use gamification and social PK battles to give users instant feedback and a sense of achievement, improving workout retention.">通过游戏化机制与社交对战，让用户在运动中获得即时反馈与成就感，提升健身坚持率。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ FEATURES — 轮播 -->
+  <section class="pd-section pd-section--solution">
+    <button class="pd-carousel-side-btn pd-carousel-side-btn--prev pd-carousel-prev" aria-label="上一个">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14L7 9L11 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="pd-carousel-side-btn pd-carousel-side-btn--next pd-carousel-next" aria-label="下一个">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4L11 9L7 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div class="container">
+      <div class="pd-carousel">
+        <div class="pd-carousel-track">
+
+          <!-- Slide 01 -->
+          <div class="pd-carousel-slide">
+            <div class="pd-feature">
+              <div class="pd-feature-info">
+                <span class="pd-feature-num">解决方案  Solution  01</span>
+                <h3 class="pd-feature-title" data-i18n-zh="卡路里分数化" data-i18n-en="Score Rewards System">卡路里分数化</h3>
+                <p class="pd-feature-desc" data-i18n-zh="将每次运动消耗的卡路里实时转化为可积累的分数，通过可视化的数值反馈和成就系统，让健身不再是枯燥的数据，而是一场有趣的游戏。" data-i18n-en="Convert every workout's calorie burn into accumulating score rewards in real-time. Visual feedback and achievement systems turn fitness into an engaging game rather than dull data.">将每次运动消耗的卡路里实时转化为可积累的分数，通过可视化的数值反馈和成就系统，让健身不再是枯燥的数据，而是一场有趣的游戏。</p>
+              </div>
+              <div class="pd-feature-media">
+                <img src="images/snapfit-solution-1.png" alt="Solution 01" style="aspect-ratio:390/844;width:292px;border-radius:36px;object-fit:cover;display:block;border:1.5px solid rgba(255,255,255,0.25);box-sizing:border-box;" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 02 -->
+          <div class="pd-carousel-slide">
+            <div class="pd-feature">
+              <div class="pd-feature-info">
+                <span class="pd-feature-num">解决方案  Solution  02</span>
+                <h3 class="pd-feature-title" data-i18n-zh="好友联机竞技" data-i18n-en="Co-op Multiplayer Battles">好友联机竞技</h3>
+                <p class="pd-feature-desc" data-i18n-zh="邀请好友共选一个健身动作，实时对比消耗卡路里数据，卡路里越多就越占优势。通过共同的运动目标和即时反馈，将单人的坚持转变为社交对战的动力。" data-i18n-en="Invite friends to choose the same workout move together and compete in real-time calorie burn. Whoever burns more calories takes the lead. Shared fitness goals and instant feedback transform individual persistence into social competition drive.">邀请好友共选一个健身动作，实时对比消耗卡路里数据，卡路里越多就越占优势。通过共同的运动目标和即时反馈，将单人的坚持转变为社交对战的动力。</p>
+              </div>
+              <div class="pd-feature-media">
+                <img src="images/snapfit-solution-2.png" alt="Solution 02" style="aspect-ratio:390/844;width:292px;border-radius:36px;object-fit:cover;display:block;border:1.5px solid rgba(255,255,255,0.25);box-sizing:border-box;" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 03 -->
+          <div class="pd-carousel-slide">
+            <div class="pd-feature">
+              <div class="pd-feature-info">
+                <span class="pd-feature-num">解决方案  Solution  03</span>
+                <h3 class="pd-feature-title" data-i18n-zh="角色装扮系统" data-i18n-en="Character Customization">角色装扮系统</h3>
+                <p class="pd-feature-desc" data-i18n-zh="通过坚持运动解锁服装、发型、动作特效等丰富的装扮元素，将健身进度可视化为角色成长。个性化的角色形象激励用户持续运动，让每一次锻炼都有意义。" data-i18n-en="Unlock clothing, hairstyles, and move effects through consistent workouts, visualizing fitness progress as character growth. A personalized avatar motivates continuous exercise, making every workout meaningful and rewarding.">通过坚持运动解锁服装、发型、动作特效等丰富的装扮元素，将健身进度可视化为角色成长。个性化的角色形象激励用户持续运动，让每一次锻炼都有意义。</p>
+              </div>
+              <div class="pd-feature-media">
+                <img src="images/snapfit-solution-3.png" alt="Solution 03" style="aspect-ratio:390/844;width:292px;border-radius:36px;object-fit:cover;display:block;border:1.5px solid rgba(255,255,255,0.25);box-sizing:border-box;" />
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.pd-carousel-track -->
+      </div><!-- /.pd-carousel -->
+
+      <div class="pd-carousel-dots">
+        <button class="pd-carousel-dot is-active" aria-label="第1页"></button>
+        <button class="pd-carousel-dot" aria-label="第2页"></button>
+        <button class="pd-carousel-dot" aria-label="第3页"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ FLOW — 左：标题  中：视频  右：导航 -->
+  <section class="pd-section pd-section--flow">
+    <div class="container">
+      <div class="snapfit-flow-row">
+
+        <!-- 左：标题信息 -->
+        <div class="snapfit-flow-info">
+          <span class="pd-section-label">Flow</span>
+          <h2 class="pd-section-title" data-i18n-zh="用户使用流程" data-i18n-en="Userflow">用户使用流程</h2>
+        </div>
+
+        <!-- 中：视频  右：导航 -->
+        <div class="snapfit-flow-video">
+          <div class="snapfit-flow-clip">
+            <video id="snapfit-video" autoplay loop muted playsinline>
+              <source src="images/snapfit-flow.mov" type="video/mp4" />
+            </video>
+          </div>
+
+          <nav class="snapfit-flow-nav">
+            <button class="snapfit-nav-item is-active" data-t="0">
+              <span class="snapfit-nav-dot"></span>
+              <span class="snapfit-nav-text">
+                <span class="snapfit-nav-label">首页</span>
+                <span class="snapfit-nav-time">00:00</span>
+              </span>
+            </button>
+            <button class="snapfit-nav-item" data-t="6">
+              <span class="snapfit-nav-dot"></span>
+              <span class="snapfit-nav-text">
+                <span class="snapfit-nav-label">选择对战好友</span>
+                <span class="snapfit-nav-time">00:06</span>
+              </span>
+            </button>
+            <button class="snapfit-nav-item" data-t="12">
+              <span class="snapfit-nav-dot"></span>
+              <span class="snapfit-nav-text">
+                <span class="snapfit-nav-label">PK 开始</span>
+                <span class="snapfit-nav-time">00:12</span>
+              </span>
+            </button>
+            <button class="snapfit-nav-item" data-t="49">
+              <span class="snapfit-nav-dot"></span>
+              <span class="snapfit-nav-text">
+                <span class="snapfit-nav-label">胜利结算</span>
+                <span class="snapfit-nav-time">00:49</span>
+              </span>
+            </button>
+            <button class="snapfit-nav-item" data-t="60">
+              <span class="snapfit-nav-dot"></span>
+              <span class="snapfit-nav-text">
+                <span class="snapfit-nav-label">查看数据</span>
+                <span class="snapfit-nav-time">01:00</span>
+              </span>
+            </button>
+            <button class="snapfit-nav-item" data-t="65">
+              <span class="snapfit-nav-dot"></span>
+              <span class="snapfit-nav-text">
+                <span class="snapfit-nav-label">换装</span>
+                <span class="snapfit-nav-time">01:05</span>
+              </span>
+            </button>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ DESIGN SYSTEM -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Design System</span>
+      <h2 class="pd-section-title" data-i18n-zh="视觉设计规范" data-i18n-en="Visual Design System">视觉设计规范</h2>
+      <p class="pd-body" data-i18n-zh="以高饱和荧光绿作为品牌主色，搭配深黑背景，构建极具能量感和年轻气息的视觉系统。强调即时反馈、游戏化层级与清晰的运动数据展示。" data-i18n-en="Using high-saturation neon green as the brand color against deep black backgrounds, the visual system radiates energy and youthful vitality. Emphasizes instant feedback, gamification hierarchy, and clear workout data display.">以高饱和荧光绿作为品牌主色，搭配深黑背景，构建极具能量感和年轻气息的视觉系统。强调即时反馈、游戏化层级与清晰的运动数据展示。</p>
+
+      <div class="snapfit-ds-grid">
+
+        <!-- 色彩 -->
+        <div class="snapfit-ds-col">
+          <p class="snapfit-ds-label">色彩</p>
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">主色</span>
+              <span class="pd-system-hex">#C1FF00</span>
+            </div>
+            <div class="pd-color-block" style="background:#C1FF00"></div>
+          </div>
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">背景色</span>
+              <span class="pd-system-hex">#0D0D0D</span>
+            </div>
+            <div class="pd-color-block" style="background:#0D0D0D; border:1px solid rgba(255,255,255,0.1)"></div>
+          </div>
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">中性色</span>
+              <span class="pd-system-hex">#666666</span>
+            </div>
+            <div class="pd-color-block" style="background:#666"></div>
+          </div>
+        </div>
+
+        <!-- 字体 -->
+        <div class="snapfit-ds-col">
+          <p class="snapfit-ds-label">字体 · SF Pro Text</p>
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">900 · 超黑斜体</span>
+            </div>
+            <div class="snapfit-type-row">
+              <span class="snapfit-type-sample" style="font-weight:900; font-style:italic;">Aa</span>
+              <span class="snapfit-type-desc">展示 / 主标题</span>
+            </div>
+          </div>
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">700 · 粗体</span>
+            </div>
+            <div class="snapfit-type-row">
+              <span class="snapfit-type-sample" style="font-weight:700;">Aa</span>
+              <span class="snapfit-type-desc">标题 / 分数</span>
+            </div>
+          </div>
+          <div class="pd-system-card">
+            <div class="pd-system-card-head">
+              <span class="pd-system-name">600 · 半粗体</span>
+            </div>
+            <div class="snapfit-type-row">
+              <span class="snapfit-type-sample" style="font-weight:600;">Aa</span>
+              <span class="snapfit-type-desc">标签 / 按钮</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 角色动画占位（上下两个） -->
+        <div class="snapfit-ds-col snapfit-ds-col--fill">
+          <p class="snapfit-ds-label">角色动画</p>
+          <div class="snapfit-ds-placeholder snapfit-ds-placeholder--mid" style="position:relative; overflow:hidden; padding:0;">
+            <video autoplay loop muted playsinline style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transform:scale(1) translateY(-10px); transform-origin:center center;">
+              <source src="images/snapfit-char-pink.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="snapfit-ds-placeholder snapfit-ds-placeholder--mid" style="position:relative; overflow:hidden; padding:0;">
+            <video autoplay loop muted playsinline style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transform:scale(0.7) translateY(30px); transform-origin:center center;">
+              <source src="images/snapfit-char-yellow.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+
+        <!-- 组件占位（三个竖排） -->
+        <div class="snapfit-ds-col snapfit-ds-col--fill">
+          <p class="snapfit-ds-label">组件</p>
+          <div class="snapfit-ds-placeholder snapfit-ds-placeholder--short" style="padding:0; overflow:hidden;">
+            <img src="images/snapfit-comp-1.png" alt="组件1" style="width:100%; height:100%; object-fit:contain;" />
+          </div>
+          <div class="snapfit-ds-placeholder snapfit-ds-placeholder--short" style="padding:0; overflow:hidden; position:relative;">
+            <img src="images/snapfit-comp-2.png" alt="组件2" style="position:absolute; inset:-2px; width:calc(100% + 4px); height:calc(100% + 4px); object-fit:contain;" />
+          </div>
+          <div class="snapfit-ds-placeholder snapfit-ds-placeholder--short" style="padding:0; overflow:hidden;">
+            <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:contain;">
+              <source src="images/snapfit-comp-random.mov" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑧ SCREENS -->
+  <section class="pd-section pd-section--screens">
+    <button class="pd-screens-btn pd-screens-btn--prev is-disabled" aria-label="向左滚动">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14L7 9L11 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="pd-screens-btn pd-screens-btn--next" aria-label="向右滚动">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4L11 9L7 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div class="container">
+      <span class="pd-section-label">Screens</span>
+      <h2 class="pd-section-title" data-i18n-zh="页面展示" data-i18n-en="Screen Gallery">页面展示</h2>
+    </div>
+    <div class="pd-screens-scroll">
+      <div class="pd-screens-track">
+        <img class="pd-screen" src="images/snapfit-screen-2.png" alt="SnapFIT Screen 2" />
+        <img class="pd-screen" src="images/snapfit-screen-3.png" alt="SnapFIT Screen 3" />
+        <img class="pd-screen" src="images/snapfit-screen-4.png" alt="SnapFIT Screen 4" />
+        <img class="pd-screen" src="images/snapfit-screen-1.png" alt="SnapFIT Screen 1" />
+        <img class="pd-screen" src="images/snapfit-screen-5.png" alt="SnapFIT Screen 5" />
+        <img class="pd-screen" src="images/snapfit-screen-6.png" alt="SnapFIT Screen 6" />
+        <img class="pd-screen" src="images/snapfit-screen-7.png" alt="SnapFIT Screen 7" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 返回 + 下一个项目 -->
+  <div class="pd-nav-bottom">
+    <div class="container">
+      <a href="index.html" class="pd-back" data-i18n-zh="← 返回 UI 设计" data-i18n-en="← Back to UI Design">← 返回 UI 设计</a>
+      <a href="project-lyft.html" class="pd-next" data-i18n-zh="下一个项目 →" data-i18n-en="Next Project →">下一个项目 →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Ash_Studio</div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <ul>
+            <li><a href="mailto:hello@ash.design" data-i18n="footer_email">电子邮件</a></li>
+            <li><a href="#" data-i18n="footer_resume">个人简历</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <ul>
+            <li><a href="index.html" data-i18n="footer_ui">UI设计</a></li>
+            <li><a href="dev.html" data-i18n="footer_dev">独立开发</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <ul>
+            <li><a href="photography.html" data-i18n="footer_photo">摄影</a></li>
+            <li><a href="about.html" data-i18n="footer_about">关于</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-copy" data-i18n="footer_copy">© 2026 ASH</div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="js/dot-grid.js"></script>
+<script src="js/blob-bg.js"></script>
+<script src="js/smooth-scroll.js"></script>
+<script src="js/language.js"></script>
+<script src="js/solution-carousel.js"></script>
+<script src="js/pixel-cat.js"></script>
+<script>
+  function applyDetailLang() {
+    const lang = localStorage.getItem('lang') || 'zh';
+    document.querySelectorAll('[data-i18n-zh]').forEach(el => {
+      el.textContent = lang === 'zh' ? el.dataset.i18nZh : el.dataset.i18nEn;
+    });
+  }
+  document.addEventListener('DOMContentLoaded', applyDetailLang);
+  const _orig = window.setLanguage;
+  window.setLanguage = function(lang) { _orig(lang); applyDetailLang(); };
+
+  /* ── Flow 视频白框左边与导航栏「UI设计」左边对齐 ── */
+  function alignFlowVideo() {
+    var uiLink   = document.querySelector('.nav-links a[href="index.html"]');
+    var clip     = document.querySelector('.snapfit-flow-clip');   // 视频白框
+    var flowInfo = document.querySelector('.snapfit-flow-info');
+    var flowRow  = document.querySelector('.snapfit-flow-row');
+    if (!uiLink || !clip || !flowInfo || !flowRow) return;
+
+    var targetX  = uiLink.getBoundingClientRect().left;   // UI设计 左边 X
+    var clipX    = clip.getBoundingClientRect().left;     // 白框当前左边 X
+    var currentGap = parseFloat(getComputedStyle(flowRow).gap) || 0;
+
+    // 需要将白框向左/右移动的量 = targetX - clipX
+    var newGap = currentGap + (targetX - clipX);
+    flowRow.style.gap = Math.max(0, newGap) + 'px';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    // 等字体加载后再算
+    if (document.fonts) {
+      document.fonts.ready.then(alignFlowVideo);
+    } else {
+      setTimeout(alignFlowVideo, 300);
+    }
+  });
+  window.addEventListener('resize', alignFlowVideo);
+</script>
+<script>
+  /* ── SnapFIT 视频章节导航 ── */
+  (function () {
+    var video = document.getElementById('snapfit-video');
+    var items = document.querySelectorAll('.snapfit-nav-item');
+    if (!video || !items.length) return;
+
+    var chapters = Array.from(items).map(function (el) {
+      return parseFloat(el.dataset.t);
+    });
+
+    function setActive(idx) {
+      items.forEach(function (el, i) {
+        el.classList.toggle('is-active', i === idx);
+      });
+    }
+
+    // 点击跳转
+    items.forEach(function (el, i) {
+      el.addEventListener('click', function () {
+        video.currentTime = chapters[i];
+        video.play();
+        setActive(i);
+      });
+    });
+
+    // 播放时自动高亮当前章节
+    video.addEventListener('timeupdate', function () {
+      var t = video.currentTime;
+      var active = 0;
+      chapters.forEach(function (c, i) {
+        if (t >= c) active = i;
+      });
+      setActive(active);
+    });
+  })();
+</script>
+<script>
+  // 计算 SCREENS 区域的左偏移，使其和标题对齐（用实际内容宽度，避开 scrollbar 差异）
+  (function setScreensOffset() {
+    function update() {
+      const w = document.documentElement.clientWidth;
+      const offset = Math.max(48, (w - 1200) / 2 + 48);
+      document.documentElement.style.setProperty('--screens-offset', offset + 'px');
+    }
+    update();
+    window.addEventListener('resize', update);
+  })();
+</script>
+</body>
+</html>
