@@ -3,6 +3,7 @@ const translations = {
     // Nav
     nav_available: "接受项目合作",
     nav_ui: "UI设计",
+    nav_graphic: "平面设计",
     nav_dev: "独立开发",
     nav_photo: "摄影",
     nav_about: "关于",
@@ -53,6 +54,9 @@ const translations = {
     dev_tag: "精选作品",
     dev_title: "<span class=\"dev-title-zh\">独立开发</span><span class=\"dev-title-sub\">PROJECTS</span>",
     dev_subtitle: "独立开发的工具、游戏与应用——从零构建，由设计驱动，以体验为终点。",
+    graphic_tag: "精选作品",
+    graphic_title: "平面设计",
+    graphic_subtitle: "品牌视觉、海报与排版——在静态画面中构建节奏与秩序。",
 
     void_meta: "01 / 2024 &nbsp;—&nbsp; 游戏开发",
     void_title: "Void Runner",
@@ -95,6 +99,7 @@ const translations = {
     footer_resume: "个人简历",
     footer_links: "其他链接",
     footer_ui: "UI设计",
+    footer_graphic: "平面设计",
     footer_dev: "独立开发",
     footer_photo: "摄影",
     footer_about: "关于",
@@ -104,6 +109,7 @@ const translations = {
     // Nav
     nav_available: "Open to Freelance",
     nav_ui: "UI Design",
+    nav_graphic: "Graphic Design",
     nav_dev: "Independent Dev",
     nav_photo: "Photography",
     nav_about: "About",
@@ -154,6 +160,9 @@ const translations = {
     dev_tag: "Selected Works",
     dev_title: "Independent Dev",
     dev_subtitle: "Tools, games, and applications built from scratch—designed-driven, with experience as the endpoint.",
+    graphic_tag: "Selected Works",
+    graphic_title: "Graphic Design",
+    graphic_subtitle: "Brand visuals, posters, and typography—building rhythm and order in static frames.",
 
     void_meta: "01 / 2024 &nbsp;—&nbsp; Game Development",
     void_title: "Void Runner",
@@ -196,6 +205,7 @@ const translations = {
     footer_resume: "Resume",
     footer_links: "Links",
     footer_ui: "UI Design",
+    footer_graphic: "Graphic Design",
     footer_dev: "Independent Dev",
     footer_photo: "Photography",
     footer_about: "About",

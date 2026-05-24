@@ -34,9 +34,13 @@ class DotGrid {
     this.DECAY      = 8.5;
 
     // 颜色：深色背景用白点，浅色背景用黑点
-    // 检测：project-detail.css 已加载 且 非 theme-gradient → 深色页
-    const isDark = !!document.querySelector('link[href*="project-detail"]')
-                   && !document.body.classList.contains('theme-gradient');
+    // 检测：
+    //  ① project-detail.css 已加载 且 非 theme-gradient → 详情页深色
+    //  ② body 有 theme-dark-page 类 → 一级页深色（独立开发 / 摄影 等）
+    const hasDetailDark = !!document.querySelector('link[href*="project-detail"]')
+                          && !document.body.classList.contains('theme-gradient');
+    const hasPageDark = document.body.classList.contains('theme-dark-page');
+    const isDark = hasDetailDark || hasPageDark;
     this.DOT_RGB    = isDark ? '255,255,255' : '0,0,0';
     this.BASE_A     = isDark ? 0.07 : 0.047;  // 白点在深色背景上稍亮一点
     this.HOVER_A    = 0;     // 关闭近鼠标加深效果
