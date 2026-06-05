@@ -753,7 +753,9 @@ body.theme-gradient .pd-meta-grid {
 .pd-screens-btn--prev { left: 20px; }
 .pd-screens-btn--next { right: 20px; }
 
-/* theme-gradient 浅色页：白色卡片按钮，阴影区分背景 */
+/* theme-light / theme-gradient 浅色页：白色卡片按钮，阴影区分背景 */
+body.theme-light .pd-carousel-side-btn,
+body.theme-light .pd-screens-btn,
 body.theme-gradient .pd-carousel-side-btn,
 body.theme-gradient .pd-screens-btn {
   background: #ffffff;
@@ -763,6 +765,8 @@ body.theme-gradient .pd-screens-btn {
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
+body.theme-light .pd-carousel-side-btn:hover,
+body.theme-light .pd-screens-btn:hover,
 body.theme-gradient .pd-carousel-side-btn:hover,
 body.theme-gradient .pd-screens-btn:hover {
   background: #f7f7f7;

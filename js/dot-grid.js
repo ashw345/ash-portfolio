@@ -37,10 +37,9 @@ class DotGrid {
     // 检测：
     //  ① project-detail.css 已加载 且 非 theme-gradient → 详情页深色
     //  ② body 有 theme-dark-page 类 → 一级页深色（独立开发 / 摄影 等）
-    const hasDetailDark = !!document.querySelector('link[href*="project-detail"]')
-                          && !document.body.classList.contains('theme-gradient');
-    const hasPageDark = document.body.classList.contains('theme-dark-page');
-    const isDark = hasDetailDark || hasPageDark;
+    // 仅当页面确实是深色背景时用白点；theme-light / theme-gradient / 默认 = 白底 → 黑点
+    const isDark = document.body.classList.contains('theme-dark')
+                || document.body.classList.contains('theme-dark-page');
     this.DOT_RGB    = isDark ? '255,255,255' : '0,0,0';
     this.BASE_A     = isDark ? 0.07 : 0.047;  // 白点在深色背景上稍亮一点
     this.HOVER_A    = 0;     // 关闭近鼠标加深效果

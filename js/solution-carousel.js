@@ -40,11 +40,21 @@
     function goTo(i) {
       current = Math.max(0, Math.min(i, total - 1));
       update();
+      startAuto(); // 每次切换后重新计时
     }
 
     prevBtns.forEach(b => b.addEventListener('click', () => goTo(current - 1)));
     nextBtns.forEach(b => b.addEventListener('click', () => goTo(current + 1)));
     dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+    /* ── 自动播放：每 5s 前进一张，循环；悬停暂停 ── */
+    const AUTO_MS = 5000;
+    let autoTimer = null;
+    function autoNext() { current = (current + 1) % total; update(); }
+    function startAuto() { stopAuto(); if (total > 1) autoTimer = setInterval(autoNext, AUTO_MS); }
+    function stopAuto()  { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
 
     /* ── Drag / swipe ──────────────────────────────────── */
     let dragStartX = null;
@@ -70,6 +80,7 @@
     carousel.addEventListener('click', e => { if (dragged) e.preventDefault(); }, true);
 
     update(false);
+    startAuto();
   }
 
   /* ── Screens 画廊（仅按钮导航） ──────────────────────── */

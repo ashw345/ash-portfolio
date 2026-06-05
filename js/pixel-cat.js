@@ -16,18 +16,19 @@
 (function () {
 
   /* ── 配置 ────────────────────────────────────────── */
-  const CAT_SIZE          = 48;
-  const HOLD_THRESHOLD    = 1500;
+  const CAT_SIZE          = 72;
+  const HIT_PADDING       = 10;   // 可选区向四周扩展 10px
+  const HOLD_THRESHOLD    = 1000;
   const STRUGGLE_FRAME_MS = 200;
-  const GRAVITY           = 0.8;
+  const GRAVITY           = 0.4;
   const SAFE_MARGIN       = 16;
 
   const SPRITES = {
-    sitting:   { color: '#FF6B6B', label: '坐' },
-    held:      { color: '#A78BFA', label: '被拎' },
-    struggle1: { color: '#FFD93D', label: '挣1' },
-    struggle2: { color: '#FB923C', label: '挣2' },
-    falling:   { color: '#4ECDC4', label: '掉' }
+    sitting:   { color: 'transparent', label: '', img: 'images/cat-sit.png' },
+    held:      { color: 'transparent', label: '', img: 'images/cat-held.png' },
+    struggle1: { color: 'transparent', label: '', img: 'images/cat-struggle1.png' },
+    struggle2: { color: 'transparent', label: '', img: 'images/cat-struggle2.png' },
+    falling:   { color: 'transparent', label: '', img: 'images/cat-fall.png' }
   };
 
   /* ── 全局 ────────────────────────────────────────── */
@@ -69,8 +70,10 @@
     el.className = 'pixel-cat';
     el.style.cssText = `
       position: fixed;
-      width: ${CAT_SIZE}px;
-      height: ${CAT_SIZE}px;
+      width: ${CAT_SIZE + HIT_PADDING * 2}px;
+      height: ${CAT_SIZE + HIT_PADDING * 2}px;
+      padding: ${HIT_PADDING}px;
+      box-sizing: border-box;
       z-index: 150;
       cursor: grab;
       display: flex;
@@ -127,19 +130,32 @@
   /* ── Sprite / 位置 ──────────────────────────────── */
   function setSprite(c, name) {
     const s = SPRITES[name];
-    c.el.style.background = s.color;
+    if (s.img) {
+      c.el.style.background    = 'transparent';
+      c.el.style.backgroundImage  = `url(${s.img})`;
+      c.el.style.backgroundSize   = `${CAT_SIZE}px ${CAT_SIZE}px`;
+      c.el.style.backgroundRepeat = 'no-repeat';
+      c.el.style.backgroundPosition = 'center';
+      c.el.style.boxShadow     = 'none';
+      c.el.style.borderRadius  = '0';
+    } else {
+      c.el.style.background    = s.color;
+      c.el.style.backgroundImage  = 'none';
+      c.el.style.boxShadow     = '0 4px 12px rgba(0,0,0,0.15)';
+      c.el.style.borderRadius  = '4px';
+    }
     c.labelEl.textContent = s.label;
     c.el.style.transform  = c.direction === -1 ? 'scaleX(-1)' : 'scaleX(1)';
     c.currentSprite = name;
   }
   function setPos(c, nx, ny) {
     c.x = nx; c.y = ny;
-    c.el.style.left = nx + 'px';
-    c.el.style.top  = (ny + c.visualYOffset) + 'px';
+    c.el.style.left = (nx - HIT_PADDING) + 'px';
+    c.el.style.top  = (ny - HIT_PADDING + c.visualYOffset) + 'px';
   }
   function refreshPos(c) {
-    c.el.style.left = c.x + 'px';
-    c.el.style.top  = (c.y + c.visualYOffset) + 'px';
+    c.el.style.left = (c.x - HIT_PADDING) + 'px';
+    c.el.style.top  = (c.y - HIT_PADDING + c.visualYOffset) + 'px';
   }
 
   /* ── 出场动画（从底部上升 + 回弹） ────────────── */
