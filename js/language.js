@@ -2,7 +2,7 @@ const translations = {
   zh: {
     // Nav
     nav_available: "接受项目合作",
-    nav_ui: "UI设计",
+    nav_ui: "UIUX设计",
     nav_graphic: "平面设计",
     nav_dev: "独立开发",
     nav_photo: "摄影",
@@ -15,7 +15,7 @@ const translations = {
     ui_subtitle: "界面设计、设计系统与交互原型——追求每一个像素背后的逻辑与克制。",
 
     // Projects (index)
-    member_meta: "01 / 2024 &nbsp;—&nbsp; UIUX · 喜马拉雅会员",
+    member_meta: "2025 &nbsp;—&nbsp; UIUX · 喜马拉雅会员",
     member_title: "会员等级 Redesign",
     member_desc: "喜马拉雅会员等级视觉体系升级——从老旧的金属勋章，到统一的 V1–V8 宝石等级体系，强化用户的进阶感与尊贵感。",
     member_link: "查看详情 →",
@@ -103,7 +103,7 @@ const translations = {
     footer_email: "电子邮件",
     footer_resume: "个人简历",
     footer_links: "其他链接",
-    footer_ui: "UI设计",
+    footer_ui: "UIUX设计",
     footer_graphic: "平面设计",
     footer_dev: "独立开发",
     footer_photo: "摄影",
@@ -113,7 +113,7 @@ const translations = {
   en: {
     // Nav
     nav_available: "Open to Freelance",
-    nav_ui: "UI Design",
+    nav_ui: "UIUX Design",
     nav_graphic: "Graphic Design",
     nav_dev: "Independent Dev",
     nav_photo: "Photography",
@@ -126,7 +126,7 @@ const translations = {
     ui_subtitle: "Interface design, design systems, and interactive prototypes—pursuing the logic and restraint behind every pixel.",
 
     // Projects (index)
-    member_meta: "01 / 2024 &nbsp;—&nbsp; UIUX · Ximalaya Membership",
+    member_meta: "2025 &nbsp;—&nbsp; UIUX · Ximalaya Membership",
     member_title: "Membership Level Redesign",
     member_desc: "A visual system upgrade for Ximalaya's membership levels—from outdated metal medals to a unified V1–V8 gemstone hierarchy that elevates progression and prestige.",
     member_link: "View Details →",
@@ -214,7 +214,7 @@ const translations = {
     footer_email: "Email",
     footer_resume: "Resume",
     footer_links: "Links",
-    footer_ui: "UI Design",
+    footer_ui: "UIUX Design",
     footer_graphic: "Graphic Design",
     footer_dev: "Independent Dev",
     footer_photo: "Photography",

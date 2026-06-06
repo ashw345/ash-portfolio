@@ -20,15 +20,15 @@
   const HIT_PADDING       = 10;   // 可选区向四周扩展 10px
   const HOLD_THRESHOLD    = 1000;
   const STRUGGLE_FRAME_MS = 200;
-  const GRAVITY           = 0.4;
+  const GRAVITY           = 0.3;
   const SAFE_MARGIN       = 16;
 
   const SPRITES = {
-    sitting:   { color: 'transparent', label: '', img: 'images/cat-sit.png' },
-    held:      { color: 'transparent', label: '', img: 'images/cat-held.png' },
-    struggle1: { color: 'transparent', label: '', img: 'images/cat-struggle1.png' },
-    struggle2: { color: 'transparent', label: '', img: 'images/cat-struggle2.png' },
-    falling:   { color: 'transparent', label: '', img: 'images/cat-fall.png' }
+    sitting:   { color: 'transparent', label: '', img: 'images/cat-sit.png?v=3' },
+    held:      { color: 'transparent', label: '', img: 'images/cat-held.png?v=3' },
+    struggle1: { color: 'transparent', label: '', img: 'images/cat-struggle1.png?v=3' },
+    struggle2: { color: 'transparent', label: '', img: 'images/cat-struggle2.png?v=3' },
+    falling:   { color: 'transparent', label: '', img: 'images/cat-fall.png?v=3' }
   };
 
   /* ── 全局 ────────────────────────────────────────── */

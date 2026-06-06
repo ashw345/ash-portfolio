@@ -5,10 +5,44 @@
 /* ── Hero ──────────────────────────────────────────── */
 .pd-hero {
   padding-top: var(--nav-h);
+  position: relative;
+}
+
+/* 顶图左上角返回按钮 */
+.pd-hero-back {
+  position: absolute;
+  top: calc(var(--nav-h) + 20px);
+  left: 28px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px 9px 12px;
+  border-radius: 100px;
+  background: rgba(0,0,0,0.32);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.9);
+  font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.pd-hero-back:hover {
+  background: rgba(0,0,0,0.52);
+  border-color: rgba(255,255,255,0.30);
+}
+.pd-hero-back svg {
+  flex-shrink: 0;
+  opacity: 0.8;
 }
 .pd-hero-img {
   width: 100%;
-  aspect-ratio: 1440 / 640;
+  aspect-ratio: 1920 / 854; /* 全局统一比例，各项目顶图按此尺寸出图 */
   overflow: hidden;
   background: #141414;
 }

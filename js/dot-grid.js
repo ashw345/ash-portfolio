@@ -40,9 +40,13 @@ class DotGrid {
     // 仅当页面确实是深色背景时用白点；theme-light / theme-gradient / 默认 = 白底 → 黑点
     const isDark = document.body.classList.contains('theme-dark')
                 || document.body.classList.contains('theme-dark-page');
-    this.DOT_RGB    = isDark ? '255,255,255' : '0,0,0';
-    this.BASE_A     = isDark ? 0.07 : 0.047;  // 白点在深色背景上稍亮一点
-    this.HOVER_A    = 0;     // 关闭近鼠标加深效果
+    // 支持 canvas data-dot-color="r,g,b" 自定义颜色
+    this.DOT_RGB    = this.canvas.dataset.dotColor
+                    || (isDark ? '255,255,255' : '0,0,0');
+    this.BASE_A     = isDark ? 0.07 : 0.047;
+    this.HOVER_A    = 0;
+    // 支持 canvas data-dot-shape="cross" 自定义形状
+    this.DOT_SHAPE  = this.canvas.dataset.dotShape || 'circle';
 
     // 闲置波浪：三频叠加，大振幅，明显可见
     this.W_SPEED    = 1.05;
@@ -205,10 +209,26 @@ class DotGrid {
 
       /* ── 4. 绘制 ─────────────────────────────────────────── */
       if (d.y >= viewTop - 10 && d.y <= viewBot + 10) {
-        ctx.beginPath();
-        ctx.arc(d.x, d.y, DOT_R, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${this.DOT_RGB},${Math.min(alpha, 0.19).toFixed(3)})`;
-        ctx.fill();
+        const clampedA = Math.min(alpha, 0.19).toFixed(3);
+        ctx.fillStyle = `rgba(${this.DOT_RGB},${clampedA})`;
+        if (this.DOT_SHAPE === 'cross') {
+          // 四角星（sparkle）：贝塞尔曲线内凹弧面
+          const r = DOT_R * 3.2;   // 臂长
+          const q = r * 0.18;      // 内凹控制点偏移（越小越尖细）
+          const x = d.x, y = d.y;
+          ctx.beginPath();
+          ctx.moveTo(x,     y - r);
+          ctx.bezierCurveTo(x + q, y - q,  x + q, y - q,  x + r, y    );
+          ctx.bezierCurveTo(x + q, y + q,  x + q, y + q,  x,     y + r);
+          ctx.bezierCurveTo(x - q, y + q,  x - q, y + q,  x - r, y    );
+          ctx.bezierCurveTo(x - q, y - q,  x - q, y - q,  x,     y - r);
+          ctx.closePath();
+          ctx.fill();
+        } else {
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, DOT_R, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
     }
 
