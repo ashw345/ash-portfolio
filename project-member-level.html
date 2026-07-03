@@ -10,6 +10,9 @@
     /* ── 会员等级 品牌色覆盖（金色 / 尊贵感） ── */
     :root { --accent: #CB9B56; }
 
+    /* ── 本页专用：点状网固定在视口（配合 dot-grid-fixed.js，长页面不卡） ── */
+    #dot-canvas { position: fixed; }
+
     /* ── 占位框（深色版） ── */
     .ph {
       display: flex;
@@ -58,33 +61,141 @@
       color: rgba(255,255,255,0.6);
     }
 
-    /* ── Before / After ── */
-    .ml-ba-grid {
+    /* ── Before / After（三段：单体 → 体系 → 实景） ── */
+    .ml-ba-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 48px;
+      grid-template-columns: 1fr 64px 1fr;
+      gap: 0;
       align-items: stretch;
+      margin-top: 28px;
+      margin-bottom: 64px;
     }
-    .ml-ba-col { display: flex; flex-direction: column; gap: 16px; }
+    .ml-ba-row:last-child { margin-bottom: 0; }
+    .ml-ba-step-head { margin-top: 56px; }
+    .ml-ba-step-head:first-of-type { margin-top: 48px; }
+    .ml-ba-step-num {
+      font-family: 'SF Mono', ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: #B8A6FF;
+      margin-bottom: 8px;
+    }
+    .ml-ba-step-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      margin: 0 0 6px;
+    }
+    .ml-ba-step-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+      margin: 0;
+      max-width: 720px;
+    }
+    .ml-ba-col {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .ml-ba-col.after { border-color: rgba(184,166,255,0.4); }
+    .ml-ba-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.25);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+    }
+    .ml-ba-divider span {
+    }
     .ml-ba-tag {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      align-self: flex-start;
     }
-    .ml-ba-tag.before { color: rgba(255,255,255,0.4); }
-    .ml-ba-tag.after  { color: var(--accent); }
-    .ml-ba-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
-    .ml-ba-frame {
-      aspect-ratio: 4 / 3;
+    .ml-ba-tag.before { color: rgba(255,255,255,0.55); }
+    .ml-ba-tag.after  { color: #B8A6FF; }
+    .ml-ba-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .ml-ba-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+    }
+    .ml-ba-caption { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.5); margin: 0; }
+    ul.ml-ba-caption { padding-left: 0; list-style: none; }
+    ul.ml-ba-caption li { padding-left: 1em; position: relative; }
+    ul.ml-ba-caption li::before { content: "·"; position: absolute; left: 0; }
+
+    /* ① 单体宝石 stage */
+    .ml-ba-gem { width: 100%; height: 291px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .ml-ba-gem img { width: 100%; height: 100%; object-fit: contain; }
+    .ml-gem-carousel { width: 100%; height: 291px; overflow: hidden; display: flex; align-items: center; }
+    .ml-gem-track { display: flex; width: 100%; flex-shrink: 0; margin-top: 35px; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+    .ml-gem-track img { width: 100%; aspect-ratio: 1; flex-shrink: 0; object-fit: contain; }
+    .ml-gem-dots { display: flex; justify-content: center; gap: 7px; padding-top: 4px; }
+    .ml-gem-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.18); transition: background 0.3s, transform 0.3s; cursor: pointer; }
+    .ml-gem-dot.active { background: rgba(255,255,255,0.85); transform: scale(1.3); }
+
+    /* ② 卡片阵列 */
+    .ml-ba-cards-before {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .ml-ba-cards-before .ph { width: 80%; height: 52px; border-radius: 10px; }
+    .ml-ba-cards-before .ph.fade { opacity: 0.4; }
+    .ml-ba-cards-after {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      width: 100%;
+      align-content: center;
+    }
+    .ml-ba-cards-after .ph { height: 52px; border-radius: 10px; }
+
+    /* ③ 手机实景 */
+    .ml-ba-phone-stage {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 8px;
+    }
+    .ml-ba-phone {
+      width: 220px;
+      aspect-ratio: 1125 / 2532;
       border-radius: 16px;
+      border: 4px solid #2a2832;
       overflow: hidden;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
-    .ml-ba-caption { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.55); }
+
+    @media (max-width: 768px) {
+      .ml-ba-row { grid-template-columns: 1fr; gap: 16px; }
+      .ml-ba-divider { display: none; }
+    }
 
     /* ── Outcome 数据 ── */
     .ml-metrics {
@@ -156,6 +267,64 @@
       width: 292px;
       border-radius: 36px;
       box-sizing: border-box;
+    }
+
+    /* 手机滚动动画框 */
+    .ml-phone-wrap {
+      position: relative;
+      width: 292px;
+      flex-shrink: 0;
+    }
+    .ml-phone-scroll-frame {
+      width: 292px;
+      aspect-ratio: 390/844;
+      border-radius: 36px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .ml-phone-scroll-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      animation: mlPhoneScroll 11s cubic-bezier(0.85, 0, 0.15, 1) infinite;
+    }
+    .ml-phone-scroll-inner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: auto;
+      object-fit: fill;
+    }
+    @keyframes mlPhoneScroll {
+      0%, 11%   { transform: translateY(0); }
+      45%, 55%  { transform: translateY(-756px); }
+      89%, 100% { transform: translateY(0); }
+    }
+
+    /* 模拟手指滑动的圆点 */
+    .ml-swipe-finger {
+      position: absolute;
+      right: -58px;
+      top: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.16);
+      border: 1.5px solid rgba(255,255,255,0.75);
+      box-shadow: 0 0 14px rgba(255,255,255,0.28), inset 0 0 8px rgba(255,255,255,0.2);
+      backdrop-filter: blur(2px);
+      pointer-events: none;
+      animation: mlSwipeFinger 11s cubic-bezier(0.85, 0, 0.15, 1) infinite;
+    }
+    @keyframes mlSwipeFinger {
+      0%        { transform: translateY(500px) scale(0.7); opacity: 0; }
+      11%       { transform: translateY(500px) scale(1);   opacity: 0.95; }
+      45%       { transform: translateY(110px) scale(1);   opacity: 0.95; }
+      55%       { transform: translateY(110px) scale(1);   opacity: 0.95; }
+      89%       { transform: translateY(500px) scale(1);   opacity: 0.95; }
+      100%      { transform: translateY(500px) scale(0.7); opacity: 0; }
     }
 
     /* ── 解决方案轮播：布局对齐 SnapFIT ── */
@@ -247,7 +416,7 @@
   <section class="pd-section">
     <div class="container">
       <div class="pd-overview">
-        <p class="pd-overview-text" data-i18n-zh="会员等级是喜马拉雅维系用户长期活跃的核心激励机制。本次配合运营部门的会员权益升级，对等级视觉体系进行了一次彻底的 redesign——重新定义宝石视觉风格，建立 V1–V8 的进阶层次，并重构各等级页面。由我主导视觉方向与页面设计，宝石 3D 资产与动效由视觉部协作完成。" data-i18n-en="Membership levels are Ximalaya's core mechanism for sustaining long-term user engagement. Alongside the operations team's benefit upgrade, I led a full redesign of the level visual system—redefining the gemstone style, building a V1–V8 progression hierarchy, and restructuring each level page. I led the visual direction and page design; the 3D gem assets and motion were produced in collaboration with the visual team.">会员等级是喜马拉雅维系用户长期活跃的核心激励机制。本次配合运营部门的会员权益升级，对等级视觉体系进行了一次彻底的 redesign——重新定义宝石视觉风格，建立 V1–V8 的进阶层次，并重构各等级页面。由我主导视觉方向与页面设计，宝石 3D 资产与动效由视觉部协作完成。</p>
+        <p class="pd-overview-text" data-i18n-zh="会员等级是喜马拉雅维系用户长期活跃的核心激励机制。本次配合运营部门的会员权益升级，对等级视觉体系进行了一次彻底的 redesign——重新定义宝石视觉风格，建立 V1–V8 的进阶层次，并重构各等级页面。由我主导视觉方向与页面设计。" data-i18n-en="Membership levels are Ximalaya's core mechanism for sustaining long-term user engagement. Alongside the operations team's benefit upgrade, I led a full redesign of the level visual system—redefining the gemstone style, building a V1–V8 progression hierarchy, and restructuring each level page. I led the visual direction and page design.">会员等级是喜马拉雅维系用户长期活跃的核心激励机制。本次配合运营部门的会员权益升级，对等级视觉体系进行了一次彻底的 redesign——重新定义宝石视觉风格，建立 V1–V8 的进阶层次，并重构各等级页面。由我主导视觉方向与页面设计。</p>
         <div class="pd-meta-grid">
           <div class="pd-meta-item">
             <span class="pd-meta-label" data-i18n-zh="我负责" data-i18n-en="Role">我负责</span>
@@ -306,7 +475,102 @@
     </div>
   </section>
 
-  <!-- ⑤ SOLUTION — 轮播 -->
+  <!-- ⑤ BEFORE / AFTER -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Before / After</span>
+      <h2 class="pd-section-title" data-i18n-zh="改版前后对比" data-i18n-en="Before & After">改版前后对比</h2>
+
+      <!-- ① 单体宝石 -->
+      <div class="ml-ba-step-head">
+        <div class="ml-ba-step-num">01 · Single Gem</div>
+        <h3 class="ml-ba-step-title" data-i18n-zh="单体对比 — 隐喻升级" data-i18n-en="Single Unit — Metaphor Upgrade">单体对比 — 隐喻升级</h3>
+        <p class="ml-ba-step-desc" data-i18n-zh="把旧的金属勋章和新的宝石放大对照，一眼传达「勋章 → 宝石」的核心隐喻。" data-i18n-en="Magnify the old metal medal next to the new gem—conveying the core metaphor 'medal → gem' at a glance.">把旧的金属勋章和新的宝石放大对照，一眼传达「勋章 → 宝石」的核心隐喻。</p>
+      </div>
+      <div class="ml-ba-row">
+        <div class="ml-ba-col">
+          <span class="ml-ba-tag before"><span class="ml-ba-dot"></span>BEFORE</span>
+          <div class="ml-ba-stage" style="flex-direction:column; align-items:stretch;">
+            <div class="ml-ba-gem"><img src="images/member-badge-old.png" alt="旧版金属勋章" /></div>
+          </div>
+          <p class="ml-ba-caption" data-i18n-zh="旧版：金属勋章风格，质感陈旧，等级间区分度低。" data-i18n-en="Before: metal-medal style, dated texture, low differentiation between tiers.">旧版：金属勋章风格，质感陈旧，等级间区分度低。</p>
+        </div>
+        <div class="ml-ba-divider"><span>VS</span></div>
+        <div class="ml-ba-col after">
+          <span class="ml-ba-tag after"><span class="ml-ba-dot"></span>AFTER</span>
+          <div class="ml-ba-stage" style="flex-direction:column; align-items:stretch;">
+            <div class="ml-gem-carousel">
+              <div class="ml-gem-track" id="gemTrack">
+                <img src="images/member-gem-v1.png" alt="V1 宝石" />
+                <img src="images/member-gem-v4.png" alt="V4 宝石" />
+                <img src="images/member-gem-v6.png" alt="V6 宝石" />
+                <img src="images/member-gem-v7.png" alt="V7 宝石" />
+                <img src="images/member-gem-v8.png" alt="V8 宝石" />
+              </div>
+            </div>
+            <div class="ml-gem-dots" id="gemDots">
+              <span class="ml-gem-dot active"></span>
+              <span class="ml-gem-dot"></span>
+              <span class="ml-gem-dot"></span>
+              <span class="ml-gem-dot"></span>
+              <span class="ml-gem-dot"></span>
+            </div>
+          </div>
+          <p class="ml-ba-caption" data-i18n-zh="新版：统一宝石材质，华丽、稀缺、可识别。" data-i18n-en="After: unified gem material—rich, scarce, instantly recognizable.">新版：统一宝石材质，华丽、稀缺、可识别。</p>
+        </div>
+      </div>
+
+      <!-- ② 气质对比 -->
+      <div class="ml-ba-step-head">
+        <div class="ml-ba-step-num">02 · Visual Identity</div>
+        <h3 class="ml-ba-step-title" data-i18n-zh="气质升级 — 游戏感 → 尊贵感" data-i18n-en="Aesthetic Shift — Gamey → Prestigious">气质升级 — 游戏感 → 尊贵感</h3>
+        <p class="ml-ba-step-desc" data-i18n-zh="旧版徽章游戏风格过重，卡片装饰繁复干扰信息呈现，与喜马拉雅内容产品的整体调性不符；新版以宝石材质重建视觉语言，克制、稀缺、尊贵。" data-i18n-en="The old badges leaned heavily on game aesthetics, with cluttered card decorations that interfered with readability and clashed with Ximalaya's content product identity. The new system uses gem materials to establish a restrained, scarce, and prestigious visual language.">旧版徽章游戏风格过重，卡片装饰繁复干扰信息呈现，与喜马拉雅内容产品的整体调性不符；新版以宝石材质重建视觉语言，克制、稀缺、尊贵。</p>
+      </div>
+      <div class="ml-ba-row">
+        <div class="ml-ba-col">
+          <span class="ml-ba-tag before"><span class="ml-ba-dot"></span>BEFORE</span>
+          <img src="images/member-card-before.png" style="width:100%; border-radius:12px; display:block;" alt="旧版会员卡" />
+          <ul class="ml-ba-caption">
+            <li data-i18n-zh="游戏化角色徽章，风格老旧" data-i18n-en="Game-style badges, dated aesthetic">游戏化角色徽章，风格老旧</li>
+            <li data-i18n-zh="卡片装饰繁复，干扰信息呈现" data-i18n-en="Cluttered card decorations interfere with readability">卡片装饰繁复，干扰信息呈现</li>
+            <li data-i18n-zh="「打败80%用户」话术，与尊贵感背道而驰" data-i18n-en="&ldquo;Beat 80% of users&rdquo; copy undermines prestige">「打败80%用户」话术，与尊贵感背道而驰</li>
+          </ul>
+        </div>
+        <div class="ml-ba-divider"><span>VS</span></div>
+        <div class="ml-ba-col after">
+          <span class="ml-ba-tag after"><span class="ml-ba-dot"></span>AFTER</span>
+          <img src="images/member-card-after-new.png?v=4" style="width:96%; height:auto; display:block; margin:20px auto 0; border-radius:12px; outline: 1px solid rgba(255,255,255,0.3); outline-offset: -1px;" alt="新版会员卡" />
+          <ul class="ml-ba-caption">
+            <li data-i18n-zh="宝石材质，克制稀缺" data-i18n-en="Gem materials, restrained and scarce">宝石材质，克制稀缺</li>
+            <li data-i18n-zh="纯净背景，权益信息无干扰呈现" data-i18n-en="Clean background, benefit info breathes">纯净背景，权益信息无干扰呈现</li>
+            <li data-i18n-zh="视觉语言与整体产品调性一致" data-i18n-en="Visual language aligned with product identity">视觉语言与整体产品调性一致</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ③ 实际页面 -->
+      <div class="ml-ba-step-head">
+        <div class="ml-ba-step-num">03 · In Context</div>
+        <h3 class="ml-ba-step-title" data-i18n-zh="实景对比 — 落到使用场景" data-i18n-en="In Context — Real Pages">实景对比 — 落到使用场景</h3>
+        <p class="ml-ba-step-desc" data-i18n-zh="把改动放回真实的会员中心页面里，看到的不只是图标，而是一整套体验的更新。" data-i18n-en="Placed back into the real membership center, the change is not just an icon swap—it's a full experience update.">把改动放回真实的会员中心页面里，看到的不只是图标，而是一整套体验的更新。</p>
+      </div>
+      <div class="ml-ba-row">
+        <div class="ml-ba-col">
+          <span class="ml-ba-tag before"><span class="ml-ba-dot"></span>BEFORE</span>
+          <div class="ml-ba-phone-stage"><img src="images/member-context-before.jpg" class="ml-ba-phone" alt="旧会员中心" /></div>
+          <p class="ml-ba-caption" data-i18n-zh="旧页面：信息堆叠，等级标识不突出。" data-i18n-en="Old page: cluttered, level badges not prominent.">旧页面：信息堆叠，等级标识不突出。</p>
+        </div>
+        <div class="ml-ba-divider"><span>VS</span></div>
+        <div class="ml-ba-col after">
+          <span class="ml-ba-tag after"><span class="ml-ba-dot"></span>AFTER</span>
+          <div class="ml-ba-phone-stage"><img src="images/member-context-after.jpg" class="ml-ba-phone" alt="新会员中心" /></div>
+          <p class="ml-ba-caption" data-i18n-zh="新页面：宝石主导视觉，权益层次清晰。" data-i18n-en="New page: gems lead the visual, benefits clearly tiered.">新页面：宝石主导视觉，权益层次清晰。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ SOLUTION — 轮播 -->
   <section class="pd-section pd-section--solution">
     <button class="pd-carousel-side-btn pd-carousel-side-btn--prev pd-carousel-prev" aria-label="上一个">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14L7 9L11 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -328,7 +592,14 @@
                 <p class="pd-feature-desc" data-i18n-zh="重做等级主页、升级弹窗与权益对比，从「补丁式」改为「体系化」，理清进阶路径与权益陈列，让升级动机清晰可感。" data-i18n-en="Rebuilt the level home, upgrade popups, and benefit comparison—shifting from patchwork to a coherent system that clarifies the progression path and makes the motivation to upgrade tangible.">重做等级主页、升级弹窗与权益对比，从「补丁式」改为「体系化」，理清进阶路径与权益陈列，让升级动机清晰可感。</p>
               </div>
               <div class="pd-feature-media">
-                <div class="ph ml-phone-ph">占位 · 页面重构</div>
+                <div class="ml-phone-wrap">
+                  <div class="ml-phone-scroll-frame">
+                    <div class="ml-phone-scroll-inner">
+                      <img src="images/solution-v8-page.png" alt="V8等级页面" />
+                    </div>
+                  </div>
+                  <div class="ml-swipe-finger"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -383,26 +654,6 @@
         <button class="pd-carousel-dot" aria-label="第2页"></button>
         <button class="pd-carousel-dot" aria-label="第3页"></button>
         <button class="pd-carousel-dot" aria-label="第4页"></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑥ BEFORE / AFTER -->
-  <section class="pd-section">
-    <div class="container">
-      <span class="pd-section-label">Before / After</span>
-      <h2 class="pd-section-title" data-i18n-zh="改版前后对比" data-i18n-en="Before & After">改版前后对比</h2>
-      <div class="ml-ba-grid">
-        <div class="ml-ba-col">
-          <span class="ml-ba-tag before"><span class="ml-ba-dot"></span>BEFORE</span>
-          <div class="ml-ba-frame"><div class="ph" style="width:100%;height:100%;border-radius:16px;">占位 · 旧版金属勋章</div></div>
-          <p class="ml-ba-caption" data-i18n-zh="旧版：金属勋章风格，质感陈旧，等级间区分度低。" data-i18n-en="Before: metal-medal style, dated texture, low differentiation between tiers.">旧版：金属勋章风格，质感陈旧，等级间区分度低。</p>
-        </div>
-        <div class="ml-ba-col">
-          <span class="ml-ba-tag after"><span class="ml-ba-dot"></span>AFTER</span>
-          <div class="ml-ba-frame after"><div class="ph" style="width:100%;height:100%;border-radius:16px;">占位 · 新版宝石体系</div></div>
-          <p class="ml-ba-caption" data-i18n-zh="新版：统一的 V1–V8 宝石体系，材质华丽、进阶清晰、尊贵感强。" data-i18n-en="After: a unified V1–V8 gem system—rich materials, clear progression, strong sense of prestige.">新版：统一的 V1–V8 宝石体系，材质华丽、进阶清晰、尊贵感强。</p>
-        </div>
       </div>
     </div>
   </section>
@@ -585,11 +836,11 @@
 
 </div>
 
-<script src="js/dot-grid.js?v=4"></script>
+<script src="js/dot-grid-fixed.js?v=1"></script>
 <script src="js/blob-bg.js"></script>
 <script src="js/smooth-scroll.js"></script>
 <script src="js/language.js"></script>
-<script src="js/solution-carousel.js"></script>
+<script src="js/solution-carousel.js?v=3"></script>
 <script src="js/pixel-cat.js?v=17"></script>
 <script>
   function applyDetailLang() {
@@ -601,6 +852,48 @@
   document.addEventListener('DOMContentLoaded', applyDetailLang);
   const _orig = window.setLanguage;
   window.setLanguage = function(lang) { _orig(lang); applyDetailLang(); };
+</script>
+<script>
+  (function() {
+    var track = document.getElementById('gemTrack');
+    var dotsEl = document.getElementById('gemDots');
+    if (!track) return;
+
+    var total = track.querySelectorAll('img').length; // 5 real slides
+    var dots = dotsEl ? Array.from(dotsEl.querySelectorAll('.ml-gem-dot')) : [];
+    var current = 0;
+
+    // 在最后一张后面追加第一张的克隆，实现无缝循环
+    track.appendChild(track.querySelector('img').cloneNode(true));
+
+    function updateDots(n) {
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === n % total); });
+    }
+
+    function slideTo(n, animate) {
+      track.style.transition = animate === false ? 'none' : 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
+      track.style.transform = 'translateX(-' + (n * 100) + '%)';
+      updateDots(n);
+    }
+
+    // 滑到克隆帧之后，无动画跳回真正的第一张
+    track.addEventListener('transitionend', function() {
+      if (current === total) {
+        current = 0;
+        slideTo(0, false);
+        void track.offsetWidth; // 强制 reflow，让 transition:none 立即生效
+      }
+    });
+
+    dots.forEach(function(d, i) {
+      d.addEventListener('click', function() { current = i; slideTo(i, true); });
+    });
+
+    setInterval(function() {
+      current++;
+      slideTo(current, true);
+    }, 2000);
+  })();
 </script>
 <script>
   // 计算 SCREENS 区域的左偏移，使其和标题对齐

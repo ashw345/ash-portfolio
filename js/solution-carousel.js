@@ -11,7 +11,7 @@
   function initCarousel(section) {
     const carousel  = section.querySelector('.pd-carousel');
     const track     = section.querySelector('.pd-carousel-track');
-    const slides    = section.querySelectorAll('.pd-carousel-slide');
+    const slides    = Array.from(section.querySelectorAll('.pd-carousel-slide'));
     const prevBtns  = section.querySelectorAll('.pd-carousel-prev');
     const nextBtns  = section.querySelectorAll('.pd-carousel-next');
     const counter   = section.querySelector('.pd-carousel-counter');
@@ -19,42 +19,88 @@
 
     if (!track || slides.length === 0) return;
 
-    let current = 0;
     const total = slides.length;
 
-    function update(animate) {
+    /* ── 无限循环：首尾各克隆一张，真实首张落在 pos = 1 ── */
+    let pos = 0;       // 轨道位置（含克隆张）
+    let current = 0;   // 真实索引 0..total-1
+    if (total > 1) {
+      const firstClone = slides[0].cloneNode(true);
+      const lastClone  = slides[total - 1].cloneNode(true);
+      firstClone.setAttribute('aria-hidden', 'true');
+      lastClone.setAttribute('aria-hidden', 'true');
+      track.appendChild(firstClone);
+      track.insertBefore(lastClone, slides[0]);
+      pos = 1;
+    }
+
+    function applyTransform(animate) {
       track.style.transition = animate === false
         ? 'none'
         : 'transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)';
-      track.style.transform = `translateX(-${current * 100}%)`;
+      track.style.transform = `translateX(-${pos * 100}%)`;
+    }
 
+    function syncUI() {
       if (counter) {
         counter.textContent =
           String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
       }
-      prevBtns.forEach(b => b.classList.toggle('is-disabled', current === 0));
-      nextBtns.forEach(b => b.classList.toggle('is-disabled', current === total - 1));
       dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+      // 无限循环：两端永远可继续
+      prevBtns.forEach(b => b.classList.remove('is-disabled'));
+      nextBtns.forEach(b => b.classList.remove('is-disabled'));
     }
 
-    function goTo(i) {
-      current = Math.max(0, Math.min(i, total - 1));
-      update();
+    // 若当前停在克隆张上，先无动画跳回对应真实张，避免快速点击越界
+    function normalizeClone() {
+      if (pos === total + 1) { pos = 1;     applyTransform(false); void track.offsetWidth; }
+      else if (pos === 0)    { pos = total; applyTransform(false); void track.offsetWidth; }
+    }
+
+    function move(targetPos) {
+      if (total <= 1) return;
+      pos = targetPos;
+      current = ((pos - 1) % total + total) % total;
+      applyTransform(true);
+      syncUI();
       startAuto(); // 每次切换后重新计时
     }
+    function next() { normalizeClone(); move(pos + 1); }
+    function prev() { normalizeClone(); move(pos - 1); }
 
-    prevBtns.forEach(b => b.addEventListener('click', () => goTo(current - 1)));
-    nextBtns.forEach(b => b.addEventListener('click', () => goTo(current + 1)));
+    function goTo(i) {
+      if (total <= 1) return;
+      current = Math.max(0, Math.min(i, total - 1));
+      pos = current + 1;
+      applyTransform(true);
+      syncUI();
+      startAuto();
+    }
+
+    /* 滑到克隆张后，无动画地跳回对应的真实张，实现无缝循环 */
+    track.addEventListener('transitionend', () => {
+      if (pos === total + 1) {        // 停在「首张克隆」（最后一张之后）
+        pos = 1;
+        applyTransform(false);
+      } else if (pos === 0) {         // 停在「末张克隆」（第一张之前）
+        pos = total;
+        applyTransform(false);
+      }
+    });
+
+    prevBtns.forEach(b => b.addEventListener('click', prev));
+    nextBtns.forEach(b => b.addEventListener('click', next));
     dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
 
-    /* ── 自动播放：每 5s 前进一张，循环；悬停暂停 ── */
+    /* ── 自动播放：每 5s 前进一张，循环；悬停整个区域暂停 ── */
     const AUTO_MS = 5000;
     let autoTimer = null;
-    function autoNext() { current = (current + 1) % total; update(); }
-    function startAuto() { stopAuto(); if (total > 1) autoTimer = setInterval(autoNext, AUTO_MS); }
+    let paused    = false;
+    function startAuto() { stopAuto(); if (total > 1 && !paused) autoTimer = setInterval(next, AUTO_MS); }
     function stopAuto()  { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
-    carousel.addEventListener('mouseenter', stopAuto);
-    carousel.addEventListener('mouseleave', startAuto);
+    section.addEventListener('mouseenter', () => { paused = true;  stopAuto(); });
+    section.addEventListener('mouseleave', () => { paused = false; startAuto(); });
 
     /* ── Drag / swipe ──────────────────────────────────── */
     let dragStartX = null;
@@ -67,7 +113,7 @@
       carousel.classList.remove('is-grabbing');
       const diff = dragStartX - clientX;
       dragStartX = null;
-      if (Math.abs(diff) > 56) goTo(current + (diff > 0 ? 1 : -1));
+      if (Math.abs(diff) > 56) (diff > 0 ? next() : prev());
     }
 
     carousel.addEventListener('mousedown',  e => dragStart(e.clientX));
@@ -79,7 +125,8 @@
     carousel.addEventListener('touchend',   e => dragEnd(e.changedTouches[0].clientX), { passive: true });
     carousel.addEventListener('click', e => { if (dragged) e.preventDefault(); }, true);
 
-    update(false);
+    applyTransform(false);
+    syncUI();
     startAuto();
   }
 

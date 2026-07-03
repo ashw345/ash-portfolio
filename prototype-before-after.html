@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>Before / After 原型</title>
+<style>
+  :root {
+    --bg: #0e0d12;
+    --panel: #16151c;
+    --line: rgba(255,255,255,.1);
+    --gold: #d4a85a;
+    --text: #ebe7df;
+    --mute: #8e8a83;
+    --before: #c84d4d;
+    --after:  #4ec07d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 60px 24px 100px;
+  }
+  .container { max-width: 1160px; margin: 0 auto; }
+
+  /* section header */
+  .label {
+    display: inline-block; font-size: 12px; letter-spacing: 2px;
+    color: var(--gold); border: 1px solid var(--gold);
+    padding: 4px 10px; border-radius: 999px; margin-bottom: 12px;
+  }
+  h1 { font-size: 36px; margin: 0 0 8px; font-weight: 600; }
+  .sub { color: var(--mute); margin-bottom: 56px; font-size: 14px; }
+
+  /* shared row layout */
+  .row {
+    display: grid; grid-template-columns: 1fr 80px 1fr;
+    gap: 0; align-items: stretch; margin-bottom: 80px;
+  }
+  .col {
+    background: var(--panel);
+    border: 1px solid var(--line); border-radius: 18px;
+    padding: 28px; display: flex; flex-direction: column;
+  }
+  .col.after { border-color: rgba(212,168,90,.4); }
+  .divider {
+    display: flex; align-items: center; justify-content: center;
+    color: var(--mute); font-size: 12px; letter-spacing: 2px;
+  }
+  .divider span {
+    writing-mode: vertical-rl; transform: rotate(180deg);
+  }
+
+  /* tag */
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; letter-spacing: 2px;
+    padding: 4px 10px; border-radius: 999px;
+    background: rgba(255,255,255,.04);
+    align-self: flex-start; margin-bottom: 18px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .tag.before .dot { background: var(--before); }
+  .tag.after  .dot { background: var(--after); }
+  .tag.before { color: var(--before); }
+  .tag.after  { color: var(--after); }
+
+  /* placeholder boxes */
+  .ph {
+    background: repeating-linear-gradient(
+      45deg, rgba(255,255,255,.03) 0 10px, rgba(255,255,255,.06) 10px 20px
+    );
+    border: 1px dashed rgba(255,255,255,.18);
+    border-radius: 12px;
+    color: var(--mute); font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+  }
+
+  /* ── ① Hero: 单体宝石 ── */
+  .hero-stage {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    min-height: 320px;
+  }
+  .gem-big {
+    width: 200px; height: 200px; border-radius: 24px;
+  }
+  .caption {
+    margin-top: 18px; color: var(--mute); font-size: 13px; line-height: 1.6;
+  }
+
+  /* ── ② Cards: 等级阵列 ── */
+  .card-stack {
+    flex: 1; display: flex; flex-direction: column; gap: 10px;
+    align-items: center; padding-top: 8px;
+  }
+  .card-stack .ph { width: 80%; height: 56px; }
+  .card-grid-after {
+    flex: 1; display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; padding-top: 8px;
+  }
+  .card-grid-after .ph { height: 56px; }
+
+  /* ── ③ Mobile screens ── */
+  .phone-stage {
+    flex: 1; display: flex; justify-content: center; align-items: flex-start;
+    padding-top: 8px;
+  }
+  .phone {
+    width: 240px; height: 480px; border-radius: 28px;
+    border: 8px solid #2a2832;
+    background: repeating-linear-gradient(
+      45deg, rgba(255,255,255,.03) 0 10px, rgba(255,255,255,.06) 10px 20px
+    );
+    display: flex; align-items: center; justify-content: center;
+    color: var(--mute); font-size: 12px;
+  }
+
+  .num {
+    font-family: "SF Mono", monospace; color: var(--gold);
+    font-size: 12px; letter-spacing: 2px; margin-bottom: 8px;
+  }
+  .row-title { font-size: 20px; font-weight: 600; margin: 0 0 4px; }
+  .row-desc  { color: var(--mute); font-size: 13px; margin: 0 0 32px; max-width: 720px; line-height: 1.7; }
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <span class="label">BEFORE / AFTER</span>
+    <h1>改版前后对比</h1>
+    <p class="sub">从单体到整页，三段证据 · Three-Step Comparison</p>
+
+    <!-- ① HERO -->
+    <p class="num">01 · Single Gem</p>
+    <h3 class="row-title">单体对比 — 隐喻升级</h3>
+    <p class="row-desc">最具冲击力的开场：把旧的金属勋章和新的宝石放大对照，一眼传达「勋章 → 宝石」的核心隐喻。</p>
+    <div class="row">
+      <div class="col before">
+        <span class="tag before"><span class="dot"></span>BEFORE</span>
+        <div class="hero-stage"><div class="ph gem-big">旧勋章<br/>(大图)</div></div>
+        <p class="caption">旧版：金属勋章，质感陈旧，等级间区分度低。</p>
+      </div>
+      <div class="divider"><span>VS</span></div>
+      <div class="col after">
+        <span class="tag after"><span class="dot"></span>AFTER</span>
+        <div class="hero-stage"><div class="ph gem-big">新宝石<br/>(大图)</div></div>
+        <p class="caption">新版：统一宝石材质，华丽、稀缺、可识别。</p>
+      </div>
+    </div>
+
+    <!-- ② CARDS -->
+    <p class="num">02 · Level System</p>
+    <h3 class="row-title">体系对比 — 补丁式 → 体系化</h3>
+    <p class="row-desc">旧版只有零散几张等级卡，缺乏统一感；新版搭建 V1–V8 完整阵列，进阶层次一目了然。</p>
+    <div class="row">
+      <div class="col before">
+        <span class="tag before"><span class="dot"></span>BEFORE</span>
+        <div class="card-stack">
+          <div class="ph">旧 V5 卡</div>
+          <div class="ph">旧 V5 卡</div>
+          <div class="ph" style="opacity:.4;">（仅零散几级）</div>
+        </div>
+        <p class="caption">旧版：补丁式上线，缺乏统一进阶感。</p>
+      </div>
+      <div class="divider"><span>VS</span></div>
+      <div class="col after">
+        <span class="tag after"><span class="dot"></span>AFTER</span>
+        <div class="card-grid-after">
+          <div class="ph">V1</div><div class="ph">V2</div>
+          <div class="ph">V3</div><div class="ph">V4</div>
+          <div class="ph">V5</div><div class="ph">V6</div>
+          <div class="ph">V7</div><div class="ph">V8</div>
+        </div>
+        <p class="caption">新版：V1–V8 完整体系，进阶清晰。</p>
+      </div>
+    </div>
+
+    <!-- ③ MOBILE -->
+    <p class="num">03 · In Context</p>
+    <h3 class="row-title">实景对比 — 落到使用场景</h3>
+    <p class="row-desc">把改动放回真实的会员中心页面里，看到的不只是图标，而是一整套体验的更新。</p>
+    <div class="row">
+      <div class="col before">
+        <span class="tag before"><span class="dot"></span>BEFORE</span>
+        <div class="phone-stage"><div class="phone">旧版会员中心<br/>(手机截图)</div></div>
+        <p class="caption">旧页面：信息堆叠，等级标识不突出。</p>
+      </div>
+      <div class="divider"><span>VS</span></div>
+      <div class="col after">
+        <span class="tag after"><span class="dot"></span>AFTER</span>
+        <div class="phone-stage"><div class="phone">新版会员中心<br/>(手机截图)</div></div>
+        <p class="caption">新页面：宝石主导视觉，权益层次清晰。</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
