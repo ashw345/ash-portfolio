@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>关于 — ASH Studio Creative</title>
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* 关于页标题里的内联交互字标：填满右侧到边距，底部基线对齐 */
+    .page-header-title {
+      display: flex;
+      align-items: flex-end;     /* 问候语 与 交互字 底部对齐 */
+      gap: 0.28em;
+    }
+    .page-header-title > span[data-i18n] {
+      flex: 0 0 auto;            /* 问候语占自然宽度 */
+      white-space: nowrap;
+      margin-top: -20px;         /* 整体往上移动20px */
+    }
+    .about-wordmark {
+      flex: 1 1 auto;            /* 交互字填满剩余宽度到右边距 */
+      min-width: 0;
+      display: block;
+      cursor: crosshair;
+    }
+  </style>
 </head>
 <body>
 <canvas id="dot-canvas"></canvas>
@@ -32,7 +51,7 @@
   <header class="page-header">
     <div class="container">
       <p class="page-header-tag fade-up" data-i18n="about_tag">About</p>
-      <h1 class="page-header-title fade-up" data-i18n="about_title">你好，我是 <span style="font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;">ASH</span></h1>
+      <h1 class="page-header-title fade-up"><span data-i18n="about_title">你好，我是</span> <canvas id="about-wordmark" class="about-wordmark" data-text="ASH" aria-label="ASH"></canvas></h1>
       <p class="page-header-sub fade-up" data-i18n="about_subtitle">一名沉迷于极简视觉、数字网格与高保真交互的多学科设计师。</p>
     </div>
   </header>
@@ -71,7 +90,8 @@
 </div>
 <script src="js/dot-grid.js"></script>
 <script src="js/smooth-scroll.js"></script>
-<script src="js/language.js"></script>
+<script src="js/language.js?v=2"></script>
+<script src="js/about-wordmark.js?v=3"></script>
 <script src="js/pixel-cat.js?v=17"></script>
 </body>
 </html>

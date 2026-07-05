@@ -85,7 +85,7 @@ const translations = {
 
     // About
     about_tag: "About",
-    about_title: "你好，我是 <span style=\"font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;\">ASH</span>",
+    about_title: "你好，我是",
     about_subtitle: "一名沉迷于极简视觉、数字网格与高保真交互的多学科设计师。",
 
     // Photography
@@ -196,7 +196,7 @@ const translations = {
 
     // About
     about_tag: "About",
-    about_title: "Hi, I'm <span style=\"font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;\">ASH</span>",
+    about_title: "Hi, I'm",
     about_subtitle: "A multidisciplinary designer obsessed with minimalist visuals, digital grids, and high-fidelity interactions.",
 
     // Photography
