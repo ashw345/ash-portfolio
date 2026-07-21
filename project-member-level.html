@@ -228,38 +228,143 @@
       letter-spacing: 0.03em;
     }
 
-    /* ── Design System 网格（沿用 SnapFIT 规范布局） ── */
-    .ml-ds-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-top: 48px;
-      align-items: stretch;
+    /* ── Design System：一块共享底板，色彩 + 权益图标同处一个"系统场" ── */
+    .ml-ds-board {
+      margin-top: 40px;
+      padding: 32px 34px 36px;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.018);
     }
-    .ml-ds-col { display: flex; flex-direction: column; gap: 16px; }
-    .ml-ds-col--fill { height: 100%; }
-    .ml-ds-col--fill .ml-ds-ph { flex: 1; height: auto; }
+    .ml-ds-palette { margin-top: 0; }
     .ml-ds-label {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.3);
-      margin-bottom: 4px;
+      margin: 0 0 16px;
     }
-    .ml-type-row {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      padding: 8px 0 4px;
+    .ml-gem-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
     }
-    .ml-type-sample { font-size: 40px; color: #fff; line-height: 1; }
-    .ml-type-desc { font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.03em; }
-    .ml-ds-ph {
+    .ml-gem-card {
+      position: relative;
+      aspect-ratio: 0.72;
+      min-width: 0;
+      overflow: hidden;
       border-radius: 16px;
     }
-    .ml-ds-ph--mid { height: 220px; }
-    .ml-ds-ph--short { height: 136px; }
+    .ml-gem-card-img {
+      position: absolute;
+      inset: 18px 12px 0;
+      width: calc(100% - 24px);
+      height: calc(100% - 18px);
+      object-fit: contain;
+      object-position: center top;
+      display: block;
+      transform: translateY(15px);
+    }
+    .ml-gem-card-meta {
+      position: absolute;
+      z-index: 1;
+      left: 18px;
+      right: 18px;
+      bottom: 17px;
+    }
+    .ml-gem-tier {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1;
+      color: #fff;
+    }
+    .ml-gem-name {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      margin-top: 9px;
+    }
+    .ml-gem-name-en {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.92);
+    }
+    .ml-gem-name-cn { font-size: 12px; color: rgba(255,255,255,0.42); }
+    .ml-gem-swatch {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 11px;
+    }
+    .ml-gem-chip {
+      width: 11px;
+      height: 11px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.12);
+    }
+    .ml-gem-hex {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.4);
+    }
+    /* 色板小标题下的说明：做弱，和小标题同一层级 */
+    .ml-ds-palette .ml-ds-label { margin-bottom: 7px; }
+    .ml-palette-note {
+      margin: 0 0 20px;
+      max-width: 860px;
+      font-size: 12px;
+      line-height: 1.7;
+      letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* 权益图标：整合成一整块面板，用细分隔线分格（不再是散落的独立卡片） */
+    .ml-ds-icons { margin-top: 34px; }
+    .ml-icon-strip {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .ml-icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 12px;
+      text-align: center;
+    }
+    .ml-icon-item img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      display: block;
+    }
+    .ml-icon-name { font-size: 12.5px; color: rgba(255,255,255,0.68); }
+
+    @media (max-width: 900px) {
+      .ml-gem-grid {
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(190px, 38vw);
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 10px;
+      }
+      .ml-gem-card { scroll-snap-align: start; }
+      .ml-icon-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .ml-gem-grid { grid-auto-columns: minmax(188px, 72vw); }
+      .ml-icon-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
 
     /* 手机占位（解决方案轮播） */
     .ml-phone-ph {
@@ -267,6 +372,41 @@
       width: 292px;
       border-radius: 36px;
       box-sizing: border-box;
+    }
+    .ml-level-cycle {
+      width: 292px;
+      aspect-ratio: 390/844;
+      border-radius: 36px;
+      overflow: hidden;
+      position: relative;
+      background: rgba(255,255,255,0.04);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.35);
+      flex-shrink: 0;
+    }
+    .ml-level-cycle--levels,
+    .ml-level-cycle--levels img { background: #000; }
+    .ml-level-cycle--upgrade {
+      background: #000;
+      border: 4px solid #2a2832;
+      box-sizing: border-box;
+    }
+    .ml-level-cycle--upgrade img { background-color: #000 !important; }
+    .ml-level-cycle-track {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      gap: 0;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .ml-level-cycle img {
+      width: 100%;
+      height: 100%;
+      flex: 0 0 100%;
+      min-width: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 0;
     }
 
     /* 手机滚动动画框 */
@@ -520,7 +660,8 @@
         </div>
       </div>
 
-      <!-- ② 气质对比 -->
+      <!-- ② 气质对比（暂时隐藏） -->
+      <div hidden>
       <div class="ml-ba-step-head">
         <div class="ml-ba-step-num">02 · Visual Identity</div>
         <h3 class="ml-ba-step-title" data-i18n-zh="气质升级 — 游戏感 → 尊贵感" data-i18n-en="Aesthetic Shift — Gamey → Prestigious">气质升级 — 游戏感 → 尊贵感</h3>
@@ -547,10 +688,11 @@
           </ul>
         </div>
       </div>
+      </div>
 
-      <!-- ③ 实际页面 -->
+      <!-- ② 实际页面 -->
       <div class="ml-ba-step-head">
-        <div class="ml-ba-step-num">03 · In Context</div>
+        <div class="ml-ba-step-num">02 · In Context</div>
         <h3 class="ml-ba-step-title" data-i18n-zh="实景对比 — 落到使用场景" data-i18n-en="In Context — Real Pages">实景对比 — 落到使用场景</h3>
         <p class="ml-ba-step-desc" data-i18n-zh="把改动放回真实的会员中心页面里，看到的不只是图标，而是一整套体验的更新。" data-i18n-en="Placed back into the real membership center, the change is not just an icon swap—it's a full experience update.">把改动放回真实的会员中心页面里，看到的不只是图标，而是一整套体验的更新。</p>
       </div>
@@ -609,11 +751,22 @@
             <div class="pd-feature">
               <div class="pd-feature-info">
                 <span class="pd-feature-num">解决方案  Solution  02</span>
-                <h3 class="pd-feature-title" data-i18n-zh="隐喻升级：勋章 → 宝石" data-i18n-en="New Metaphor: Medal → Gem">隐喻升级：勋章 → 宝石</h3>
-                <p class="pd-feature-desc" data-i18n-zh="重新定义等级的视觉隐喻，用「宝石」承载稀缺与珍贵的联想，替代陈旧的金属勋章，从根本上提升等级体系的尊贵基调。" data-i18n-en="Redefined the visual metaphor of levels—using gemstones to evoke scarcity and preciousness, replacing the dated metal medals and fundamentally elevating the prestige of the system.">重新定义等级的视觉隐喻，用「宝石」承载稀缺与珍贵的联想，替代陈旧的金属勋章，从根本上提升等级体系的尊贵基调。</p>
+                <h3 class="pd-feature-title" data-i18n-zh="V1–V8 进阶层次" data-i18n-en="V1–V8 Progression">V1–V8 进阶层次</h3>
+                <p class="pd-feature-desc" data-i18n-zh="将等级扩展为 V1–V8，每一级的宝石在颜色、材质与复杂度上逐级递进，让用户一眼就能分辨高低，强化「越高越尊贵」的进阶感。" data-i18n-en="Extended levels to V1–V8, with each tier's gem progressing in color, material, and complexity—so users instantly perceive the hierarchy and the prestige of climbing higher.">将等级扩展为 V1–V8，每一级的宝石在颜色、材质与复杂度上逐级递进，让用户一眼就能分辨高低，强化「越高越尊贵」的进阶感。</p>
               </div>
               <div class="pd-feature-media">
-                <div class="ph ml-phone-ph">占位 · 宝石隐喻</div>
+                <div class="ml-level-cycle ml-level-cycle--levels" aria-label="V1-V8 等级页面循环展示">
+                  <div class="ml-level-cycle-track" data-phone-cycle>
+                    <img src="images/member-level-v1.png?v=4" alt="V1 等级页面" />
+                    <img src="images/member-level-v2.png?v=4" alt="V2 等级页面" />
+                    <img src="images/member-level-v3.png?v=4" alt="V3 等级页面" />
+                    <img src="images/member-level-v4.png?v=4" alt="V4 等级页面" />
+                    <img src="images/member-level-v5.png?v=4" alt="V5 等级页面" />
+                    <img src="images/member-level-v6.png?v=4" alt="V6 等级页面" />
+                    <img src="images/member-level-v7.png?v=4" alt="V7 等级页面" />
+                    <img src="images/member-level-v8.png?v=4" alt="V8 等级页面" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -623,25 +776,19 @@
             <div class="pd-feature">
               <div class="pd-feature-info">
                 <span class="pd-feature-num">解决方案  Solution  03</span>
-                <h3 class="pd-feature-title" data-i18n-zh="宝石视觉风格定义" data-i18n-en="Defining the Gem Style">宝石视觉风格定义</h3>
-                <p class="pd-feature-desc" data-i18n-zh="确立各等级宝石的材质、光泽、配色与华丽度基调，形成统一的视觉语言；并与视觉部协作，由其用 AI 建模产出统一的 3D 宝石资产与动效。" data-i18n-en="Established the material, sheen, palette, and richness of each tier's gem into one coherent visual language; collaborated with the visual team, who produced the unified 3D gem assets and motion via AI modeling.">确立各等级宝石的材质、光泽、配色与华丽度基调，形成统一的视觉语言；并与视觉部协作，由其用 AI 建模产出统一的 3D 宝石资产与动效。</p>
+                <h3 class="pd-feature-title" data-i18n-zh="升级感知触达" data-i18n-en="Upgrade Moment Touchpoints">升级感知触达</h3>
+                <p class="pd-feature-desc" data-i18n-zh="围绕等级跃迁的关键时刻设计升级弹窗，通过醒目的等级反馈、权益摘要与情绪化视觉强化升级获得感，让每一次成长都被用户清晰感知。" data-i18n-en="Designed upgrade prompts around key progression moments, combining clear level feedback, benefit highlights, and expressive visuals so every milestone feels visible and rewarding.">围绕等级跃迁的关键时刻设计升级弹窗，通过醒目的等级反馈、权益摘要与情绪化视觉强化升级获得感，让每一次成长都被用户清晰感知。</p>
               </div>
               <div class="pd-feature-media">
-                <div class="ph ml-phone-ph">占位 · 宝石风格</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 04 -->
-          <div class="pd-carousel-slide">
-            <div class="pd-feature">
-              <div class="pd-feature-info">
-                <span class="pd-feature-num">解决方案  Solution  04</span>
-                <h3 class="pd-feature-title" data-i18n-zh="V1–V8 进阶层次" data-i18n-en="V1–V8 Progression">V1–V8 进阶层次</h3>
-                <p class="pd-feature-desc" data-i18n-zh="将等级扩展为 V1–V8，每一级的宝石在颜色、材质与复杂度上逐级递进，让用户一眼就能分辨高低，强化「越高越尊贵」的进阶感。" data-i18n-en="Extended levels to V1–V8, with each tier's gem progressing in color, material, and complexity—so users instantly perceive the hierarchy and the prestige of climbing higher.">将等级扩展为 V1–V8，每一级的宝石在颜色、材质与复杂度上逐级递进，让用户一眼就能分辨高低，强化「越高越尊贵」的进阶感。</p>
-              </div>
-              <div class="pd-feature-media">
-                <div class="ph ml-phone-ph">占位 · V1–V8 层次</div>
+                <div class="ml-level-cycle ml-level-cycle--upgrade" aria-label="会员等级升级弹窗循环展示">
+                  <div class="ml-level-cycle-track" data-phone-cycle>
+                    <img src="images/member-upgrade-v1.png?v=2" alt="V1 升级弹窗" />
+                    <img src="images/member-upgrade-v3.png?v=2" alt="V3 升级弹窗" />
+                    <img src="images/member-upgrade-v5.png?v=2" alt="V5 升级弹窗" />
+                    <img src="images/member-upgrade-v7.png?v=2" alt="V7 升级弹窗" />
+                    <img src="images/member-upgrade-v8.png?v=2" alt="V8 升级弹窗" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -653,7 +800,6 @@
         <button class="pd-carousel-dot is-active" aria-label="第1页"></button>
         <button class="pd-carousel-dot" aria-label="第2页"></button>
         <button class="pd-carousel-dot" aria-label="第3页"></button>
-        <button class="pd-carousel-dot" aria-label="第4页"></button>
       </div>
     </div>
   </section>
@@ -663,83 +809,85 @@
     <div class="container">
       <span class="pd-section-label">Design System</span>
       <h2 class="pd-section-title" data-i18n-zh="视觉设计规范" data-i18n-en="Visual Design System">视觉设计规范</h2>
-      <p class="pd-body" data-i18n-zh="以金色与宝石色为核心，搭配深色背景，构建华丽、尊贵的视觉系统。沉淀 V1–V8 等级标识母版、宝石视觉规范，以及升级弹窗、权益对比等核心组件。" data-i18n-en="Built on gold and gemstone hues against a dark backdrop for a rich, prestigious system. Consolidated V1–V8 level badge masters, gem visual specs, and core components like upgrade popups and benefit comparison.">以金色与宝石色为核心，搭配深色背景，构建华丽、尊贵的视觉系统。沉淀 V1–V8 等级标识母版、宝石视觉规范，以及升级弹窗、权益对比等核心组件。</p>
+      <p class="pd-body" data-i18n-zh="以宝石材质为核心，搭配深色背景，构建华丽而尊贵的等级视觉系统——沉淀 V1–V8 宝石色板、金属到宝石的材质进阶逻辑，以及统一的权益图标规范。" data-i18n-en="A dark, opulent tier visual system built on gemstone materials—consolidating the V1–V8 gem palette, the metal-to-gem material progression, and a unified benefit icon set.">以宝石材质为核心，搭配深色背景，构建华丽而尊贵的等级视觉系统——沉淀 V1–V8 宝石色板、金属到宝石的材质进阶逻辑，以及统一的权益图标规范。</p>
 
-      <div class="ml-ds-grid">
-
-        <!-- 色彩 -->
-        <div class="ml-ds-col">
-          <p class="ml-ds-label">色彩</p>
-          <div class="pd-system-card">
-            <div class="pd-system-card-head">
-              <span class="pd-system-name">主金</span>
-              <span class="pd-system-hex">#CB9B56</span>
-            </div>
-            <div class="pd-color-block" style="background:#CB9B56"></div>
-          </div>
-          <div class="pd-system-card">
-            <div class="pd-system-card-head">
-              <span class="pd-system-name">尊贵紫</span>
-              <span class="pd-system-hex">#A78FFF</span>
-            </div>
-            <div class="pd-color-block" style="background:#A78FFF"></div>
-          </div>
-          <div class="pd-system-card">
-            <div class="pd-system-card-head">
-              <span class="pd-system-name">暗金</span>
-              <span class="pd-system-hex">#86660C</span>
-            </div>
-            <div class="pd-color-block" style="background:#86660C"></div>
-          </div>
-        </div>
-
-        <!-- 字体 -->
-        <div class="ml-ds-col">
-          <p class="ml-ds-label">字体 · PingFang SC</p>
-          <div class="pd-system-card">
-            <div class="pd-system-card-head">
-              <span class="pd-system-name">Semibold · 600</span>
-            </div>
-            <div class="ml-type-row">
-              <span class="ml-type-sample" style="font-weight:600;">尊享</span>
-              <span class="ml-type-desc">主标题 / 等级名</span>
+      <div class="ml-ds-board">
+      <div class="ml-ds-palette">
+        <p class="ml-ds-label">色彩 · 宝石等级</p>
+        <p class="ml-palette-note">从 基础金属 到 稀有宝石，价值感 / 稀缺感 / 尊贵感逐级递增——让用户不必被告知，也能「感到」越高越尊贵。</p>
+        <div class="ml-gem-grid">
+          <div class="ml-gem-card">
+            <img class="ml-gem-card-img" src="images/gem-copper.png" alt="V1-V2 红铜宝石" />
+            <div class="ml-gem-card-meta">
+              <span class="ml-gem-tier">V1-V2</span>
+              <div class="ml-gem-name"><span class="ml-gem-name-en">Copper</span><span class="ml-gem-name-cn">红铜</span></div>
+              <div class="ml-gem-swatch"><span class="ml-gem-chip" style="background:#DD965F"></span><span class="ml-gem-hex">#DD965F</span></div>
             </div>
           </div>
-          <div class="pd-system-card">
-            <div class="pd-system-card-head">
-              <span class="pd-system-name">Medium · 500</span>
-            </div>
-            <div class="ml-type-row">
-              <span class="ml-type-sample" style="font-weight:500;">权益</span>
-              <span class="ml-type-desc">小标题 / 标签</span>
+          <div class="ml-gem-card">
+            <img class="ml-gem-card-img" src="images/gem-silver.png" alt="V3-V4 白银宝石" />
+            <div class="ml-gem-card-meta">
+              <span class="ml-gem-tier">V3-V4</span>
+              <div class="ml-gem-name"><span class="ml-gem-name-en">Silver</span><span class="ml-gem-name-cn">白银</span></div>
+              <div class="ml-gem-swatch"><span class="ml-gem-chip" style="background:#4C6494"></span><span class="ml-gem-hex">#4C6494</span></div>
             </div>
           </div>
-          <div class="pd-system-card">
-            <div class="pd-system-card-head">
-              <span class="pd-system-name">Regular · 400</span>
+          <div class="ml-gem-card">
+            <img class="ml-gem-card-img" src="images/gem-gold.png" alt="V5-V6 黄金宝石" />
+            <div class="ml-gem-card-meta">
+              <span class="ml-gem-tier">V5-V6</span>
+              <div class="ml-gem-name"><span class="ml-gem-name-en">Gold</span><span class="ml-gem-name-cn">黄金</span></div>
+              <div class="ml-gem-swatch"><span class="ml-gem-chip" style="background:#CB9B56"></span><span class="ml-gem-hex">#CB9B56</span></div>
             </div>
-            <div class="ml-type-row">
-              <span class="ml-type-sample" style="font-weight:400;">正文</span>
-              <span class="ml-type-desc">说明 / 正文</span>
+          </div>
+          <div class="ml-gem-card">
+            <img class="ml-gem-card-img" src="images/gem-amethyst.png" alt="V7 紫水晶宝石" />
+            <div class="ml-gem-card-meta">
+              <span class="ml-gem-tier">V7</span>
+              <div class="ml-gem-name"><span class="ml-gem-name-en">Amethyst</span><span class="ml-gem-name-cn">紫水晶</span></div>
+              <div class="ml-gem-swatch"><span class="ml-gem-chip" style="background:#9D2AD2"></span><span class="ml-gem-hex">#9D2AD2</span></div>
+            </div>
+          </div>
+          <div class="ml-gem-card">
+            <img class="ml-gem-card-img" src="images/gem-sapphire.png" alt="V8 蓝宝石" />
+            <div class="ml-gem-card-meta">
+              <span class="ml-gem-tier">V8</span>
+              <div class="ml-gem-name"><span class="ml-gem-name-en">Sapphire</span><span class="ml-gem-name-cn">蓝宝石</span></div>
+              <div class="ml-gem-swatch"><span class="ml-gem-chip" style="background:#4E1DD6"></span><span class="ml-gem-hex">#4E1DD6</span></div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- 等级标识占位（上下两个） -->
-        <div class="ml-ds-col ml-ds-col--fill">
-          <p class="ml-ds-label">等级标识</p>
-          <div class="ph ml-ds-ph ml-ds-ph--mid">占位 · 宝石标识 V1–V4</div>
-          <div class="ph ml-ds-ph ml-ds-ph--mid">占位 · 宝石标识 V5–V8</div>
+      <div class="ml-ds-icons">
+        <p class="ml-ds-label">权益图标 · Benefits</p>
+        <div class="ml-icon-strip">
+          <div class="ml-icon-item">
+            <img src="images/benefit-liyu.png" alt="礼遇" />
+            <span class="ml-icon-name">礼遇</span>
+          </div>
+          <div class="ml-icon-item">
+            <img src="images/benefit-coupon.png" alt="专属悦听券" />
+            <span class="ml-icon-name">专属悦听券</span>
+          </div>
+          <div class="ml-icon-item">
+            <img src="images/benefit-hongbao.png" alt="知识红包" />
+            <span class="ml-icon-name">知识红包</span>
+          </div>
+          <div class="ml-icon-item">
+            <img src="images/benefit-monthly.png" alt="月度礼遇日" />
+            <span class="ml-icon-name">月度礼遇日</span>
+          </div>
+          <div class="ml-icon-item">
+            <img src="images/benefit-birthday.png" alt="生日特权" />
+            <span class="ml-icon-name">生日特权</span>
+          </div>
+          <div class="ml-icon-item">
+            <img src="images/benefit-upgrade.png" alt="升级礼包" />
+            <span class="ml-icon-name">升级礼包</span>
+          </div>
         </div>
-
-        <!-- 组件占位（三个竖排） -->
-        <div class="ml-ds-col ml-ds-col--fill">
-          <p class="ml-ds-label">组件</p>
-          <div class="ph ml-ds-ph ml-ds-ph--short">占位 · 升级弹窗</div>
-          <div class="ph ml-ds-ph ml-ds-ph--short">占位 · 权益对比</div>
-          <div class="ph ml-ds-ph ml-ds-ph--short">占位 · 等级卡片</div>
-        </div>
-
+      </div>
       </div>
     </div>
   </section>
@@ -840,7 +988,7 @@
 <script src="js/blob-bg.js"></script>
 <script src="js/smooth-scroll.js"></script>
 <script src="js/language.js"></script>
-<script src="js/solution-carousel.js?v=3"></script>
+<script src="js/solution-carousel.js?v=4"></script>
 <script src="js/pixel-cat.js?v=17"></script>
 <script>
   function applyDetailLang() {
@@ -892,7 +1040,50 @@
     setInterval(function() {
       current++;
       slideTo(current, true);
-    }, 2000);
+    }, 1500);
+  })();
+</script>
+<script>
+  (function() {
+    function initPhoneCycle(track) {
+      var slides = Array.from(track.querySelectorAll('img'));
+      var total = slides.length;
+      if (total <= 1) return;
+
+      var current = 0;
+      track.appendChild(slides[0].cloneNode(true));
+
+      function slideTo(n, animate) {
+        track.style.transition = animate === false ? 'none' : 'transform 0.55s cubic-bezier(0.4,0,0.2,1)';
+        track.style.transform = 'translateX(-' + (n * 100) + '%)';
+      }
+
+      track.addEventListener('transitionend', function(event) {
+        if (event.target !== track) return;
+        if (current >= total) {
+          current = 0;
+          slideTo(0, false);
+          void track.offsetWidth;
+        }
+      });
+
+      function normalizeClone() {
+        if (current < total) return;
+        current = 0;
+        slideTo(0, false);
+        void track.offsetWidth;
+      }
+
+      function advance() {
+        normalizeClone();
+        current += 1;
+        slideTo(current, true);
+      }
+
+      setInterval(advance, 2000);
+    }
+
+    document.querySelectorAll('[data-phone-cycle]').forEach(initPhoneCycle);
   })();
 </script>
 <script>

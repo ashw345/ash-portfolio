@@ -79,7 +79,8 @@
     }
 
     /* 滑到克隆张后，无动画地跳回对应的真实张，实现无缝循环 */
-    track.addEventListener('transitionend', () => {
+    track.addEventListener('transitionend', (e) => {
+      if (e.target !== track) return;
       if (pos === total + 1) {        // 停在「首张克隆」（最后一张之后）
         pos = 1;
         applyTransform(false);
@@ -97,10 +98,15 @@
     const AUTO_MS = 5000;
     let autoTimer = null;
     let paused    = false;
-    function startAuto() { stopAuto(); if (total > 1 && !paused) autoTimer = setInterval(next, AUTO_MS); }
+    function startAuto() { stopAuto(); if (total > 1 && !paused && !section.matches(':hover')) autoTimer = setInterval(next, AUTO_MS); }
     function stopAuto()  { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
-    section.addEventListener('mouseenter', () => { paused = true;  stopAuto(); });
-    section.addEventListener('mouseleave', () => { paused = false; startAuto(); });
+    function pauseAuto() { paused = true; stopAuto(); }
+    function resumeAuto() { paused = false; startAuto(); }
+    section.addEventListener('mouseenter', pauseAuto);
+    section.addEventListener('mouseleave', resumeAuto);
+    section.addEventListener('pointerenter', pauseAuto);
+    section.addEventListener('pointerleave', resumeAuto);
+    section.addEventListener('touchstart', pauseAuto, { passive: true });
 
     /* ── Drag / swipe ──────────────────────────────────── */
     let dragStartX = null;
