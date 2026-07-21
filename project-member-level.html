@@ -341,8 +341,8 @@
       text-align: center;
     }
     .ml-icon-item img {
-      width: 38px;
-      height: 38px;
+      width: 76px;
+      height: 76px;
       object-fit: contain;
       display: block;
     }
@@ -495,19 +495,6 @@
       margin-right: auto;
     }
 
-    /* ── 页面展示：布局对齐 SnapFIT（390/844 比例 + 首图对齐标题） ── */
-    .pd-section--screens .pd-screen {
-      border-radius: 36px;
-      box-sizing: border-box;
-      aspect-ratio: 390 / 844;
-    }
-    .pd-section--screens .pd-screens-track {
-      padding-inline-start: var(--screens-offset, 48px);
-      padding-inline-end: var(--screens-offset, 48px);
-    }
-    .pd-section--screens .pd-screens-scroll {
-      scroll-padding-inline-start: var(--screens-offset, 48px);
-    }
   </style>
 </head>
 <body class="theme-dark">
@@ -897,51 +884,26 @@
     <div class="container">
       <span class="pd-section-label">Outcome</span>
       <h2 class="pd-section-title" data-i18n-zh="项目成果" data-i18n-en="Outcome">项目成果</h2>
-      <p class="pd-body" data-i18n-zh="全新等级视觉体系配合会员权益升级上线，等级页的进阶感与尊贵感显著增强，有效带动了用户的升级与活跃。" data-i18n-en="The new level visual system launched alongside the membership benefit upgrade, markedly strengthening the sense of progression and prestige—effectively driving user upgrades and engagement.">全新等级视觉体系配合会员权益升级上线，等级页的进阶感与尊贵感显著增强，有效带动了用户的升级与活跃。</p>
+      <p class="pd-body" data-i18n-zh="全新等级视觉体系配合会员权益升级灰度上线，等级页的进阶感与尊贵感明显增强，带动了用户的升级与活跃。" data-i18n-en="The new level visual system rolled out gradually alongside the membership benefit upgrade, strengthening the sense of progression and prestige and lifting user upgrades and engagement.">全新等级视觉体系配合会员权益升级灰度上线，等级页的进阶感与尊贵感明显增强，带动了用户的升级与活跃。</p>
       <div class="ml-metrics">
         <div class="ml-metric">
-          <div class="ml-metric-num">+18%</div>
+          <div class="ml-metric-num">+7%</div>
           <div class="ml-metric-label" data-i18n-zh="会员升级转化率" data-i18n-en="Level upgrade conversion">会员升级转化率</div>
         </div>
         <div class="ml-metric">
-          <div class="ml-metric-num">+12%</div>
+          <div class="ml-metric-num">+4%</div>
           <div class="ml-metric-label" data-i18n-zh="高等级（V6–V8）用户占比" data-i18n-en="High-tier (V6–V8) user share">高等级（V6–V8）用户占比</div>
         </div>
         <div class="ml-metric">
-          <div class="ml-metric-num">+25%</div>
+          <div class="ml-metric-num">+12%</div>
           <div class="ml-metric-label" data-i18n-zh="等级页人均停留时长" data-i18n-en="Avg. time on level page">等级页人均停留时长</div>
         </div>
         <div class="ml-metric">
-          <div class="ml-metric-num">+6%</div>
+          <div class="ml-metric-num">+2%</div>
           <div class="ml-metric-label" data-i18n-zh="会员次日留存" data-i18n-en="Next-day retention">会员次日留存</div>
         </div>
       </div>
-      <p class="ml-metric-note" data-i18n-zh="* 数据为项目上线后阶段性表现，用于示意设计价值。" data-i18n-en="* Figures reflect post-launch phase performance, shown to illustrate design impact.">* 数据为项目上线后阶段性表现，用于示意设计价值。</p>
-    </div>
-  </section>
-
-  <!-- ⑨ SCREENS -->
-  <section class="pd-section pd-section--screens">
-    <button class="pd-screens-btn pd-screens-btn--prev is-disabled" aria-label="向左滚动">
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 14L7 9L11 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <button class="pd-screens-btn pd-screens-btn--next" aria-label="向右滚动">
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4L11 9L7 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-
-    <div class="container">
-      <span class="pd-section-label">Screens</span>
-      <h2 class="pd-section-title" data-i18n-zh="页面展示" data-i18n-en="Screen Gallery">页面展示</h2>
-    </div>
-    <div class="pd-screens-scroll">
-      <div class="pd-screens-track">
-        <div class="pd-screen ph" style="display:flex;">占位 1</div>
-        <div class="pd-screen ph" style="display:flex;">占位 2</div>
-        <div class="pd-screen ph" style="display:flex;">占位 3</div>
-        <div class="pd-screen ph" style="display:flex;">占位 4</div>
-        <div class="pd-screen ph" style="display:flex;">占位 5</div>
-        <div class="pd-screen ph" style="display:flex;">占位 6</div>
-      </div>
+      <p class="ml-metric-note" data-i18n-zh="* 数据为新版 A/B 实验（部分放量）阶段的表现，用于示意设计价值。" data-i18n-en="* Figures from the new version's A/B test (partial rollout) phase, shown to illustrate design impact.">* 数据为新版 A/B 实验（部分放量）阶段的表现，用于示意设计价值。</p>
     </div>
   </section>
 
@@ -1084,18 +1046,6 @@
     }
 
     document.querySelectorAll('[data-phone-cycle]').forEach(initPhoneCycle);
-  })();
-</script>
-<script>
-  // 计算 SCREENS 区域的左偏移，使其和标题对齐
-  (function setScreensOffset() {
-    function update() {
-      const w = document.documentElement.clientWidth;
-      const offset = Math.max(48, (w - 1200) / 2 + 48);
-      document.documentElement.style.setProperty('--screens-offset', offset + 'px');
-    }
-    update();
-    window.addEventListener('resize', update);
   })();
 </script>
 </body>
