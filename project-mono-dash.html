@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mono Dash — ASH Studio Creative</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=transition11" />
+  <script src="js/page-transition.js?v=6"></script>
 </head>
 <body>
 <canvas id="dot-canvas"></canvas>
@@ -18,14 +19,12 @@
         <li><a href="index.html" class="active">UI设计</a></li>
         <li><a href="dev.html">独立开发</a></li>
         <li><a href="photography.html">摄影</a></li>
-        <li><a href="about.html">关于</a></li>
-        <li><span class="nav-dot"></span></li>
-        <li><a href="contact.html" class="nav-cta">联系我们</a></li>
+        <li><a href="contact.html" class="nav-cta">联系我</a></li>
       </ul>
     </div>
   </nav>
 
-  <a href="index.html" class="detail-back">← 返回</a>
+  <a href="index.html" class="project-category-back"><span aria-hidden="true">←</span><span>UIUX设计</span></a>
 
   <div class="detail-hero">
     <div class="detail-hero-img ph-4"></div>
@@ -76,15 +75,11 @@
     </div>
   </section>
 
-  <div class="container">
-    <a href="index.html" class="detail-next">
-      <div>
-        <p class="next-label">Next Project</p>
-        <p class="next-title">Nexus UI</p>
-      </div>
-      <span style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;">→</span>
-    </a>
-  </div>
+  <nav class="project-pagination" aria-label="项目导航">
+    <a href="project-grid-atlas.html" class="project-pagination__side project-pagination__side--prev">← 上一个项目</a>
+    <a href="index.html" class="project-pagination__home">返回 UIUX 设计 ↗</a>
+    <span class="project-pagination__side project-pagination__side--empty" aria-hidden="true"></span>
+  </nav>
 
   <footer class="footer">
     <div class="container">
@@ -101,7 +96,6 @@
         </ul></div>
         <div class="footer-col"><ul>
           <li><a href="photography.html">摄影</a></li>
-          <li><a href="about.html">关于</a></li>
         </ul></div>
       </div>
       <div class="footer-copy">© 2026 ASH</div>

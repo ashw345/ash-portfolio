@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>平面设计 — ASH Studio</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=responsive4" />
+  <script src="js/page-transition.js?v=6"></script>
 </head>
-<body>
+<body class="has-mobile-nav">
 <canvas id="dot-canvas"></canvas>
 <div class="page-wrap">
 
@@ -14,16 +15,16 @@
   <nav class="nav">
     <div class="container">
       <div class="nav-logo-group"><span class="nav-logo">Ash_Studio</span><span class="nav-available"><span class="nav-available-dot"></span><span data-i18n="nav_available">接受项目合作</span></span></div>
-      <ul class="nav-links">
+      <ul class="nav-links" id="site-nav-menu">
         <li><a href="index.html" data-i18n="nav_ui">UI设计</a></li>
         <li><a href="graphic.html" class="active" data-i18n="nav_graphic">平面设计</a></li>
         <li><a href="dev.html" data-i18n="nav_dev">独立开发</a></li>
         <li><a href="photography.html" data-i18n="nav_photo">摄影</a></li>
-        <li><a href="about.html" data-i18n="nav_about">关于</a></li>
-        <li><span class="nav-dot"></span></li>
-        <li><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN</button></li>
-        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我们</a></li>
+        <li class="nav-lang-item"><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN</button></li>
+        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我</a></li>
       </ul>
+      <button class="nav-lang-toggle nav-lang-toggle--mobile" type="button" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')">EN/中</button>
+      <button class="nav-menu-toggle" type="button" aria-controls="site-nav-menu" aria-expanded="false" aria-label="打开导航"><span></span><span></span></button>
     </div>
   </nav>
 
@@ -36,10 +37,20 @@
     </div>
   </header>
 
-  <!-- PROJECTS (empty for now) -->
+  <!-- PROJECTS -->
   <section class="projects">
     <div class="container">
-      <!-- 待补充作品 -->
+      <article class="project-item">
+        <a class="project-img-wrap" href="project-asm.html" aria-label="查看 Air / Space Museum 品牌设计项目">
+          <div class="project-img ph-asm"></div>
+        </a>
+        <div class="project-info">
+          <p class="project-meta" data-i18n="asm_meta">01 / Brand Identity · Museum</p>
+          <h2 class="project-title project-title--asm" data-i18n="asm_title">Air / Space Museum</h2>
+          <p class="project-desc" data-i18n="asm_desc">以斜杠、超粗字体与四色系统构建航空航天博物馆品牌，并延展到票券、腕带、导览物料与公共传播。</p>
+          <a href="project-asm.html" class="project-link" data-i18n="asm_link">查看详情 →</a>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -60,7 +71,6 @@
         </ul></div>
         <div class="footer-col"><ul>
           <li><a href="photography.html" data-i18n="footer_photo">摄影</a></li>
-          <li><a href="about.html" data-i18n="footer_about">关于</a></li>
         </ul></div>
       </div>
       <div class="footer-copy" data-i18n="footer_copy">© 2026 ASH</div>
@@ -69,8 +79,9 @@
 
 </div>
 <script src="js/dot-grid.js"></script>
-<script src="js/smooth-scroll.js"></script>
-<script src="js/language.js"></script>
+<script src="js/smooth-scroll.js?v=7"></script>
+<script src="js/mobile-nav.js?v=1"></script>
+<script src="js/language.js?v=project-nav1"></script>
 <script src="js/pixel-cat.js?v=17"></script>
 </body>
 </html>

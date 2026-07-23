@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>色板预览 · 宝石</title>
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  body { background:#0d0d0d; color:#fff; margin:0; padding:80px 48px; font-family:-apple-system,'PingFang SC','Helvetica Neue',Arial,sans-serif; }
+  .wrap { max-width:1200px; margin:0 auto; }
+  .label { display:block; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:8px; }
+  .title { font-family:'Syne',sans-serif; font-weight:800; font-size:34px; letter-spacing:-.02em; margin:0 0 40px; }
+
+  .gemgrid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; align-items:start; }
+
+  .gemcard {
+    position:relative;
+    background:rgba(255,255,255,0.028);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:28px 20px 0;
+    overflow:hidden;
+  }
+
+  /* 图片完整不裁：宝石 0–38%、倒影 45–79%、底部 20% 透明空区 */
+  .gem { position:relative; width:100%; }
+  .gemimg { width:100%; height:auto; display:block; }
+
+  /* 文字绝对定位叠在图上，压住底部透明空区、倒影在文字后面完整透出 */
+  .meta { position:absolute; left:20px; right:20px; bottom:16px; }
+
+  .tier { font-family:'Syne',sans-serif; font-weight:800; font-size:23px; letter-spacing:-.02em; line-height:1; color:#fff; }
+  .name { display:flex; align-items:baseline; gap:7px; margin-top:9px; }
+  .name .en { font-family:'Syne',sans-serif; font-weight:600; font-size:15px; letter-spacing:.01em; color:rgba(255,255,255,.92); }
+  .name .cn { font-family:'PingFang SC',sans-serif; font-size:12px; color:rgba(255,255,255,.42); }
+  .swatch { display:flex; align-items:center; gap:8px; margin-top:12px; }
+  .chip { width:11px; height:11px; border-radius:50%; box-shadow:0 0 0 1px rgba(255,255,255,0.12); flex-shrink:0; }
+  .hex { font-family:ui-monospace,'SF Mono',monospace; font-size:11px; letter-spacing:.07em; color:rgba(255,255,255,.4); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="label">Design System · 色彩</span>
+  <h2 class="title">宝石等级色彩</h2>
+
+  <div class="gemgrid">
+
+    <div class="gemcard">
+      <div class="gem"><img class="gemimg" src="images/gem-copper.png" alt="红铜 Copper" /></div>
+      <div class="meta">
+        <span class="tier">V1–V2</span>
+        <div class="name"><span class="en">Copper</span><span class="cn">红铜</span></div>
+        <div class="swatch"><span class="chip" style="background:#DD965F"></span><span class="hex">#DD965F</span></div>
+      </div>
+    </div>
+
+    <div class="gemcard">
+      <div class="gem"><img class="gemimg" src="images/gem-silver.png" alt="白银 Silver" /></div>
+      <div class="meta">
+        <span class="tier">V3–V4</span>
+        <div class="name"><span class="en">Silver</span><span class="cn">白银</span></div>
+        <div class="swatch"><span class="chip" style="background:#4C6494"></span><span class="hex">#4C6494</span></div>
+      </div>
+    </div>
+
+    <div class="gemcard">
+      <div class="gem"><img class="gemimg" src="images/gem-gold.png" alt="黄金 Gold" /></div>
+      <div class="meta">
+        <span class="tier">V5–V6</span>
+        <div class="name"><span class="en">Gold</span><span class="cn">黄金</span></div>
+        <div class="swatch"><span class="chip" style="background:#CB9B56"></span><span class="hex">#CB9B56</span></div>
+      </div>
+    </div>
+
+    <div class="gemcard">
+      <div class="gem"><img class="gemimg" src="images/gem-amethyst.png" alt="紫水晶 Amethyst" /></div>
+      <div class="meta">
+        <span class="tier">V7</span>
+        <div class="name"><span class="en">Amethyst</span><span class="cn">紫水晶</span></div>
+        <div class="swatch"><span class="chip" style="background:#9D2AD2"></span><span class="hex">#9D2AD2</span></div>
+      </div>
+    </div>
+
+    <div class="gemcard">
+      <div class="gem"><img class="gemimg" src="images/gem-sapphire.png" alt="蓝宝石 Sapphire" /></div>
+      <div class="meta">
+        <span class="tier">V8</span>
+        <div class="name"><span class="en">Sapphire</span><span class="cn">蓝宝石</span></div>
+        <div class="swatch"><span class="chip" style="background:#4E1DD6"></span><span class="hex">#4E1DD6</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

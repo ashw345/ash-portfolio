@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>会员等级 Redesign — ASH Studio</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=transition11" />
   <link rel="stylesheet" href="css/project-detail.css" />
+  <script src="js/page-transition.js?v=6"></script>
   <style>
     /* ── 会员等级 品牌色覆盖（金色 / 尊贵感） ── */
     :root { --accent: #CB9B56; }
@@ -516,17 +517,15 @@
         <li><a href="graphic.html" data-i18n="nav_graphic">平面设计</a></li>
         <li><a href="dev.html" data-i18n="nav_dev">独立开发</a></li>
         <li><a href="photography.html" data-i18n="nav_photo">摄影</a></li>
-        <li><a href="about.html" data-i18n="nav_about">关于</a></li>
-        <li><span class="nav-dot"></span></li>
         <li><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN/中</button></li>
-        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我们</a></li>
+        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- ① HERO -->
   <section class="pd-hero">
-  <a class="pd-hero-back" href="index.html"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>UIUX设计</a>
+  <a class="project-category-back" href="index.html"><span aria-hidden="true">←</span><span data-i18n="nav_ui">UIUX设计</span></a>
     <div class="pd-hero-img">
       <img src="images/member-hero.jpg" alt="会员等级 Redesign" style="object-position: center center;" />
     </div>
@@ -907,13 +906,11 @@
     </div>
   </section>
 
-  <!-- 返回 + 下一个项目 -->
-  <div class="pd-nav-bottom">
-    <div class="container">
-      <a href="index.html" class="pd-back" data-i18n-zh="← 返回 UI 设计" data-i18n-en="← Back to UI Design">← 返回 UI 设计</a>
-      <a href="project-snapfit.html" class="pd-next" data-i18n-zh="下一个项目 →" data-i18n-en="Next Project →">下一个项目 →</a>
-    </div>
-  </div>
+  <nav class="project-pagination" aria-label="项目导航">
+    <span class="project-pagination__side project-pagination__side--empty" aria-hidden="true"></span>
+    <a href="index.html" class="project-pagination__home" data-i18n="project_back_ui">返回 UIUX 设计 ↗</a>
+    <a href="project-snapfit.html" class="project-pagination__side project-pagination__side--next" data-i18n="project_next">下一个项目 →</a>
+  </nav>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -936,7 +933,6 @@
         <div class="footer-col">
           <ul>
             <li><a href="photography.html" data-i18n="footer_photo">摄影</a></li>
-            <li><a href="about.html" data-i18n="footer_about">关于</a></li>
           </ul>
         </div>
       </div>
@@ -948,8 +944,8 @@
 
 <script src="js/dot-grid-fixed.js?v=1"></script>
 <script src="js/blob-bg.js"></script>
-<script src="js/smooth-scroll.js"></script>
-<script src="js/language.js"></script>
+<script src="js/smooth-scroll.js?v=7"></script>
+<script src="js/language.js?v=project-nav1"></script>
 <script src="js/solution-carousel.js?v=4"></script>
 <script src="js/pixel-cat.js?v=17"></script>
 <script>

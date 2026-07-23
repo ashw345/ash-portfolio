@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Air / Space Museum brand identity project by ASH Studio." />
+  <title>Air / Space Museum | ASH Studio</title>
+  <link rel="stylesheet" href="css/style.css?v=transition11" />
+  <link rel="stylesheet" href="css/project-asm.css?v=9" />
+  <script src="js/page-transition.js?v=6"></script>
+</head>
+<body class="theme-dark-page asm-page">
+<canvas id="dot-canvas" data-dot-color="255,255,255"></canvas>
+<div class="page-wrap">
+
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-logo-group"><span class="nav-logo">Ash_Studio</span><span class="nav-available"><span class="nav-available-dot"></span><span data-i18n="nav_available">接受项目合作</span></span></div>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav_ui">UI设计</a></li>
+        <li><a href="graphic.html" class="active" data-i18n="nav_graphic">平面设计</a></li>
+        <li><a href="dev.html" data-i18n="nav_dev">独立开发</a></li>
+        <li><a href="photography.html" data-i18n="nav_photo">摄影</a></li>
+        <li><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')">EN</button></li>
+        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="asm-project">
+    <a class="project-category-back" href="graphic.html"><span aria-hidden="true">←</span><span data-i18n="nav_graphic">平面设计</span></a>
+
+    <section class="asm-hero pd-hero" aria-label="Air / Space Museum project cover">
+      <img src="images/asm/page-01.png" alt="Air Space Museum black and white aircraft identity cover" fetchpriority="high" />
+    </section>
+
+    <section class="asm-intro asm-shell">
+      <div class="asm-intro-title">
+        <p class="asm-kicker" data-i18n="asm_kicker">品牌视觉 · 博物馆</p>
+        <div class="asm-title-lockup">
+          <h1><span>AIR /</span><span>SPACE</span><span>MUSEUM</span></h1>
+          <small class="asm-title-note">航天航空博物馆</small>
+        </div>
+      </div>
+      <div class="asm-intro-copy">
+        <p data-i18n="asm_case_intro">为航空航天博物馆建立一套鲜明、灵活且容易延展的视觉识别。设计以飞行轨迹般的斜杠为核心，将黑白影像、超粗字体与四种高识别度色彩组织成统一系统。</p>
+        <dl class="asm-facts">
+          <div><dt data-i18n="asm_case_scope_label">项目范围</dt><dd data-i18n="asm_case_scope">品牌策略与视觉识别</dd></div>
+          <div><dt data-i18n="asm_case_outputs_label">设计产出</dt><dd data-i18n="asm_case_outputs">标志、票券、导览物料、海报</dd></div>
+          <div><dt data-i18n="asm_case_role_label">项目角色</dt><dd data-i18n="asm_case_role">品牌与平面设计师</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="asm-section asm-shell" aria-labelledby="asm-color-title">
+      <header class="asm-section-head">
+        <h2 id="asm-color-title" data-i18n="asm_color_title">色彩系统</h2>
+        <p data-i18n="asm_color_intro">四种颜色对应不同的参观体验，同时让严肃的航空主题保持开放与活力。</p>
+      </header>
+      <div class="asm-colors">
+        <div class="asm-color asm-color--orange"><span data-i18n="asm_color_orange">橙色</span><strong>#EB5D0B</strong></div>
+        <div class="asm-color asm-color--yellow"><span data-i18n="asm_color_yellow">黄色</span><strong>#F0DD00</strong></div>
+        <div class="asm-color asm-color--teal"><span data-i18n="asm_color_teal">青绿色</span><strong>#009683</strong></div>
+        <div class="asm-color asm-color--lavender"><span data-i18n="asm_color_lavender">淡紫色</span><strong>#B8ABD2</strong></div>
+      </div>
+    </section>
+
+    <section class="asm-section asm-shell" aria-labelledby="asm-logo-title">
+      <header class="asm-section-head">
+        <h2 id="asm-logo-title" data-i18n="asm_logo_title">标志系统</h2>
+        <p data-i18n="asm_logo_intro">斜杠贯穿文字结构，既是分隔符，也是速度、方向与飞行轨迹的视觉线索。</p>
+      </header>
+      <div class="asm-logo-grid">
+        <figure class="asm-visual"><img class="asm-edge-clean" src="images/asm/page-03.png" alt="Stacked Air Space Museum logo variants" loading="lazy" /></figure>
+        <figure class="asm-visual"><img class="asm-edge-clean" src="images/asm/page-04.png" alt="Horizontal Air Space Museum logo variants" loading="lazy" /></figure>
+      </div>
+    </section>
+
+    <section class="asm-type asm-shell" aria-labelledby="asm-type-title">
+      <div class="asm-type-meta">
+        <h2 id="asm-type-title" data-i18n="asm_type_title">字体规范</h2>
+        <p data-i18n="asm_type_intro">Helvetica Now Display Extra Black 提供清晰、直接的标题层级，并在不同尺寸的印刷物中保持稳定识别。</p>
+      </div>
+      <div class="asm-type-sample" aria-hidden="true">
+        <span class="asm-type-name">Helvetica Now Display</span>
+        <strong>AIR/</strong>
+        <div><span>ABCDEFGHIJKLMNOPQRSTUVWXYZ</span><span>0123456789</span></div>
+      </div>
+    </section>
+
+    <section class="asm-section asm-shell" aria-labelledby="asm-journey-title">
+      <header class="asm-section-head asm-section-head--wide asm-section-head--journey">
+        <h2 id="asm-journey-title" data-i18n="asm_journey_title">参观旅程</h2>
+        <p data-i18n="asm_touchpoint_intro">品牌系统沿着观众的参观路径展开，从收到信息、进入场馆，到识别工作人员和带走纪念物。</p>
+      </header>
+
+      <div class="asm-touchpoint-block asm-exterior-block">
+        <div class="asm-touchpoint-label"><span>01</span><h3 data-i18n="asm_exterior_title">外立面应用</h3></div>
+        <div class="asm-exterior-stack">
+          <figure class="asm-visual">
+            <div class="asm-exterior-media"><img src="images/asm/billboard.jpg" width="1400" height="1050" alt="Air Space Museum aircraft billboard on a building" loading="lazy" /></div>
+            <figcaption data-i18n="asm_exterior_billboard">建筑外立面 · 户外广告牌</figcaption>
+          </figure>
+          <figure class="asm-visual">
+            <div class="asm-exterior-media"><img src="images/asm/citylight.jpg" width="1400" height="1050" alt="Air Space Museum astronaut citylight poster" loading="lazy" /></div>
+            <figcaption data-i18n="asm_exterior_citylight">建筑外立面 · 灯箱海报</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="asm-identity-grid">
+        <figure class="asm-visual"><img src="images/asm/stationery.jpg" width="1800" height="1350" alt="Air Space Museum stationery set" loading="lazy" /><figcaption data-i18n="asm_stationery_caption">品牌文具 · 初次接触</figcaption></figure>
+        <figure class="asm-visual"><img src="images/asm/wordmark-card.jpg" width="1200" height="900" alt="Air Space Museum wordmark printed on a card" loading="lazy" /><figcaption data-i18n="asm_wordmark_caption">文字标志 · 核心识别</figcaption></figure>
+      </div>
+
+      <div class="asm-touchpoint-block">
+        <div class="asm-touchpoint-label"><span>02</span><h3 data-i18n="asm_admission_title">入场票券系统</h3></div>
+        <div class="asm-ticket-grid">
+          <div class="asm-ticket-board"><img class="asm-edge-clean" src="images/asm/ticket-orange.png" width="1400" height="459" alt="Orange Air Space Museum day pass" loading="lazy" /></div>
+          <div class="asm-ticket-board"><img class="asm-edge-clean" src="images/asm/ticket-teal.png" width="1400" height="459" alt="Teal Air Space Museum day pass" loading="lazy" /></div>
+          <div class="asm-ticket-board"><img class="asm-edge-clean" src="images/asm/ticket-yellow.png" width="1400" height="459" alt="Yellow Air Space Museum day pass" loading="lazy" /></div>
+          <div class="asm-ticket-board"><img class="asm-edge-clean" src="images/asm/ticket-lavender.png" width="1400" height="458" alt="Lavender Air Space Museum day pass" loading="lazy" /></div>
+        </div>
+      </div>
+
+      <div class="asm-touchpoint-block">
+        <div class="asm-touchpoint-label"><span>03</span><h3 data-i18n="asm_staff_title">工作人员识别</h3></div>
+        <div class="asm-credential-grid">
+          <figure class="asm-visual"><img src="images/asm/staff-id.jpg" width="1800" height="1350" alt="Air Space Museum staff identification cards" loading="lazy" /></figure>
+          <figure class="asm-visual"><img src="images/asm/luggage-tags.jpg" width="1200" height="900" alt="Air Space Museum branded luggage tags" loading="lazy" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="asm-section asm-shell" aria-labelledby="asm-campaign-title">
+      <header class="asm-section-head">
+        <h2 id="asm-campaign-title" data-i18n="asm_campaign_title">宣传物料</h2>
+        <p data-i18n="asm_campaign_intro">折页通过巨型文字、图像与四色系统建立统一节奏，让不同主题的信息保持清晰的品牌归属。</p>
+      </header>
+      <div class="asm-foldout-grid">
+        <img src="images/asm/foldout-teal.jpg" width="1600" height="1200" alt="Teal Air Space Museum foldout guide" loading="lazy" />
+        <img src="images/asm/foldout-orange.jpg" width="1600" height="1200" alt="Orange Air Space Museum foldout guide" loading="lazy" />
+        <img src="images/asm/foldout-yellow.jpg" width="1600" height="1200" alt="Yellow Air Space Museum foldout guide" loading="lazy" />
+        <img src="images/asm/foldout-lavender.jpg" width="1600" height="1200" alt="Lavender Air Space Museum foldout guide" loading="lazy" />
+      </div>
+      <div class="asm-bookmark-grid">
+        <img class="asm-edge-clean" src="images/asm/bookmark-teal.png" width="559" height="1400" alt="Teal Air Space Museum bookmark" loading="lazy" />
+        <img class="asm-edge-clean" src="images/asm/bookmark-yellow.png" width="559" height="1400" alt="Yellow Air Space Museum bookmark" loading="lazy" />
+        <img class="asm-edge-clean" src="images/asm/bookmark-orange.png" width="559" height="1400" alt="Orange Air Space Museum bookmark" loading="lazy" />
+        <img class="asm-edge-clean" src="images/asm/bookmark-lavender.png" width="559" height="1400" alt="Lavender Air Space Museum bookmark" loading="lazy" />
+      </div>
+      <div class="asm-collateral-grid">
+        <figure class="asm-visual"><img src="images/asm/polaroid-set.jpg" width="1800" height="1350" alt="Air Space Museum campaign polaroids" loading="lazy" /><figcaption data-i18n="asm_campaign_caption">宣传影像 · 纪念物料</figcaption></figure>
+        <figure class="asm-visual"><img src="images/asm/packaging.jpg" width="1400" height="1166" alt="Air Space Museum branded packaging" loading="lazy" /><figcaption data-i18n="asm_packaging_caption">包装设计 · 零售延展</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="asm-section asm-shell asm-poster-section" aria-labelledby="asm-poster-title">
+      <header class="asm-section-head asm-section-head--wide">
+        <h2 id="asm-poster-title" data-i18n="asm_poster_title">海报</h2>
+        <p data-i18n="asm_poster_intro">四张海报以太空影像和超粗文字建立远距离识别，并通过颜色保持系列之间的关联。</p>
+      </header>
+      <figure class="asm-visual asm-poster-wall">
+        <img src="images/asm/poster-wall.jpg" width="2000" height="1573" alt="Three Air Space Museum campaign posters displayed on a gallery wall" loading="lazy" />
+      </figure>
+    </section>
+
+    <nav class="project-pagination" aria-label="项目导航">
+      <span class="project-pagination__side project-pagination__side--empty" aria-hidden="true"></span>
+      <a href="graphic.html" class="project-pagination__home" data-i18n="project_back_graphic">返回平面设计 ↗</a>
+      <span class="project-pagination__side project-pagination__side--empty" aria-hidden="true"></span>
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Ash_Studio</div>
+      <div class="footer-cols">
+        <div class="footer-col"><ul>
+          <li><a href="mailto:hello@ash.design" data-i18n="footer_email">电子邮件</a></li>
+          <li><a href="#" data-i18n="footer_resume">个人简历</a></li>
+          <li><a href="#" data-i18n="footer_links">其他链接</a></li>
+        </ul></div>
+        <div class="footer-col"><ul>
+          <li><a href="index.html" data-i18n="footer_ui">UI设计</a></li>
+          <li><a href="graphic.html" data-i18n="footer_graphic">平面设计</a></li>
+          <li><a href="dev.html" data-i18n="footer_dev">独立开发</a></li>
+        </ul></div>
+        <div class="footer-col"><ul>
+          <li><a href="photography.html" data-i18n="footer_photo">摄影</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-copy" data-i18n="footer_copy">© 2026 ASH</div>
+    </div>
+  </footer>
+</div>
+
+<script src="js/dot-grid-fixed.js?v=8"></script>
+<script src="js/smooth-scroll.js?v=7"></script>
+<script src="js/language.js?v=asm-bilingual1"></script>
+<script src="js/pixel-cat.js?v=17"></script>
+</body>
+</html>
