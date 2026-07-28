@@ -161,67 +161,214 @@
   margin-top: 12px;
 }
 
-/* ── Color Schemes ─────────────────────────────── */
-.pd-scheme-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+/* ── Problem video (16:9 演示视频) ─────────────────── */
+.pd-problem-video {
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #141414;
+}
+.pd-problem-video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+/* 原生全屏：按宽度完整适配，避免两侧被裁。
+   注意：各前缀必须拆成独立规则——选择器组里只要有一个前缀不被识别，整条规则会被丢弃 */
+.pd-problem-video video:fullscreen {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: #000;
+}
+.pd-problem-video video:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: #000;
+}
+
+/* ── Brand VI（Lyft 品牌识别） ─────────────────── */
+/* Gotham 优先，缺失时退到最接近的几何无衬线 */
+.lyft-vi {
+  --gotham: 'Gotham', 'Gotham SSm', 'Montserrat', 'Avenir Next', 'Futura',
+            -apple-system, BlinkMacSystemFont, sans-serif;
+  --lyft-pink: #E30B88;
+  --lyft-black: #11111F;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   margin-top: 48px;
 }
-.pd-scheme-card {
+.lyft-vi-row--top {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 20px;
+}
+.lyft-vi-card {
   background: #fafafa;
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 28px;
+  border-radius: 16px;
+  padding: 26px 28px 28px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  min-width: 0;
 }
-.pd-scheme-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.lyft-vi-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
 }
-.pd-scheme-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+.lyft-vi-note {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 16px 0 0;
+  max-width: 640px;
 }
-.pd-scheme-colors {
+
+/* 标识 */
+.lyft-vi-markstage {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-.pd-scheme-color-row {
-  display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 26px;
+  padding: 36px 0 30px;
 }
-.pd-scheme-color {
-  width: 48px;
-  height: 48px;
-  border-radius: 8px;
-  flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.lyft-wordmark {
+  display: block;
+  width: clamp(150px, 18vw, 280px);
+  height: auto;
+  object-fit: contain;
 }
-.pd-scheme-color-row span {
-  font-family: 'JetBrains Mono', monospace;
+/* 安全间距示意：虚线框 = 字标外扩 x */
+.lyft-clearspace {
+  position: relative;
+  padding: clamp(16px, 2.5vw, 32px);
+  border: 1px dashed rgba(227, 11, 136, 0.42);
+  border-radius: 6px;
+}
+.lyft-cs-unit {
+  position: absolute;
+  font-family: var(--gotham);
   font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 0.02em;
-  font-weight: 500;
+  font-style: italic;
+  color: rgba(227, 11, 136, 0.75);
+  line-height: 1;
 }
-.pd-scheme-desc {
+.lyft-cs-unit--top {
+  top: 0.15em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.lyft-cs-unit--left {
+  left: 0.18em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 字体 */
+.lyft-vi-typehead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+.lyft-vi-typename {
+  font-family: var(--gotham);
   font-size: 13px;
-  line-height: 1.6;
-  color: var(--muted);
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-}
-.pd-scheme-card:first-child .pd-scheme-desc {
-  color: var(--text);
   font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  text-align: right;
+}
+.lyft-vi-specimen {
+  font-family: var(--gotham);
+  font-weight: 900;
+  font-size: clamp(84px, 12vw, 130px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--lyft-black);
+  margin-top: 18px;
+}
+.lyft-vi-glyphs {
+  font-family: var(--gotham);
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.lyft-vi-weights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: auto;
+  padding-top: 22px;
+  font-family: var(--gotham);
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* 色彩 */
+.lyft-vi-swatches {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+.lyft-sw {
+  border-radius: 12px;
+  padding: 18px 18px 16px;
+  min-height: 122px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+}
+.lyft-sw--light {
+  border: 1px solid var(--border);
+}
+.lyft-sw-name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.lyft-sw-hex {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+}
+.lyft-vi-scale {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 4px;
+  margin-top: 12px;
+}
+.lyft-vi-scale span {
+  height: 26px;
+  border-radius: 5px;
+}
+
+@media (max-width: 900px) {
+  .lyft-vi-row--top { grid-template-columns: 1fr; }
+  .lyft-vi-swatches { grid-template-columns: 1fr 1fr; }
+  .lyft-sw--wide { grid-column: 1 / -1; min-height: 104px; }
+}
+@media (max-width: 560px) {
+  .lyft-vi-card { padding: 22px 20px 24px; }
+  .lyft-vi-swatches { grid-template-columns: 1fr; }
+  .lyft-vi-scale { grid-template-columns: repeat(9, 1fr); }
+  .lyft-vi-scale span { height: 20px; }
 }
 
 /* ── Goal ──────────────────────────────────────────── */
@@ -582,13 +729,13 @@ body.theme-dark .pd-demo-pill {
   color: #edebe6;
 }
 
-/* Color scheme cards */
-body.theme-dark .pd-scheme-card {
+/* Brand VI cards */
+body.theme-dark .lyft-vi-card {
   background: #141414;
   border-color: rgba(255,255,255,0.07);
 }
-body.theme-dark .pd-scheme-desc {
-  border-top-color: rgba(255,255,255,0.07);
+body.theme-dark .lyft-vi-specimen {
+  color: #edebe6;
 }
 
 /* Goal section: dark下用更深的背景强调 */
@@ -626,9 +773,9 @@ body.theme-gradient .nav.nav--scrolled {
   border-bottom-color: rgba(0,0,0,0.06);
 }
 
-/* Design system & scheme cards → glassmorphism */
+/* Design system & brand VI cards → glassmorphism */
 body.theme-gradient .pd-system-card,
-body.theme-gradient .pd-scheme-card {
+body.theme-gradient .lyft-vi-card {
   background: rgba(255,255,255,0.58);
   backdrop-filter: blur(20px) saturate(130%);
   -webkit-backdrop-filter: blur(20px) saturate(130%);

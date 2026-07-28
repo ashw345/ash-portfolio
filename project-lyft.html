@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lyft 街景模式 — ASH Studio</title>
-  <link rel="stylesheet" href="css/style.css?v=transition11" />
+  <link rel="stylesheet" href="css/style.css?v=transition12" />
   <link rel="stylesheet" href="css/project-detail.css" />
-  <script src="js/page-transition.js?v=6"></script>
+  <script src="js/page-transition.js?v=7"></script>
 </head>
 <body class="theme-gradient">
 <canvas id="dot-canvas"></canvas>
@@ -83,20 +83,10 @@
       <span class="pd-section-label">Problem</span>
       <h2 class="pd-section-title" data-i18n-zh="现有问题分析" data-i18n-en="Problem Analysis">现有问题分析</h2>
       <p class="pd-body" data-i18n-zh="乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。" data-i18n-en="Passengers struggle to accurately locate their driver and pickup spot—too many cars at busy intersections, and unfamiliar streets cause disorientation.">乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。</p>
-      <!-- 三张并排手机比例图，各 540×960px -->
-      <div class="pd-img-3col">
-        <div class="pd-img-wrap">
-          <img src="images/lyft-problem-1.jpg" alt="现有问题场景一" />
-          <p class="pd-img-caption" data-i18n-zh="场景一：繁忙路口" data-i18n-en="Scenario 1: Busy Intersection">场景一：繁忙路口</p>
-        </div>
-        <div class="pd-img-wrap">
-          <img src="images/lyft-problem-2.jpg" alt="现有问题场景二" />
-          <p class="pd-img-caption" data-i18n-zh="场景二：陌生街道" data-i18n-en="Scenario 2: Unfamiliar Street">场景二：陌生街道</p>
-        </div>
-        <div class="pd-img-wrap">
-          <img src="images/lyft-problem-3.jpg" alt="现有问题场景三" />
-          <p class="pd-img-caption" data-i18n-zh="场景三：地点模糊" data-i18n-en="Scenario 3: Ambiguous Location">场景三：地点模糊</p>
-        </div>
+      <div class="pd-problem-video">
+        <video autoplay muted loop playsinline controls preload="metadata">
+          <source src="video/lyft-launch/lyft-street-view-full.mp4" type="video/mp4" />
+        </video>
       </div>
     </div>
   </section>
@@ -114,87 +104,77 @@
   <!-- ⑤ COLOR SCHEMES —— 3套配色方案 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label">Exploration</span>
-      <h2 class="pd-section-title" data-i18n-zh="配色方案探索" data-i18n-en="Color Schemes Exploration">配色方案探索</h2>
-      <p class="pd-body" data-i18n-zh="在项目初期，我们探索了三套不同的配色方向，从能量感的粉色系，到专业稳重的蓝色系，再到温暖友好的橙色系，最终选择了粉色作为品牌主色，以传达安全、即时和活力的设计理念。" data-i18n-en="During the early exploration phase, we tested three color directions—from energetic pink tones, to professional blue, to warm orange—ultimately choosing pink as the brand color to convey safety, immediacy, and dynamism.">在项目初期，我们探索了三套不同的配色方向，从能量感的粉色系，到专业稳重的蓝色系，再到温暖友好的橙色系，最终选择了粉色作为品牌主色，以传达安全、即时和活力的设计理念。</p>
+      <span class="pd-section-label">Brand</span>
+      <h2 class="pd-section-title" data-i18n-zh="品牌 VI 识别" data-i18n-en="Brand Identity">品牌 VI 识别</h2>
+      <p class="pd-body" data-i18n-zh="Lyft 的识别体系建立在极简的三色结构上——标志性品牌粉、近黑与纯白，刻意回避渐变。字体使用几何无衬线 Gotham，圆润的字碗与开放的字腔，与圆角化的界面语言同源。本次街景功能严格沿用这套 VI，确保新功能在视觉上仍是「Lyft 的一部分」。" data-i18n-en="Lyft's identity rests on a deliberately minimal three-colour structure—its signature pink, near-black and white—with gradients avoided by design. Typography uses Gotham, a geometric sans whose round bowls and open apertures share the same DNA as the rounded UI language. This street view feature adheres strictly to that VI, so the new capability still reads as part of Lyft.">Lyft 的识别体系建立在极简的三色结构上——标志性品牌粉、近黑与纯白，刻意回避渐变。字体使用几何无衬线 Gotham，圆润的字碗与开放的字腔，与圆角化的界面语言同源。本次街景功能严格沿用这套 VI，确保新功能在视觉上仍是「Lyft 的一部分」。</p>
 
-      <div class="pd-scheme-grid">
-        <!-- 方案一：粉色能量系 -->
-        <div class="pd-scheme-card">
-          <div class="pd-scheme-header">
-            <span class="pd-scheme-name" data-i18n-zh="方案一：粉色能量" data-i18n-en="Scheme 1: Pink Energy">方案一：粉色能量</span>
+      <div class="lyft-vi">
+        <!-- 上排：标识 + 字体 -->
+        <div class="lyft-vi-row lyft-vi-row--top">
+          <!-- 标识 -->
+          <div class="lyft-vi-card lyft-vi-card--mark">
+            <p class="lyft-vi-label" data-i18n-zh="标识 · Identity" data-i18n-en="Identity">标识 · Identity</p>
+            <div class="lyft-vi-markstage">
+              <div class="lyft-clearspace">
+                <span class="lyft-cs-unit lyft-cs-unit--top">x</span>
+                <span class="lyft-cs-unit lyft-cs-unit--left">x</span>
+                <img src="images/lyft-wordmark.png" alt="lyft wordmark" class="lyft-wordmark">
+              </div>
+            </div>
+            <p class="lyft-vi-note" data-i18n-zh="字标为圆润几何小写字形，全小写、紧字距。四周保留不小于 x（字母 l 高度的一半）的安全间距，任何图形与文字不得侵入。" data-i18n-en="A rounded geometric lowercase wordmark, set all-lowercase with tight tracking. Clear space of no less than x (half the height of the 'l') is reserved on all sides; no graphic or text may intrude.">字标为圆润几何小写字形，全小写、紧字距。四周保留不小于 x（字母 l 高度的一半）的安全间距，任何图形与文字不得侵入。</p>
           </div>
-          <div class="pd-scheme-colors">
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#FF00BF;"></div>
-              <span>#FF00BF</span>
+
+          <!-- 字体 -->
+          <div class="lyft-vi-card lyft-vi-card--type">
+            <div class="lyft-vi-typehead">
+              <p class="lyft-vi-label" data-i18n-zh="字体 · Typeface" data-i18n-en="Typeface">字体 · Typeface</p>
+              <span class="lyft-vi-typename">Gotham</span>
             </div>
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#FFFFFF; border:1px solid var(--border);"></div>
-              <span>#FFFFFF</span>
-            </div>
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#F5F5F5;"></div>
-              <span>#F5F5F5</span>
-            </div>
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#111111;"></div>
-              <span>#111111</span>
+            <div class="lyft-vi-specimen">Aa</div>
+            <div class="lyft-vi-glyphs">Gg &nbsp;Ry &nbsp;28</div>
+            <div class="lyft-vi-weights">
+              <span style="font-weight:400">Book</span>
+              <span style="font-weight:500">Medium</span>
+              <span style="font-weight:700">Bold</span>
+              <span style="font-weight:900">Black</span>
             </div>
           </div>
-          <div class="pd-scheme-desc" data-i18n-zh="✓ 选定方案<br>能量感强、易识别、体现活力与安全" data-i18n-en="✓ Selected<br>High energy, easily recognizable, conveys dynamism and safety">✓ 选定方案<br>能量感强、易识别、体现活力与安全</div>
         </div>
 
-        <!-- 方案二：蓝色专业系 -->
-        <div class="pd-scheme-card">
-          <div class="pd-scheme-header">
-            <span class="pd-scheme-name" data-i18n-zh="方案二：蓝色专业" data-i18n-en="Scheme 2: Blue Professional">方案二：蓝色专业</span>
+        <!-- 下排：色彩 -->
+        <div class="lyft-vi-card lyft-vi-card--color">
+          <div class="lyft-vi-typehead">
+            <p class="lyft-vi-label" data-i18n-zh="色彩 · Colour" data-i18n-en="Colour">色彩 · Colour</p>
+            <span class="lyft-vi-typename" data-i18n-zh="三色结构 · 不使用渐变" data-i18n-en="Three-colour structure · no gradients">三色结构 · 不使用渐变</span>
           </div>
-          <div class="pd-scheme-colors">
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#0066FF;"></div>
-              <span>#0066FF</span>
-            </div>
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#FFFFFF; border:1px solid var(--border);"></div>
-              <span>#FFFFFF</span>
-            </div>
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#F0F4FF;"></div>
-              <span>#F0F4FF</span>
-            </div>
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#1A1A2E;"></div>
-              <span>#1A1A2E</span>
-            </div>
-          </div>
-          <div class="pd-scheme-desc" data-i18n-zh="稳重专业、信任感强<br>但缺少活力感，不够突出" data-i18n-en="Professional and trustworthy<br>but lacks energy and uniqueness">稳重专业、信任感强<br>但缺少活力感，不够突出</div>
-        </div>
 
-        <!-- 方案三：橙色温暖系 -->
-        <div class="pd-scheme-card">
-          <div class="pd-scheme-header">
-            <span class="pd-scheme-name" data-i18n-zh="方案三：橙色温暖" data-i18n-en="Scheme 3: Orange Warm">方案三：橙色温暖</span>
-          </div>
-          <div class="pd-scheme-colors">
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#FF8C00;"></div>
-              <span>#FF8C00</span>
+          <div class="lyft-vi-swatches">
+            <div class="lyft-sw lyft-sw--wide" style="background:#E30B88; color:#fff;">
+              <span class="lyft-sw-name" data-i18n-zh="品牌粉" data-i18n-en="Lyft Pink">品牌粉</span>
+              <span class="lyft-sw-hex">#E30B88</span>
             </div>
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#FFFFFF; border:1px solid var(--border);"></div>
-              <span>#FFFFFF</span>
+            <div class="lyft-sw" style="background:#11111F; color:#fff;">
+              <span class="lyft-sw-name" data-i18n-zh="近黑" data-i18n-en="Black">近黑</span>
+              <span class="lyft-sw-hex">#11111F</span>
             </div>
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#FFF5E6;"></div>
-              <span>#FFF5E6</span>
-            </div>
-            <div class="pd-scheme-color-row">
-              <div class="pd-scheme-color" style="background:#2C2C2C;"></div>
-              <span>#2C2C2C</span>
+            <div class="lyft-sw lyft-sw--light" style="background:#FFFFFF; color:#11111F;">
+              <span class="lyft-sw-name" data-i18n-zh="纯白" data-i18n-en="White">纯白</span>
+              <span class="lyft-sw-hex">#FFFFFF</span>
             </div>
           </div>
-          <div class="pd-scheme-desc" data-i18n-zh="温暖友好、适合社交<br>但在高速移动场景识别性不足" data-i18n-en="Warm and friendly, social<br>but lacks quick recognition in fast-paced scenarios">温暖友好、适合社交<br>但在高速移动场景识别性不足</div>
+
+          <div class="lyft-vi-scale">
+            <span style="background:#2B0219"></span>
+            <span style="background:#5A0435"></span>
+            <span style="background:#8A0752"></span>
+            <span style="background:#B4096D"></span>
+            <span style="background:#E30B88"></span>
+            <span style="background:#EC46A5"></span>
+            <span style="background:#F37CC1"></span>
+            <span style="background:#F9B2DC"></span>
+            <span style="background:#FDE0F1"></span>
+          </div>
+          <p class="lyft-vi-note" data-i18n-zh="粉色仅用于关键动作与品牌时刻，黑白承担绝大多数信息层级——避免高饱和色稀释可识别性。" data-i18n-en="Pink is reserved for key actions and brand moments; black and white carry the vast majority of the information hierarchy—preventing saturation from diluting recognition.">粉色仅用于关键动作与品牌时刻，黑白承担绝大多数信息层级——避免高饱和色稀释可识别性。</p>
         </div>
       </div>
     </div>
@@ -462,7 +442,7 @@
 <script src="js/smooth-scroll.js?v=7"></script>
 <script src="js/language.js?v=project-nav1"></script>
 <script src="js/solution-carousel.js"></script>
-<script src="js/pixel-cat.js?v=17"></script>
+<script src="js/pixel-cat.js?v=18"></script>
 <script>
   // 详情页双语切换（data-i18n-zh / data-i18n-en）
   function applyDetailLang() {
