@@ -15,9 +15,12 @@
   overlay.className = 'page-transition';
   overlay.setAttribute('aria-hidden', 'true');
   overlay.innerHTML =
-    '<div class="page-transition__bar"><i class="page-transition__bar-fill"></i></div>' +
     '<div class="page-transition__count">00</div>' +
-    '<div class="page-transition__copy"><span>ASH_STUDIO</span><span class="page-transition__destination">SELECTED WORK</span></div>';
+    '<div class="page-transition__copy">' +
+      '<div class="page-transition__bar"><i class="page-transition__bar-fill"></i></div>' +
+      '<span>ASH_STUDIO</span>' +
+      '<span class="page-transition__destination">SELECTED WORK</span>' +
+    '</div>';
   document.documentElement.appendChild(overlay);
 
   var count = overlay.querySelector('.page-transition__count');

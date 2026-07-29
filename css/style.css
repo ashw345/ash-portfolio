@@ -99,9 +99,10 @@ html.is-page-transitioning body {
 }
 
 .page-transition__bar {
-  position: absolute;
-  inset: auto 0 0;
+  position: relative;
+  width: 100%;
   height: 2px;
+  margin-bottom: 8px;
   overflow: hidden;
   background: rgba(11, 11, 11, 0.12);
 }
@@ -130,6 +131,7 @@ html.is-page-transitioning body {
 .page-transition__copy {
   display: grid;
   gap: 3px;
+  width: clamp(148px, 16vw, 210px);
   justify-items: end;
   align-self: end;
   font-family: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -148,6 +150,7 @@ html.is-page-transitioning body {
   }
 
   .page-transition__copy {
+    width: min(52vw, 190px);
     justify-items: start;
     text-align: left;
   }
@@ -503,6 +506,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .ph-skygo { background-image: url('../images/skygo-hero.jpg'); background-size: cover; background-position: center top; }
 .ph-snapfit { background-image: url('../images/snapfit-hero.jpg'); background-size: cover; background-position: center; background-color: #0e0e0e; }
 .ph-member { background-image: url('../images/member-cover.jpg'); background-size: cover; background-position: center; background-color: #0d0d0d; }
+.ph-lyft { background-image: url('../images/lyft-cover.png'); background-size: cover; background-position: center; background-color: #fdf7fc; }
 .ph-asm {
   overflow: hidden;
   background-image: url('../images/asm/page-01.png');

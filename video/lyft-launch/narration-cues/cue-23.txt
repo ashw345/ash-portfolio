@@ -1,0 +1,1 @@
+We did not add another pin. We added the visual context the map was missing.

@@ -63,6 +63,7 @@
       struggleTimer: null,
       moveListener: null,
       upListener: null,
+      pointerId: null,
       contextListener: null
     };
 
@@ -84,6 +85,9 @@
       font-weight: 700;
       color: #111;
       user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+      -webkit-user-drag: none;
       pointer-events: auto;
       border-radius: 4px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -97,7 +101,7 @@
 
     c.el = el;
     c.labelEl = lbl;
-    el.addEventListener('mousedown',  (e) => onGrab(c, e));
+    el.addEventListener('pointerdown', (e) => onGrab(c, e));
     el.addEventListener('contextmenu', (e) => onRightClick(c, e));
 
     cat = c;
@@ -112,10 +116,22 @@
 
   function removeCat(c) {
     cancelAllTimers(c);
-    if (c.moveListener) document.removeEventListener('mousemove', c.moveListener);
-    if (c.upListener)   document.removeEventListener('mouseup',   c.upListener);
+    detachDragListeners(c);
     if (c.el && c.el.parentNode) c.el.remove();
     if (cat === c) cat = null;
+  }
+
+  function detachDragListeners(c) {
+    if (c.moveListener) {
+      document.removeEventListener('pointermove', c.moveListener);
+    }
+    if (c.upListener) {
+      document.removeEventListener('pointerup', c.upListener);
+      document.removeEventListener('pointercancel', c.upListener);
+    }
+    c.moveListener = null;
+    c.upListener = null;
+    c.pointerId = null;
   }
 
   function cancelAllTimers(c) {
@@ -224,7 +240,8 @@
 
   /* ── 拎起 ────────────────────────────────────────── */
   function onGrab(c, e) {
-    if (e.button !== 0) return; // 只响应左键
+    if (!e.isPrimary) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
     e.preventDefault();
     e.stopPropagation();
     cancelAllTimers(c);
@@ -234,20 +251,21 @@
     window.catHeld = true;
     setSprite(c, 'held');
     c.el.style.cursor = 'grabbing';
+    c.pointerId = e.pointerId;
 
-    const rect = c.el.getBoundingClientRect();
-    const offX = e.clientX - rect.left;
-    const offY = e.clientY - rect.top;
+    const offX = e.clientX - c.x;
+    const offY = e.clientY - c.y;
 
     c.moveListener = (ev) => {
+      if (ev.pointerId !== c.pointerId) return;
       if (!c.el) return;
       if (c.state !== 'held' && c.state !== 'struggle') return;
+      ev.preventDefault();
       setPos(c, ev.clientX - offX, ev.clientY - offY);
     };
-    c.upListener = () => {
-      document.removeEventListener('mousemove', c.moveListener);
-      document.removeEventListener('mouseup',   c.upListener);
-      c.moveListener = null; c.upListener = null;
+    c.upListener = (ev) => {
+      if (ev.pointerId !== c.pointerId) return;
+      detachDragListeners(c);
       clearTimeout(c.holdTimer);
       clearInterval(c.struggleTimer);
       window.catHeld = false;
@@ -257,8 +275,9 @@
       c.vy = 0;
       fallStep(c);
     };
-    document.addEventListener('mousemove', c.moveListener);
-    document.addEventListener('mouseup',   c.upListener);
+    document.addEventListener('pointermove', c.moveListener, { passive: false });
+    document.addEventListener('pointerup', c.upListener);
+    document.addEventListener('pointercancel', c.upListener);
 
     c.holdTimer = setTimeout(() => startStruggle(c), HOLD_THRESHOLD);
   }
@@ -270,9 +289,7 @@
       if (i >= frames.length) {
         clearInterval(c.struggleTimer);
         // 挣扎完成，强制松手 → 下落
-        document.removeEventListener('mousemove', c.moveListener);
-        document.removeEventListener('mouseup', c.upListener);
-        c.moveListener = null; c.upListener = null;
+        detachDragListeners(c);
         window.catHeld = false;
         if (c.el) c.el.style.cursor = 'grab';
         c.state = 'falling';

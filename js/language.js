@@ -100,6 +100,11 @@ const translations = {
     asm_poster_title: "海报",
     asm_poster_intro: "海报从画廊墙面延伸到室内吊旗与户外媒体，以高对比图像和超粗文字建立远距离识别。",
 
+    huihui_meta: "01 / 2024 &nbsp;—&nbsp; 微信小程序",
+    huihui_title: "会买·小程序",
+    huihui_desc: "让用户直接写下自己的选购需求，系统据此匹配更合适的 3C 数码家电，并把难懂的规格参数翻译成清楚、实用的人话，帮助用户更轻松地做选择。",
+    huihui_link: "查看详情 →",
+
     void_meta: "01 / 2024 &nbsp;—&nbsp; 游戏开发",
     void_title: "Void Runner",
     void_desc: "由小型独立团队全程开发的横版运动平台游戏，专注于高对比度视觉层次与精密的物理碰撞机制，在极简画面中构建丰富的操作张力。",
@@ -251,6 +256,11 @@ const translations = {
     asm_packaging_caption: "Packaging · Retail extension",
     asm_poster_title: "Poster",
     asm_poster_intro: "The poster system expands from gallery walls to interior banners and outdoor media, pairing bold type with high-contrast imagery.",
+
+    huihui_meta: "01 / 2024 &nbsp;—&nbsp; WeChat Mini Program",
+    huihui_title: "HuiMai Mini Program",
+    huihui_desc: "Users describe what they need in their own words. The product then matches them with more suitable electronics and translates technical specifications into clear, practical language, making the final choice easier.",
+    huihui_link: "View Details →",
 
     void_meta: "01 / 2024 &nbsp;—&nbsp; Game Development",
     void_title: "Void Runner",

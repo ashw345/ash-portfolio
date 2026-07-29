@@ -5,7 +5,7 @@
  *
  * 设计：
  *  - 纯白底
- *  - 屏幕中心一个浅蓝色弥散大球（非圆形，由多个 lobe 叠加组成）
+ *  - 屏幕中心一个浅色弥散大球（非圆形，由多个 lobe 叠加组成）
  *  - 鼠标移动时整个球做轻微视差位移
  *  - 球内部 lobe 缓慢漂移产生有机感
  *  - 全屏胶片噪点叠加（SVG feTurbulence）
@@ -18,10 +18,24 @@
      每个 lobe 是一个相对于球中心的偏移 + 半径 + 透明度。
      多个 lobe 叠加 + canvas blur(80px) 后会融合成一个有机不规则形状。
      ──────────────────────────────────────────────── */
-  /* 一个球，浅蓝 */
+  function parseHexColor(hex) {
+    const match = /^#?([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i.exec(hex || '');
+    if (!match) return null;
+    return {
+      r: parseInt(match[1], 16),
+      g: parseInt(match[2], 16),
+      b: parseInt(match[3], 16),
+    };
+  }
+
+  const pageColor = parseHexColor(document.body.dataset.blobColor);
+  const pageOpacity = Math.max(0, Math.min(1, Number(document.body.dataset.blobOpacity) || 1));
+
+  /* 页面可通过 data-blob-color 覆盖默认浅蓝色。 */
   const BALLS = [
     {
-      color: { r: 201, g: 221, b: 241 },           // 浅蓝（20%更浅）
+      color: pageColor || { r: 201, g: 221, b: 241 },
+      opacity: pageOpacity,
       startX: 0.50, startY: 0.50,
       lobes: [
         { dx:  0.00, dy:  0.00, r: 0.87, a: 0.425 },
@@ -131,6 +145,7 @@
     // 实例化所有球
     balls = BALLS.map((b, i) => ({
       color: b.color,
+      opacity: b.opacity,
       lobes: b.lobes,
       pos: { x: b.startX, y: b.startY },
       vel: { x: 0, y: 0 },
@@ -201,9 +216,10 @@
         const R  = lobe.r * minDim;
 
         const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, R);
-        grad.addColorStop(0,    `rgba(${c.r},${c.g},${c.b},${lobe.a})`);
-        grad.addColorStop(0.35, `rgba(${c.r},${c.g},${c.b},${lobe.a * 0.85})`);
-        grad.addColorStop(0.7,  `rgba(${c.r},${c.g},${c.b},${lobe.a * 0.35})`);
+        const opacity = lobe.a * ball.opacity;
+        grad.addColorStop(0,    `rgba(${c.r},${c.g},${c.b},${opacity})`);
+        grad.addColorStop(0.35, `rgba(${c.r},${c.g},${c.b},${opacity * 0.85})`);
+        grad.addColorStop(0.7,  `rgba(${c.r},${c.g},${c.b},${opacity * 0.35})`);
         grad.addColorStop(1,    `rgba(${c.r},${c.g},${c.b},0)`);
 
         ctx.fillStyle = grad;

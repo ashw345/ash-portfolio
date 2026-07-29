@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>闪电健身 SnapFIT — ASH Studio</title>
-  <link rel="stylesheet" href="css/style.css?v=transition11" />
+  <link rel="stylesheet" href="css/style.css?v=transition12" />
   <link rel="stylesheet" href="css/project-detail.css" />
-  <script src="js/page-transition.js?v=6"></script>
+  <script src="js/page-transition.js?v=7"></script>
   <style>
     /* ── SnapFIT 品牌色覆盖 ── */
     :root {
@@ -752,7 +752,7 @@
 <script src="js/smooth-scroll.js?v=7"></script>
 <script src="js/language.js?v=project-nav1"></script>
 <script src="js/solution-carousel.js"></script>
-<script src="js/pixel-cat.js?v=17"></script>
+<script src="js/pixel-cat.js?v=18"></script>
 <script>
   function applyDetailLang() {
     const lang = localStorage.getItem('lang') || 'zh';
@@ -764,19 +764,25 @@
   const _orig = window.setLanguage;
   window.setLanguage = function(lang) { _orig(lang); applyDetailLang(); };
 
-  /* ── Flow 视频白框左边与导航栏「UI设计」左边对齐 ── */
+  /* ── Flow 手机左边与解决方案手机左边对齐 ── */
   function alignFlowVideo() {
-    var uiLink   = document.querySelector('.nav-links a[href="index.html"]');
+    var solutionPhone = Array.from(document.querySelectorAll('.pd-section--solution .pd-carousel-slide .pd-feature-media img'))
+      .find(function (image) {
+        var rect = image.getBoundingClientRect();
+        return rect.left >= 0 && rect.right <= window.innerWidth;
+      });
     var clip     = document.querySelector('.snapfit-flow-clip');   // 视频白框
     var flowInfo = document.querySelector('.snapfit-flow-info');
     var flowRow  = document.querySelector('.snapfit-flow-row');
-    if (!uiLink || !clip || !flowInfo || !flowRow) return;
+    if (!solutionPhone || !clip || !flowInfo || !flowRow) return;
 
-    var targetX  = uiLink.getBoundingClientRect().left;   // UI设计 左边 X
+    flowRow.style.gap = '';
+    if (window.matchMedia('(max-width: 1024px)').matches) return;
+
+    var targetX  = solutionPhone.getBoundingClientRect().left;
     var clipX    = clip.getBoundingClientRect().left;     // 白框当前左边 X
     var currentGap = parseFloat(getComputedStyle(flowRow).gap) || 0;
 
-    // 需要将白框向左/右移动的量 = targetX - clipX
     var newGap = currentGap + (targetX - clipX);
     flowRow.style.gap = Math.max(0, newGap) + 'px';
   }

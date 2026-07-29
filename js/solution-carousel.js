@@ -2,7 +2,7 @@
  * solution-carousel.js
  *
  * 1. Solution 轮播：section 级别侧箭头 + 拖拽滑动 + 底部指示点
- * 2. Screens 画廊：仅按钮导航（无 wheel/trackpad 滚动），拖拽 + 进度条
+ * 2. Screens 画廊：按钮导航 + 触控板横向滚动 + 进度条
  */
 (function () {
   'use strict';
@@ -136,7 +136,7 @@
     startAuto();
   }
 
-  /* ── Screens 画廊（仅按钮导航） ──────────────────────── */
+  /* ── Screens 画廊 ────────────────────────────────────── */
   function initScreensScroll(el) {
     const section     = el.closest('.pd-section--screens');
     const progressBar = section ? section.querySelector('.pd-screens-progress-bar') : null;
@@ -160,6 +160,18 @@
 
     el.addEventListener('scroll', updateUI, { passive: true });
     requestAnimationFrame(updateUI);
+
+    /* 触控板左右滑动时直接移动画廊，纵向手势仍交给页面。 */
+    el.addEventListener('wheel', event => {
+      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) || Math.abs(event.deltaX) < 0.5) return;
+
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      const targetScroll = Math.max(0, Math.min(maxScroll, el.scrollLeft + event.deltaX));
+      if (targetScroll === el.scrollLeft) return;
+
+      event.preventDefault();
+      el.scrollLeft = targetScroll;
+    }, { passive: false });
 
     /* 按钮导航 */
     prevBtns.forEach(b => b.addEventListener('click', () => {

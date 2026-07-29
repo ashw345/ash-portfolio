@@ -1,0 +1,1 @@
+Lyft can suggest a pickup point, but the final choice still happens on a map.

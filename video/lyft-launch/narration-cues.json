@@ -1,0 +1,122 @@
+[
+  {
+    "scene": 0,
+    "english": "Your ride is here. Getting in should be the easy part.",
+    "chinese": "车已经到了，上车本该是最简单的一步。"
+  },
+  {
+    "scene": 0,
+    "english": "But on a crowded street, finding the right car can still take work.",
+    "chinese": "但在拥挤街区，找到正确的车依然不容易。"
+  },
+  {
+    "scene": 1,
+    "english": "Lyft connects riders with nearby drivers.",
+    "chinese": "Lyft 帮助乘客找到附近的司机。"
+  },
+  {
+    "scene": 1,
+    "english": "The last challenge is helping both people meet in the same place.",
+    "chinese": "最后的难点，是让双方在同一个地点顺利碰面。"
+  },
+  {
+    "scene": 2,
+    "english": "A map shows Sophia where she is, but not what she should look for.",
+    "chinese": "地图能告诉 Sophia 她在哪里，却不能告诉她该看向哪里。"
+  },
+  {
+    "scene": 2,
+    "english": "When several similar cars arrive, another pin does not make the choice clearer.",
+    "chinese": "几辆相似的车同时出现时，再多一个定位点也解决不了问题。"
+  },
+  {
+    "scene": 2,
+    "english": "She needs a visual reference she can recognize at a glance.",
+    "chinese": "她需要的是一眼就能认出的现实参照。"
+  },
+  {
+    "scene": 3,
+    "english": "The same complaint appeared again and again in public reviews.",
+    "chinese": "公开反馈里，同一种找车困扰反复出现。"
+  },
+  {
+    "scene": 3,
+    "english": "Ten percent of the reports ended in a cancelled ride.",
+    "chinese": "一成反馈最终导致订单取消。"
+  },
+  {
+    "scene": 3,
+    "english": "Thirty percent involved an unexpected charge.",
+    "chinese": "三成反馈涉及额外收费。"
+  },
+  {
+    "scene": 3,
+    "english": "The largest share, sixty percent, was about finding the pickup point or driver.",
+    "chinese": "占比最高的六成，都与寻找上车点或司机有关。"
+  },
+  {
+    "scene": 4,
+    "english": "These stories led us to Sophia, a 27-year-old commuter in Manhattan.",
+    "chinese": "这些真实经历汇成了 Sophia：一位 27 岁的曼哈顿通勤者。"
+  },
+  {
+    "scene": 4,
+    "english": "She uses Lyft every day, yet every pickup can feel like hide-and-seek.",
+    "chinese": "她每天都坐 Lyft，但每次上车都像在街头玩捉迷藏。"
+  },
+  {
+    "scene": 5,
+    "english": "In a busy area, she cannot tell which car is hers.",
+    "chinese": "在繁忙路段，她分不清哪辆车才是自己的。"
+  },
+  {
+    "scene": 5,
+    "english": "In an unfamiliar area, she is not even sure where to wait.",
+    "chinese": "到了陌生地点，她甚至不知道该站在哪里等。"
+  },
+  {
+    "scene": 6,
+    "english": "Lyft can suggest a pickup point, but the final choice still happens on a map.",
+    "chinese": "Lyft 可以推荐上车点，但最后的判断仍要靠一张地图。"
+  },
+  {
+    "scene": 6,
+    "english": "With fewer visual landmarks, confirming the right place becomes harder.",
+    "chinese": "现实参照越少，确认正确位置就越困难。"
+  },
+  {
+    "scene": 7,
+    "english": "Is there a way for users to directly see where the driver and pick-up spot are?",
+    "chinese": "用户能不能直接看见司机和上车点在哪里？"
+  },
+  {
+    "scene": 8,
+    "english": "Mapping the full ride made the critical moment clear: the minutes before pickup.",
+    "chinese": "梳理完整乘车流程后，关键问题集中在上车前的几分钟。"
+  },
+  {
+    "scene": 8,
+    "english": "Location setup and waiting for the driver were the two moments that needed support.",
+    "chinese": "设置位置和等待司机，是最需要被改善的两个环节。"
+  },
+  {
+    "scene": 9,
+    "english": "Our answer was Street View, built directly into the waiting screen.",
+    "chinese": "我们的答案，是把 Street View 直接放进等待界面。"
+  },
+  {
+    "scene": 9,
+    "english": "Riders can compare the route with nearby buildings, the pickup point, and the car.",
+    "chinese": "乘客可以同时对照路线、附近建筑、上车点和车辆。"
+  },
+  {
+    "scene": 10,
+    "english": "We did not add another pin. We added the visual context the map was missing.",
+    "chinese": "我们没有再加一个定位点，而是补上地图缺少的现场信息。"
+  },
+  {
+    "scene": 10,
+    "english": "Less guessing. Faster confirmation. A simpler way to meet your ride.",
+    "chinese": "少一点猜测，快一点确认，让上车重新变得简单。"
+  }
+]

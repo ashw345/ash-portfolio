@@ -1,0 +1,1 @@
+Location setup and waiting for the driver were the two moments that needed support.

@@ -7,8 +7,177 @@
   <link rel="stylesheet" href="css/style.css?v=transition12" />
   <link rel="stylesheet" href="css/project-detail.css" />
   <script src="js/page-transition.js?v=7"></script>
+  <style>
+    /* User flow mirrors the SnapFIT three-column composition. */
+    .pd-section--lyft-user-flow {
+      background: transparent;
+      color: var(--text);
+    }
+    .lyft-user-flow-row {
+      display: flex;
+      align-items: center;
+      gap: 226px;
+    }
+    .lyft-user-flow-info {
+      flex-shrink: 0;
+    }
+    .lyft-user-flow-info .pd-section-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--muted);
+    }
+    .lyft-user-flow-info .pd-section-title {
+      margin-bottom: 0;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .lyft-user-flow-stage {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      gap: 48px;
+    }
+    .lyft-user-flow-clip {
+      width: 286px;
+      aspect-ratio: 564 / 1208;
+      display: block;
+      flex-shrink: 0;
+    }
+    .lyft-user-flow-clip video {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+    .lyft-user-flow-nav {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .lyft-user-flow-nav::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      right: 3px;
+      bottom: 18px;
+      width: 1px;
+      background: rgba(17, 17, 31, 0.12);
+    }
+    .lyft-user-flow-step {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      gap: 14px;
+      padding: 13px 0;
+      border: 0;
+      background: none;
+      color: rgba(17, 17, 31, 0.38);
+      text-align: right;
+      font: inherit;
+      cursor: pointer;
+      outline: none;
+      transition: color 0.25s ease;
+    }
+    .lyft-user-flow-step:focus-visible {
+      outline: 1px solid rgba(227, 11, 136, 0.45);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+    .lyft-user-flow-step:hover {
+      color: rgba(17, 17, 31, 0.68);
+    }
+    .lyft-user-flow-step.is-active {
+      color: var(--text);
+    }
+    .lyft-user-flow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+    .lyft-user-flow-step.is-active .lyft-user-flow-dot {
+      background: #e30b88;
+      transform: scale(1.3);
+    }
+    .lyft-user-flow-text {
+      width: 105px;
+      min-height: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+    .lyft-user-flow-label {
+      font-size: 15px;
+      line-height: 1;
+      white-space: nowrap;
+      font-weight: 400;
+    }
+    .lyft-user-flow-step.is-active .lyft-user-flow-label {
+      font-weight: 700;
+    }
+    .lyft-user-flow-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1;
+      opacity: 0.5;
+    }
+
+    /* Match the Screens gallery edge to the SnapFIT title container. */
+    .pd-section--screens .pd-screens-track {
+      padding-inline-start: var(--screens-offset, 48px);
+      padding-inline-end: var(--screens-offset, 48px);
+    }
+    .pd-section--screens .pd-screens-scroll {
+      scroll-padding-inline-start: var(--screens-offset, 48px);
+      overscroll-behavior-inline: contain;
+    }
+
+    @media (max-width: 1024px) {
+      .lyft-user-flow-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 64px 32px;
+      }
+      .lyft-user-flow-info {
+        grid-column: 1 / -1;
+      }
+      .lyft-user-flow-stage {
+        grid-column: 1 / -1;
+        justify-content: center;
+      }
+    }
+    @media (max-width: 560px) {
+      .lyft-user-flow-row {
+        gap: 40px;
+      }
+      .lyft-user-flow-stage {
+        gap: 18px;
+      }
+      .lyft-user-flow-clip {
+        width: min(242px, calc(100vw - 148px));
+        aspect-ratio: 564 / 1208;
+      }
+      .lyft-user-flow-clip video {
+        width: 100%;
+        height: auto;
+      }
+      .lyft-user-flow-text {
+        width: 65px;
+      }
+      .lyft-user-flow-label {
+        font-size: 12px;
+        line-height: 1.2;
+        white-space: normal;
+        text-align: right;
+      }
+    }
+  </style>
 </head>
-<body class="theme-gradient">
+<body class="theme-gradient" data-blob-color="#F1C9E0" data-blob-opacity="0.25">
 <canvas id="dot-canvas"></canvas>
 <div class="page-wrap">
 
@@ -38,8 +207,7 @@
   <section class="pd-hero">
   <a class="project-category-back" href="index.html"><span aria-hidden="true">←</span><span data-i18n="nav_ui">UIUX设计</span></a>
     <div class="pd-hero-img">
-      <!-- 替换 src 为你的 hero 图片路径 -->
-      <img src="images/lyft-hero.jpg" alt="Lyft 街景模式" />
+      <img src="images/lyft-hero.png" alt="Lyft 街景模式" />
     </div>
     <div class="container">
       <div class="pd-hero-info">
@@ -77,31 +245,7 @@
     </div>
   </section>
 
-  <!-- ③ PROBLEM —— 文字 + 两张对比图（各 540×960px） -->
-  <section class="pd-section">
-    <div class="container">
-      <span class="pd-section-label">Problem</span>
-      <h2 class="pd-section-title" data-i18n-zh="现有问题分析" data-i18n-en="Problem Analysis">现有问题分析</h2>
-      <p class="pd-body" data-i18n-zh="乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。" data-i18n-en="Passengers struggle to accurately locate their driver and pickup spot—too many cars at busy intersections, and unfamiliar streets cause disorientation.">乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。</p>
-      <div class="pd-problem-video">
-        <video autoplay muted loop playsinline controls preload="metadata">
-          <source src="video/lyft-launch/lyft-street-view-full.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </div>
-  </section>
-
-  <!-- ④ GOAL —— 纯文字，大字突出，无图 -->
-  <section class="pd-section pd-section--goal">
-    <div class="container">
-      <div class="pd-goal">
-        <span class="pd-goal-label">Goal</span>
-        <p class="pd-goal-text" data-i18n-zh="优化乘客找到上车点的路径，并且使用户更了解司机的位置。" data-i18n-en="Optimize the passenger's path to the pickup point and help users better understand the driver's location.">优化乘客找到上车点的路径，并且使用户更了解司机的位置。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑤ COLOR SCHEMES —— 3套配色方案 -->
+  <!-- ③ BRAND IDENTITY -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Brand</span>
@@ -169,6 +313,30 @@
     </div>
   </section>
 
+  <!-- ④ PROBLEM -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Problem</span>
+      <h2 class="pd-section-title" data-i18n-zh="现有问题分析" data-i18n-en="Problem Analysis">现有问题分析</h2>
+      <p class="pd-body" data-i18n-zh="乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。" data-i18n-en="Passengers struggle to accurately locate their driver and pickup spot—too many cars at busy intersections, and unfamiliar streets cause disorientation.">乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。</p>
+      <div class="pd-problem-video">
+        <video autoplay muted loop playsinline controls preload="metadata">
+          <source src="video/lyft-launch/lyft-street-view-full.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ GOAL -->
+  <section class="pd-section pd-section--goal">
+    <div class="container">
+      <div class="pd-goal">
+        <span class="pd-goal-label">Goal</span>
+        <p class="pd-goal-text" data-i18n-zh="优化乘客找到上车点的路径，并且使用户更了解司机的位置。" data-i18n-en="Optimize the passenger's path to the pickup point and help users better understand the driver's location.">优化乘客找到上车点的路径，并且使用户更了解司机的位置。</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ⑥ FEATURES — 轮播 -->
   <section class="pd-section pd-section--solution">
     <!-- 侧边按钮：在 section 级别，位于 container gutter 内 -->
@@ -193,7 +361,7 @@
                 <p class="pd-feature-desc" data-i18n-zh="当司机前往上车点时，用户可以在街景中看到司机汽车模型的精确位置，车辆下方显示进行路径，让用户了解司机来的具体方向和停车位置。" data-i18n-en="When the driver heads to the pickup point, users can see the driver's car in street view with a path indicator showing direction and parking spot.">当司机前往上车点时，用户可以在街景中看到司机汽车模型的精确位置，车辆下方显示进行路径，让用户了解司机来的具体方向和停车位置。</p>
               </div>
               <div class="pd-feature-media">
-                <img src="images/lyft-feature-1.jpg" alt="司机位置街景" />
+                <img src="images/lyft-solution-1.png" alt="司机位置街景" />
               </div>
             </div>
           </div>
@@ -207,9 +375,21 @@
                 <p class="pd-feature-desc" data-i18n-zh="用户可以通过街景查看上车点周边的实际环境，配合指引箭头步行导航，减少在陌生地点的迷失感。" data-i18n-en="Users can view the actual surroundings of the pickup point via street view with walking navigation arrows to reduce disorientation.">用户可以通过街景查看上车点周边的实际环境，配合指引箭头步行导航，减少在陌生地点的迷失感。</p>
               </div>
               <div class="pd-feature-media">
-                <video autoplay loop muted playsinline>
-                  <source src="images/lyft-feature-2.mp4" type="video/mp4" />
-                </video>
+                <img src="images/lyft-solution-2.png" alt="上车点街景导航" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 03 -->
+          <div class="pd-carousel-slide">
+            <div class="pd-feature">
+              <div class="pd-feature-info">
+                <span class="pd-feature-num">解决方案  Solution  03</span>
+                <h3 class="pd-feature-title" data-i18n-zh="实景辅助选点" data-i18n-en="Street View Pickup Confirmation">实景辅助选点</h3>
+                <p class="pd-feature-desc" data-i18n-zh="在用户选择或调整上车点时，同步呈现对应位置的近期实景照片，将抽象的地图坐标转化为可辨认的街道环境，帮助用户确认具体入口、道路一侧与周边地标。" data-i18n-en="When users select or adjust a pickup point, recent street-level photos turn an abstract map coordinate into a recognizable place, helping them confirm the correct entrance, side of the road, and nearby landmarks.">在用户选择或调整上车点时，同步呈现对应位置的近期实景照片，将抽象的地图坐标转化为可辨认的街道环境，帮助用户确认具体入口、道路一侧与周边地标。</p>
+              </div>
+              <div class="pd-feature-media">
+                <img src="images/lyft-solution-3.png" alt="实景辅助选点" />
               </div>
             </div>
           </div>
@@ -221,12 +401,71 @@
       <div class="pd-carousel-dots">
         <button class="pd-carousel-dot is-active" aria-label="第1页"></button>
         <button class="pd-carousel-dot" aria-label="第2页"></button>
+        <button class="pd-carousel-dot" aria-label="第3页"></button>
       </div>
 
     </div>
   </section>
 
-  <!-- ⑦ SCREENS — 横向滚动截图总览 -->
+  <!-- ⑦ USER FLOW -->
+  <section class="pd-section pd-section--lyft-user-flow">
+    <div class="container">
+      <div class="lyft-user-flow-row">
+        <div class="lyft-user-flow-info">
+          <span class="pd-section-label">Flow</span>
+          <h2 class="pd-section-title" data-i18n-zh="用户使用流程" data-i18n-en="User Flow">用户使用流程</h2>
+        </div>
+
+        <div class="lyft-user-flow-stage">
+          <div class="lyft-user-flow-clip">
+            <video id="lyft-user-flow-video" autoplay loop muted playsinline preload="auto">
+              <source src="images/lyft-user-flow.mov?v=faststart2" />
+            </video>
+          </div>
+
+          <nav class="lyft-user-flow-nav" aria-label="用户使用流程章节">
+            <button class="lyft-user-flow-step is-active" type="button" data-t="0" aria-label="选择上车点，00:00">
+              <span class="lyft-user-flow-dot"></span>
+              <span class="lyft-user-flow-text">
+                <span class="lyft-user-flow-label" data-i18n-zh="选择上车点" data-i18n-en="Select pickup">选择上车点</span>
+                <span class="lyft-user-flow-time">00:00</span>
+              </span>
+            </button>
+            <button class="lyft-user-flow-step" type="button" data-t="8" aria-label="更改上车点，00:08">
+              <span class="lyft-user-flow-dot"></span>
+              <span class="lyft-user-flow-text">
+                <span class="lyft-user-flow-label" data-i18n-zh="更改上车点" data-i18n-en="Adjust pickup">更改上车点</span>
+                <span class="lyft-user-flow-time">00:08</span>
+              </span>
+            </button>
+            <button class="lyft-user-flow-step" type="button" data-t="15" aria-label="实景查看，00:15">
+              <span class="lyft-user-flow-dot"></span>
+              <span class="lyft-user-flow-text">
+                <span class="lyft-user-flow-label" data-i18n-zh="实景查看" data-i18n-en="Street view">实景查看</span>
+                <span class="lyft-user-flow-time">00:15</span>
+              </span>
+            </button>
+            <button class="lyft-user-flow-step" type="button" data-t="22" aria-label="设置目的地，00:22">
+              <span class="lyft-user-flow-dot"></span>
+              <span class="lyft-user-flow-text">
+                <span class="lyft-user-flow-label" data-i18n-zh="设置目的地" data-i18n-en="Set destination">设置目的地</span>
+                <span class="lyft-user-flow-time">00:22</span>
+              </span>
+            </button>
+            <button class="lyft-user-flow-step" type="button" data-t="34" aria-label="前往上车点，00:34">
+              <span class="lyft-user-flow-dot"></span>
+              <span class="lyft-user-flow-text">
+                <span class="lyft-user-flow-label" data-i18n-zh="前往上车点" data-i18n-en="Go to pickup">前往上车点</span>
+                <span class="lyft-user-flow-time">00:34</span>
+              </span>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑧ SCREENS — 横向滚动截图总览 -->
   <section class="pd-section pd-section--screens">
     <!-- 侧边按钮 -->
     <button class="pd-screens-btn pd-screens-btn--prev is-disabled" aria-label="向左滚动">
@@ -242,12 +481,13 @@
     </div>
     <div class="pd-screens-scroll">
       <div class="pd-screens-track">
-        <img class="pd-screen" src="images/lyft-feature-1.jpg" alt="Screen 01" />
-        <div class="pd-screen-empty"></div>
-        <div class="pd-screen-empty"></div>
-        <div class="pd-screen-empty"></div>
-        <div class="pd-screen-empty"></div>
-        <div class="pd-screen-empty"></div>
+        <img class="pd-screen" src="images/lyft-screen-1.png" alt="Lyft Screen 01" />
+        <img class="pd-screen" src="images/lyft-screen-2.png" alt="Lyft Screen 02" />
+        <img class="pd-screen" src="images/lyft-screen-3.png" alt="Lyft Screen 03" />
+        <img class="pd-screen" src="images/lyft-screen-4.png" alt="Lyft Screen 04" />
+        <img class="pd-screen" src="images/lyft-screen-5.png" alt="Lyft Screen 05" />
+        <img class="pd-screen" src="images/lyft-screen-6.png" alt="Lyft Screen 06" />
+        <img class="pd-screen" src="images/lyft-screen-7.png" alt="Lyft Screen 07" />
       </div>
     </div>
     <div class="pd-screens-progress">
@@ -320,6 +560,163 @@
   document.addEventListener('DOMContentLoaded', applyDetailLang);
   const _orig = window.setLanguage;
   window.setLanguage = function(lang) { _orig(lang); applyDetailLang(); };
+
+  /* Match the Flow phone's left edge to the Solution phone's left edge. */
+  function alignLyftUserFlow() {
+    const row = document.querySelector('.lyft-user-flow-row');
+    const clip = document.querySelector('.lyft-user-flow-clip');
+    const info = document.querySelector('.lyft-user-flow-info');
+    const solutionPhone = Array.from(document.querySelectorAll('.pd-section--solution .pd-carousel-slide .pd-feature-media img'))
+      .find(image => {
+        const rect = image.getBoundingClientRect();
+        return rect.left >= 0 && rect.right <= window.innerWidth;
+      });
+    if (!row || !clip || !info || !solutionPhone) return;
+
+    row.style.gap = '';
+    if (window.matchMedia('(max-width: 1024px)').matches) return;
+
+    const targetX = solutionPhone.getBoundingClientRect().left;
+    const clipX = clip.getBoundingClientRect().left;
+    const currentGap = parseFloat(getComputedStyle(row).gap) || 0;
+    row.style.gap = Math.max(0, currentGap + targetX - clipX) + 'px';
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (document.fonts) {
+      document.fonts.ready.then(alignLyftUserFlow);
+    } else {
+      setTimeout(alignLyftUserFlow, 300);
+    }
+  });
+  window.addEventListener('resize', alignLyftUserFlow);
+
+  /* Chapter navigation for the Lyft user-flow video. */
+  (function initLyftUserFlowChapters() {
+    const video = document.getElementById('lyft-user-flow-video');
+    const steps = Array.from(document.querySelectorAll('.lyft-user-flow-step'));
+    if (!video || !steps.length) return;
+
+    const chapterTimes = steps.map(step => Number(step.dataset.t));
+    const source = video.querySelector('source');
+    const sourceUrl = source ? source.src : video.currentSrc;
+    let cachedVideoUrl = '';
+    let cachePromise = null;
+    let cachedSourceReady = false;
+    let pendingTime = null;
+
+    function setActiveStep(activeIndex) {
+      steps.forEach((step, index) => {
+        step.classList.toggle('is-active', index === activeIndex);
+      });
+    }
+
+    function includesTime(ranges, time) {
+      for (let index = 0; index < ranges.length; index += 1) {
+        if (time >= ranges.start(index) && time <= ranges.end(index)) return true;
+      }
+      return false;
+    }
+
+    function playVideo() {
+      const playback = video.play();
+      if (playback) playback.catch(() => {});
+    }
+
+    function seekTo(time) {
+      video.currentTime = Math.min(time, Math.max(0, video.duration - 0.05));
+      playVideo();
+    }
+
+    /*
+     * Some local static servers do not support byte-range requests. In that
+     * case assigning currentTime outside the buffered range resets playback
+     * to zero. Cache one complete copy as a Blob only when native seeking is
+     * unavailable, then use that seekable source for every chapter click.
+     */
+    function prepareSeekableSource() {
+      if (cachePromise) return cachePromise;
+
+      cachePromise = fetch(sourceUrl, { cache: 'force-cache' })
+        .then(response => {
+          if (!response.ok) throw new Error(`Unable to load video: ${response.status}`);
+          return response.blob();
+        })
+        .then(blob => new Promise(resolve => {
+          const resumeTime = video.currentTime;
+          const wasPlaying = !video.paused;
+          cachedVideoUrl = URL.createObjectURL(blob);
+
+          video.addEventListener('loadedmetadata', function handleCachedMetadata() {
+            cachedSourceReady = true;
+            video.dataset.seekReady = 'true';
+
+            const targetTime = pendingTime === null ? resumeTime : pendingTime;
+            const shouldPlay = wasPlaying || pendingTime !== null;
+            pendingTime = null;
+            video.currentTime = Math.min(targetTime, Math.max(0, video.duration - 0.05));
+            if (shouldPlay) playVideo();
+            resolve();
+          }, { once: true });
+
+          video.src = cachedVideoUrl;
+          video.load();
+        }))
+        .catch(() => {
+          video.dataset.seekReady = 'failed';
+          cachePromise = null;
+        });
+
+      return cachePromise;
+    }
+
+    steps.forEach((step, index) => {
+      step.addEventListener('click', function () {
+        const targetTime = chapterTimes[index];
+        setActiveStep(index);
+
+        if (cachedSourceReady || includesTime(video.seekable, targetTime)) {
+          pendingTime = null;
+          seekTo(targetTime);
+          return;
+        }
+
+        pendingTime = targetTime;
+        video.dataset.seekReady = 'loading';
+        prepareSeekableSource();
+      });
+    });
+
+    video.addEventListener('timeupdate', function () {
+      if (pendingTime !== null) return;
+
+      let activeIndex = 0;
+      chapterTimes.forEach((time, index) => {
+        if (video.currentTime >= time) activeIndex = index;
+      });
+      setActiveStep(activeIndex);
+    });
+
+    window.addEventListener('pagehide', function () {
+      if (cachedVideoUrl) URL.revokeObjectURL(cachedVideoUrl);
+    }, { once: true });
+  })();
+
+  /* Keep the first Screens image aligned with the section title. */
+  (function setLyftScreensOffset() {
+    function update() {
+      const title = document.querySelector('.pd-section--screens .pd-section-title');
+      const offset = title ? Math.max(0, title.getBoundingClientRect().left) : 48;
+      document.documentElement.style.setProperty('--screens-offset', `${offset}px`);
+    }
+
+    if (document.fonts) {
+      document.fonts.ready.then(update);
+    } else {
+      update();
+    }
+    window.addEventListener('resize', update);
+  })();
 </script>
 </body>
 </html>
