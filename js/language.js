@@ -29,11 +29,6 @@ const translations = {
     lyft_desc: "为 Lyft 网约车进行迭代设计，解决用户在打车过程中难以找到司机和上车点的问题，引入街景功能让打车更直观。",
     lyft_link: "查看详情 →",
 
-    skygo_meta: "04 / 2023 &nbsp;—&nbsp; UIUX · 移动 · 桌面 · PAD",
-    skygo_title: "SkyGo 短视频",
-    skygo_desc: "为 SKY TV 设计短视频制作 APP，通过 AI 技术实现观众与影视内容的新交互，让每个人都能轻松创作衍生短视频。",
-    skygo_link: "查看详情 →",
-
     nexus_meta: "01 / 2024 &nbsp;—&nbsp; 设计系统",
     nexus_title: "Nexus UI",
     nexus_desc: "为金融科技团队构建的全面设计系统，强调严格的网格布局和以数据可视化为核心的组件规范，确保跨平台的一致性与可扩展性。",
@@ -187,11 +182,6 @@ const translations = {
     lyft_title: "Lyft Street View",
     lyft_desc: "Iterative redesign of Lyft's ride-hailing app, solving the problem of passengers struggling to locate their driver and pickup point by introducing street view.",
     lyft_link: "View Details →",
-
-    skygo_meta: "04 / 2023 &nbsp;—&nbsp; UIUX · Mobile · Desktop · PAD",
-    skygo_title: "SkyGo Short Video",
-    skygo_desc: "Designed a short video creation app for SKY TV, enabling new audience-film interactions through AI and making it easy for everyone to create derivative short videos.",
-    skygo_link: "View Details →",
 
     nexus_meta: "01 / 2024 &nbsp;—&nbsp; Design System",
     nexus_title: "Nexus UI",
