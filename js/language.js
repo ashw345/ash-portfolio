@@ -128,18 +128,20 @@ const translations = {
     // About
     about_tag: "About",
     about_title: "你好，我是",
-    about_subtitle: "一名沉迷于极简视觉、数字网格与高保真交互的多学科设计师。",
+    about_subtitle: "你好！我是一名 UIUX 设计师，纽约视觉艺术学院（SVA）平面设计 BFA。毕业后在喜马拉雅负责会员板块的设计；也在字节跳动做过 AIGC 方向的实习。现在专注 AI 产品设计 + Vibe Coding，把有趣的想法做成能用的产品——这个网站就是其中之一。",
 
     // Photography
-    photo_label: "页面设计中 &nbsp;·&nbsp; Coming Soon",
+    photo_label: "页面设计中  ·  Coming Soon",
     photo_back: "← 返回首页",
+
+    // Independent Dev
+    dev_label: "页面设计中  ·  Coming Soon",
+    dev_back: "← 返回首页",
 
     // Contact page
     contact_title: "联系我",
     contact_email_label: "邮箱",
     contact_wechat_label: "微信",
-    contact_cv_label: "简历",
-    contact_cv_link: "下载 CV →",
 
     // Footer
     footer_email: "电子邮件",
@@ -285,18 +287,20 @@ const translations = {
     // About
     about_tag: "About",
     about_title: "Hi, I'm",
-    about_subtitle: "A multidisciplinary designer obsessed with minimalist visuals, digital grids, and high-fidelity interactions.",
+    about_subtitle: "Hi! I'm a UIUX designer with a BFA in Graphic Design from the School of Visual Arts (SVA). After graduating I led membership design at Ximalaya, and interned on AIGC at ByteDance before that. These days I focus on AI product design + vibe coding — turning fun ideas into things people can actually use. This site is one of them.",
 
     // Photography
-    photo_label: "Page in Design &nbsp;·&nbsp; Coming Soon",
+    photo_label: "Page in Design  ·  Coming Soon",
     photo_back: "← Back to Home",
+
+    // Independent Dev
+    dev_label: "Page in Design  ·  Coming Soon",
+    dev_back: "← Back to Home",
 
     // Contact page
     contact_title: "Contact<br>Me.",
     contact_email_label: "Email",
     contact_wechat_label: "WeChat",
-    contact_cv_label: "Resume",
-    contact_cv_link: "Download CV →",
 
     // Footer
     footer_email: "Email",

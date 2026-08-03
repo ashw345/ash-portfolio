@@ -8,6 +8,82 @@
   <link rel="stylesheet" href="css/project-detail.css" />
   <script src="js/page-transition.js?v=7"></script>
   <style>
+    .project-pagination__home:hover {
+      color: #E30B88;
+    }
+
+    .pd-problem-video {
+      position: relative;
+    }
+    .pd-problem-video video::-webkit-media-controls-enclosure {
+      background: transparent;
+    }
+    .pd-problem-video video::-webkit-media-controls-panel {
+      background-color: transparent;
+      background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.12) 48%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    }
+    .pd-video-start {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background:
+        linear-gradient(rgba(17, 17, 31, 0.1), rgba(17, 17, 31, 0.1)),
+        url('images/lyft-video-cover.png') center / cover no-repeat;
+      color: #11111f;
+      cursor: pointer;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .pd-video-start::before {
+      content: '';
+      width: 84px;
+      height: 84px;
+      border: 1px solid rgba(17, 17, 31, 0.12);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 12px 36px rgba(17, 17, 31, 0.16);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform 0.25s ease, background-color 0.25s ease;
+    }
+    .pd-video-start::after {
+      content: '';
+      position: absolute;
+      left: calc(50% + 4px);
+      top: 50%;
+      width: 0;
+      height: 0;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      border-left: 19px solid currentColor;
+      transform: translate(-50%, -50%);
+    }
+    .pd-video-start:hover::before {
+      background: #fff;
+      transform: scale(1.06);
+    }
+    .pd-video-start:active::before {
+      transform: scale(0.98);
+    }
+    .pd-video-start:focus-visible {
+      outline: 3px solid rgba(227, 11, 136, 0.75);
+      outline-offset: -6px;
+    }
+    .pd-problem-video.is-started .pd-video-start {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
     /* User flow mirrors the SnapFIT three-column composition. */
     .pd-section--lyft-user-flow {
       background: transparent;
@@ -48,6 +124,8 @@
       height: auto;
       display: block;
       object-fit: contain;
+      cursor: pointer;
+      touch-action: manipulation;
     }
     .lyft-user-flow-nav {
       position: relative;
@@ -137,6 +215,21 @@
     }
 
     @media (max-width: 1024px) {
+      .pd-section {
+        padding: 72px 0;
+      }
+      .pd-meta-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 32px;
+        padding: 28px 30px;
+      }
+      .pd-section--solution .pd-feature {
+        grid-template-columns: minmax(0, 1fr) 292px;
+        gap: 40px;
+      }
+      .pd-section--solution .pd-feature-media {
+        justify-content: flex-end;
+      }
       .lyft-user-flow-row {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
@@ -148,6 +241,86 @@
       .lyft-user-flow-stage {
         grid-column: 1 / -1;
         justify-content: center;
+      }
+    }
+    @media (max-width: 700px) {
+      #blob-canvas {
+        display: none !important;
+      }
+      .pd-carousel-side-btn,
+      .pd-screens-btn {
+        display: flex;
+        width: 38px;
+        height: 38px;
+      }
+      .pd-carousel-side-btn--prev,
+      .pd-screens-btn--prev {
+        left: 8px;
+      }
+      .pd-carousel-side-btn--next,
+      .pd-screens-btn--next {
+        right: 8px;
+      }
+      .pd-hero-info {
+        padding-top: 36px;
+      }
+      .pd-section {
+        padding: 60px 0;
+      }
+      .pd-overview-text {
+        margin-bottom: 40px;
+      }
+      .pd-meta-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 26px 20px;
+        padding: 24px;
+      }
+      .pd-meta-value {
+        overflow-wrap: anywhere;
+      }
+      .lyft-vi {
+        margin-top: 36px;
+      }
+      .pd-body {
+        margin-bottom: 36px;
+      }
+      .pd-problem-video {
+        border-radius: 8px;
+      }
+      .pd-video-start::before {
+        width: 66px;
+        height: 66px;
+      }
+      .pd-video-start::after {
+        border-top-width: 10px;
+        border-bottom-width: 10px;
+        border-left-width: 16px;
+      }
+      .pd-section--solution .pd-feature {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 36px;
+      }
+      .pd-section--solution .pd-feature-info {
+        max-width: 100%;
+      }
+      .pd-section--solution .pd-feature-media {
+        justify-content: center;
+      }
+      .pd-section--solution .pd-feature-media img {
+        width: min(72vw, 268px);
+      }
+      .pd-carousel-dots {
+        margin-top: 28px;
+      }
+      .pd-section--screens .container {
+        margin-bottom: 28px;
+      }
+      .pd-screen {
+        width: min(74vw, 276px);
+        border-radius: 20px;
+      }
+      .pd-screens-track {
+        gap: 16px;
       }
     }
     @media (max-width: 560px) {
@@ -177,7 +350,7 @@
     }
   </style>
 </head>
-<body class="theme-gradient" data-blob-color="#F1C9E0" data-blob-opacity="0.25">
+<body class="theme-gradient has-mobile-nav" data-blob-color="#F1C9E0" data-blob-opacity="0.25">
 <canvas id="dot-canvas"></canvas>
 <div class="page-wrap">
 
@@ -191,14 +364,16 @@
           <span data-i18n="nav_available">接受项目合作</span>
         </span>
       </div>
-      <ul class="nav-links">
+      <ul class="nav-links" id="site-nav-menu">
         <li><a href="index.html" class="active" data-i18n="nav_ui">UI设计</a></li>
         <li><a href="graphic.html" data-i18n="nav_graphic">平面设计</a></li>
         <li><a href="dev.html" data-i18n="nav_dev">独立开发</a></li>
         <li><a href="photography.html" data-i18n="nav_photo">摄影</a></li>
-        <li><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN/中</button></li>
+        <li class="nav-lang-item"><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN/中</button></li>
         <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我</a></li>
       </ul>
+      <button class="nav-lang-toggle nav-lang-toggle--mobile" type="button" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')">EN/中</button>
+      <button class="nav-menu-toggle" type="button" aria-controls="site-nav-menu" aria-expanded="false" aria-label="打开导航"><span></span><span></span></button>
     </div>
   </nav>
 
@@ -320,9 +495,10 @@
       <h2 class="pd-section-title" data-i18n-zh="现有问题分析" data-i18n-en="Problem Analysis">现有问题分析</h2>
       <p class="pd-body" data-i18n-zh="乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。" data-i18n-en="Passengers struggle to accurately locate their driver and pickup spot—too many cars at busy intersections, and unfamiliar streets cause disorientation.">乘客在打车时难以准确地找到司机和上车点的位置。在繁忙路口，周边车辆太多难以辨认；在陌生街道，不了解周边环境导致迷失。</p>
       <div class="pd-problem-video">
-        <video autoplay muted loop playsinline controls preload="metadata">
+        <video loop playsinline preload="metadata" poster="images/lyft-video-cover.png">
           <source src="video/lyft-launch/lyft-street-view-full.mp4" type="video/mp4" />
         </video>
+        <button class="pd-video-start" type="button" aria-label="播放视频 / Play video"></button>
       </div>
     </div>
   </section>
@@ -418,7 +594,7 @@
 
         <div class="lyft-user-flow-stage">
           <div class="lyft-user-flow-clip">
-            <video id="lyft-user-flow-video" autoplay loop muted playsinline preload="auto">
+            <video id="lyft-user-flow-video" loop playsinline preload="metadata" aria-label="Lyft 用户使用流程演示">
               <source src="images/lyft-user-flow.mp4" type="video/mp4" />
             </video>
           </div>
@@ -495,18 +671,6 @@
     </div>
   </section>
 
-  <!-- ⑥ FLOW —— 完整流程宽图，1440×700px -->
-  <section class="pd-section pd-section--flow">
-    <div class="container">
-      <span class="pd-section-label">Flow</span>
-      <h2 class="pd-section-title" data-i18n-zh="完整流程" data-i18n-en="Full Flow">完整流程</h2>
-    </div>
-    <!-- 宽图不受 container 限制，全出血 -->
-    <div class="pd-flow-img">
-      <img src="images/lyft-flow.jpg" alt="完整流程" />
-    </div>
-  </section>
-
   <nav class="project-pagination" aria-label="项目导航">
     <a href="project-snapfit.html" class="project-pagination__side project-pagination__side--prev" data-i18n="project_prev">← 上一个项目</a>
     <a href="index.html" class="project-pagination__home" data-i18n="project_back_ui">返回 UIUX 设计 ↗</a>
@@ -520,7 +684,7 @@
       <div class="footer-cols">
         <div class="footer-col">
           <ul>
-            <li><a href="mailto:hello@ash.design" data-i18n="footer_email">电子邮件</a></li>
+            <li><a href="mailto:wangaixue2002@outlook.com" data-i18n="footer_email">电子邮件</a></li>
             <li><a href="#" data-i18n="footer_resume">个人简历</a></li>
           </ul>
         </div>
@@ -546,6 +710,7 @@
 <script src="js/dot-grid.js"></script>
 <script src="js/blob-bg.js"></script>
 <script src="js/smooth-scroll.js?v=7"></script>
+<script src="js/mobile-nav.js?v=1"></script>
 <script src="js/language.js?v=project-nav1"></script>
 <script src="js/solution-carousel.js"></script>
 <script src="js/pixel-cat.js?v=18"></script>
@@ -591,6 +756,32 @@
   });
   window.addEventListener('resize', alignLyftUserFlow);
 
+  /* Present a distinct, poster-led state before the first play. */
+  (function initProblemVideoPlayer() {
+    const player = document.querySelector('.pd-problem-video');
+    const video = player ? player.querySelector('video') : null;
+    const startButton = player ? player.querySelector('.pd-video-start') : null;
+    if (!player || !video || !startButton) return;
+
+    function startVideo() {
+      player.classList.add('is-started');
+      video.controls = true;
+      const playback = video.play();
+      if (playback) {
+        playback.catch(() => {
+          player.classList.remove('is-started');
+          video.controls = false;
+        });
+      }
+    }
+
+    startButton.addEventListener('click', startVideo);
+    video.addEventListener('play', function () {
+      player.classList.add('is-started');
+      video.controls = true;
+    });
+  })();
+
   /* Chapter navigation for the Lyft user-flow video. */
   (function initLyftUserFlowChapters() {
     const video = document.getElementById('lyft-user-flow-video');
@@ -622,6 +813,14 @@
       const playback = video.play();
       if (playback) playback.catch(() => {});
     }
+
+    video.addEventListener('click', function () {
+      if (video.paused) {
+        playVideo();
+      } else {
+        video.pause();
+      }
+    });
 
     function seekTo(time) {
       video.currentTime = Math.min(time, Math.max(0, video.duration - 0.05));
