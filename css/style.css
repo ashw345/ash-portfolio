@@ -1416,6 +1416,98 @@ body.theme-dark-page .project-category-back:hover {
 .fade-up:nth-child(4) { animation-delay: .42s; }
 
 /* =====================================================
+   PROJECT LIST — SCROLL REVEAL
+   Every start state below is gated behind `html.has-reveal`, which
+   scroll-reveal.js adds only when it will actually animate. Without JS,
+   or with reduced motion, none of it applies and the list renders as-is.
+   ===================================================== */
+:root {
+  --reveal-ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+/* Divider — draws in from the left. The border itself is kept (turned
+   transparent) so the row's box model, and therefore the layout, is
+   unchanged; the visible rule is the pseudo-element. */
+html.has-reveal .projects .project-item {
+  position: relative;
+  border-top-color: transparent;
+}
+html.has-reveal .projects .project-item::before {
+  content: '';
+  position: absolute;
+  top: -0.5px;
+  left: 0;
+  right: 0;
+  height: 0.5px;
+  background: var(--border);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.15s var(--reveal-ease);
+}
+html.has-reveal .projects .project-item.is-revealed::before {
+  transform: scaleX(1);
+}
+
+/* Image frame — wipes open downwards. `round` keeps the 16px corners
+   through the wipe; without it the clip would square them off mid-animation.
+   Parallax writes `transform` on this element, so only clip-path transitions. */
+html.has-reveal .project-img-wrap {
+  clip-path: inset(0 0 100% 0 round 16px);
+  transition: clip-path 1.15s var(--reveal-ease);
+}
+html.has-reveal .project-item.is-revealed .project-img-wrap {
+  clip-path: inset(0 0 0 0 round 16px);
+}
+
+/* Artwork settles out of a slight zoom. Reuses the existing .65s hover
+   transition rather than defining its own, so hovering stays snappy. */
+html.has-reveal .project-img {
+  transform: scale(1.08);
+}
+html.has-reveal .project-item.is-revealed .project-img {
+  transform: scale(1);
+}
+/* Restated at higher specificity so hover still wins once revealed — the rule
+   above would otherwise outrank the original hover declaration. Kept inside
+   `hover: hover` so it can't resurrect the zoom on touch, where a sticky
+   :hover after a tap is exactly what the `hover: none` guard above prevents. */
+@media (hover: hover) {
+  html.has-reveal .project-item .project-img-wrap:hover .project-img {
+    transform: scale(1.04);
+  }
+}
+
+/* Copy — staggers up line by line. */
+html.has-reveal .project-info > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .85s var(--reveal-ease),
+              transform .85s var(--reveal-ease);
+}
+/* The title keeps its own transition (hover drives letter-spacing and a
+   centring translate), so it opts out of the shared one above. */
+html.has-reveal .project-info > .project-title {
+  transition: opacity .85s var(--reveal-ease),
+              letter-spacing .45s cubic-bezier(.25, .46, .45, .94),
+              transform .45s cubic-bezier(.25, .46, .45, .94);
+}
+html.has-reveal .project-item.is-revealed .project-info > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+html.has-reveal .project-item.is-revealed .project-info > *:nth-child(1) { transition-delay: .10s; }
+html.has-reveal .project-item.is-revealed .project-info > *:nth-child(2) { transition-delay: .19s; }
+html.has-reveal .project-item.is-revealed .project-info > *:nth-child(3) { transition-delay: .28s; }
+html.has-reveal .project-item.is-revealed .project-info > *:nth-child(4) { transition-delay: .37s; }
+
+/* Stacked layout: the image leads, so the copy trails it more tightly. */
+@media (max-width: 700px) {
+  html.has-reveal .project-info > * {
+    transform: translateY(16px);
+  }
+}
+
+/* =====================================================
    SCROLLBAR
    ===================================================== */
 ::-webkit-scrollbar { width: 4px; }
