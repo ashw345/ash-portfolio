@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>闪电健身 SnapFIT — ASH Studio</title>
-  <link rel="stylesheet" href="css/style.css?v=responsive7" />
-  <link rel="stylesheet" href="css/project-detail.css?v=marquee3" />
+  <link rel="stylesheet" href="css/style.css?v=responsive8" />
+  <link rel="stylesheet" href="css/project-detail.css?v=marquee4" />
   <script src="js/page-transition.js?v=7"></script>
   <style>
     /* ── SnapFIT 品牌色覆盖 ── */
@@ -362,6 +362,38 @@
       .snapfit-ds-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+      /* 两列后 --fill 的格子变得又宽又扁，竖构图的角色被压成一小条，
+         而且桌面那套内联 transform 会把人物顶出画面。改成两个并排、
+         盒子按视频比例开。 */
+      .snapfit-ds-col--char {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        height: auto;
+      }
+      .snapfit-ds-col--char .snapfit-ds-label {
+        grid-column: 1 / -1;
+        margin-bottom: 0;
+      }
+      .snapfit-ds-col--char .snapfit-ds-placeholder {
+        flex: none;
+        height: auto;
+        aspect-ratio: 1440 / 2170;
+      }
+      .snapfit-ds-col--char video {
+        transform: none !important;
+      }
+      .snapfit-ds-col--comp {
+        height: auto;
+      }
+      .snapfit-ds-col--comp .snapfit-ds-placeholder {
+        flex: none;
+        height: 120px;
+      }
+      /* 框里装的已经是成品素材，虚线框看着像没做完的占位 */
+      .snapfit-ds-placeholder {
+        border: 1px solid rgba(255, 255, 255, 0.10);
+      }
     }
 
     /* ── Phone ──────────────────────────────────────────── */
@@ -448,9 +480,94 @@
         grid-template-columns: minmax(0, 1fr);
         margin-top: 36px;
       }
+      /* ── 视觉规范：手机上从「四列并排」改成「四条横向带」 ──────────
+         直接堆成单列会变成 11 个条目的长队列，而且 --fill 的
+         height:100% 在自动高度的行里解析不出值，placeholder 的
+         flex:1 会塌成 3px —— 角色动画因此整个看不见。
+         这里让每个分类自己成为一条带：标签占满一行，条目横向铺开。 */
       .snapfit-ds-grid {
         grid-template-columns: minmax(0, 1fr);
+        gap: 30px;
         margin-top: 36px;
+      }
+      .snapfit-ds-col {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        height: auto; /* 覆盖 --fill 的 height:100% */
+      }
+      .snapfit-ds-label {
+        grid-column: 1 / -1;
+        margin-bottom: 2px;
+      }
+      .snapfit-ds-col--fill .snapfit-ds-placeholder {
+        flex: none;   /* 不再靠父级高度分配，改由自身比例撑开 */
+        height: auto;
+      }
+
+      /* 色彩：脱掉卡片外壳，色块在上、名称色值在下，读起来像一条色板。
+         背景要压过 body.theme-dark .pd-system-card 的 #161616，所以带上 body */
+      body .snapfit-ds-col .pd-system-card {
+        padding: 0;
+        min-height: 0;
+        background: none;
+        border-radius: 0;
+      }
+      .snapfit-ds-col .pd-color-block {
+        order: -1;
+        flex: none;
+        min-height: 0;
+        height: 62px;
+        margin-bottom: 8px;
+        border-radius: 10px;
+      }
+      .snapfit-ds-col .pd-system-card-head {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        margin-bottom: 0;
+      }
+      .snapfit-ds-col .pd-system-name {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .snapfit-ds-col .pd-system-hex {
+        font-size: 10px;
+      }
+
+      /* 字体：字样在上、说明在下，三个字重并排比较 */
+      .snapfit-type-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 0;
+      }
+      .snapfit-type-sample {
+        font-size: 32px;
+      }
+      .snapfit-type-desc {
+        font-size: 11px;
+      }
+
+      /* 角色动画：两个并排，盒子按视频比例开，动作完整可见 */
+      .snapfit-ds-col--char {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .snapfit-ds-col--char .snapfit-ds-placeholder {
+        aspect-ratio: 1440 / 2170;
+      }
+      /* 桌面上用内联 transform 微调过构图，这里盒子已按比例开好，取消偏移 */
+      .snapfit-ds-col--char video {
+        transform: none !important;
+      }
+
+      /* 组件：素材都是横构图，单列铺满才看得清 */
+      .snapfit-ds-col--comp {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .snapfit-ds-col--comp .snapfit-ds-placeholder {
+        height: 132px;
       }
     }
 
@@ -808,7 +925,7 @@
         </div>
 
         <!-- 角色动画占位（上下两个） -->
-        <div class="snapfit-ds-col snapfit-ds-col--fill">
+        <div class="snapfit-ds-col snapfit-ds-col--fill snapfit-ds-col--char">
           <p class="snapfit-ds-label">角色动画</p>
           <div class="snapfit-ds-placeholder snapfit-ds-placeholder--mid" style="position:relative; overflow:hidden; padding:0;">
             <video autoplay loop muted playsinline style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transform:scale(1) translateY(-10px); transform-origin:center center;">
@@ -823,7 +940,7 @@
         </div>
 
         <!-- 组件占位（三个竖排） -->
-        <div class="snapfit-ds-col snapfit-ds-col--fill">
+        <div class="snapfit-ds-col snapfit-ds-col--fill snapfit-ds-col--comp">
           <p class="snapfit-ds-label">组件</p>
           <div class="snapfit-ds-placeholder snapfit-ds-placeholder--short" style="padding:0; overflow:hidden;">
             <img src="images/snapfit-comp-1.png" alt="组件1" style="width:100%; height:100%; object-fit:contain;" />
