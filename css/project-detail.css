@@ -1031,24 +1031,24 @@ body.theme-gradient .pd-carousel-side-btn:hover {
 }
 
 .pd-screen {
-  width: 292px;
+  width: 219px; /* 292 的 75%，圆角同比例缩到 18px */
   aspect-ratio: 375 / 812;
   object-fit: cover;
   display: block;
   flex-shrink: 0;
   scroll-snap-align: start;
   background: #1a1a1a;
-  border-radius: 24px;
+  border-radius: 18px;
 }
 
 /* 占位格（还没有截图时显示） */
 .pd-screen-empty {
-  width: 292px;
+  width: 219px;
   aspect-ratio: 375 / 812;
   flex-shrink: 0;
   background: rgba(255,255,255,0.04);
   border: 0.5px solid rgba(255,255,255,0.08);
-  border-radius: 24px;
+  border-radius: 18px;
   scroll-snap-align: start;
 }
 
