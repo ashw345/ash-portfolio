@@ -321,9 +321,164 @@
       opacity: 0.5;
       line-height: 1;
     }
+
+    /* ── Tablet ─────────────────────────────────────────── */
+    /* alignFlowVideo() 也在 1024 处停止微调 gap，两边保持同一个断点 */
+    @media (max-width: 1024px) {
+      .pd-section {
+        padding: 72px 0;
+      }
+      .pd-meta-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 32px;
+        padding: 28px 30px;
+      }
+      .pd-section--solution .pd-feature {
+        grid-template-columns: minmax(0, 1fr) 292px;
+        gap: 40px;
+      }
+      .pd-section--solution .pd-feature-media {
+        justify-content: flex-end;
+      }
+      /* 三栏（标题｜视频｜章节）在平板上放不下，标题移到上方独占一行 */
+      .snapfit-flow-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 64px 32px;
+      }
+      .snapfit-flow-info {
+        grid-column: 1 / -1;
+      }
+      .snapfit-flow-info .pd-section-title {
+        white-space: normal;
+      }
+      .snapfit-flow-video {
+        grid-column: 1 / -1;
+        justify-content: center;
+      }
+      .snapfit-quotes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .snapfit-ds-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* ── Phone ──────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .pd-carousel-side-btn {
+        display: flex;
+        width: 38px;
+        height: 38px;
+      }
+      .pd-carousel-side-btn--prev {
+        left: 8px;
+      }
+      .pd-carousel-side-btn--next {
+        right: 8px;
+      }
+      .pd-hero-info {
+        padding-top: 36px;
+      }
+      .pd-section {
+        padding: 60px 0;
+      }
+      .pd-overview-text {
+        margin-bottom: 40px;
+      }
+      .pd-body {
+        margin-bottom: 36px;
+      }
+      .pd-meta-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 26px 20px;
+        padding: 24px;
+      }
+      .pd-meta-value {
+        overflow-wrap: anywhere;
+      }
+      .pd-section--solution .pd-feature {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 36px;
+      }
+      .pd-section--solution .pd-feature-info {
+        max-width: 100%;
+      }
+      .pd-section--solution .pd-feature-media {
+        justify-content: center;
+      }
+      .pd-section--solution .pd-feature-media img {
+        width: min(72vw, 268px);
+      }
+      .pd-carousel-dots {
+        margin-top: 28px;
+      }
+      .pd-section--screens .container {
+        margin-bottom: 28px;
+      }
+      .pd-section--screens .pd-screen {
+        width: min(56vw, 207px);
+        border-radius: 20px;
+      }
+      .pd-screens-track {
+        gap: 16px;
+      }
+      .snapfit-flow-row {
+        gap: 48px;
+      }
+      .snapfit-flow-video {
+        gap: 24px;
+      }
+      /* 固定的 286×642 白框换成按视口收缩，留出章节导航的宽度。
+         导航宽度随文案/语言变化，所以额外解开 flex-shrink 兜底，
+         保证再挤也不会顶出容器。 */
+      .snapfit-flow-clip {
+        width: min(286px, calc(100vw - 168px));
+        height: auto;
+        aspect-ratio: 286 / 642;
+        border-radius: 28px;
+        flex-shrink: 1;
+        min-width: 0;
+      }
+      .snapfit-flow-clip video {
+        width: 100%;
+        height: 100%;
+      }
+      .snapfit-quotes {
+        grid-template-columns: minmax(0, 1fr);
+        margin-top: 36px;
+      }
+      .snapfit-ds-grid {
+        grid-template-columns: minmax(0, 1fr);
+        margin-top: 36px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .snapfit-flow-row {
+        gap: 40px;
+      }
+      .snapfit-flow-video {
+        gap: 18px;
+      }
+      .snapfit-flow-clip {
+        width: min(242px, calc(100vw - 168px));
+        border-radius: 24px;
+      }
+      .snapfit-quote-card {
+        padding: 28px 20px 24px;
+      }
+      .snapfit-quote-avatar {
+        width: 150px;
+        height: 150px;
+      }
+      .snapfit-type-sample {
+        font-size: 34px;
+      }
+    }
   </style>
 </head>
-<body class="theme-dark">
+<body class="theme-dark has-mobile-nav">
 <canvas id="dot-canvas"></canvas>
 <div class="page-wrap">
 
@@ -337,14 +492,16 @@
           <span data-i18n="nav_available">接受项目合作</span>
         </span>
       </div>
-      <ul class="nav-links">
+      <ul class="nav-links" id="site-nav-menu">
         <li><a href="index.html" class="active" data-i18n="nav_ui">UI设计</a></li>
         <li><a href="graphic.html" data-i18n="nav_graphic">平面设计</a></li>
         <li><a href="dev.html" data-i18n="nav_dev">独立开发</a></li>
         <li><a href="photography.html" data-i18n="nav_photo">摄影</a></li>
-        <li><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN/中</button></li>
+        <li class="nav-lang-item"><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN/中</button></li>
         <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我</a></li>
       </ul>
+      <button class="nav-lang-toggle nav-lang-toggle--mobile" type="button" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')">EN/中</button>
+      <button class="nav-menu-toggle" type="button" aria-controls="site-nav-menu" aria-expanded="false" aria-label="打开导航"><span></span><span></span></button>
     </div>
   </nav>
 
@@ -743,6 +900,7 @@
 <script src="js/dot-grid.js"></script>
 <script src="js/blob-bg.js"></script>
 <script src="js/smooth-scroll.js?v=7"></script>
+<script src="js/mobile-nav.js?v=1"></script>
 <script src="js/language.js?v=project-nav1"></script>
 <script src="js/solution-carousel.js?v=marquee1"></script>
 <script src="js/pixel-cat.js?v=18"></script>
