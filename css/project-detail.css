@@ -601,6 +601,37 @@
   border-radius: 24px;
 }
 
+/* Feature 的窄屏收拢放在公共样式里，而不是各项目页各写一份 ——
+   Lyft 和 SnapFIT 原本各自内联了一套，会员等级因此被漏掉，
+   文字列被压到 74px、整行溢出。放这里新页面自动就有。
+   1fr 会以 min-content 兜底，长标题能把列撑破，所以用 minmax(0,1fr)。 */
+@media (max-width: 1024px) {
+  .pd-feature {
+    grid-template-columns: minmax(0, 1fr) 292px;
+    gap: 40px;
+  }
+  .pd-feature-media {
+    justify-content: flex-end;
+  }
+}
+@media (max-width: 700px) {
+  .pd-feature {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+    padding: 56px 0;
+  }
+  .pd-feature-info {
+    max-width: 100%;
+  }
+  .pd-feature-media {
+    justify-content: center;
+  }
+  .pd-feature-media img,
+  .pd-feature-media video {
+    max-width: min(72vw, 268px);
+  }
+}
+
 /* ── Flow (全出血宽图) ─────────────────────────────── */
 .pd-section--flow .container {
   margin-bottom: 40px;

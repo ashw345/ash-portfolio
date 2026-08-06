@@ -800,6 +800,16 @@ body.theme-dark-page .project-category-back:hover {
 }
 .detail-back:hover { color: var(--text); gap: 12px; }
 
+/* 这个返回链接是 fixed 的，桌面宽屏时正好落在 container 左侧的空白里。
+   但 --max-w 是 1200px，视口一旦窄到没有空白（≈1300 以下，container
+   内边距只剩 48/20px），它就直接压在正文上——项目页滚到哪都盖着哪。
+   窄屏改成 absolute，让它跟着页头一起滚走。 */
+@media (max-width: 1024px) {
+  .project-category-back {
+    position: absolute;
+  }
+}
+
 @media (max-width: 640px) {
   .project-category-back {
     top: calc(var(--nav-h) + 20px);
