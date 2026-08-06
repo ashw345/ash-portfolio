@@ -75,7 +75,8 @@ class DotGrid {
   // v7: canvas 固定在视口（position: fixed），点位钉在屏幕背景上，不随页面滚动
   resize() {
     const dpr = this.dpr;
-    const w   = window.innerWidth;
+    // clientWidth 排除滚动条宽度，避免经典滚动条环境下画布比内容区宽出几像素
+    const w   = document.documentElement.clientWidth;
     const vh  = window.innerHeight;
 
     // 画布 backing store = 视口大小（不随文档高度膨胀 → 高页面也不卡）

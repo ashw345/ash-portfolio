@@ -74,7 +74,10 @@ class DotGrid {
   /* ── 尺寸 & 网格 ──────────────────────────────────────── */
   resize() {
     const dpr = this.dpr;
-    const w   = window.innerWidth;
+    // clientWidth 排除滚动条宽度；innerWidth 包含滚动条，
+    // 经典（常驻）滚动条环境下会让画布比视口内容区宽出几像素，
+    // 页面因此能横向轻微拖动。
+    const w   = document.documentElement.clientWidth;
     const h   = Math.max(document.body.scrollHeight, window.innerHeight + 200);
     this.canvas.width  = Math.round(w * dpr);
     this.canvas.height = Math.round(h * dpr);
