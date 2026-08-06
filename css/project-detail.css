@@ -892,9 +892,8 @@ body.theme-gradient .pd-meta-grid {
   position: relative;
 }
 
-/* 侧边箭头按钮（Solution + Screens 共用） */
-.pd-carousel-side-btn,
-.pd-screens-btn {
+/* 侧边箭头按钮（Solution 轮播） */
+.pd-carousel-side-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -915,13 +914,11 @@ body.theme-gradient .pd-meta-grid {
   padding: 0;
   box-shadow: 0 2px 12px rgba(0,0,0,0.35);
 }
-.pd-carousel-side-btn:hover,
-.pd-screens-btn:hover {
+.pd-carousel-side-btn:hover {
   background: rgba(255,255,255,0.28);
   transform: translateY(-50%) scale(1.07);
 }
-.pd-carousel-side-btn.is-disabled,
-.pd-screens-btn.is-disabled {
+.pd-carousel-side-btn.is-disabled {
   opacity: 0;
   pointer-events: none;
 }
@@ -930,15 +927,9 @@ body.theme-gradient .pd-meta-grid {
 .pd-carousel-side-btn--prev { left: 20px; }
 .pd-carousel-side-btn--next { right: 20px; }
 
-/* Screens 按钮：同位置 */
-.pd-screens-btn--prev { left: 20px; }
-.pd-screens-btn--next { right: 20px; }
-
 /* theme-light / theme-gradient 浅色页：白色卡片按钮，阴影区分背景 */
 body.theme-light .pd-carousel-side-btn,
-body.theme-light .pd-screens-btn,
-body.theme-gradient .pd-carousel-side-btn,
-body.theme-gradient .pd-screens-btn {
+body.theme-gradient .pd-carousel-side-btn {
   background: #ffffff;
   border-color: rgba(0,0,0,0.10);
   color: #111111;
@@ -947,9 +938,7 @@ body.theme-gradient .pd-screens-btn {
   -webkit-backdrop-filter: none;
 }
 body.theme-light .pd-carousel-side-btn:hover,
-body.theme-light .pd-screens-btn:hover,
-body.theme-gradient .pd-carousel-side-btn:hover,
-body.theme-gradient .pd-screens-btn:hover {
+body.theme-gradient .pd-carousel-side-btn:hover {
   background: #f7f7f7;
   box-shadow: 0 6px 24px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.08);
   transform: translateY(-50%) scale(1.07);
@@ -957,8 +946,7 @@ body.theme-gradient .pd-screens-btn:hover {
 
 /* 视口太窄时隐藏按钮 */
 @media (max-width: 900px) {
-  .pd-carousel-side-btn,
-  .pd-screens-btn { display: none; }
+  .pd-carousel-side-btn { display: none; }
 }
 
 /* 轮播容器 */
@@ -1073,27 +1061,28 @@ body.theme-gradient .pd-screen {
   background: #e8e8e8;
 }
 
-/* Screens 进度条 */
-.pd-screens-progress {
-  height: 1.5px;
-  background: rgba(255,255,255,0.08);
-  margin: 20px 0 0;
-  padding: 0 48px;
-  border-radius: 1px;
+/* Screens 自动跑马灯
+   solution-carousel.js 复制若干组图片后加上 .is-marquee，并写入两个变量：
+   --marquee-distance = 一组的宽度（含 gap），--marquee-duration = 距离 ÷ 速度。
+   位移正好等于一组，所以循环回到起点时画面完全重合，看不出接缝。 */
+.pd-screens-scroll.is-marquee {
   overflow: hidden;
+  scroll-snap-type: none;
 }
-.pd-screens-progress-bar {
-  height: 100%;
-  background: var(--muted);
-  border-radius: 1px;
-  transform-origin: left center;
-  transform: scaleX(0);
-  transition: transform 0.08s linear;
+.pd-screens-scroll.is-marquee .pd-screens-track {
+  /* 跑马灯要满幅流动，两端的 48px 内缩会破坏首尾相接 */
+  padding-inline: 0;
+  animation: pd-screens-marquee var(--marquee-duration, 20s) linear infinite;
   will-change: transform;
 }
-body.theme-gradient .pd-screens-progress {
-  background: rgba(0,0,0,0.08);
+
+@keyframes pd-screens-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(calc(-1 * var(--marquee-distance, 0px)), 0, 0); }
 }
-body.theme-gradient .pd-screens-progress-bar {
-  background: rgba(0,0,0,0.35);
+
+@media (prefers-reduced-motion: reduce) {
+  .pd-screens-scroll.is-marquee .pd-screens-track {
+    animation: none;
+  }
 }

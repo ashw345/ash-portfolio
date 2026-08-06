@@ -2,7 +2,7 @@
  * solution-carousel.js
  *
  * 1. Solution 轮播：section 级别侧箭头 + 拖拽滑动 + 底部指示点
- * 2. Screens 画廊：按钮导航 + 触控板横向滚动 + 进度条
+ * 2. Screens 画廊：自动横向跑马灯，首尾相连无限循环
  */
 (function () {
   'use strict';
@@ -136,56 +136,70 @@
     startAuto();
   }
 
-  /* ── Screens 画廊 ────────────────────────────────────── */
-  function initScreensScroll(el) {
-    const section     = el.closest('.pd-section--screens');
-    const progressBar = section ? section.querySelector('.pd-screens-progress-bar') : null;
-    const prevBtns    = section ? section.querySelectorAll('.pd-screens-btn--prev') : [];
-    const nextBtns    = section ? section.querySelectorAll('.pd-screens-btn--next') : [];
+  /* ── Screens 画廊：自动横向跑马灯 ──────────────────────── */
 
-    const STEP = 292 + 24; // 一张图宽度 + gap
+  /* 移动速度（px / 秒）。想调快慢改这一个数就行。 */
+  const SCREENS_SPEED = 50;
 
-    /* 进度条 & 按钮状态 */
-    function updateUI() {
-      if (progressBar) {
-        const max = el.scrollWidth - el.clientWidth;
-        const val = max > 0 ? Math.min(el.scrollLeft / max, 1) : 0;
-        progressBar.style.transform = `scaleX(${val})`;
+  function initScreensMarquee(el) {
+    const track = el.querySelector('.pd-screens-track');
+    if (!track) return;
+
+    const originals = Array.prototype.slice.call(track.children);
+    if (!originals.length) return;
+
+    /* 无障碍：用户要求减少动态效果时不跑马灯，
+       保留原来的横向滚动条让内容依然可及。 */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    el.classList.add('is-marquee');
+
+    function layout() {
+      /* 先撤掉上一轮的副本，回到原始那一组再重新测量 */
+      track.style.animation = 'none';
+      while (track.children.length > originals.length) {
+        track.removeChild(track.lastChild);
       }
-      const atStart = el.scrollLeft <= 1;
-      const atEnd   = el.scrollLeft >= el.scrollWidth - el.clientWidth - 1;
-      prevBtns.forEach(b => b.classList.toggle('is-disabled', atStart));
-      nextBtns.forEach(b => b.classList.toggle('is-disabled', atEnd));
+
+      /* 一组的位移 = 首图左边到尾图右边 + 一个 gap，
+         这样第二组的首图正好接在第一组尾图后面，接缝看不出来。 */
+      const first = originals[0];
+      const last  = originals[originals.length - 1];
+      const gap   = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const distance = (last.offsetLeft + last.offsetWidth) - first.offsetLeft + gap;
+      if (!(distance > 0)) return;
+
+      /* 位移走满一组时画面仍要铺满视口，否则右侧会露白 */
+      const copies = Math.ceil(el.clientWidth / distance) + 1;
+      for (let c = 1; c < copies; c++) {
+        originals.forEach(node => {
+          const clone = node.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          track.appendChild(clone);
+        });
+      }
+
+      track.style.setProperty('--marquee-distance', distance + 'px');
+      track.style.setProperty('--marquee-duration', (distance / SCREENS_SPEED) + 's');
+
+      void track.offsetWidth; // 强制回流，让动画从头开始
+      track.style.animation = '';
     }
 
-    el.addEventListener('scroll', updateUI, { passive: true });
-    requestAnimationFrame(updateUI);
+    layout();
 
-    /* 触控板左右滑动时直接移动画廊，纵向手势仍交给页面。 */
-    el.addEventListener('wheel', event => {
-      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) || Math.abs(event.deltaX) < 0.5) return;
-
-      const maxScroll = el.scrollWidth - el.clientWidth;
-      const targetScroll = Math.max(0, Math.min(maxScroll, el.scrollLeft + event.deltaX));
-      if (targetScroll === el.scrollLeft) return;
-
-      event.preventDefault();
-      el.scrollLeft = targetScroll;
-    }, { passive: false });
-
-    /* 按钮导航 */
-    prevBtns.forEach(b => b.addEventListener('click', () => {
-      el.scrollBy({ left: -STEP * 3, behavior: 'smooth' });
-    }));
-    nextBtns.forEach(b => b.addEventListener('click', () => {
-      el.scrollBy({ left:  STEP * 3, behavior: 'smooth' });
-    }));
+    /* 图片宽度是固定值，布局无需等加载；但断点变化会改宽度 */
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(layout, 200);
+    }, { passive: true });
   }
 
   /* ── Boot ─────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.pd-section--solution').forEach(initCarousel);
-    document.querySelectorAll('.pd-screens-scroll').forEach(initScreensScroll);
+    document.querySelectorAll('.pd-screens-scroll').forEach(initScreensMarquee);
   });
 
 })();
