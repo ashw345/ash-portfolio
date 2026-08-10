@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智慧大师 — ASH Studio</title>
+  <link rel="stylesheet" href="css/style.css?v=responsive9" />
+  <link rel="stylesheet" href="css/project-detail.css?v=marquee4" />
+  <script src="js/page-transition.js?v=7"></script>
+  <style>
+    /* ── 智慧大师 品牌色覆盖（暖褐 / 解忧小店） ── */
+    :root {
+      --accent: #B5835A;
+      --wm-brown: #B5835A;
+      --wm-cream: #FAF3EA;
+    }
+    .project-pagination__home:hover { color: #B5835A; }
+
+    /* ── 占位框（浅色版，等设计稿切图替换） ── */
+    .ph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      color: rgba(17, 17, 17, 0.32);
+      font-size: 12px;
+      line-height: 1.7;
+      letter-spacing: 0.06em;
+      background: rgba(181, 131, 90, 0.05);
+      border: 1.5px dashed rgba(181, 131, 90, 0.28);
+      border-radius: 16px;
+    }
+    /* 公共样式给顶图垫的是 #141414，浅色页面上会变成一块黑，先换成米色 */
+    .pd-hero-img {
+      background: var(--wm-cream);
+    }
+    .pd-hero-img .ph {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      border: none;
+      border-bottom: 1.5px dashed rgba(181, 131, 90, 0.28);
+      background: linear-gradient(150deg, #F6E9D6 0%, #EBD4B4 60%, #DFC199 100%);
+      color: rgba(120, 84, 51, 0.75);
+      font-size: 13px;
+    }
+
+    /* ── ③ 问题卡片 ── */
+    .wm-problems {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .wm-problem-card {
+      padding: 32px 28px;
+      background: rgba(181, 131, 90, 0.05);
+      border: 1px solid rgba(181, 131, 90, 0.16);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .wm-problem-num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--wm-brown);
+      line-height: 1;
+    }
+    .wm-problem-title { font-size: 17px; font-weight: 600; }
+    .wm-problem-desc {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ── ⑤ 产品链路 ── */
+    .wm-flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 48px;
+      counter-reset: wmstep;
+    }
+    .wm-step {
+      position: relative;
+      padding: 22px 18px 24px;
+      border-radius: 16px;
+      background: rgba(181, 131, 90, 0.05);
+      border: 1px solid rgba(181, 131, 90, 0.16);
+    }
+    /* 箭头：把六步串成一条链，最后一步不画 */
+    .wm-step::after {
+      content: '→';
+      position: absolute;
+      top: 50%;
+      right: -13px;
+      transform: translateY(-50%);
+      font-size: 13px;
+      color: rgba(181, 131, 90, 0.55);
+      z-index: 1;
+    }
+    .wm-step:last-child::after { content: none; }
+    .wm-step-num {
+      display: block;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--wm-brown);
+      margin-bottom: 10px;
+    }
+    .wm-step-title {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .wm-step-desc {
+      display: block;
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+    /* 我负责的三步高亮，一眼看出职责边界 */
+    .wm-step--mine {
+      background: rgba(181, 131, 90, 0.13);
+      border-color: rgba(181, 131, 90, 0.42);
+    }
+    .wm-flow-legend {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .wm-legend-chip {
+      width: 22px;
+      height: 12px;
+      border-radius: 4px;
+      background: rgba(181, 131, 90, 0.13);
+      border: 1px solid rgba(181, 131, 90, 0.42);
+      flex-shrink: 0;
+    }
+
+    /* ── ⑥⑦⑧ 设计决策：图 + 说明 ── */
+    .wm-case { margin-top: 48px; }
+    .wm-case + .wm-case {
+      margin-top: 72px;
+      padding-top: 72px;
+      border-top: 0.5px solid var(--border);
+    }
+    .wm-case-head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+    .wm-case-num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      color: var(--wm-brown);
+    }
+    .wm-case-title {
+      font-size: clamp(21px, 2.4vw, 27px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .wm-case-lead {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 0 32px;
+    }
+    .wm-case-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 56px;
+      align-items: start;
+    }
+    .wm-shots {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .wm-shots--single { grid-template-columns: minmax(0, 1fr); }
+    .wm-shot {
+      aspect-ratio: 390 / 844;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .wm-shot--tall { aspect-ratio: 390 / 1180; }
+    .wm-shot img,
+    .wm-shot video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .wm-points {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      padding-top: 4px;
+    }
+    .wm-point-title {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+    .wm-point-title::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--wm-brown);
+      vertical-align: middle;
+      margin-right: 9px;
+      transform: translateY(-1px);
+    }
+    .wm-point-desc {
+      display: block;
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--muted);
+      padding-left: 14px;
+    }
+
+    /* ── ⑨ 大师色彩系统 ── */
+    .wm-masters {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .wm-master-swatch {
+      height: 108px;
+      border-radius: 14px;
+      margin-bottom: 14px;
+    }
+    .wm-master-role {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .wm-master-hex {
+      display: block;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .wm-master-desc {
+      display: block;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* ── ⑩ 成果 ── */
+    .wm-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 44px;
+    }
+    .wm-metric {
+      padding: 30px 26px;
+      border-radius: 20px;
+      background: rgba(181, 131, 90, 0.05);
+      border: 1px solid rgba(181, 131, 90, 0.16);
+    }
+    .wm-metric-num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: clamp(30px, 3.6vw, 44px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--wm-brown);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .wm-metric-label {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    .wm-metric-note {
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--muted);
+      opacity: 0.75;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Tablet ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .pd-section { padding: 72px 0; }
+      .pd-meta-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 32px;
+        padding: 28px 30px;
+      }
+      .wm-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      /* 换行后横向箭头会指向空处，第 3 个隐藏 */
+      .wm-step:nth-child(3)::after { content: none; }
+      .wm-case-body { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+      .wm-shots { max-width: 520px; }
+      .wm-masters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    /* ── Phone ──────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .pd-section { padding: 60px 0; }
+      .pd-hero-info { padding-top: 36px; }
+      .pd-body, .pd-overview-text { margin-bottom: 36px; }
+      .pd-meta-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 26px 20px;
+        padding: 24px;
+      }
+      .pd-meta-value { overflow-wrap: anywhere; }
+
+      /* 问题卡片：三列并排后正文只剩几十像素，改成横向长条上下堆 */
+      .wm-problems { grid-template-columns: minmax(0, 1fr); }
+      .wm-problem-card {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: baseline;
+        column-gap: 16px;
+        row-gap: 10px;
+        padding: 26px 24px;
+      }
+      .wm-problem-num { grid-column: 1; }
+      .wm-problem-title { grid-column: 2; }
+      .wm-problem-desc { grid-column: 1 / -1; }
+
+      /* 链路：竖排，箭头跟着转到下方 */
+      .wm-flow { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+      .wm-step::after,
+      .wm-step:nth-child(3)::after {
+        content: '↓';
+        top: auto;
+        bottom: -12px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .wm-step:last-child::after { content: none; }
+
+      .wm-case + .wm-case { margin-top: 52px; padding-top: 52px; }
+      .wm-shots { max-width: none; }
+      .wm-masters { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+      .wm-master-swatch { height: 84px; }
+      .wm-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .wm-metrics { grid-template-columns: minmax(0, 1fr); }
+      .wm-shots { grid-template-columns: minmax(0, 1fr); }
+    }
+  </style>
+</head>
+<body class="theme-gradient has-mobile-nav" data-blob-color="#E8D3B4" data-blob-opacity="0.30">
+<canvas id="dot-canvas"></canvas>
+<div class="page-wrap">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-logo-group">
+        <span class="nav-logo">Ash_Studio</span>
+        <span class="nav-available">
+          <span class="nav-available-dot"></span>
+          <span data-i18n="nav_available">接受项目合作</span>
+        </span>
+      </div>
+      <ul class="nav-links" id="site-nav-menu">
+        <li><a href="index.html" class="active" data-i18n="nav_ui">UI设计</a></li>
+        <li><a href="graphic.html" data-i18n="nav_graphic">平面设计</a></li>
+        <li><a href="dev.html" data-i18n="nav_dev">独立开发</a></li>
+        <li><a href="photography.html" data-i18n="nav_photo">摄影</a></li>
+        <li class="nav-lang-item"><button id="lang-toggle" class="nav-lang-toggle" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;color:inherit;">EN/中</button></li>
+        <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">联系我</a></li>
+      </ul>
+      <button class="nav-lang-toggle nav-lang-toggle--mobile" type="button" onclick="setLanguage(currentLang === 'zh' ? 'en' : 'zh')">EN/中</button>
+      <button class="nav-menu-toggle" type="button" aria-controls="site-nav-menu" aria-expanded="false" aria-label="打开导航"><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ① HERO -->
+  <section class="pd-hero">
+    <a class="project-category-back" href="index.html"><span aria-hidden="true">←</span><span data-i18n="nav_ui">UIUX设计</span></a>
+    <div class="pd-hero-img">
+      <!-- TODO 换成 images/wisdom-hero.jpg（1920×854） -->
+      <div class="ph">顶图占位<br />images/wisdom-hero.jpg · 1920 × 854</div>
+    </div>
+    <div class="container">
+      <div class="pd-hero-info">
+        <p class="pd-meta">2025 &nbsp;—&nbsp; UIUX · 喜马拉雅解忧小店</p>
+        <h1 class="pd-title" data-i18n-zh="智慧大师" data-i18n-en="Wisdom Master">智慧大师</h1>
+        <p class="pd-tagline" data-i18n-zh="喜马拉雅解忧小店的 AI 情绪咨询产品——挑一位大师说出烦恼，得到一份能读、能存、能分享的深度解忧报告，并在情绪被接住之后自然完成会员转化。" data-i18n-en="An AI emotional-counselling product inside Ximalaya's Worry-Relief Shop—pick a master, tell them what's bothering you, and receive a report worth reading, keeping and sharing, with membership offered only once you've actually been helped.">喜马拉雅解忧小店的 AI 情绪咨询产品——挑一位大师说出烦恼，得到一份能读、能存、能分享的深度解忧报告，并在情绪被接住之后自然完成会员转化。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② OVERVIEW -->
+  <section class="pd-section">
+    <div class="container">
+      <div class="pd-overview">
+        <p class="pd-overview-text" data-i18n-zh="智慧大师是喜马拉雅解忧小店推出的 AI 问答产品。用户从五位性格鲜明的大师中挑一位，写下当下的烦恼，AI 会生成一份带诊断结论与多维剖析的解忧报告。我负责其中的对话页、报告页与会员转化三个环节——也就是从「愿意开口」到「读完报告」再到「愿意付费」的完整体验链路。" data-i18n-en="Wisdom Master is an AI Q&amp;A product in Ximalaya's Worry-Relief Shop. Users choose one of five distinctly characterised masters, write down what's troubling them, and receive an AI-generated report with a diagnosis and a multi-layered breakdown. I designed three of its stages—the conversation page, the report, and the membership conversion—covering the full arc from being willing to speak, to finishing the report, to being willing to pay.">智慧大师是喜马拉雅解忧小店推出的 AI 问答产品。用户从五位性格鲜明的大师中挑一位，写下当下的烦恼，AI 会生成一份带诊断结论与多维剖析的解忧报告。我负责其中的对话页、报告页与会员转化三个环节——也就是从「愿意开口」到「读完报告」再到「愿意付费」的完整体验链路。</p>
+        <div class="pd-meta-grid">
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="我负责" data-i18n-en="Role">我负责</span>
+            <span class="pd-meta-value" data-i18n-zh="对话页 / 报告页 / 会员转化" data-i18n-en="Conversation / Report / Conversion">对话页 / 报告页 / 会员转化</span>
+          </div>
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="项目类型" data-i18n-en="Type">项目类型</span>
+            <span class="pd-meta-value" data-i18n-zh="商业项目 · 喜马拉雅解忧小店" data-i18n-en="Commercial · Ximalaya">商业项目 · 喜马拉雅解忧小店</span>
+          </div>
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="协作" data-i18n-en="Collaboration">协作</span>
+            <span class="pd-meta-value" data-i18n-zh="产品 / 运营 / 算法 / 插画" data-i18n-en="Product / Operations / AI / Illustration">产品 / 运营 / 算法 / 插画</span>
+          </div>
+          <div class="pd-meta-item">
+            <span class="pd-meta-label" data-i18n-zh="工具" data-i18n-en="Tools">工具</span>
+            <span class="pd-meta-value">MasterGo / Figma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ PROBLEM -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Problem</span>
+      <h2 class="pd-section-title" data-i18n-zh="设计要解决的问题" data-i18n-en="Problems to Solve">设计要解决的问题</h2>
+      <p class="pd-body" data-i18n-zh="AI 情绪咨询看似只是「输入问题、输出答案」，但真正难的是一头一尾：用户肯不肯开口，以及读完之后愿不愿意留下来。" data-i18n-en="An AI counselling flow looks like nothing more than input and output. The hard parts sit at either end: getting people to speak at all, and giving them a reason to stay once they've finished reading.">AI 情绪咨询看似只是「输入问题、输出答案」，但真正难的是一头一尾：用户肯不肯开口，以及读完之后愿不愿意留下来。</p>
+      <div class="wm-problems">
+        <div class="wm-problem-card">
+          <span class="wm-problem-num">01</span>
+          <span class="wm-problem-title" data-i18n-zh="开口门槛高" data-i18n-en="Hard to Start">开口门槛高</span>
+          <span class="wm-problem-desc" data-i18n-zh="面对一个空白输入框，多数人不知道从哪句说起，也担心自己的烦恼「不值得被问」。第一句话说不出来，后面的体验就无从发生。" data-i18n-en="Faced with an empty text box, most people don't know where to begin—and quietly worry their problem isn't worth asking about. If the first sentence never gets written, nothing else in the flow happens.">面对一个空白输入框，多数人不知道从哪句说起，也担心自己的烦恼「不值得被问」。第一句话说不出来，后面的体验就无从发生。</span>
+        </div>
+        <div class="wm-problem-card">
+          <span class="wm-problem-num">02</span>
+          <span class="wm-problem-title" data-i18n-zh="结果轻飘" data-i18n-en="Weightless Output">结果轻飘</span>
+          <span class="wm-problem-desc" data-i18n-zh="如果 AI 只回一段安慰性文字，用户读完即走——既感受不到专业度，也留不下任何可回味、可保存的东西。" data-i18n-en="If the AI returns nothing but a paragraph of comfort, users read it and leave. It reads as neither expert nor memorable, and leaves nothing worth keeping.">如果 AI 只回一段安慰性文字，用户读完即走——既感受不到专业度，也留不下任何可回味、可保存的东西。</span>
+        </div>
+        <div class="wm-problem-card">
+          <span class="wm-problem-num">03</span>
+          <span class="wm-problem-title" data-i18n-zh="转化生硬" data-i18n-en="Jarring Upsell">转化生硬</span>
+          <span class="wm-problem-desc" data-i18n-zh="付费点如果插在情绪最脆弱的时刻，用户会觉得被冒犯，反而毁掉刚建立起来的信任。转化必须发生在价值兑现之后。" data-i18n-en="A paywall placed at the most vulnerable moment reads as opportunism and destroys the trust just built. Conversion has to come after the value has actually landed.">付费点如果插在情绪最脆弱的时刻，用户会觉得被冒犯，反而毁掉刚建立起来的信任。转化必须发生在价值兑现之后。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ GOAL -->
+  <section class="pd-section pd-section--goal">
+    <div class="container">
+      <div class="pd-goal">
+        <span class="pd-goal-label">Goal</span>
+        <p class="pd-goal-text" data-i18n-zh="把一次 AI 问答做成有仪式感的完整体验：用人格化的大师降低开口门槛，用结构化的报告承接情绪重量，再在用户真正获得价值之后，自然地引出会员权益。" data-i18n-en="Turn a single AI exchange into a complete, ceremonial experience: lower the barrier to speaking with characterised masters, carry the emotional weight with a structured report, then introduce membership only once real value has been delivered.">把一次 AI 问答做成有仪式感的完整体验：用人格化的大师降低开口门槛，用结构化的报告承接情绪重量，再在用户真正获得价值之后，自然地引出会员权益。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ FLOW -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Flow</span>
+      <h2 class="pd-section-title" data-i18n-zh="产品链路" data-i18n-en="Product Flow">产品链路</h2>
+      <p class="pd-body" data-i18n-zh="用户从喜马拉雅首页进入解忧小店活动页，选择大师、写下烦恼，等待 AI 生成，最后展开报告并进入会员或内容转化。整条链路六步，我负责其中后三步的设计。" data-i18n-en="Users arrive at the Worry-Relief Shop from the Ximalaya home feed, choose a master, write their problem, wait for generation, then open the report and move into membership or content conversion. Six steps in all; I designed the last three.">用户从喜马拉雅首页进入解忧小店活动页，选择大师、写下烦恼，等待 AI 生成，最后展开报告并进入会员或内容转化。整条链路六步，我负责其中后三步的设计。</p>
+      <div class="wm-flow">
+        <div class="wm-step">
+          <span class="wm-step-num">01</span>
+          <span class="wm-step-title" data-i18n-zh="首页分发" data-i18n-en="Home Feed">首页分发</span>
+          <span class="wm-step-desc" data-i18n-zh="喜马拉雅首页资源位进入解忧小店" data-i18n-en="Entry from the Ximalaya home feed">喜马拉雅首页资源位进入解忧小店</span>
+        </div>
+        <div class="wm-step">
+          <span class="wm-step-num">02</span>
+          <span class="wm-step-title" data-i18n-zh="活动页" data-i18n-en="Landing">活动页</span>
+          <span class="wm-step-desc" data-i18n-zh="择一名师，投石问路" data-i18n-en="Choose a master to consult">择一名师，投石问路</span>
+        </div>
+        <div class="wm-step wm-step--mine">
+          <span class="wm-step-num">03</span>
+          <span class="wm-step-title" data-i18n-zh="对话页" data-i18n-en="Conversation">对话页</span>
+          <span class="wm-step-desc" data-i18n-zh="选大师、看擅长领域、写下烦恼" data-i18n-en="Pick a master, see their expertise, write the problem">选大师、看擅长领域、写下烦恼</span>
+        </div>
+        <div class="wm-step">
+          <span class="wm-step-num">04</span>
+          <span class="wm-step-title" data-i18n-zh="生成中" data-i18n-en="Generating">生成中</span>
+          <span class="wm-step-desc" data-i18n-zh="等待期预告将获得的三份内容" data-i18n-en="The wait previews what's coming">等待期预告将获得的三份内容</span>
+        </div>
+        <div class="wm-step wm-step--mine">
+          <span class="wm-step-num">05</span>
+          <span class="wm-step-title" data-i18n-zh="报告页" data-i18n-en="Report">报告页</span>
+          <span class="wm-step-desc" data-i18n-zh="寄语、诊断结论、基因图谱" data-i18n-en="Message, diagnosis, trait map">寄语、诊断结论、基因图谱</span>
+        </div>
+        <div class="wm-step wm-step--mine">
+          <span class="wm-step-num">06</span>
+          <span class="wm-step-title" data-i18n-zh="会员转化" data-i18n-en="Conversion">会员转化</span>
+          <span class="wm-step-desc" data-i18n-zh="权益卡、追问入口、内容订阅" data-i18n-en="Benefits, follow-up questions, subscription">权益卡、追问入口、内容订阅</span>
+        </div>
+      </div>
+      <p class="wm-flow-legend"><span class="wm-legend-chip"></span><span data-i18n-zh="标记部分为我负责的环节" data-i18n-en="Highlighted steps are the ones I designed">标记部分为我负责的环节</span></p>
+    </div>
+  </section>
+
+  <!-- ⑥⑦⑧ DESIGN -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Design</span>
+      <h2 class="pd-section-title" data-i18n-zh="我负责的三个环节" data-i18n-en="The Three Stages I Designed">我负责的三个环节</h2>
+
+      <!-- ⑥ 对话页 -->
+      <div class="wm-case">
+        <div class="wm-case-head">
+          <span class="wm-case-num">01</span>
+          <h3 class="wm-case-title" data-i18n-zh="对话页 · 让人愿意开口" data-i18n-en="Conversation · Making People Willing to Speak">对话页 · 让人愿意开口</h3>
+        </div>
+        <p class="wm-case-lead" data-i18n-zh="把「对着 AI 打字」变成「挑一个人说话」。五位大师各有性格与擅长领域，选择本身就是一次自我诊断——用户在挑大师的时候，已经开始定义自己的问题了。" data-i18n-en="Turn typing at an AI into talking to someone. Five masters, each with a personality and a specialism, so the act of choosing is already a small self-diagnosis—by picking a master, users have begun naming their own problem.">把「对着 AI 打字」变成「挑一个人说话」。五位大师各有性格与擅长领域，选择本身就是一次自我诊断——用户在挑大师的时候，已经开始定义自己的问题了。</p>
+        <div class="wm-case-body">
+          <div class="wm-shots">
+            <!-- TODO 换成 images/wisdom-chat-1.png -->
+            <div class="wm-shot ph">对话页 · 大师选择<br />images/wisdom-chat-1.png</div>
+            <!-- TODO 换成 images/wisdom-chat-2.png -->
+            <div class="wm-shot ph">对话页 · 推荐问法<br />images/wisdom-chat-2.png</div>
+          </div>
+          <div class="wm-points">
+            <div>
+              <span class="wm-point-title" data-i18n-zh="横向大师卡，选中即放大" data-i18n-en="A horizontal master rail, selected card enlarged">横向大师卡，选中即放大</span>
+              <span class="wm-point-desc" data-i18n-zh="五位大师横向排布，选中的一位放大居中并带上专属主题色。左右两侧半露的邻居暗示「还有别人可选」，降低选错的心理成本。" data-i18n-en="Five masters sit in a row; the selected one scales up, centres, and takes over the page's accent colour. Neighbours stay half-visible so switching never feels final.">五位大师横向排布，选中的一位放大居中并带上专属主题色。左右两侧半露的邻居暗示「还有别人可选」，降低选错的心理成本。</span>
+            </div>
+            <div>
+              <span class="wm-point-title" data-i18n-zh="用推荐问法替代空白输入框" data-i18n-en="Suggested questions instead of a blank field">用推荐问法替代空白输入框</span>
+              <span class="wm-point-desc" data-i18n-zh="输入框上方给出三条可直接点选的问法，把开放式写作变成选择题。想自己写的人照常输入，写不出来的人也有台阶下——这是整条链路上最关键的一次减负。" data-i18n-en="Three tappable prompts sit above the field, converting open-ended writing into multiple choice. Those who want to write still can; those who freeze have a way in. This is the single biggest friction removal in the flow.">输入框上方给出三条可直接点选的问法，把开放式写作变成选择题。想自己写的人照常输入，写不出来的人也有台阶下——这是整条链路上最关键的一次减负。</span>
+            </div>
+            <div>
+              <span class="wm-point-title" data-i18n-zh="擅长领域标签与匿名承诺" data-i18n-en="Expertise tags and an anonymity promise">擅长领域标签与匿名承诺</span>
+              <span class="wm-point-desc" data-i18n-zh="每位大师标注「我擅长解决」的两三个领域，帮用户快速判断找谁。输入框下方常驻「匿名提问 · 安心倾诉」，把隐私顾虑提前消解掉。" data-i18n-en="Each master lists two or three things they're good at, so users can tell at a glance who to approach. A persistent 'anonymous, safe to share' line under the field defuses privacy worries before they surface.">每位大师标注「我擅长解决」的两三个领域，帮用户快速判断找谁。输入框下方常驻「匿名提问 · 安心倾诉」，把隐私顾虑提前消解掉。</span>
+            </div>
+            <div>
+              <span class="wm-point-title" data-i18n-zh="他人提问作为社会证明" data-i18n-en="Other people's questions as social proof">他人提问作为社会证明</span>
+              <span class="wm-point-desc" data-i18n-zh="页面底部滚动展示他人正在咨询的问题。既证明产品有人在用，也在传递一个更要紧的信息：你的烦恼并不奇怪，别人也在问。" data-i18n-en="A live scroll of what others are asking sits at the bottom. It proves the product is in use, and carries a more important message: your problem isn't strange—other people are asking it too.">页面底部滚动展示他人正在咨询的问题。既证明产品有人在用，也在传递一个更要紧的信息：你的烦恼并不奇怪，别人也在问。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑦ 报告页 -->
+      <div class="wm-case">
+        <div class="wm-case-head">
+          <span class="wm-case-num">02</span>
+          <h3 class="wm-case-title" data-i18n-zh="报告页 · 让情绪有处安放" data-i18n-en="Report · Giving the Feeling Somewhere to Land">报告页 · 让情绪有处安放</h3>
+        </div>
+        <p class="wm-case-lead" data-i18n-zh="报告的任务不是「解决问题」，而是让用户觉得自己被认真对待了。先安抚，再命名，最后拆解——顺序反了，专业度就变成了冒犯。" data-i18n-en="The report's job isn't to solve the problem, it's to make the reader feel taken seriously. Soothe, then name, then break down—in any other order, expertise reads as condescension.">报告的任务不是「解决问题」，而是让用户觉得自己被认真对待了。先安抚，再命名，最后拆解——顺序反了，专业度就变成了冒犯。</p>
+        <div class="wm-case-body">
+          <div class="wm-shots">
+            <!-- TODO 换成 images/wisdom-report-1.png -->
+            <div class="wm-shot wm-shot--tall ph">报告页 · 寄语与诊断<br />images/wisdom-report-1.png</div>
+            <!-- TODO 换成 images/wisdom-report-2.png -->
+            <div class="wm-shot wm-shot--tall ph">报告页 · 基因图谱<br />images/wisdom-report-2.png</div>
+          </div>
+          <div class="wm-points">
+            <div>
+              <span class="wm-point-title" data-i18n-zh="开篇是寄语，不是结论" data-i18n-en="It opens with a message, not a verdict">开篇是寄语，不是结论</span>
+              <span class="wm-point-desc" data-i18n-zh="报告顶部是大师形象与一段手写体寄语，用对话气泡承载。用户刚倾诉完，最需要的是被接住而不是被分析，所以专业内容往后放一屏。" data-i18n-en="The top of the report is the master's portrait and a handwritten message in a speech bubble. Someone who has just confided needs to be received, not assessed—so the analysis waits one screen.">报告顶部是大师形象与一段手写体寄语，用对话气泡承载。用户刚倾诉完，最需要的是被接住而不是被分析，所以专业内容往后放一屏。</span>
+            </div>
+            <div>
+              <span class="wm-point-title" data-i18n-zh="给模糊的难受一个名字" data-i18n-en="Give the vague ache a name">给模糊的难受一个名字</span>
+              <span class="wm-point-desc" data-i18n-zh="诊断结果给出一个具体的「病名」，比如「职业倦怠综合征」，再补一句占比数据。把说不清的情绪变成可命名、可归类的问题，本身就是一种缓解。" data-i18n-en="The diagnosis lands on a concrete label—'occupational burnout syndrome'—followed by a prevalence figure. Turning an unnameable feeling into a named, categorised condition is itself a form of relief.">诊断结果给出一个具体的「病名」，比如「职业倦怠综合征」，再补一句占比数据。把说不清的情绪变成可命名、可归类的问题，本身就是一种缓解。</span>
+            </div>
+            <div>
+              <span class="wm-point-title" data-i18n-zh="基因图谱：六个层次的雷达图" data-i18n-en="Trait map: a six-axis radar">基因图谱：六个层次的雷达图</span>
+              <span class="wm-point-desc" data-i18n-zh="把状态拆成表象、认知、情绪、关系、灵性、系统六层，雷达图看整体形状，下方分数条看单项高低。这是报告「有厚度」的来源，也是最容易被截图分享的一屏。" data-i18n-en="State is split across six layers—surface, cognitive, emotional, relational, spiritual, systemic. The radar shows the overall shape; the bars below show each score. This is where the report earns its weight, and the screen most likely to be screenshotted.">把状态拆成表象、认知、情绪、关系、灵性、系统六层，雷达图看整体形状，下方分数条看单项高低。这是报告「有厚度」的来源，也是最容易被截图分享的一屏。</span>
+            </div>
+            <div>
+              <span class="wm-point-title" data-i18n-zh="留下可带走的东西" data-i18n-en="Leave something they can take away">留下可带走的东西</span>
+              <span class="wm-point-desc" data-i18n-zh="报告支持展开、保存与分享，并沉淀进「我的报告」。一次性的安慰会随手关掉，能回看的记录才有留存价值。" data-i18n-en="Reports expand, save and share, and collect in 'My Reports'. One-off comfort gets closed and forgotten; a record you can return to is what creates retention.">报告支持展开、保存与分享，并沉淀进「我的报告」。一次性的安慰会随手关掉，能回看的记录才有留存价值。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑧ 会员转化 -->
+      <div class="wm-case">
+        <div class="wm-case-head">
+          <span class="wm-case-num">03</span>
+          <h3 class="wm-case-title" data-i18n-zh="会员转化 · 在被理解之后" data-i18n-en="Conversion · After Being Understood">会员转化 · 在被理解之后</h3>
+        </div>
+        <p class="wm-case-lead" data-i18n-zh="转化点放在报告读完之后，而不是提问之前。用户先拿到完整价值，再决定要不要继续——这样付费是「我还想要更多」，而不是「不给钱就不给看」。" data-i18n-en="The conversion sits after the report, not before the question. Users receive the full value first, then decide whether to continue—so paying reads as wanting more, not as being held to ransom.">转化点放在报告读完之后，而不是提问之前。用户先拿到完整价值，再决定要不要继续——这样付费是「我还想要更多」，而不是「不给钱就不给看」。</p>
+        <div class="wm-case-body">
+          <div class="wm-shots">
+            <!-- TODO 换成 images/wisdom-vip-1.png -->
+            <div class="wm-shot ph">会员页 · 权益结构<br />images/wisdom-vip-1.png</div>
+            <!-- TODO 换成 images/wisdom-vip-2.png -->
+            <div class="wm-shot ph">报告尾 · 追问与满意度<br />images/wisdom-vip-2.png</div>
+          </div>
+          <div class="wm-points">
+            <div>
+              <span class="wm-point-title" data-i18n-zh="会员卡跟随大师主题色" data-i18n-en="The membership card inherits the master's colour">会员卡跟随大师主题色</span>
+              <span class="wm-point-desc" data-i18n-zh="同一套会员页，底色与强调色跟着用户选的大师走。付费页因此不像是被塞进来的广告，而像整段对话的延续。" data-i18n-en="One membership layout, tinted by whichever master the user chose. The paywall stops reading as an inserted ad and becomes a continuation of the same conversation.">同一套会员页，底色与强调色跟着用户选的大师走。付费页因此不像是被塞进来的广告，而像整段对话的延续。</span>
+            </div>
+            <div>
+              <span class="wm-point-title" data-i18n-zh="权益分两层：内容 + 服务" data-i18n-en="Two tiers of benefit: content and service">权益分两层：内容 + 服务</span>
+              <span class="wm-point-desc" data-i18n-zh="上层是「解忧智囊团」——成长周刊加每月两次专属咨询，对应刚被诊断出的需求；下层是基础 VIP 权益。先讲跟当下情绪相关的，再讲通用的。" data-i18n-en="The upper tier is the advisory bundle—a growth weekly plus two personal consultations a month, mapped to the need just diagnosed. The generic VIP benefits sit below it. Relevance first, breadth second.">上层是「解忧智囊团」——成长周刊加每月两次专属咨询，对应刚被诊断出的需求；下层是基础 VIP 权益。先讲跟当下情绪相关的，再讲通用的。</span>
+            </div>
+            <div>
+              <span class="wm-point-title" data-i18n-zh="首月低价拆掉决策门槛" data-i18n-en="A low first month removes the decision">首月低价拆掉决策门槛</span>
+              <span class="wm-point-desc" data-i18n-zh="首月 ¥6 连续包月，原价划线对照，续费规则与协议在按钮下方明示。情绪场景下的付费决策要轻，但不能靠含糊其辞换转化。" data-i18n-en="Six yuan for the first month with the original price struck through, and the renewal terms stated plainly beneath the button. Payment decisions in an emotional context should be light—but not made easy by being vague.">首月 ¥6 连续包月，原价划线对照，续费规则与协议在按钮下方明示。情绪场景下的付费决策要轻，但不能靠含糊其辞换转化。</span>
+            </div>
+            <div>
+              <span class="wm-point-title" data-i18n-zh="付费不是唯一出口" data-i18n-en="Paying isn't the only exit">付费不是唯一出口</span>
+              <span class="wm-point-desc" data-i18n-zh="报告尾部同时给出追问入口与满意度评价。不想付费的人可以继续追问、可以给反馈，体验是闭合的——这也是后续优化最直接的数据来源。" data-i18n-en="The end of the report also offers follow-up questions and a satisfaction rating. Users who don't convert can still keep asking and still be heard, so the experience closes properly—and it's the most direct source of data for the next iteration.">报告尾部同时给出追问入口与满意度评价。不想付费的人可以继续追问、可以给反馈，体验是闭合的——这也是后续优化最直接的数据来源。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ⑨ DESIGN SYSTEM -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Design System</span>
+      <h2 class="pd-section-title" data-i18n-zh="大师色彩系统" data-i18n-en="Master Colour System">大师色彩系统</h2>
+      <p class="pd-body" data-i18n-zh="每位大师对应一个人生领域和一支主题色。用户选定大师后，从对话页的标签、报告页的顶部区块到会员卡的底色，整条链路都换成这支颜色——让「我在跟谁说话」这件事从头到尾都成立。" data-i18n-en="Each master owns a life domain and a colour. Once chosen, that colour carries through the whole flow—the tags on the conversation page, the report header, the membership card—so the sense of who you're talking to holds from beginning to end.">每位大师对应一个人生领域和一支主题色。用户选定大师后，从对话页的标签、报告页的顶部区块到会员卡的底色，整条链路都换成这支颜色——让「我在跟谁说话」这件事从头到尾都成立。</p>
+      <div class="wm-masters">
+        <div>
+          <div class="wm-master-swatch" style="background:#D3A573"></div>
+          <span class="wm-master-role" data-i18n-zh="家庭智慧师" data-i18n-en="Family Sage">家庭智慧师</span>
+          <span class="wm-master-hex">#D3A573</span>
+          <span class="wm-master-desc" data-i18n-zh="亲子、婚姻与代际关系" data-i18n-en="Parenting, marriage, family ties">亲子、婚姻与代际关系</span>
+        </div>
+        <div>
+          <div class="wm-master-swatch" style="background:#9B83AF"></div>
+          <span class="wm-master-role" data-i18n-zh="内心守护师" data-i18n-en="Inner Guardian">内心守护师</span>
+          <span class="wm-master-hex">#9B83AF</span>
+          <span class="wm-master-desc" data-i18n-zh="情绪内耗与自我接纳" data-i18n-en="Rumination and self-acceptance">情绪内耗与自我接纳</span>
+        </div>
+        <div>
+          <div class="wm-master-swatch" style="background:#7D95D0"></div>
+          <span class="wm-master-role" data-i18n-zh="职场破局师" data-i18n-en="Career Strategist">职场破局师</span>
+          <span class="wm-master-hex">#7D95D0</span>
+          <span class="wm-master-desc" data-i18n-zh="职业倦怠与发展瓶颈" data-i18n-en="Burnout and career plateaus">职业倦怠与发展瓶颈</span>
+        </div>
+        <div>
+          <div class="wm-master-swatch" style="background:#83AF8A"></div>
+          <span class="wm-master-role" data-i18n-zh="学习解压师" data-i18n-en="Study Coach">学习解压师</span>
+          <span class="wm-master-hex">#83AF8A</span>
+          <span class="wm-master-desc" data-i18n-zh="学业压力与专注力" data-i18n-en="Academic pressure and focus">学业压力与专注力</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑩ OUTCOME -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Outcome</span>
+      <h2 class="pd-section-title" data-i18n-zh="项目成果" data-i18n-en="Outcome">项目成果</h2>
+      <p class="pd-body" data-i18n-zh="待补充：上线范围、时间与实际表现。" data-i18n-en="To be filled in: rollout scope, timing and measured results.">待补充：上线范围、时间与实际表现。</p>
+      <div class="wm-metrics">
+        <div class="wm-metric">
+          <div class="wm-metric-num">—</div>
+          <div class="wm-metric-label" data-i18n-zh="提问完成率" data-i18n-en="Question completion rate">提问完成率</div>
+        </div>
+        <div class="wm-metric">
+          <div class="wm-metric-num">—</div>
+          <div class="wm-metric-label" data-i18n-zh="报告读完率" data-i18n-en="Report read-through rate">报告读完率</div>
+        </div>
+        <div class="wm-metric">
+          <div class="wm-metric-num">—</div>
+          <div class="wm-metric-label" data-i18n-zh="会员转化率" data-i18n-en="Membership conversion">会员转化率</div>
+        </div>
+      </div>
+      <p class="wm-metric-note" data-i18n-zh="* 数字待填。没有真实数据前先留空，不写占位数值。" data-i18n-en="* Figures pending. Left blank rather than filled with placeholder numbers.">* 数字待填。没有真实数据前先留空，不写占位数值。</p>
+    </div>
+  </section>
+
+  <nav class="project-pagination" aria-label="项目导航">
+    <a href="project-member-level.html" class="project-pagination__side project-pagination__side--prev" data-i18n="project_prev">← 上一个项目</a>
+    <a href="index.html" class="project-pagination__home" data-i18n="project_back_ui">返回 UIUX 设计 ↗</a>
+    <a href="project-snapfit.html" class="project-pagination__side project-pagination__side--next" data-i18n="project_next">下一个项目 →</a>
+  </nav>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Ash_Studio</div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <ul>
+            <li><a href="mailto:wangaixue2002@outlook.com" data-i18n="footer_email">电子邮件</a></li>
+            <li><a href="#" data-i18n="footer_resume">个人简历</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <ul>
+            <li><a href="index.html" data-i18n="footer_ui">UI设计</a></li>
+            <li><a href="graphic.html" data-i18n="footer_graphic">平面设计</a></li>
+            <li><a href="dev.html" data-i18n="footer_dev">独立开发</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <ul>
+            <li><a href="photography.html" data-i18n="footer_photo">摄影</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-copy" data-i18n="footer_copy">© 2026 ASH</div>
+    </div>
+  </footer>
+
+</div>
+<script src="js/dot-grid.js?v=6"></script>
+<script src="js/blob-bg.js"></script>
+<script src="js/smooth-scroll.js?v=7"></script>
+<script src="js/mobile-nav.js?v=1"></script>
+<script src="js/language.js?v=project-nav1"></script>
+<script src="js/pixel-cat.js?v=18"></script>
+</body>
+</html>
