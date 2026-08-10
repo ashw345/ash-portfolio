@@ -12,9 +12,26 @@
     :root {
       --accent: #B5835A;
       --wm-brown: #B5835A;
+      --wm-ink: #6B4A2C;      /* 深一档的褐，给标题用，比正文黑更贴主题 */
       --wm-cream: #FAF3EA;
+
+      /* 圆角只有三档，按块面大小选，不再随手写 16/18/20 */
+      --r-sm: 12px;
+      --r-md: 18px;
+      --r-lg: 26px;
+
+      /* 卡片分三层：底噪只有底色、内容只有描边、重点两者都有。
+         之前 23 个卡片里 17 个配方相同，整页读起来是一张均质的米色织物。 */
+      --card-quiet: rgba(181, 131, 90, 0.055);
+      --card-line: rgba(181, 131, 90, 0.20);
+      --card-loud-bg: rgba(181, 131, 90, 0.11);
+      --card-loud-line: rgba(181, 131, 90, 0.42);
     }
     .project-pagination__home:hover { color: #B5835A; }
+
+    /* section 节奏：铺垫收紧、核心放宽，让重点自己站出来 */
+    .pd-section { padding: 84px 0; }
+    .pd-section--feature { padding: 132px 0; }
 
     /* ── 占位框（浅色版，等设计稿切图替换） ── */
     .ph {
@@ -23,13 +40,14 @@
       justify-content: center;
       text-align: center;
       padding: 16px;
-      color: rgba(17, 17, 17, 0.32);
+      /* 全页 7 个占位框，1.5px 虚线在浅底上太吵，压细压淡 */
+      color: rgba(107, 74, 44, 0.42);
       font-size: 12px;
       line-height: 1.7;
       letter-spacing: 0.06em;
-      background: rgba(181, 131, 90, 0.05);
-      border: 1.5px dashed rgba(181, 131, 90, 0.28);
-      border-radius: 16px;
+      background: rgba(181, 131, 90, 0.04);
+      border: 1px dashed rgba(181, 131, 90, 0.22);
+      border-radius: var(--r-md);
     }
     /* 公共样式给顶图垫的是 #141414，浅色页面上会变成一块黑，先换成米色 */
     .pd-hero-img {
@@ -53,27 +71,34 @@
       gap: 20px;
       margin-top: 48px;
     }
+    /* 同为内容档，跟 context-card 一致：只描边 */
     .wm-problem-card {
-      padding: 32px 28px;
-      background: rgba(181, 131, 90, 0.05);
-      border: 1px solid rgba(181, 131, 90, 0.16);
-      border-radius: 20px;
+      padding: 34px 30px;
+      background: transparent;
+      border: 1px solid var(--card-line);
+      border-radius: var(--r-md);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 13px;
     }
     .wm-problem-num {
       font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 600;
       letter-spacing: -0.02em;
       color: var(--wm-brown);
       line-height: 1;
+      opacity: 0.75;
     }
-    .wm-problem-title { font-size: 17px; font-weight: 600; }
+    .wm-problem-title {
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--wm-ink);
+    }
     .wm-problem-desc {
-      font-size: 15px;
-      line-height: 1.75;
+      font-size: 14.5px;
+      line-height: 1.88;
       color: var(--muted);
     }
 
@@ -84,16 +109,17 @@
       gap: 20px;
       margin-top: 40px;
     }
+    /* 内容档：只描边不填色，跟下面「只填色不描边」的底噪档区分开 */
     .wm-context-card {
-      padding: 28px 26px;
-      border-radius: 18px;
-      background: rgba(181, 131, 90, 0.05);
-      border: 1px solid rgba(181, 131, 90, 0.16);
+      padding: 30px 28px;
+      border-radius: var(--r-md);
+      background: transparent;
+      border: 1px solid var(--card-line);
     }
-    /* 最终采用的方向：加重描边与底色，跟被排除的方向拉开 */
+    /* 最终采用的方向：填色 + 重描边，三档里唯一两者都有的 */
     .wm-context-card--picked {
-      background: rgba(181, 131, 90, 0.13);
-      border-color: rgba(181, 131, 90, 0.45);
+      background: var(--card-loud-bg);
+      border-color: var(--card-loud-line);
     }
     .wm-context-label {
       display: block;
@@ -105,14 +131,16 @@
     }
     .wm-context-title {
       display: block;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
-      margin-bottom: 9px;
+      letter-spacing: -0.01em;
+      color: var(--wm-ink);
+      margin-bottom: 11px;
     }
     .wm-context-text {
       display: block;
-      font-size: 14px;
-      line-height: 1.85;
+      font-size: 14.5px;
+      line-height: 1.88;
       color: var(--muted);
     }
     .wm-verdict {
@@ -139,12 +167,14 @@
       margin-top: 48px;
       counter-reset: wmstep;
     }
+    /* 底噪档：只填色不描边。六个格子本来就靠间距分开，
+       再各画一圈边框只会把链路读成表格。 */
     .wm-step {
       position: relative;
       padding: 22px 18px 24px;
-      border-radius: 16px;
-      background: rgba(181, 131, 90, 0.05);
-      border: 1px solid rgba(181, 131, 90, 0.16);
+      border-radius: var(--r-sm);
+      background: var(--card-quiet);
+      border: 1px solid transparent;
     }
     /* 箭头：把六步串成一条链，最后一步不画 */
     .wm-step::after {
@@ -178,11 +208,12 @@
       line-height: 1.65;
       color: var(--muted);
     }
-    /* 我负责的三步高亮，一眼看出职责边界 */
+    /* 我负责的步骤高亮：底噪档里唯一带描边的，一眼看出职责边界 */
     .wm-step--mine {
-      background: rgba(181, 131, 90, 0.13);
-      border-color: rgba(181, 131, 90, 0.42);
+      background: var(--card-loud-bg);
+      border-color: var(--card-loud-line);
     }
+    .wm-step--mine .wm-step-title { color: var(--wm-ink); }
     .wm-flow-legend {
       display: flex;
       align-items: center;
@@ -246,7 +277,7 @@
     .wm-shots--single { grid-template-columns: minmax(0, 1fr); }
     .wm-shot {
       aspect-ratio: 390 / 844;
-      border-radius: 18px;
+      border-radius: var(--r-lg);
       overflow: hidden;
     }
     .wm-shot--tall { aspect-ratio: 390 / 1180; }
@@ -260,14 +291,18 @@
     .wm-points {
       display: flex;
       flex-direction: column;
-      gap: 26px;
+      gap: 30px;
       padding-top: 4px;
     }
+    /* 原本标题 15/600、正文 14/400，只差 1px，层级全靠字重硬撑。
+       拉到 17 / 14.5 并换色，三个维度一起区分。 */
     .wm-point-title {
       display: block;
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 600;
-      margin-bottom: 7px;
+      letter-spacing: -0.01em;
+      color: var(--wm-ink);
+      margin-bottom: 9px;
     }
     .wm-point-title::before {
       content: '';
@@ -282,8 +317,8 @@
     }
     .wm-point-desc {
       display: block;
-      font-size: 14px;
-      line-height: 1.85;
+      font-size: 14.5px;
+      line-height: 1.9;
       color: var(--muted);
       padding-left: 14px;
     }
@@ -296,15 +331,17 @@
       margin-top: 48px;
     }
     .wm-master-swatch {
-      height: 108px;
-      border-radius: 14px;
-      margin-bottom: 14px;
+      height: 124px;
+      border-radius: var(--r-md);
+      margin-bottom: 16px;
     }
     .wm-master-role {
       display: block;
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 600;
-      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      color: var(--wm-ink);
+      margin-bottom: 5px;
     }
     .wm-master-hex {
       display: block;
@@ -328,10 +365,9 @@
       margin-top: 44px;
     }
     .wm-metric {
-      padding: 30px 26px;
-      border-radius: 20px;
-      background: rgba(181, 131, 90, 0.05);
-      border: 1px solid rgba(181, 131, 90, 0.16);
+      padding: 32px 28px;
+      border-radius: var(--r-md);
+      background: var(--card-quiet);
     }
     .wm-metric-num {
       font-family: 'JetBrains Mono', ui-monospace, monospace;
@@ -376,6 +412,8 @@
     /* ── Phone ──────────────────────────────────────────── */
     @media (max-width: 700px) {
       .pd-section { padding: 60px 0; }
+      /* 手机上也保留轻重差，否则九个 section 又变成一个节奏 */
+      .pd-section--feature { padding: 84px 0; }
       .pd-hero-info { padding-top: 36px; }
       .pd-body, .pd-overview-text { margin-bottom: 36px; }
       .pd-meta-grid {
@@ -652,7 +690,7 @@
   </section>
 
   <!-- ⑧ DESIGN -->
-  <section class="pd-section">
+  <section class="pd-section pd-section--feature">
     <div class="container">
       <span class="pd-section-label">Design</span>
       <h2 class="pd-section-title" data-i18n-zh="我负责的两个环节" data-i18n-en="The Two Stages I Owned">我负责的两个环节</h2>
