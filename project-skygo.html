@@ -105,7 +105,7 @@
       color: rgba(255, 255, 255, 0.6);
     }
 
-    /* ── ④ 闭环：图 + 三条措施 ── */
+    /* ── ⑤ 闭环：图 + 三条措施 ── */
     .sg-loop {
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
@@ -140,42 +140,248 @@
       padding-left: 16px;
     }
 
-    /* ── ⑤ 我负责的 7 步（页面重头戏） ── */
-    .sg-steps {
+    /* ── ④ 用户画像 ── */
+    .sg-persona {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 24px 20px;
-      margin-top: 48px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 44px;
     }
-    .sg-step-shot { margin-bottom: 16px; }
-    .sg-step-num {
+    .sg-persona-card {
+      padding: 32px 30px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+    }
+    .sg-persona-label {
       display: block;
       font-family: 'JetBrains Mono', ui-monospace, monospace;
       font-size: 11px;
       letter-spacing: 0.16em;
+      text-transform: uppercase;
       color: var(--sg-blue-soft);
-      margin-bottom: 7px;
+      margin-bottom: 16px;
     }
-    .sg-step-title {
+    .sg-persona-lead {
       display: block;
       font-size: 16px;
+      line-height: 1.75;
+      color: #fff;
+      margin-bottom: 22px;
+    }
+    .sg-trait { display: block; margin-bottom: 18px; }
+    .sg-trait:last-child { margin-bottom: 0; }
+    .sg-trait-name {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sg-blue-soft);
+      margin-bottom: 5px;
+    }
+    .sg-trait-desc {
+      display: block;
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ── ⑥ 两条创作路径 ── */
+    .sg-paths {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 44px;
+    }
+    .sg-path {
+      padding: 32px 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .sg-path-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sg-blue-soft);
+      background: rgba(59, 125, 246, 0.14);
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .sg-path-title {
+      display: block;
+      font-size: 18px;
       font-weight: 600;
       color: #fff;
       margin-bottom: 7px;
     }
-    .sg-step-desc {
+    .sg-path-note {
       display: block;
       font-size: 13.5px;
-      line-height: 1.78;
-      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 22px;
+    }
+    .sg-path-steps { list-style: none; counter-reset: pstep; }
+    .sg-path-steps li {
+      counter-increment: pstep;
+      position: relative;
+      padding-left: 32px;
+      padding-bottom: 16px;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.72);
+    }
+    .sg-path-steps li::before {
+      content: counter(pstep);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(59, 125, 246, 0.18);
+      color: var(--sg-blue-soft);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* 竖线把步骤串成一条路径 */
+    .sg-path-steps li::after {
+      content: '';
+      position: absolute;
+      left: 9.5px;
+      top: 23px;
+      bottom: 3px;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.10);
+    }
+    .sg-path-steps li:last-child { padding-bottom: 0; }
+    .sg-path-steps li:last-child::after { display: none; }
+
+    /* 咬合点：两条路径靠这里合成一个大环 */
+    .sg-junction {
+      margin-top: 20px;
+      padding: 28px 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(59, 125, 246, 0.34);
+      background: rgba(59, 125, 246, 0.07);
+    }
+    .sg-junction-label {
+      display: block;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sg-blue-soft);
+      margin-bottom: 12px;
+    }
+    .sg-junction-text {
+      display: block;
+      font-size: 15px;
+      line-height: 1.9;
+      color: rgba(255, 255, 255, 0.75);
     }
 
-    /* ── ⑥ 多端适配 ── */
+    /* ── 流程演示视频 + 横向章节条 ── */
+    .sg-video { margin-top: 52px; }
+    .sg-video-frame {
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0a0a0a;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+    .sg-video-frame video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .sg-video-frame .ph {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+    }
+    .sg-video-track {
+      position: relative;
+      height: 2px;
+      margin-top: 22px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 2px;
+    }
+    .sg-video-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      background: var(--sg-blue);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+    /* 负 margin 让圆点骑在轨道线上（轨道 2px，圆点 8px → -5px 居中） */
+    .sg-video-chapters {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      margin-top: -5px;
+      gap: 12px;
+    }
+    .sg-chapter {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.45);
+      transition: color 0.25s;
+      font: inherit;
+    }
+    .sg-chapter:hover { color: rgba(255, 255, 255, 0.78); }
+    .sg-chapter-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.28);
+      transition: background 0.25s, transform 0.25s;
+    }
+    .sg-chapter.is-active { color: #fff; }
+    .sg-chapter.is-active .sg-chapter-dot {
+      background: var(--sg-blue);
+      transform: scale(1.45);
+    }
+    .sg-chapter-time {
+      display: block;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      opacity: 0.75;
+      margin-bottom: 3px;
+    }
+    .sg-chapter-name {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    /* ── ⑦ 多端适配 ──
+       三张截图原始比例差很多（手机竖长、桌面横宽）。之前按比例分配列宽 +
+       底对齐，三块大小各异看着散。改成等宽等高的统一画框，截图在框内
+       居中 contain——留白换整齐，也不会把任何一张裁掉。 */
     .sg-devices {
       display: grid;
-      grid-template-columns: 1.1fr 1.6fr 1.9fr;
-      gap: 24px;
-      align-items: end;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
       margin-top: 44px;
     }
     .sg-device-card {
@@ -184,15 +390,25 @@
       gap: 14px;
     }
     .sg-device-frame {
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.10);
-      background: #0a0a0a;
+      background: rgba(255, 255, 255, 0.03);
     }
+    /* 全局 img 规则是 width/height 100% + cover，这里要逐条覆盖才能 contain */
     .sg-device-frame img {
       display: block;
-      width: 100%;
+      width: auto;
       height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 5px;
     }
     .sg-device-label {
       display: flex;
@@ -212,8 +428,13 @@
       white-space: nowrap;
     }
 
-    /* ── ⑦ 改版对比 ── */
+    /* ── ⑧ 改版对比 ── */
     .sg-compare { display: flex; flex-direction: column; gap: 64px; margin-top: 48px; }
+    /* 手机整宽占满一列时高达 700+px，一屏放不下，收到 80% 并居中 */
+    .sg-compare-row .ph--phone {
+      width: 80%;
+      margin-inline: auto;
+    }
     .sg-compare-row {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.1fr);
@@ -258,7 +479,7 @@
       margin-bottom: 8px;
     }
 
-    /* ── ⑧ 视觉规范 ── */
+    /* ── ⑨ 视觉规范 ── */
     .sg-visual {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -278,7 +499,7 @@
       color: rgba(255, 255, 255, 0.45);
     }
 
-    /* ── ⑨ 复盘与局限 ── */
+    /* ── ⑩ 复盘与局限 ── */
     .sg-retro {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -316,9 +537,14 @@
         padding: 28px 30px;
       }
       .sg-loop { grid-template-columns: minmax(0, 1fr); gap: 40px; }
-      .sg-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      /* 三张图的原始宽高比差太多（手机高瘦、桌面矮宽），挤在一行会互相顶变形，改竖排 */
-      .sg-devices { grid-template-columns: minmax(0, 1fr); align-items: stretch; gap: 32px; max-width: 520px; margin-left: auto; margin-right: auto; }
+      /* 章节标签横排挤不下，换成两排；一旦换行，圆点就不再骑在轨道上，
+         负 margin 要撤掉，否则第二排会莫名其妙上移 */
+      .sg-video-chapters {
+        grid-auto-flow: row;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px 12px;
+        margin-top: 18px;
+      }
       .sg-visual { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       /* 三栏挤不下「原图 / 新图 / 说明」，说明降到整行 */
       .sg-compare-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
@@ -352,17 +578,28 @@
       .sg-problem-title { grid-column: 2; }
       .sg-problem-desc { grid-column: 1 / -1; }
 
-      .sg-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
-      .sg-devices { max-width: none; gap: 24px; }
+      /* 三个画框并排后每个只剩两百出头，截图看不清，改单列铺满。
+         单列之后彼此不再对齐，统一画框就没意义了——固定比例反而把竖构图的
+         手机图压到不到 100px 宽。这里让画框跟着图走，三张各自铺满整行。 */
+      .sg-devices { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      .sg-device-frame { aspect-ratio: auto; padding: 12px; }
+      .sg-device-frame img { width: 100%; height: auto; max-height: none; }
+      .sg-persona { grid-template-columns: minmax(0, 1fr); }
+      .sg-paths { grid-template-columns: minmax(0, 1fr); }
+      .sg-video-chapters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .sg-compare { gap: 48px; }
       .sg-retro { grid-template-columns: minmax(0, 1fr); }
       .sg-visual { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 560px) {
-      .sg-steps { grid-template-columns: minmax(0, 1fr); }
       .sg-compare-row { grid-template-columns: minmax(0, 1fr); }
+      /* 单列后手机图不必再收窄 */
+      .sg-compare-row .ph--phone { width: 100%; }
       .sg-visual { grid-template-columns: minmax(0, 1fr); }
+      .sg-video-chapters { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+      .sg-path { padding: 26px 22px; }
+      .sg-junction { padding: 24px 22px; }
     }
   </style>
 </head>
@@ -466,7 +703,46 @@
     </div>
   </section>
 
-  <!-- ④ 解决方案：闭环 -->
+  <!-- ④ 用户画像 -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Persona</span>
+      <h2 class="pd-section-title" data-i18n-zh="我们在为谁设计" data-i18n-en="Who We Designed For">我们在为谁设计</h2>
+      <p class="pd-body" data-i18n-zh="目标用户锁定 Z 世代——1990 年代中后期到 2010 年代初出生的这一代人。他们不是把「看剧」当终点的观众，而是习惯了在内容周围二次表达的一代。" data-i18n-en="The target is Gen Z—those born between the mid-to-late 1990s and the early 2010s. They aren't viewers who treat watching as the end of the experience; they're a generation used to expressing themselves around the content they consume.">目标用户锁定 Z 世代——1990 年代中后期到 2010 年代初出生的这一代人。他们不是把「看剧」当终点的观众，而是习惯了在内容周围二次表达的一代。</p>
+      <div class="sg-persona">
+        <div class="sg-persona-card">
+          <span class="sg-persona-label">Characteristic</span>
+          <span class="sg-persona-lead" data-i18n-zh="他们对工具没有畏惧，对差异有耐心。" data-i18n-en="They aren't intimidated by tools, and they have patience for difference.">他们对工具没有畏惧，对差异有耐心。</span>
+          <span class="sg-trait">
+            <span class="sg-trait-name" data-i18n-zh="技术娴熟" data-i18n-en="Tech-savvy">技术娴熟</span>
+            <span class="sg-trait-desc" data-i18n-zh="在数字时代长大，对各类设备与社交平台的使用高度熟练——这意味着复杂不是问题，繁琐才是。" data-i18n-en="Having grown up digital, they're fluent with devices and social platforms—meaning complexity isn't the obstacle, tedium is.">在数字时代长大，对各类设备与社交平台的使用高度熟练——这意味着复杂不是问题，繁琐才是。</span>
+          </span>
+          <span class="sg-trait">
+            <span class="sg-trait-name" data-i18n-zh="包容开放" data-i18n-en="Open-minded">包容开放</span>
+            <span class="sg-trait-desc" data-i18n-zh="更能接受性别、性向、种族与信仰上的差异，也更愿意看见不同的表达方式出现在同一个内容社区里。" data-i18n-en="More accepting of differences in gender, sexuality, race and belief—and more willing to see unlike voices share one content community.">更能接受性别、性向、种族与信仰上的差异，也更愿意看见不同的表达方式出现在同一个内容社区里。</span>
+          </span>
+        </div>
+        <div class="sg-persona-card">
+          <span class="sg-persona-label">Demands</span>
+          <span class="sg-persona-lead" data-i18n-zh="他们要的是一个能基于 Sky 内容互动、并且做得出东西的社区。" data-i18n-en="What they want is a community that lets them interact around Sky's content—and actually make something from it.">他们要的是一个能基于 Sky 内容互动、并且做得出东西的社区。</span>
+          <span class="sg-trait">
+            <span class="sg-trait-name" data-i18n-zh="题材相关" data-i18n-en="Topic relevance">题材相关</span>
+            <span class="sg-trait-desc" data-i18n-zh="短视频要和 Sky 的影视内容真正挂上钩，而不是一个内容无关的通用创作工具。" data-i18n-en="Clips must genuinely connect back to Sky's titles, rather than sitting in a generic creation tool with no relationship to what's being watched.">短视频要和 Sky 的影视内容真正挂上钩，而不是一个内容无关的通用创作工具。</span>
+          </span>
+          <span class="sg-trait">
+            <span class="sg-trait-name" data-i18n-zh="玩法多样" data-i18n-en="Variety of formats">玩法多样</span>
+            <span class="sg-trait-desc" data-i18n-zh="需要足够多的视频类型，让用户能真的「进到剧情里去」，而不是只能套一个固定模板。" data-i18n-en="Enough video types that users can genuinely put themselves inside the scene, instead of being limited to one fixed template.">需要足够多的视频类型，让用户能真的「进到剧情里去」，而不是只能套一个固定模板。</span>
+          </span>
+          <span class="sg-trait">
+            <span class="sg-trait-name" data-i18n-zh="上手容易" data-i18n-en="Ease of use">上手容易</span>
+            <span class="sg-trait-desc" data-i18n-zh="足够简单到人人能发，但编辑器本身要够完整——这两条看似矛盾，正是编辑器设计上最难拿捏的地方。" data-i18n-en="Simple enough that anyone can post, yet the editor itself has to be reasonably complete. Those two pull against each other, and holding both is the hardest part of the editor's design.">足够简单到人人能发，但编辑器本身要够完整——这两条看似矛盾，正是编辑器设计上最难拿捏的地方。</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 解决方案：闭环 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Solution</span>
@@ -493,67 +769,98 @@
     </div>
   </section>
 
-  <!-- ⑤ 我负责的模块：7 步创作流 -->
+  <!-- ⑥ 两条创作路径 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label">My Module</span>
-      <h2 class="pd-section-title" data-i18n-zh="从入口到发布的 7 步" data-i18n-en="Seven Steps, Entry to Publish">从入口到发布的 7 步</h2>
-      <p class="pd-body" data-i18n-zh="这是我在项目里独立负责的部分：重做从导航栏进入的完整创建链路。原则只有一条——目标用户是看剧的人，不是剪辑师，每一步能省则省，省不掉的就用模板和 AI 顶上。" data-i18n-en="This is the part I owned outright: rebuilding the whole create path from the nav bar. One principle throughout—the user is someone who watches shows, not an editor. Cut every step that can be cut, and where a step can't be cut, let templates and AI carry it.">这是我在项目里独立负责的部分：重做从导航栏进入的完整创建链路。原则只有一条——目标用户是看剧的人，不是剪辑师，每一步能省则省，省不掉的就用模板和 AI 顶上。</p>
-      <div class="sg-steps">
-        <div>
-          <!-- TODO images/skygo-step-1.png -->
-          <div class="ph ph--phone sg-step-shot">01 首页入口<br />skygo-step-1.png</div>
-          <span class="sg-step-num">01</span>
-          <span class="sg-step-title" data-i18n-zh="创建入口" data-i18n-en="Entry">创建入口</span>
-          <span class="sg-step-desc" data-i18n-zh="Create 放在底部导航正中——创作是主行为，不是藏在二级菜单里的附属功能。" data-i18n-en="Create sits dead centre in the tab bar—creation is a primary action, not something filed away in a submenu.">Create 放在底部导航正中——创作是主行为，不是藏在二级菜单里的附属功能。</span>
+      <span class="pd-section-label">Flow</span>
+      <h2 class="pd-section-title" data-i18n-zh="两条创作路径，一个大环" data-i18n-en="Two Paths, One Loop">两条创作路径，一个大环</h2>
+      <p class="pd-body" data-i18n-zh="创作不是只有一条路。我们做了两个各自独立成立的场景——在看剧的过程中顺手做一条，和专门打开创作器做一条。它们共用同一个编辑器与发布器，所以无论用户从哪一端进来，体验都不会断裂。" data-i18n-en="Creation isn't a single road. We built two scenarios that each stand on their own—making a clip in passing while watching, and opening the creator deliberately to make one. They share the same editor and publisher, so whichever end a user enters from, the experience never breaks.">创作不是只有一条路。我们做了两个各自独立成立的场景——在看剧的过程中顺手做一条，和专门打开创作器做一条。它们共用同一个编辑器与发布器，所以无论用户从哪一端进来，体验都不会断裂。</p>
+
+      <div class="sg-paths">
+        <div class="sg-path">
+          <span class="sg-path-tag">Path A</span>
+          <span class="sg-path-title" data-i18n-zh="观看剧集时创建" data-i18n-en="Create while watching">观看剧集时创建</span>
+          <span class="sg-path-note" data-i18n-zh="创作动机来自剧情本身，入口就长在播放器上，不用离开正在看的这一集。" data-i18n-en="The impulse comes from the scene itself, so the entry lives on the player—no need to leave the episode you're watching.">创作动机来自剧情本身，入口就长在播放器上，不用离开正在看的这一集。</span>
+          <ol class="sg-path-steps">
+            <li data-i18n-zh="观看剧集" data-i18n-en="Watch an episode">观看剧集</li>
+            <li data-i18n-zh="点播放器右侧的编辑按钮，从 AI 换脸 / 实时换脸 / 叠加特效 / 录制 四种玩法里挑一个" data-i18n-en="Tap the edit button on the player and pick one of four options: AI face, real-time face swap, overlay, record">点播放器右侧的编辑按钮，从 AI 换脸 / 实时换脸 / 叠加特效 / 录制 四种玩法里挑一个</li>
+            <li data-i18n-zh="上传素材，在编辑器里完成合成" data-i18n-en="Upload your material and finish the composite in the editor">上传素材，在编辑器里完成合成</li>
+            <li data-i18n-zh="发布，标注剧集与片段" data-i18n-en="Publish, tagging the title and scene">发布，标注剧集与片段</li>
+          </ol>
         </div>
-        <div>
-          <!-- TODO images/skygo-step-2.png -->
-          <div class="ph ph--phone sg-step-shot">02 选影视<br />skygo-step-2.png</div>
-          <span class="sg-step-num">02</span>
-          <span class="sg-step-title" data-i18n-zh="选择影视" data-i18n-en="Pick a title">选择影视</span>
-          <span class="sg-step-desc" data-i18n-zh="「最近观看」排在搜索之前。创作动机大多来自刚看完的那部，默认答案比搜索框更省事。" data-i18n-en="Recently Viewed outranks search. The urge almost always comes from what you just finished, so a good default beats a search box.">「最近观看」排在搜索之前。创作动机大多来自刚看完的那部，默认答案比搜索框更省事。</span>
+        <div class="sg-path">
+          <span class="sg-path-tag">Path B</span>
+          <span class="sg-path-title" data-i18n-zh="创作器中创建" data-i18n-en="Create in the creator">创作器中创建</span>
+          <span class="sg-path-note" data-i18n-zh="用户带着明确的创作意图进来，先选作品再选模板，适合想做得更完整的人。" data-i18n-en="The user arrives already intending to make something—pick a title, then a template. This suits anyone who wants to go further.">用户带着明确的创作意图进来，先选作品再选模板，适合想做得更完整的人。</span>
+          <ol class="sg-path-steps">
+            <li data-i18n-zh="从底部导航的 Create 进入" data-i18n-en="Enter from Create in the tab bar">从底部导航的 Create 进入</li>
+            <li data-i18n-zh="选择影视作品，「最近观看」排在搜索之前" data-i18n-en="Choose a title, with Recently Viewed ranked above search">选择影视作品，「最近观看」排在搜索之前</li>
+            <li data-i18n-zh="按所选作品挑模板，不会剪辑也能直接出片" data-i18n-en="Pick a template recommended for that title—shippable even if you can't edit">按所选作品挑模板，不会剪辑也能直接出片</li>
+            <li data-i18n-zh="在同一个编辑器里合成，然后发布" data-i18n-en="Composite in the same editor, then publish">在同一个编辑器里合成，然后发布</li>
+          </ol>
         </div>
-        <div>
-          <!-- TODO images/skygo-step-3.png -->
-          <div class="ph ph--phone sg-step-shot">03 选模板<br />skygo-step-3.png</div>
-          <span class="sg-step-num">03</span>
-          <span class="sg-step-title" data-i18n-zh="套用模板" data-i18n-en="Use a template">套用模板</span>
-          <span class="sg-step-desc" data-i18n-zh="模板前置，并按所选剧集做 For You 推荐。不会剪辑的人从这里就能直接出片。" data-i18n-en="Templates come first, recommended against the title just chosen. Someone who can't edit can ship from here alone.">模板前置，并按所选剧集做 For You 推荐。不会剪辑的人从这里就能直接出片。</span>
+      </div>
+
+      <div class="sg-junction">
+        <span class="sg-junction-label" data-i18n-zh="咬合点 · 两条路径在这里合成一个大环" data-i18n-en="Junction · where the two paths become one loop">咬合点 · 两条路径在这里合成一个大环</span>
+        <span class="sg-junction-text" data-i18n-zh="走完 Path A 发布之后，用户会落进短视频瀑布流。在这里刷到别人的作品时，点「使用同款模板」就能带着那个片段直接进入编辑页——也就是接上了 Path B 的后半段。看别人的作品变成了下一次创作的起点，两个原本独立的场景由此闭合成一个可以一直转下去的环。" data-i18n-en="After publishing through Path A, the user lands in the short-video feed. Tapping 'use this template' on someone else's clip carries that footage straight into the editor—joining the back half of Path B. Watching what others made becomes the trigger for making the next one, and two independent scenarios close into a loop that can keep turning.">走完 Path A 发布之后，用户会落进短视频瀑布流。在这里刷到别人的作品时，点「使用同款模板」就能带着那个片段直接进入编辑页——也就是接上了 Path B 的后半段。看别人的作品变成了下一次创作的起点，两个原本独立的场景由此闭合成一个可以一直转下去的环。</span>
+      </div>
+
+      <div class="sg-video" data-duration="48">
+        <div class="sg-video-frame">
+          <!-- TODO 换成流程演示视频：<video src="images/skygo-flow.mp4" controls playsinline></video> -->
+          <div class="ph">流程演示视频占位 · 16:9<br />images/skygo-flow.mp4</div>
         </div>
-        <div>
-          <!-- TODO images/skygo-step-4.png -->
-          <div class="ph ph--phone sg-step-shot">04 编辑器<br />skygo-step-4.png</div>
-          <span class="sg-step-num">04</span>
-          <span class="sg-step-title" data-i18n-zh="简易编辑器" data-i18n-en="Simple editor">简易编辑器</span>
-          <span class="sg-step-desc" data-i18n-zh="工具栏只保留 6 项：裁剪 / AI 换脸 / 叠加 / 文字 / 滤镜 / 音频。多一项都是给外行添负担。" data-i18n-en="Six tools only—crop, AI face, overlay, text, filters, audio. Anything more is a burden on someone who isn't an editor.">工具栏只保留 6 项：裁剪 / AI 换脸 / 叠加 / 文字 / 滤镜 / 音频。多一项都是给外行添负担。</span>
-        </div>
-        <div>
-          <!-- TODO images/skygo-step-5.png -->
-          <div class="ph ph--phone sg-step-shot">05 AI 特效<br />skygo-step-5.png</div>
-          <span class="sg-step-num">05</span>
-          <span class="sg-step-title" data-i18n-zh="AI 换脸 / 身临其境" data-i18n-en="AI face swap">AI 换脸 / 身临其境</span>
-          <span class="sg-step-desc" data-i18n-zh="AI 换脸首次使用要过一次 3D 建模——把脸对准引导框扫一圈，「You are all set!」之后就能反复套用到任意片段，不用每次重新拍。身临其境则把合成位置降维成前景 / 中景 / 背景三个可理解的选项，用户不需要懂图层也能选对。" data-i18n-en="AI face needs a one-time 3D scan the first time—align your face with the guide, sweep around, and once it says 'You are all set!' that model carries over to any clip without rescanning. Immersive mode reduces compositing position to three legible choices—fore, middle, background—so picking correctly never requires understanding layers.">AI 换脸首次使用要过一次 3D 建模——把脸对准引导框扫一圈，「You are all set!」之后就能反复套用到任意片段，不用每次重新拍。身临其境则把合成位置降维成前景 / 中景 / 背景三个可理解的选项，用户不需要懂图层也能选对。</span>
-        </div>
-        <div>
-          <!-- TODO images/skygo-step-6.png -->
-          <div class="ph ph--phone sg-step-shot">06 生成中<br />skygo-step-6.png</div>
-          <span class="sg-step-num">06</span>
-          <span class="sg-step-title" data-i18n-zh="生成等待" data-i18n-en="Generating">生成等待</span>
-          <span class="sg-step-desc" data-i18n-zh="AI 合成耗时不可控，所以给明确的进度与预期文案，避免用户以为卡死而退出。" data-i18n-en="AI rendering takes an unpredictable amount of time, so the wait carries explicit progress and expectation—otherwise people assume it's frozen and quit.">AI 合成耗时不可控，所以给明确的进度与预期文案，避免用户以为卡死而退出。</span>
-        </div>
-        <div>
-          <!-- TODO images/skygo-step-7.png -->
-          <div class="ph ph--phone sg-step-shot">07 发布<br />skygo-step-7.png</div>
-          <span class="sg-step-num">07</span>
-          <span class="sg-step-title" data-i18n-zh="发布与标注" data-i18n-en="Publish &amp; tag">发布与标注</span>
-          <span class="sg-step-desc" data-i18n-zh="发布页必须选剧集与片段，这一步是闭环成立的关键——没有 Tag，这条视频就回不到剧集页。类型、隐私范围、保存到相册是次要字段，往后排；分享额外接了 Facebook、Instagram、TikTok 和外链，做完不用退出 App 就能扩散出去。" data-i18n-en="Publishing requires choosing the title and scene—this is what makes the loop work; without the tag, the video never finds its way back to the show's page. Genre, privacy and save-to-album are secondary fields, pushed further down; sharing also reaches Facebook, Instagram, TikTok and a plain link, so a finished clip can spread without ever leaving the app.">发布页必须选剧集与片段，这一步是闭环成立的关键——没有 Tag，这条视频就回不到剧集页。类型、隐私范围、保存到相册是次要字段，往后排；分享额外接了 Facebook、Instagram、TikTok 和外链，做完不用退出 App 就能扩散出去。</span>
+        <div class="sg-video-track"><span class="sg-video-fill"></span></div>
+        <div class="sg-video-chapters">
+          <button class="sg-chapter is-active" type="button" data-t="0">
+            <span class="sg-chapter-dot"></span>
+            <span>
+              <span class="sg-chapter-time">00:00</span>
+              <span class="sg-chapter-name" data-i18n-zh="观看剧集" data-i18n-en="Watching">观看剧集</span>
+            </span>
+          </button>
+          <button class="sg-chapter" type="button" data-t="8">
+            <span class="sg-chapter-dot"></span>
+            <span>
+              <span class="sg-chapter-time">00:08</span>
+              <span class="sg-chapter-name" data-i18n-zh="触发创作" data-i18n-en="Trigger">触发创作</span>
+            </span>
+          </button>
+          <button class="sg-chapter" type="button" data-t="17">
+            <span class="sg-chapter-dot"></span>
+            <span>
+              <span class="sg-chapter-time">00:17</span>
+              <span class="sg-chapter-name" data-i18n-zh="编辑合成" data-i18n-en="Edit">编辑合成</span>
+            </span>
+          </button>
+          <button class="sg-chapter" type="button" data-t="26">
+            <span class="sg-chapter-dot"></span>
+            <span>
+              <span class="sg-chapter-time">00:26</span>
+              <span class="sg-chapter-name" data-i18n-zh="发布标注" data-i18n-en="Publish">发布标注</span>
+            </span>
+          </button>
+          <button class="sg-chapter" type="button" data-t="34">
+            <span class="sg-chapter-dot"></span>
+            <span>
+              <span class="sg-chapter-time">00:34</span>
+              <span class="sg-chapter-name" data-i18n-zh="进入瀑布流" data-i18n-en="The feed">进入瀑布流</span>
+            </span>
+          </button>
+          <button class="sg-chapter" type="button" data-t="41">
+            <span class="sg-chapter-dot"></span>
+            <span>
+              <span class="sg-chapter-time">00:41</span>
+              <span class="sg-chapter-name" data-i18n-zh="使用同款模板" data-i18n-en="Same template">使用同款模板</span>
+            </span>
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ⑥ 多端适配 -->
+  <!-- ⑦ 多端适配 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Responsive</span>
@@ -591,7 +898,7 @@
     </div>
   </section>
 
-  <!-- ⑦ 改版对比 -->
+  <!-- ⑧ 改版对比 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Iteration</span>
@@ -633,7 +940,7 @@
     </div>
   </section>
 
-  <!-- ⑧ 视觉规范 -->
+  <!-- ⑨ 视觉规范 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Visual</span>
@@ -665,7 +972,7 @@
     </div>
   </section>
 
-  <!-- ⑨ 复盘与局限 -->
+  <!-- ⑩ 复盘与局限 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Retrospective</span>
@@ -751,6 +1058,57 @@
   document.addEventListener('DOMContentLoaded', applyDetailLang);
   const _orig = window.setLanguage;
   window.setLanguage = function(lang) { _orig(lang); applyDetailLang(); };
+</script>
+<script>
+  /* ── 流程演示视频的横向章节条 ──
+     现在框里还是占位图，所以点击章节只切高亮 + 移动进度条，先当静态演示用。
+     等把 <video> 放进 .sg-video-frame，同一段代码会自动接上 seek 与 timeupdate，
+     不需要再改 JS。 */
+  (function () {
+    var wrap = document.querySelector('.sg-video');
+    if (!wrap) return;
+
+    var chapters = Array.prototype.slice.call(wrap.querySelectorAll('.sg-chapter'));
+    if (!chapters.length) return;
+
+    var video = wrap.querySelector('video');
+    var fill  = wrap.querySelector('.sg-video-fill');
+    var times = chapters.map(function (el) { return parseFloat(el.dataset.t) || 0; });
+    // 没有真视频时用 data-duration 估算进度条比例
+    var fallbackTotal = parseFloat(wrap.dataset.duration) || (times[times.length - 1] + 8);
+
+    function highlight(idx) {
+      chapters.forEach(function (el, i) { el.classList.toggle('is-active', i === idx); });
+    }
+
+    function setProgress(ratio) {
+      if (fill) fill.style.width = Math.max(0, Math.min(1, ratio)) * 100 + '%';
+    }
+
+    chapters.forEach(function (el, i) {
+      el.addEventListener('click', function () {
+        if (video) {
+          video.currentTime = times[i];
+          video.play();
+        }
+        highlight(i);
+        setProgress(times[i] / (video && video.duration ? video.duration : fallbackTotal));
+      });
+    });
+
+    if (video) {
+      video.addEventListener('timeupdate', function () {
+        var t = video.currentTime;
+        var active = 0;
+        times.forEach(function (c, i) { if (t >= c) active = i; });
+        highlight(active);
+        if (video.duration) setProgress(t / video.duration);
+      });
+    }
+
+    highlight(0);
+    setProgress(0);
+  })();
 </script>
 </body>
 </html>
