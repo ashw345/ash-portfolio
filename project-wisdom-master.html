@@ -863,5 +863,16 @@
 <script src="js/mobile-nav.js?v=1"></script>
 <script src="js/language.js?v=project-nav1"></script>
 <script src="js/pixel-cat.js?v=18"></script>
+<script>
+  function applyDetailLang() {
+    const lang = localStorage.getItem('lang') || 'zh';
+    document.querySelectorAll('[data-i18n-zh]').forEach(el => {
+      el.textContent = lang === 'zh' ? el.dataset.i18nZh : el.dataset.i18nEn;
+    });
+  }
+  document.addEventListener('DOMContentLoaded', applyDetailLang);
+  const _orig = window.setLanguage;
+  window.setLanguage = function(lang) { _orig(lang); applyDetailLang(); };
+</script>
 </body>
 </html>

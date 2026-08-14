@@ -377,7 +377,7 @@
 
         <div class="sg-scope">
           <span class="sg-scope-label">Scope</span>
-          <span class="sg-scope-text" data-i18n-zh="这是一个三人小组课题，未落地。我进入项目时已有成员完成了第一版设计，我的工作是基于用户需求对第一版做问题分析与优化——重点重做了「从导航栏进入创建视频」的完整流程，并参与整体 UIUX。下文中标注为「我负责」的部分是我独立产出的，闭环策略与影视 Tag 是小组共同讨论的结果。" data-i18n-en="A three-person student brief; never shipped. A first version already existed when I joined, so my work was to analyse its problems against user needs and iterate—chiefly rebuilding the full create-a-video flow from the nav bar, alongside general UIUX. The sections marked as mine below are my own output; the loop strategy and content tagging came out of group discussion.">这是一个三人小组课题，未落地。我进入项目时已有成员完成了第一版设计，我的工作是基于用户需求对第一版做问题分析与优化——重点重做了「从导航栏进入创建视频」的完整流程，并参与整体 UIUX。下文中标注为「我负责」的部分是我独立产出的，闭环策略与影视 Tag 是小组共同讨论的结果。</span>
+          <span class="sg-scope-text" data-i18n-zh="这是一个三人小组课题。我的工作是基于用户需求对第一版做问题分析与优化——重点重做了「从导航栏进入创建视频」的完整流程，并参与整体 UIUX。下文中标注为「我负责」的部分是我独立产出的，闭环策略与影视 Tag 是小组共同讨论的结果。" data-i18n-en="A three-person student brief. My work was to analyse the first version against user needs and iterate—chiefly rebuilding the full create-a-video flow from the nav bar, alongside general UIUX. The sections marked as mine below are my own output; the loop strategy and content tagging came out of group discussion.">这是一个三人小组课题。我的工作是基于用户需求对第一版做问题分析与优化——重点重做了「从导航栏进入创建视频」的完整流程，并参与整体 UIUX。下文中标注为「我负责」的部分是我独立产出的，闭环策略与影视 Tag 是小组共同讨论的结果。</span>
         </div>
       </div>
     </div>
@@ -633,5 +633,29 @@
 <script src="js/mobile-nav.js?v=1"></script>
 <script src="js/language.js?v=project-nav1"></script>
 <script src="js/pixel-cat.js?v=18"></script>
+<script>
+  function applyDetailLang() {
+    const lang = localStorage.getItem('lang') || 'zh';
+    // sg-compare-why 段落是 <strong data-i18n-zh>标题</strong>正文文字，
+    // 两层都带翻译属性；querySelectorAll 按文档顺序先拿到外层 <p>，
+    // 如果直接对它 textContent 赋值会把内层 <strong> 整个吃掉。
+    // 检测到有直接子元素也带 data-i18n-zh 时，只改「最后一个文本节点」
+    // （也就是 strong 之后的正文），留 strong 给它自己的循环去处理。
+    document.querySelectorAll('[data-i18n-zh]').forEach(el => {
+      const value = lang === 'zh' ? el.dataset.i18nZh : el.dataset.i18nEn;
+      if (el.querySelector(':scope > [data-i18n-zh]')) {
+        let node = el.lastChild;
+        while (node && node.nodeType !== Node.TEXT_NODE) node = node.previousSibling;
+        if (node) node.textContent = value;
+        else el.appendChild(document.createTextNode(value));
+      } else {
+        el.textContent = value;
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', applyDetailLang);
+  const _orig = window.setLanguage;
+  window.setLanguage = function(lang) { _orig(lang); applyDetailLang(); };
+</script>
 </body>
 </html>
