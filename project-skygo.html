@@ -74,6 +74,48 @@
       color: rgba(255, 255, 255, 0.72);
     }
 
+    /* ── ③ 第一版基线 ── */
+    .sg-baseline-shot {
+      margin-top: 40px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .sg-baseline-shot .ph { aspect-ratio: 16 / 7; }
+    .sg-baseline-caption {
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.42);
+    }
+    /* 「有什么」与「哪儿不对」并排，落差一眼可见 */
+    .sg-baseline {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .sg-flaws { list-style: none; display: flex; flex-direction: column; gap: 15px; }
+    .sg-flaws li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.68);
+    }
+    .sg-flaws li::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 11px;
+      width: 9px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.35);
+    }
+    .sg-flaws b {
+      color: #fff;
+      font-weight: 600;
+    }
+
     /* ── ③ 痛点卡片 ── */
     .sg-problems {
       display: grid;
@@ -586,6 +628,7 @@
       .sg-device-frame img { width: 100%; height: auto; max-height: none; }
       .sg-persona { grid-template-columns: minmax(0, 1fr); }
       .sg-paths { grid-template-columns: minmax(0, 1fr); }
+      .sg-baseline { grid-template-columns: minmax(0, 1fr); }
       .sg-video-chapters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .sg-compare { gap: 48px; }
       .sg-retro { grid-template-columns: minmax(0, 1fr); }
@@ -640,7 +683,7 @@
       <div class="pd-hero-info">
         <p class="pd-meta">2024 &nbsp;—&nbsp; UIUX · SKY GO 流媒体</p>
         <h1 class="pd-title" data-i18n-zh="SKY GO 短视频创作" data-i18n-en="SKY GO Short-Video Creation">SKY GO 短视频创作</h1>
-        <p class="pd-tagline" data-i18n-zh="为流媒体平台设计的短视频创作链路——让看剧的人成为创作者。把创作入口放回观看现场，用模板与 AI 特效把「想拍」到「发出去」压缩成一条顺畅的路。" data-i18n-en="A short-video creation flow built for a streaming platform—turning viewers into creators. It puts the creation entry back where the impulse happens, and uses templates and AI effects to compress 'I want to make one' into a single unbroken path.">为流媒体平台设计的短视频创作链路——让看剧的人成为创作者。把创作入口放回观看现场，用模板与 AI 特效把「想拍」到「发出去」压缩成一条顺畅的路。</p>
+        <p class="pd-tagline" data-i18n-zh="为英国流媒体平台 Sky 设计的短视频创作链路——让看剧的人成为创作者。" data-i18n-en="A short-video creation flow for UK streaming platform Sky—turning the people who watch into the people who make.">为英国流媒体平台 Sky 设计的短视频创作链路——让看剧的人成为创作者。</p>
       </div>
     </div>
   </section>
@@ -649,7 +692,7 @@
   <section class="pd-section">
     <div class="container">
       <div class="pd-overview">
-        <p class="pd-overview-text" data-i18n-zh="SKY GO 是英国流媒体平台 Sky 的移动端产品。这个课题探索的是：当用户看完一部剧、情绪正浓的时候，怎么让他顺手把这份感受做成一条短视频发出去——也就是把「中长视频的观看」和「短视频的创作」接成一个闭环。" data-i18n-en="SKY GO is the mobile product of UK streaming platform Sky. The brief explored a single question: when someone finishes an episode and the feeling is still fresh, how do you let them turn that feeling into a short video and post it—closing the loop between long-form watching and short-form creating.">SKY GO 是英国流媒体平台 Sky 的移动端产品。这个课题探索的是：当用户看完一部剧、情绪正浓的时候，怎么让他顺手把这份感受做成一条短视频发出去——也就是把「中长视频的观看」和「短视频的创作」接成一个闭环。</p>
+        <p class="pd-overview-text" data-i18n-zh="团队在我进入之前已经做过第一版创作功能：只有一个从主页新建的入口，创作和看剧是并排的两件事，也还没有 AI 换脸这类玩法。这一轮我们要往前推一步——新增两个入口，让创作能从观看里自然长出来。而我接手的，恰恰是第一版就已经存在的那条主页创建链路：它不缺功能，缺的是结构。" data-i18n-en="A first version of the creation feature already existed when I joined: a single entry from the home screen, watching and making sitting side by side as separate activities, and no AI face-swap style effects yet. This round pushed further—two new entries so that creating could grow out of watching. What I took on was precisely the path that already existed: the home-screen create flow. It wasn't short of features; it was short of structure.">团队在我进入之前已经做过第一版创作功能：只有一个从主页新建的入口，创作和看剧是并排的两件事，也还没有 AI 换脸这类玩法。这一轮我们要往前推一步——新增两个入口，让创作能从观看里自然长出来。而我接手的，恰恰是第一版就已经存在的那条主页创建链路：它不缺功能，缺的是结构。</p>
         <div class="pd-meta-grid">
           <div class="pd-meta-item">
             <span class="pd-meta-label" data-i18n-zh="我负责" data-i18n-en="Role">我负责</span>
@@ -677,7 +720,44 @@
     </div>
   </section>
 
-  <!-- ③ 用户与痛点 -->
+  <!-- ③ 第一版基线 -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Baseline</span>
+      <h2 class="pd-section-title" data-i18n-zh="我接手时的第一版" data-i18n-en="The Version I Inherited">我接手时的第一版</h2>
+      <p class="pd-body" data-i18n-zh="要说清楚这一轮做了什么，得先说清楚起点。第一版已经能创建短视频，但它把「创作」当成一个独立功能塞在主页里，跟用户正在看的内容毫无关系；而进去之后的那条路，问题不在缺功能，在于组织方式。" data-i18n-en="To be clear about what this round changed, the starting point has to be clear first. The first version could already create short videos—but it treated creation as a standalone feature parked on the home screen, unrelated to whatever the user was watching. And once inside, the trouble wasn't missing features; it was how they were organised.">要说清楚这一轮做了什么，得先说清楚起点。第一版已经能创建短视频，但它把「创作」当成一个独立功能塞在主页里，跟用户正在看的内容毫无关系；而进去之后的那条路，问题不在缺功能，在于组织方式。</p>
+
+      <div class="sg-baseline-shot">
+        <!-- TODO 换成第一版原设计走查图（作品集 PDF p16） -->
+        <div class="ph">第一版原设计 · 走查标注<br />images/skygo-v1-original.png</div>
+      </div>
+      <p class="sg-baseline-caption" data-i18n-zh="第一版从主页新建视频的完整链路，以及我在走查时标出的问题点。" data-i18n-en="The first version's full create-from-home path, with the problems I marked during the walkthrough.">第一版从主页新建视频的完整链路，以及我在走查时标出的问题点。</p>
+
+      <div class="sg-baseline">
+        <div class="sg-persona-card">
+          <span class="sg-persona-label" data-i18n-zh="第一版有什么" data-i18n-en="What v1 had">第一版有什么</span>
+          <ul class="sg-flaws">
+            <li data-i18n-zh="只有一个创建入口——从主页新建，观看页里没有任何创作的口子。" data-i18n-en="One entry only—create from the home screen. Nothing on the player itself.">只有一个创建入口——从主页新建，观看页里没有任何创作的口子。</li>
+            <li data-i18n-zh="没有 AI 换脸这类玩法，用户没法把自己放进剧情里。" data-i18n-en="No AI face-swap style effects, so users couldn't place themselves inside a scene.">没有 AI 换脸这类玩法，用户没法把自己放进剧情里。</li>
+            <li data-i18n-zh="特效被切成「Deep Fake / Real Fantasy / Reels」三套各自独立的场景，入口分散、逻辑还不一样。" data-i18n-en="Effects were split into three separate scenes—Deep Fake, Real Fantasy, Reels—each with its own entry and its own logic.">特效被切成「Deep Fake / Real Fantasy / Reels」三套各自独立的场景，入口分散、逻辑还不一样。</li>
+            <li data-i18n-zh="编辑是相机优先的：像 Instagram、抖音那样鼓励用户举起手机现拍。" data-i18n-en="Editing was camera-first, in the Instagram/TikTok mould: raise your phone and shoot.">编辑是相机优先的：像 Instagram、抖音那样鼓励用户举起手机现拍。</li>
+          </ul>
+        </div>
+        <div class="sg-persona-card">
+          <span class="sg-persona-label" data-i18n-zh="我走查时标出的问题" data-i18n-en="What I marked in the walkthrough">我走查时标出的问题</span>
+          <ul class="sg-flaws">
+            <li data-i18n-zh="整条流程冗余，走完要经过好几个功能重叠的页面。" data-i18n-en="The path was redundant—several pages with overlapping purposes to get through.">整条流程冗余，走完要经过好几个功能重叠的页面。</li>
+            <li data-i18n-zh="特效命名让人猜不到下一步：「Deep Fake」「Real Fantasy」这些词没告诉用户点进去会发生什么。" data-i18n-en="The effect names gave no hint of what came next—'Deep Fake', 'Real Fantasy' tell you nothing about what tapping them does.">特效命名让人猜不到下一步：「Deep Fake」「Real Fantasy」这些词没告诉用户点进去会发生什么。</li>
+            <li data-i18n-zh="点击「创建视频」缺少视觉反馈，用户不确定自己有没有点到。" data-i18n-en="Tapping 'create video' gave no visual response, leaving users unsure the tap registered.">点击「创建视频」缺少视觉反馈，用户不确定自己有没有点到。</li>
+            <li data-i18n-zh="内容选择页吸引力不足，是一个纯列表，看不出可以拿它做什么。" data-i18n-en="The content-picking page was an unappealing plain list—nothing suggested what you could make from it.">内容选择页吸引力不足，是一个纯列表，看不出可以拿它做什么。</li>
+            <li data-i18n-zh="ICON 设计不统一，同一屏里的图标风格对不上。" data-i18n-en="Icon design was inconsistent, with mismatched styles inside a single screen.">ICON 设计不统一，同一屏里的图标风格对不上。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ 用户与痛点 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Users &amp; Problem</span>
@@ -703,7 +783,7 @@
     </div>
   </section>
 
-  <!-- ④ 用户画像 -->
+  <!-- ⑤ 用户画像 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Persona</span>
@@ -742,7 +822,7 @@
     </div>
   </section>
 
-  <!-- ⑤ 解决方案：闭环 -->
+  <!-- ⑥ 解决方案：闭环 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Solution</span>
@@ -769,7 +849,7 @@
     </div>
   </section>
 
-  <!-- ⑥ 两条创作路径 -->
+  <!-- ⑦ 两条创作路径 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Flow</span>
@@ -780,7 +860,7 @@
         <div class="sg-path">
           <span class="sg-path-tag">Path A</span>
           <span class="sg-path-title" data-i18n-zh="观看剧集时创建" data-i18n-en="Create while watching">观看剧集时创建</span>
-          <span class="sg-path-note" data-i18n-zh="创作动机来自剧情本身，入口就长在播放器上，不用离开正在看的这一集。" data-i18n-en="The impulse comes from the scene itself, so the entry lives on the player—no need to leave the episode you're watching.">创作动机来自剧情本身，入口就长在播放器上，不用离开正在看的这一集。</span>
+          <span class="sg-path-note" data-i18n-zh="这一版新增的入口。创作动机来自剧情本身，入口就长在播放器上，不用离开正在看的这一集。" data-i18n-en="An entry added in this round. The impulse comes from the scene itself, so the entry lives on the player—no need to leave the episode you're watching.">这一版新增的入口。创作动机来自剧情本身，入口就长在播放器上，不用离开正在看的这一集。</span>
           <ol class="sg-path-steps">
             <li data-i18n-zh="观看剧集" data-i18n-en="Watch an episode">观看剧集</li>
             <li data-i18n-zh="点播放器右侧的编辑按钮，从 AI 换脸 / 实时换脸 / 叠加特效 / 录制 四种玩法里挑一个" data-i18n-en="Tap the edit button on the player and pick one of four options: AI face, real-time face swap, overlay, record">点播放器右侧的编辑按钮，从 AI 换脸 / 实时换脸 / 叠加特效 / 录制 四种玩法里挑一个</li>
@@ -791,7 +871,7 @@
         <div class="sg-path">
           <span class="sg-path-tag">Path B</span>
           <span class="sg-path-title" data-i18n-zh="创作器中创建" data-i18n-en="Create in the creator">创作器中创建</span>
-          <span class="sg-path-note" data-i18n-zh="用户带着明确的创作意图进来，先选作品再选模板，适合想做得更完整的人。" data-i18n-en="The user arrives already intending to make something—pick a title, then a template. This suits anyone who wants to go further.">用户带着明确的创作意图进来，先选作品再选模板，适合想做得更完整的人。</span>
+          <span class="sg-path-note" data-i18n-zh="第一版就存在、由我重做的入口。用户带着明确的创作意图进来，先选作品再选模板，适合想做得更完整的人。" data-i18n-en="The entry that already existed in v1, rebuilt by me. The user arrives already intending to make something—pick a title, then a template. This suits anyone who wants to go further.">第一版就存在、由我重做的入口。用户带着明确的创作意图进来，先选作品再选模板，适合想做得更完整的人。</span>
           <ol class="sg-path-steps">
             <li data-i18n-zh="从底部导航的 Create 进入" data-i18n-en="Enter from Create in the tab bar">从底部导航的 Create 进入</li>
             <li data-i18n-zh="选择影视作品，「最近观看」排在搜索之前" data-i18n-en="Choose a title, with Recently Viewed ranked above search">选择影视作品，「最近观看」排在搜索之前</li>
@@ -860,7 +940,7 @@
     </div>
   </section>
 
-  <!-- ⑦ 多端适配 -->
+  <!-- ⑧ 多端适配 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Responsive</span>
@@ -898,12 +978,12 @@
     </div>
   </section>
 
-  <!-- ⑧ 改版对比 -->
+  <!-- ⑨ 改版对比 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Iteration</span>
-      <h2 class="pd-section-title" data-i18n-zh="两处改版，两次判断" data-i18n-en="Two Revisions, Two Judgements">两处改版，两次判断</h2>
-      <p class="pd-body" data-i18n-zh="这两组对比是我最想拿出来讲的部分——它们展示的不是执行，是判断：为什么第一版看起来没错，但对这个产品是错的。" data-i18n-en="These two comparisons are the part I most want to talk through. They aren't about execution, they're about judgement: why the first version looked fine and was still wrong for this particular product.">这两组对比是我最想拿出来讲的部分——它们展示的不是执行，是判断：为什么第一版看起来没错，但对这个产品是错的。</p>
+      <h2 class="pd-section-title" data-i18n-zh="我重做了什么" data-i18n-en="What I Rebuilt">我重做了什么</h2>
+      <p class="pd-body" data-i18n-zh="我负责的这条链路在第一版里已经存在，所以我的产出不是「多一个功能」，而是把三套割裂的特效场景重新组织成一条线：统一入口、按内容而不是按技术命名步骤、把编辑器换成贴合影视片段的模型。下面两组对比是其中判断成本最高的两处——它们看的不是执行，是为什么第一版看起来没错、对这个产品却是错的。" data-i18n-en="The path I owned already existed in v1, so what I produced wasn't another feature—it was a restructure: three disconnected effect scenes pulled into one line, steps named after content rather than technology, and an editor rebuilt around a model that fits film clips. The two comparisons below are the calls that cost the most to make. They aren't about execution; they're about why the first version looked fine and was still wrong for this product.">我负责的这条链路在第一版里已经存在，所以我的产出不是「多一个功能」，而是把三套割裂的特效场景重新组织成一条线：统一入口、按内容而不是按技术命名步骤、把编辑器换成贴合影视片段的模型。下面两组对比是其中判断成本最高的两处——它们看的不是执行，是为什么第一版看起来没错、对这个产品却是错的。</p>
       <div class="sg-compare">
 
         <div class="sg-compare-row">
@@ -940,7 +1020,7 @@
     </div>
   </section>
 
-  <!-- ⑨ 视觉规范 -->
+  <!-- ⑩ 视觉规范 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Visual</span>
@@ -972,7 +1052,7 @@
     </div>
   </section>
 
-  <!-- ⑩ 复盘与局限 -->
+  <!-- ⑪ 复盘与局限 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Retrospective</span>
