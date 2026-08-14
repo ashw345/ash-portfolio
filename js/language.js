@@ -24,6 +24,11 @@ const translations = {
     wisdom_desc: "喜马拉雅解忧小店的 AI 情绪咨询产品——挑一位大师说出烦恼，得到一份能读、能存、能分享的深度解忧报告。",
     wisdom_link: "查看详情 →",
 
+    skygo_meta: "2023 &nbsp;—&nbsp; UIUX · SKY GO 流媒体",
+    skygo_title: "SKY GO 短视频创作",
+    skygo_desc: "为英国流媒体平台 Sky 设计的短视频创作链路——让看剧的人成为创作者，把观看与创作接成闭环。",
+    skygo_link: "查看详情 →",
+
     snapfit_meta: "02 / 2024 &nbsp;—&nbsp; UIUX · 移动端",
     snapfit_title: "闪电健身 SnapFIT",
     snapfit_desc: "为年轻用户设计的即时健身社交 APP，通过 PK 对战与角色养成机制，让运动变得有趣、有仪式感。",
@@ -182,6 +187,11 @@ const translations = {
     wisdom_title: "Wisdom Master",
     wisdom_desc: "An AI emotional-counselling product in Ximalaya's Worry-Relief Shop—pick a master, tell them what's bothering you, and get a report worth reading, keeping and sharing.",
     wisdom_link: "View Details →",
+
+    skygo_meta: "2023 &nbsp;—&nbsp; UIUX · SKY GO Streaming",
+    skygo_title: "SKY GO Short-Video Creation",
+    skygo_desc: "A short-video creation flow for UK streaming platform Sky—turning viewers into creators and closing the loop between watching and making.",
+    skygo_link: "View Details →",
 
     snapfit_meta: "02 / 2024 &nbsp;—&nbsp; UIUX · Mobile",
     snapfit_title: "SnapFIT Fitness",
