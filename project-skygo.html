@@ -167,7 +167,49 @@
       color: rgba(255, 255, 255, 0.55);
     }
 
-    /* ── ⑥ 改版对比 ── */
+    /* ── ⑥ 多端适配 ── */
+    .sg-devices {
+      display: grid;
+      grid-template-columns: 1.1fr 1.6fr 1.9fr;
+      gap: 24px;
+      align-items: end;
+      margin-top: 44px;
+    }
+    .sg-device-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .sg-device-frame {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: #0a0a0a;
+    }
+    .sg-device-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .sg-device-label {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .sg-device-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .sg-device-size {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--sg-blue-soft);
+      white-space: nowrap;
+    }
+
+    /* ── ⑦ 改版对比 ── */
     .sg-compare { display: flex; flex-direction: column; gap: 64px; margin-top: 48px; }
     .sg-compare-row {
       display: grid;
@@ -213,7 +255,7 @@
       margin-bottom: 8px;
     }
 
-    /* ── ⑦ 视觉规范 ── */
+    /* ── ⑧ 视觉规范 ── */
     .sg-visual {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -233,7 +275,7 @@
       color: rgba(255, 255, 255, 0.45);
     }
 
-    /* ── ⑧ 复盘与局限 ── */
+    /* ── ⑨ 复盘与局限 ── */
     .sg-retro {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -272,6 +314,8 @@
       }
       .sg-loop { grid-template-columns: minmax(0, 1fr); gap: 40px; }
       .sg-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      /* 三张图的原始宽高比差太多（手机高瘦、桌面矮宽），挤在一行会互相顶变形，改竖排 */
+      .sg-devices { grid-template-columns: minmax(0, 1fr); align-items: stretch; gap: 32px; max-width: 520px; margin-left: auto; margin-right: auto; }
       .sg-visual { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       /* 三栏挤不下「原图 / 新图 / 说明」，说明降到整行 */
       .sg-compare-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
@@ -306,6 +350,7 @@
       .sg-problem-desc { grid-column: 1 / -1; }
 
       .sg-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
+      .sg-devices { max-width: none; gap: 24px; }
       .sg-compare { gap: 48px; }
       .sg-retro { grid-template-columns: minmax(0, 1fr); }
       .sg-visual { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -354,7 +399,7 @@
     </div>
     <div class="container">
       <div class="pd-hero-info">
-        <p class="pd-meta">2023 &nbsp;—&nbsp; UIUX · SKY GO 流媒体</p>
+        <p class="pd-meta">2024 &nbsp;—&nbsp; UIUX · SKY GO 流媒体</p>
         <h1 class="pd-title" data-i18n-zh="SKY GO 短视频创作" data-i18n-en="SKY GO Short-Video Creation">SKY GO 短视频创作</h1>
         <p class="pd-tagline" data-i18n-zh="为流媒体平台设计的短视频创作链路——让看剧的人成为创作者。把创作入口放回观看现场，用模板与 AI 特效把「想拍」到「发出去」压缩成一条顺畅的路。" data-i18n-en="A short-video creation flow built for a streaming platform—turning viewers into creators. It puts the creation entry back where the impulse happens, and uses templates and AI effects to compress 'I want to make one' into a single unbroken path.">为流媒体平台设计的短视频创作链路——让看剧的人成为创作者。把创作入口放回观看现场，用模板与 AI 特效把「想拍」到「发出去」压缩成一条顺畅的路。</p>
       </div>
@@ -373,7 +418,7 @@
           </div>
           <div class="pd-meta-item">
             <span class="pd-meta-label" data-i18n-zh="时长" data-i18n-en="Duration">时长</span>
-            <span class="pd-meta-value">2023.04 — 2023.05</span>
+            <span class="pd-meta-value">2024.04 — 2024.05</span>
           </div>
           <div class="pd-meta-item">
             <span class="pd-meta-label" data-i18n-zh="成员" data-i18n-en="Team">成员</span>
@@ -506,7 +551,45 @@
     </div>
   </section>
 
-  <!-- ⑥ 改版对比 -->
+  <!-- ⑥ 多端适配 -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Responsive</span>
+      <h2 class="pd-section-title" data-i18n-zh="手机、平板、桌面三端都做了" data-i18n-en="Built for Phone, Tablet and Desktop">手机、平板、桌面三端都做了</h2>
+      <p class="pd-body" data-i18n-zh="SKY GO 不只是一个手机 App。同一套创作与观看体验要在三种断点下都站得住——平板端横屏观看时把编辑入口收进顶部图标栏，桌面端则展开成完整的网页布局，播放器、剧集选集与热门短视频并排陈列。" data-i18n-en="SKY GO isn't just a phone app. The same watch-and-create experience has to hold up across three breakpoints—on tablet, landscape viewing tucks the edit entries into a top icon bar; on desktop it unfolds into a full web layout, with the player, episode picker and trending clips laid out side by side.">SKY GO 不只是一个手机 App。同一套创作与观看体验要在三种断点下都站得住——平板端横屏观看时把编辑入口收进顶部图标栏，桌面端则展开成完整的网页布局，播放器、剧集选集与热门短视频并排陈列。</p>
+      <div class="sg-devices">
+        <div class="sg-device-card">
+          <div class="sg-device-label">
+            <span class="sg-device-name" data-i18n-zh="手机" data-i18n-en="Phone">手机</span>
+            <span class="sg-device-size">375 × 812</span>
+          </div>
+          <div class="sg-device-frame">
+            <img src="images/skygo-responsive-mobile.jpg" alt="SKY GO 手机端编辑界面" loading="lazy" />
+          </div>
+        </div>
+        <div class="sg-device-card">
+          <div class="sg-device-label">
+            <span class="sg-device-name" data-i18n-zh="平板 · 横屏观看" data-i18n-en="Tablet · Landscape">平板 · 横屏观看</span>
+            <span class="sg-device-size">1024 × 1366</span>
+          </div>
+          <div class="sg-device-frame">
+            <img src="images/skygo-responsive-tablet.jpg" alt="SKY GO 平板端横屏观看界面" loading="lazy" />
+          </div>
+        </div>
+        <div class="sg-device-card">
+          <div class="sg-device-label">
+            <span class="sg-device-name" data-i18n-zh="桌面网页" data-i18n-en="Desktop Web">桌面网页</span>
+            <span class="sg-device-size">1728 × 1117</span>
+          </div>
+          <div class="sg-device-frame">
+            <img src="images/skygo-responsive-desktop.jpg" alt="SKY GO 桌面网页端界面" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ 改版对比 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Iteration</span>
@@ -548,7 +631,7 @@
     </div>
   </section>
 
-  <!-- ⑦ 视觉规范 -->
+  <!-- ⑧ 视觉规范 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Visual</span>
@@ -580,7 +663,7 @@
     </div>
   </section>
 
-  <!-- ⑧ 复盘与局限 -->
+  <!-- ⑨ 复盘与局限 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Retrospective</span>
