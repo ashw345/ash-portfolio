@@ -19,6 +19,9 @@
     /* 长页面：点状网固定在视口，避免滚动卡顿 */
     #dot-canvas { position: fixed; }
 
+    /* 顶图没有额外底板，空白区域直接露出页面背景 */
+    .pd-hero-img { background: transparent; }
+
     /* 小标题不用 Syne 展示字体，换成正常字体——仅本页生效，
        不动 project-detail.css 里的共享规则，其他项目页不受影响。
        大标题（.pd-title，Hero 那个 SKY GO 短视频创作）不在此列，维持 Syne。 */
@@ -394,8 +397,7 @@
   <section class="pd-hero">
     <a class="project-category-back" href="index.html"><span aria-hidden="true">←</span><span data-i18n="nav_ui">UIUX设计</span></a>
     <div class="pd-hero-img">
-      <!-- TODO 换成 images/skygo-hero.jpg（1920×854） -->
-      <div class="ph" style="width:100%;height:100%;border:none;border-radius:0">顶图占位<br />images/skygo-hero.jpg · 1920 × 854</div>
+      <img src="images/skygo-hero.png" alt="SKY GO 短视频创作项目界面展示" width="1920" height="854" />
     </div>
     <div class="container">
       <div class="pd-hero-info">
@@ -476,11 +478,11 @@
         <div class="sg-measures">
           <div>
             <span class="sg-measure-title" data-i18n-zh="剧集 + 短视频" data-i18n-en="Series + short video">剧集 + 短视频</span>
-            <span class="sg-measure-desc" data-i18n-zh="在影视观看页新增创作入口，从剧集里直接引导用户参与创作——让入口出现在动机产生的地方。" data-i18n-en="A creation entry added to the player itself, inviting people to make something straight from the episode—putting the door where the impulse is.">在影视观看页新增创作入口，从剧集里直接引导用户参与创作——让入口出现在动机产生的地方。</span>
+            <span class="sg-measure-desc" data-i18n-zh="在影视观看页新增创作入口，点开是四个选项——AI 换脸、实时换脸、叠加特效、录制，从剧集里直接引导用户参与创作，让入口出现在动机产生的地方。" data-i18n-en="A creation entry added to the player itself—tap it and four options appear: AI face, real-time face swap, overlay effects, record. It invites people to make something straight from the episode, putting the door where the impulse is.">在影视观看页新增创作入口，点开是四个选项——AI 换脸、实时换脸、叠加特效、录制，从剧集里直接引导用户参与创作，让入口出现在动机产生的地方。</span>
           </div>
           <div>
             <span class="sg-measure-title" data-i18n-zh="简易编辑器" data-i18n-en="A stripped-down editor">简易编辑器</span>
-            <span class="sg-measure-desc" data-i18n-zh="把原本分散的创建流程整理成一条线，用户可以直接套模板快速生成，各类特效也收进同一个简易编辑器里修改。" data-i18n-en="The scattered steps were pulled into a single line: pick a template and generate, with every effect gathered into one simple editor for adjustment.">把原本分散的创建流程整理成一条线，用户可以直接套模板快速生成，各类特效也收进同一个简易编辑器里修改。</span>
+            <span class="sg-measure-desc" data-i18n-zh="原设计把「深度换脸」「真实幻想」「Reels」做成三个各自独立的创作场景，入口分散、逻辑还不一样。我们把它们合并成一条线：选模板快速生成，各类特效收进同一个简易编辑器里调整。" data-i18n-en="The original design split creation into three separate scenes—Deep Fake, Real Fantasy, Reels—each with its own entry and its own logic. We merged them into one line: pick a template to generate fast, then adjust every effect inside a single simple editor.">原设计把「深度换脸」「真实幻想」「Reels」做成三个各自独立的创作场景，入口分散、逻辑还不一样。我们把它们合并成一条线：选模板快速生成，各类特效收进同一个简易编辑器里调整。</span>
           </div>
           <div>
             <span class="sg-measure-title" data-i18n-zh="影视 Tag" data-i18n-en="Title tags">影视 Tag</span>
@@ -531,7 +533,7 @@
           <div class="ph ph--phone sg-step-shot">05 AI 特效<br />skygo-step-5.png</div>
           <span class="sg-step-num">05</span>
           <span class="sg-step-title" data-i18n-zh="AI 换脸 / 身临其境" data-i18n-en="AI face swap">AI 换脸 / 身临其境</span>
-          <span class="sg-step-desc" data-i18n-zh="把合成参数降维成前景 / 中景 / 背景三个可理解的选项，用户不需要懂图层也能选对。" data-i18n-en="Compositing parameters reduced to three legible choices—fore, middle, background. You don't need to understand layers to pick correctly.">把合成参数降维成前景 / 中景 / 背景三个可理解的选项，用户不需要懂图层也能选对。</span>
+          <span class="sg-step-desc" data-i18n-zh="AI 换脸首次使用要过一次 3D 建模——把脸对准引导框扫一圈，「You are all set!」之后就能反复套用到任意片段，不用每次重新拍。身临其境则把合成位置降维成前景 / 中景 / 背景三个可理解的选项，用户不需要懂图层也能选对。" data-i18n-en="AI face needs a one-time 3D scan the first time—align your face with the guide, sweep around, and once it says 'You are all set!' that model carries over to any clip without rescanning. Immersive mode reduces compositing position to three legible choices—fore, middle, background—so picking correctly never requires understanding layers.">AI 换脸首次使用要过一次 3D 建模——把脸对准引导框扫一圈，「You are all set!」之后就能反复套用到任意片段，不用每次重新拍。身临其境则把合成位置降维成前景 / 中景 / 背景三个可理解的选项，用户不需要懂图层也能选对。</span>
         </div>
         <div>
           <!-- TODO images/skygo-step-6.png -->
@@ -545,7 +547,7 @@
           <div class="ph ph--phone sg-step-shot">07 发布<br />skygo-step-7.png</div>
           <span class="sg-step-num">07</span>
           <span class="sg-step-title" data-i18n-zh="发布与标注" data-i18n-en="Publish &amp; tag">发布与标注</span>
-          <span class="sg-step-desc" data-i18n-zh="发布页必须选剧集与片段，这一步是闭环成立的关键——没有 Tag，这条视频就回不到剧集页。" data-i18n-en="Publishing requires choosing the title and scene. This step is what makes the loop work—without the tag, the video never finds its way back to the show's page.">发布页必须选剧集与片段，这一步是闭环成立的关键——没有 Tag，这条视频就回不到剧集页。</span>
+          <span class="sg-step-desc" data-i18n-zh="发布页必须选剧集与片段，这一步是闭环成立的关键——没有 Tag，这条视频就回不到剧集页。类型、隐私范围、保存到相册是次要字段，往后排；分享额外接了 Facebook、Instagram、TikTok 和外链，做完不用退出 App 就能扩散出去。" data-i18n-en="Publishing requires choosing the title and scene—this is what makes the loop work; without the tag, the video never finds its way back to the show's page. Genre, privacy and save-to-album are secondary fields, pushed further down; sharing also reaches Facebook, Instagram, TikTok and a plain link, so a finished clip can spread without ever leaving the app.">发布页必须选剧集与片段，这一步是闭环成立的关键——没有 Tag，这条视频就回不到剧集页。类型、隐私范围、保存到相册是次要字段，往后排；分享额外接了 Facebook、Instagram、TikTok 和外链，做完不用退出 App 就能扩散出去。</span>
         </div>
       </div>
     </div>
