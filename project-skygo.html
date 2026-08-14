@@ -19,6 +19,16 @@
     /* 长页面：点状网固定在视口，避免滚动卡顿 */
     #dot-canvas { position: fixed; }
 
+    /* 小标题不用 Syne 展示字体，换成正常字体——仅本页生效，
+       不动 project-detail.css 里的共享规则，其他项目页不受影响。
+       大标题（.pd-title，Hero 那个 SKY GO 短视频创作）不在此列，维持 Syne。 */
+    .pd-section-title {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+                   'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
     /* ── 占位框（深色版，等 Figma 切图替换） ── */
     .ph {
       display: flex;
