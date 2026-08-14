@@ -227,12 +227,61 @@
       color: rgba(255, 255, 255, 0.6);
     }
 
-    /* ── ⑥ 两条创作路径 ── */
+    /* ── ⑦ 三个入口，一条主干 ── */
+    .sg-flowmap {
+      margin-top: 44px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: #0a0a0a;
+    }
+    .sg-flowmap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .sg-flowmap-caption {
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.42);
+    }
+
     .sg-paths {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
-      margin-top: 44px;
+      margin-top: 40px;
+    }
+    /* 入口卡里的「已知上下文 / 切入位置 / 用户状态」三行对照 */
+    .sg-entry-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .sg-entry-row { display: block; }
+    .sg-entry-key {
+      display: block;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.38);
+      margin-bottom: 4px;
+    }
+    .sg-entry-val {
+      display: block;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.75);
+    }
+    /* 我负责的那条入口加重描边，跟另外两条区分 */
+    .sg-path--mine {
+      border-color: rgba(59, 125, 246, 0.42);
+      background: rgba(59, 125, 246, 0.07);
     }
     .sg-path {
       padding: 32px 30px;
@@ -696,7 +745,7 @@
         <div class="pd-meta-grid">
           <div class="pd-meta-item">
             <span class="pd-meta-label" data-i18n-zh="我负责" data-i18n-en="Role">我负责</span>
-            <span class="pd-meta-value" data-i18n-zh="导航栏创建视频 / UIUX 设计" data-i18n-en="Nav-bar create flow / UIUX">导航栏创建视频 / UIUX 设计</span>
+            <span class="pd-meta-value" data-i18n-zh="三入口串联架构 / 主页入口优化" data-i18n-en="Three-entry architecture / home entry">三入口串联架构 / 主页入口优化</span>
           </div>
           <div class="pd-meta-item">
             <span class="pd-meta-label" data-i18n-zh="时长" data-i18n-en="Duration">时长</span>
@@ -714,50 +763,13 @@
 
         <div class="sg-scope">
           <span class="sg-scope-label">Scope</span>
-          <span class="sg-scope-text" data-i18n-zh="这是一个三人小组课题。我的工作是基于用户需求对第一版做问题分析与优化——重点重做了「从导航栏进入创建视频」的完整流程，并参与整体 UIUX。下文中标注为「我负责」的部分是我独立产出的，闭环策略与影视 Tag 是小组共同讨论的结果。" data-i18n-en="A three-person student brief. My work was to analyse the first version against user needs and iterate—chiefly rebuilding the full create-a-video flow from the nav bar, alongside general UIUX. The sections marked as mine below are my own output; the loop strategy and content tagging came out of group discussion.">这是一个三人小组课题。我的工作是基于用户需求对第一版做问题分析与优化——重点重做了「从导航栏进入创建视频」的完整流程，并参与整体 UIUX。下文中标注为「我负责」的部分是我独立产出的，闭环策略与影视 Tag 是小组共同讨论的结果。</span>
+          <span class="sg-scope-text" data-i18n-zh="这是一个三人小组课题，我主要负责 UX 部分：把三个创建入口在产品里串成一套完整体验——决定每个入口切进主干的位置、共用哪段流程、在哪里可以提前收尾；以及第一版就已存在的「主页新建」入口的重做。视觉与部分界面由组内其他同学完成。" data-i18n-en="A three-person student brief. I owned the UX side: wiring the three creation entries into one coherent experience—deciding where each one cuts into the shared spine, how much of the pipeline they hold in common, and where a user can finish early—plus rebuilding the home-screen create entry that already existed in v1. Visual work and some screens were done by teammates.">这是一个三人小组课题，我主要负责 UX 部分：把三个创建入口在产品里串成一套完整体验——决定每个入口切进主干的位置、共用哪段流程、在哪里可以提前收尾；以及第一版就已存在的「主页新建」入口的重做。视觉与部分界面由组内其他同学完成。</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ③ 第一版基线 -->
-  <section class="pd-section">
-    <div class="container">
-      <span class="pd-section-label">Baseline</span>
-      <h2 class="pd-section-title" data-i18n-zh="我接手时的第一版" data-i18n-en="The Version I Inherited">我接手时的第一版</h2>
-      <p class="pd-body" data-i18n-zh="要说清楚这一轮做了什么，得先说清楚起点。第一版已经能创建短视频，但它把「创作」当成一个独立功能塞在主页里，跟用户正在看的内容毫无关系；而进去之后的那条路，问题不在缺功能，在于组织方式。" data-i18n-en="To be clear about what this round changed, the starting point has to be clear first. The first version could already create short videos—but it treated creation as a standalone feature parked on the home screen, unrelated to whatever the user was watching. And once inside, the trouble wasn't missing features; it was how they were organised.">要说清楚这一轮做了什么，得先说清楚起点。第一版已经能创建短视频，但它把「创作」当成一个独立功能塞在主页里，跟用户正在看的内容毫无关系；而进去之后的那条路，问题不在缺功能，在于组织方式。</p>
-
-      <div class="sg-baseline-shot">
-        <!-- TODO 换成第一版原设计走查图（作品集 PDF p16） -->
-        <div class="ph">第一版原设计 · 走查标注<br />images/skygo-v1-original.png</div>
-      </div>
-      <p class="sg-baseline-caption" data-i18n-zh="第一版从主页新建视频的完整链路，以及我在走查时标出的问题点。" data-i18n-en="The first version's full create-from-home path, with the problems I marked during the walkthrough.">第一版从主页新建视频的完整链路，以及我在走查时标出的问题点。</p>
-
-      <div class="sg-baseline">
-        <div class="sg-persona-card">
-          <span class="sg-persona-label" data-i18n-zh="第一版有什么" data-i18n-en="What v1 had">第一版有什么</span>
-          <ul class="sg-flaws">
-            <li data-i18n-zh="只有一个创建入口——从主页新建，观看页里没有任何创作的口子。" data-i18n-en="One entry only—create from the home screen. Nothing on the player itself.">只有一个创建入口——从主页新建，观看页里没有任何创作的口子。</li>
-            <li data-i18n-zh="没有 AI 换脸这类玩法，用户没法把自己放进剧情里。" data-i18n-en="No AI face-swap style effects, so users couldn't place themselves inside a scene.">没有 AI 换脸这类玩法，用户没法把自己放进剧情里。</li>
-            <li data-i18n-zh="特效被切成「Deep Fake / Real Fantasy / Reels」三套各自独立的场景，入口分散、逻辑还不一样。" data-i18n-en="Effects were split into three separate scenes—Deep Fake, Real Fantasy, Reels—each with its own entry and its own logic.">特效被切成「Deep Fake / Real Fantasy / Reels」三套各自独立的场景，入口分散、逻辑还不一样。</li>
-            <li data-i18n-zh="编辑是相机优先的：像 Instagram、抖音那样鼓励用户举起手机现拍。" data-i18n-en="Editing was camera-first, in the Instagram/TikTok mould: raise your phone and shoot.">编辑是相机优先的：像 Instagram、抖音那样鼓励用户举起手机现拍。</li>
-          </ul>
-        </div>
-        <div class="sg-persona-card">
-          <span class="sg-persona-label" data-i18n-zh="我走查时标出的问题" data-i18n-en="What I marked in the walkthrough">我走查时标出的问题</span>
-          <ul class="sg-flaws">
-            <li data-i18n-zh="整条流程冗余，走完要经过好几个功能重叠的页面。" data-i18n-en="The path was redundant—several pages with overlapping purposes to get through.">整条流程冗余，走完要经过好几个功能重叠的页面。</li>
-            <li data-i18n-zh="特效命名让人猜不到下一步：「Deep Fake」「Real Fantasy」这些词没告诉用户点进去会发生什么。" data-i18n-en="The effect names gave no hint of what came next—'Deep Fake', 'Real Fantasy' tell you nothing about what tapping them does.">特效命名让人猜不到下一步：「Deep Fake」「Real Fantasy」这些词没告诉用户点进去会发生什么。</li>
-            <li data-i18n-zh="点击「创建视频」缺少视觉反馈，用户不确定自己有没有点到。" data-i18n-en="Tapping 'create video' gave no visual response, leaving users unsure the tap registered.">点击「创建视频」缺少视觉反馈，用户不确定自己有没有点到。</li>
-            <li data-i18n-zh="内容选择页吸引力不足，是一个纯列表，看不出可以拿它做什么。" data-i18n-en="The content-picking page was an unappealing plain list—nothing suggested what you could make from it.">内容选择页吸引力不足，是一个纯列表，看不出可以拿它做什么。</li>
-            <li data-i18n-zh="ICON 设计不统一，同一屏里的图标风格对不上。" data-i18n-en="Icon design was inconsistent, with mismatched styles inside a single screen.">ICON 设计不统一，同一屏里的图标风格对不上。</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ④ 用户与痛点 -->
+  <!-- ③ 用户与痛点 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Users &amp; Problem</span>
@@ -783,7 +795,7 @@
     </div>
   </section>
 
-  <!-- ⑤ 用户画像 -->
+  <!-- ④ 用户画像 -->
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Persona</span>
@@ -822,6 +834,43 @@
     </div>
   </section>
 
+  <!-- ⑤ 第一版基线 -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label">Baseline</span>
+      <h2 class="pd-section-title" data-i18n-zh="我接手时的第一版" data-i18n-en="The Version I Inherited">我接手时的第一版</h2>
+      <p class="pd-body" data-i18n-zh="要说清楚这一轮做了什么，得先说清楚起点。第一版已经能创建短视频，但它把「创作」当成一个独立功能塞在主页里，跟用户正在看的内容毫无关系；而进去之后的那条路，问题不在缺功能，在于组织方式。" data-i18n-en="To be clear about what this round changed, the starting point has to be clear first. The first version could already create short videos—but it treated creation as a standalone feature parked on the home screen, unrelated to whatever the user was watching. And once inside, the trouble wasn't missing features; it was how they were organised.">要说清楚这一轮做了什么，得先说清楚起点。第一版已经能创建短视频，但它把「创作」当成一个独立功能塞在主页里，跟用户正在看的内容毫无关系；而进去之后的那条路，问题不在缺功能，在于组织方式。</p>
+
+      <div class="sg-baseline-shot">
+        <!-- TODO 换成第一版原设计走查图（作品集 PDF p16） -->
+        <div class="ph">第一版原设计 · 走查标注<br />images/skygo-v1-original.png</div>
+      </div>
+      <p class="sg-baseline-caption" data-i18n-zh="第一版从主页新建视频的完整链路，以及我在走查时标出的问题点。" data-i18n-en="The first version's full create-from-home path, with the problems I marked during the walkthrough.">第一版从主页新建视频的完整链路，以及我在走查时标出的问题点。</p>
+
+      <div class="sg-baseline">
+        <div class="sg-persona-card">
+          <span class="sg-persona-label" data-i18n-zh="第一版有什么" data-i18n-en="What v1 had">第一版有什么</span>
+          <ul class="sg-flaws">
+            <li data-i18n-zh="只有一个创建入口——从主页新建，观看页里没有任何创作的口子。" data-i18n-en="One entry only—create from the home screen. Nothing on the player itself.">只有一个创建入口——从主页新建，观看页里没有任何创作的口子。</li>
+            <li data-i18n-zh="没有 AI 换脸这类玩法，用户没法把自己放进剧情里。" data-i18n-en="No AI face-swap style effects, so users couldn't place themselves inside a scene.">没有 AI 换脸这类玩法，用户没法把自己放进剧情里。</li>
+            <li data-i18n-zh="特效被切成「Deep Fake / Real Fantasy / Reels」三套各自独立的场景，入口分散、逻辑还不一样。" data-i18n-en="Effects were split into three separate scenes—Deep Fake, Real Fantasy, Reels—each with its own entry and its own logic.">特效被切成「Deep Fake / Real Fantasy / Reels」三套各自独立的场景，入口分散、逻辑还不一样。</li>
+            <li data-i18n-zh="编辑是相机优先的：像 Instagram、抖音那样鼓励用户举起手机现拍。" data-i18n-en="Editing was camera-first, in the Instagram/TikTok mould: raise your phone and shoot.">编辑是相机优先的：像 Instagram、抖音那样鼓励用户举起手机现拍。</li>
+          </ul>
+        </div>
+        <div class="sg-persona-card">
+          <span class="sg-persona-label" data-i18n-zh="我走查时标出的问题" data-i18n-en="What I marked in the walkthrough">我走查时标出的问题</span>
+          <ul class="sg-flaws">
+            <li data-i18n-zh="整条流程冗余，走完要经过好几个功能重叠的页面。" data-i18n-en="The path was redundant—several pages with overlapping purposes to get through.">整条流程冗余，走完要经过好几个功能重叠的页面。</li>
+            <li data-i18n-zh="特效命名让人猜不到下一步：「Deep Fake」「Real Fantasy」这些词没告诉用户点进去会发生什么。" data-i18n-en="The effect names gave no hint of what came next—'Deep Fake', 'Real Fantasy' tell you nothing about what tapping them does.">特效命名让人猜不到下一步：「Deep Fake」「Real Fantasy」这些词没告诉用户点进去会发生什么。</li>
+            <li data-i18n-zh="点击「创建视频」缺少视觉反馈，用户不确定自己有没有点到。" data-i18n-en="Tapping 'create video' gave no visual response, leaving users unsure the tap registered.">点击「创建视频」缺少视觉反馈，用户不确定自己有没有点到。</li>
+            <li data-i18n-zh="内容选择页吸引力不足，是一个纯列表，看不出可以拿它做什么。" data-i18n-en="The content-picking page was an unappealing plain list—nothing suggested what you could make from it.">内容选择页吸引力不足，是一个纯列表，看不出可以拿它做什么。</li>
+            <li data-i18n-zh="ICON 设计不统一，同一屏里的图标风格对不上。" data-i18n-en="Icon design was inconsistent, with mismatched styles inside a single screen.">ICON 设计不统一，同一屏里的图标风格对不上。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ⑥ 解决方案：闭环 -->
   <section class="pd-section">
     <div class="container">
@@ -849,41 +898,88 @@
     </div>
   </section>
 
-  <!-- ⑦ 两条创作路径 -->
+  <!-- ⑦ 三个入口，一条主干 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label">Flow</span>
-      <h2 class="pd-section-title" data-i18n-zh="两条创作路径，一个大环" data-i18n-en="Two Paths, One Loop">两条创作路径，一个大环</h2>
-      <p class="pd-body" data-i18n-zh="创作不是只有一条路。我们做了两个各自独立成立的场景——在看剧的过程中顺手做一条，和专门打开创作器做一条。它们共用同一个编辑器与发布器，所以无论用户从哪一端进来，体验都不会断裂。" data-i18n-en="Creation isn't a single road. We built two scenarios that each stand on their own—making a clip in passing while watching, and opening the creator deliberately to make one. They share the same editor and publisher, so whichever end a user enters from, the experience never breaks.">创作不是只有一条路。我们做了两个各自独立成立的场景——在看剧的过程中顺手做一条，和专门打开创作器做一条。它们共用同一个编辑器与发布器，所以无论用户从哪一端进来，体验都不会断裂。</p>
+      <span class="pd-section-label">Architecture</span>
+      <h2 class="pd-section-title" data-i18n-zh="三个入口，一条主干" data-i18n-en="Three Entries, One Spine">三个入口，一条主干</h2>
+      <p class="pd-body" data-i18n-zh="这一版把创建入口从一个扩到三个。但三个入口不是三条各自为政的路——它们是同一条流水线上的三个切入点，切在哪里，取决于用户进来时系统已经知道多少上下文。这条串联架构是我在这个项目里的主要产出。" data-i18n-en="This round grew the create entries from one to three. But they aren't three separate roads—they're three insertion points into the same pipeline, and where each one cuts in depends on how much context the system already has when the user arrives. Wiring that architecture together was my main contribution to this project.">这一版把创建入口从一个扩到三个。但三个入口不是三条各自为政的路——它们是同一条流水线上的三个切入点，切在哪里，取决于用户进来时系统已经知道多少上下文。这条串联架构是我在这个项目里的主要产出。</p>
+
+      <div class="sg-flowmap">
+        <img src="images/skygo-flow-map.jpg" alt="SKY GO 三个创建入口汇入同一条流水线的完整流程图" loading="lazy" />
+      </div>
+      <p class="sg-flowmap-caption" data-i18n-zh="完整使用流程：三个入口分别切入「选择影视 → 选择模版片段 → 选择特效 → 录制 → 细节调整 → 上传」这条主干的不同位置，最后汇于同一个发布步骤。" data-i18n-en="The full user flow: three entries cut into different points of one spine—pick a title, pick a template clip, pick an effect, record, fine-tune, upload—and converge on the same publish step.">完整使用流程：三个入口分别切入「选择影视 → 选择模版片段 → 选择特效 → 录制 → 细节调整 → 上传」这条主干的不同位置，最后汇于同一个发布步骤。</p>
 
       <div class="sg-paths">
-        <div class="sg-path">
-          <span class="sg-path-tag">Path A</span>
-          <span class="sg-path-title" data-i18n-zh="观看剧集时创建" data-i18n-en="Create while watching">观看剧集时创建</span>
-          <span class="sg-path-note" data-i18n-zh="这一版新增的入口。创作动机来自剧情本身，入口就长在播放器上，不用离开正在看的这一集。" data-i18n-en="An entry added in this round. The impulse comes from the scene itself, so the entry lives on the player—no need to leave the episode you're watching.">这一版新增的入口。创作动机来自剧情本身，入口就长在播放器上，不用离开正在看的这一集。</span>
-          <ol class="sg-path-steps">
-            <li data-i18n-zh="观看剧集" data-i18n-en="Watch an episode">观看剧集</li>
-            <li data-i18n-zh="点播放器右侧的编辑按钮，从 AI 换脸 / 实时换脸 / 叠加特效 / 录制 四种玩法里挑一个" data-i18n-en="Tap the edit button on the player and pick one of four options: AI face, real-time face swap, overlay, record">点播放器右侧的编辑按钮，从 AI 换脸 / 实时换脸 / 叠加特效 / 录制 四种玩法里挑一个</li>
-            <li data-i18n-zh="上传素材，在编辑器里完成合成" data-i18n-en="Upload your material and finish the composite in the editor">上传素材，在编辑器里完成合成</li>
-            <li data-i18n-zh="发布，标注剧集与片段" data-i18n-en="Publish, tagging the title and scene">发布，标注剧集与片段</li>
-          </ol>
+        <div class="sg-path sg-path--mine">
+          <span class="sg-path-tag" data-i18n-zh="入口 2 · 我优化" data-i18n-en="Entry 2 · rebuilt by me">入口 2 · 我优化</span>
+          <span class="sg-path-title" data-i18n-zh="主页新建" data-i18n-en="Create from home">主页新建</span>
+          <span class="sg-path-note" data-i18n-zh="第一版唯一的入口。用户带着明确意图进来，什么上下文都没有，所以要从头问起。" data-i18n-en="The only entry in v1. The user arrives with clear intent but no context at all, so the flow has to ask from the top.">第一版唯一的入口。用户带着明确意图进来，什么上下文都没有，所以要从头问起。</span>
+          <div class="sg-entry-rows">
+            <span class="sg-entry-row">
+              <span class="sg-entry-key" data-i18n-zh="已知上下文" data-i18n-en="Known context">已知上下文</span>
+              <span class="sg-entry-val" data-i18n-zh="无" data-i18n-en="None">无</span>
+            </span>
+            <span class="sg-entry-row">
+              <span class="sg-entry-key" data-i18n-zh="切入位置" data-i18n-en="Cuts in at">切入位置</span>
+              <span class="sg-entry-val" data-i18n-zh="主干最前端 · 选择影视" data-i18n-en="Top of the spine · pick a title">主干最前端 · 选择影视</span>
+            </span>
+            <span class="sg-entry-row">
+              <span class="sg-entry-key" data-i18n-zh="用户状态" data-i18n-en="User state">用户状态</span>
+              <span class="sg-entry-val" data-i18n-zh="我今天就是想做条视频" data-i18n-en="I came here to make something">我今天就是想做条视频</span>
+            </span>
+          </div>
         </div>
+
         <div class="sg-path">
-          <span class="sg-path-tag">Path B</span>
-          <span class="sg-path-title" data-i18n-zh="创作器中创建" data-i18n-en="Create in the creator">创作器中创建</span>
-          <span class="sg-path-note" data-i18n-zh="第一版就存在、由我重做的入口。用户带着明确的创作意图进来，先选作品再选模板，适合想做得更完整的人。" data-i18n-en="The entry that already existed in v1, rebuilt by me. The user arrives already intending to make something—pick a title, then a template. This suits anyone who wants to go further.">第一版就存在、由我重做的入口。用户带着明确的创作意图进来，先选作品再选模板，适合想做得更完整的人。</span>
-          <ol class="sg-path-steps">
-            <li data-i18n-zh="从底部导航的 Create 进入" data-i18n-en="Enter from Create in the tab bar">从底部导航的 Create 进入</li>
-            <li data-i18n-zh="选择影视作品，「最近观看」排在搜索之前" data-i18n-en="Choose a title, with Recently Viewed ranked above search">选择影视作品，「最近观看」排在搜索之前</li>
-            <li data-i18n-zh="按所选作品挑模板，不会剪辑也能直接出片" data-i18n-en="Pick a template recommended for that title—shippable even if you can't edit">按所选作品挑模板，不会剪辑也能直接出片</li>
-            <li data-i18n-zh="在同一个编辑器里合成，然后发布" data-i18n-en="Composite in the same editor, then publish">在同一个编辑器里合成，然后发布</li>
-          </ol>
+          <span class="sg-path-tag" data-i18n-zh="入口 1 · 新增" data-i18n-en="Entry 1 · new">入口 1 · 新增</span>
+          <span class="sg-path-title" data-i18n-zh="影视观看页" data-i18n-en="From the player">影视观看页</span>
+          <span class="sg-path-note" data-i18n-zh="正在看的这一集就是素材，选片和选模板两步可以直接省掉。" data-i18n-en="The episode already playing is the material, so picking a title and a template can both be skipped.">正在看的这一集就是素材，选片和选模板两步可以直接省掉。</span>
+          <div class="sg-entry-rows">
+            <span class="sg-entry-row">
+              <span class="sg-entry-key" data-i18n-zh="已知上下文" data-i18n-en="Known context">已知上下文</span>
+              <span class="sg-entry-val" data-i18n-zh="影视、片段" data-i18n-en="Title, scene">影视、片段</span>
+            </span>
+            <span class="sg-entry-row">
+              <span class="sg-entry-key" data-i18n-zh="切入位置" data-i18n-en="Cuts in at">切入位置</span>
+              <span class="sg-entry-val" data-i18n-zh="主干中段 · 选择特效" data-i18n-en="Mid-spine · pick an effect">主干中段 · 选择特效</span>
+            </span>
+            <span class="sg-entry-row">
+              <span class="sg-entry-key" data-i18n-zh="用户状态" data-i18n-en="User state">用户状态</span>
+              <span class="sg-entry-val" data-i18n-zh="这段太好笑了，我想玩一下" data-i18n-en="This bit is hilarious—let me play with it">这段太好笑了，我想玩一下</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="sg-path">
+          <span class="sg-path-tag" data-i18n-zh="入口 3 · 新增" data-i18n-en="Entry 3 · new">入口 3 · 新增</span>
+          <span class="sg-path-title" data-i18n-zh="拍同款" data-i18n-en="Use this template">拍同款</span>
+          <span class="sg-path-note" data-i18n-zh="影视、模板、特效全部从那条视频继承，用户几乎不用做任何选择。" data-i18n-en="Title, template and effect are all inherited from the clip you tapped—almost nothing left to choose.">影视、模板、特效全部从那条视频继承，用户几乎不用做任何选择。</span>
+          <div class="sg-entry-rows">
+            <span class="sg-entry-row">
+              <span class="sg-entry-key" data-i18n-zh="已知上下文" data-i18n-en="Known context">已知上下文</span>
+              <span class="sg-entry-val" data-i18n-zh="影视、模板、特效" data-i18n-en="Title, template, effect">影视、模板、特效</span>
+            </span>
+            <span class="sg-entry-row">
+              <span class="sg-entry-key" data-i18n-zh="切入位置" data-i18n-en="Cuts in at">切入位置</span>
+              <span class="sg-entry-val" data-i18n-zh="主干末端 · 细节调整" data-i18n-en="End of spine · fine-tune">主干末端 · 细节调整</span>
+            </span>
+            <span class="sg-entry-row">
+              <span class="sg-entry-key" data-i18n-zh="用户状态" data-i18n-en="User state">用户状态</span>
+              <span class="sg-entry-val" data-i18n-zh="他这条不错，我也来一个" data-i18n-en="Theirs is good—I'll make one too">他这条不错，我也来一个</span>
+            </span>
+          </div>
         </div>
       </div>
 
       <div class="sg-junction">
-        <span class="sg-junction-label" data-i18n-zh="咬合点 · 两条路径在这里合成一个大环" data-i18n-en="Junction · where the two paths become one loop">咬合点 · 两条路径在这里合成一个大环</span>
-        <span class="sg-junction-text" data-i18n-zh="走完 Path A 发布之后，用户会落进短视频瀑布流。在这里刷到别人的作品时，点「使用同款模板」就能带着那个片段直接进入编辑页——也就是接上了 Path B 的后半段。看别人的作品变成了下一次创作的起点，两个原本独立的场景由此闭合成一个可以一直转下去的环。" data-i18n-en="After publishing through Path A, the user lands in the short-video feed. Tapping 'use this template' on someone else's clip carries that footage straight into the editor—joining the back half of Path B. Watching what others made becomes the trigger for making the next one, and two independent scenarios close into a loop that can keep turning.">走完 Path A 发布之后，用户会落进短视频瀑布流。在这里刷到别人的作品时，点「使用同款模板」就能带着那个片段直接进入编辑页——也就是接上了 Path B 的后半段。看别人的作品变成了下一次创作的起点，两个原本独立的场景由此闭合成一个可以一直转下去的环。</span>
+        <span class="sg-junction-label" data-i18n-zh="判断一 · 深浅不是不统一，是上下文差异的结果" data-i18n-en="Call one · the depth gap isn't inconsistency, it's context">判断一 · 深浅不是不统一，是上下文差异的结果</span>
+        <span class="sg-junction-text" data-i18n-zh="三个入口的流程长短差很多，但这不是设计没对齐——是「已知多少就少问多少」的必然结果。最典型的是观看页：换完脸之后可以直接发布，也可以选择进编辑器细调。之所以给出「不进编辑器」这个选项，是因为用户此刻正在看剧，把他拉进一个完整编辑器就等于打断观影连贯性——创作不该以牺牲正在进行的观看为代价。" data-i18n-en="The three flows differ a lot in length, but that's not misalignment—it follows from asking only for what isn't already known. The clearest case is the player entry: after the face swap you can publish immediately, or step into the editor to fine-tune. That opt-out exists because the user is mid-episode, and pulling them into a full editor would break the continuity of what they're watching. Creating shouldn't cost you the viewing you were already doing.">三个入口的流程长短差很多，但这不是设计没对齐——是「已知多少就少问多少」的必然结果。最典型的是观看页：换完脸之后可以直接发布，也可以选择进编辑器细调。之所以给出「不进编辑器」这个选项，是因为用户此刻正在看剧，把他拉进一个完整编辑器就等于打断观影连贯性——创作不该以牺牲正在进行的观看为代价。</span>
+      </div>
+
+      <div class="sg-junction">
+        <span class="sg-junction-label" data-i18n-zh="判断二 · 主页入口看似孤立，它的职责是启动循环" data-i18n-en="Call two · the home entry looks isolated because its job is to start the loop">判断二 · 主页入口看似孤立，它的职责是启动循环</span>
+        <span class="sg-junction-text" data-i18n-zh="观看页与拍同款能自己转成一个环：看剧 → 创作 → 发布 → 别人刷到 → 拍同款 → 再发布。主页新建不在这个环里，但这恰恰是它存在的理由——如果所有入口都依赖「你已经在消费内容」，新用户就永远进不来：想创作得先刷到别人的作品，而别人的作品又来自创作。主页新建是唯一不需要前置条件的入口，负责把人放进环里。它也不是完全断开的，短视频页可以回到主页，只是需要主动导航——这个「弱连接」是刻意的，它服务的是主动意图，不该被内容推着走。" data-i18n-en="The player and use-this-template entries spin into a loop on their own: watch, create, publish, someone sees it, they make their own, publish again. The home entry sits outside that loop—which is exactly why it has to exist. If every entry depended on already consuming content, new users could never get in: creating would require having seen someone else's clip, and those clips come from creating. The home entry is the only one with no precondition; its job is to put people into the loop. Nor is it fully cut off—the feed leads back to home—it just takes deliberate navigation. That weaker link is intentional: it serves deliberate intent, and shouldn't be pushed along by content.">观看页与拍同款能自己转成一个环：看剧 → 创作 → 发布 → 别人刷到 → 拍同款 → 再发布。主页新建不在这个环里，但这恰恰是它存在的理由——如果所有入口都依赖「你已经在消费内容」，新用户就永远进不来：想创作得先刷到别人的作品，而别人的作品又来自创作。主页新建是唯一不需要前置条件的入口，负责把人放进环里。它也不是完全断开的，短视频页可以回到主页，只是需要主动导航——这个「弱连接」是刻意的，它服务的是主动意图，不该被内容推着走。</span>
       </div>
 
       <div class="sg-video" data-duration="48">
