@@ -505,10 +505,6 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .ph-4 { background: linear-gradient(160deg,#1c1c1c 0%,#0f0f0f 50%,#2a2a2a 100%); }
 .ph-snapfit { background-image: url('../images/snapfit-hero.jpg'); background-size: cover; background-position: center; background-color: #0e0e0e; }
 .ph-member { background-image: url('../images/member-cover.jpg'); background-size: cover; background-position: center; background-color: #0d0d0d; }
-/* 智慧大师：封面图还没出，先用品牌暖褐渐变兜底。
-   拿到图后把 background-image 换成：url('../images/wisdom-cover.jpg')
-   （现在不预先写 url，是为了不让线上一直报一个 404） */
-.ph-wisdom { background-image: linear-gradient(150deg,#E8D3B4 0%,#C79A6B 55%,#A9713D 100%); background-size: cover; background-position: center; background-color: #C79A6B; }
 .ph-skygo { background-image: url('../images/skygo-cover.png'); background-size: cover; background-position: center; background-color: #142542; }
 .ph-lyft { background-image: url('../images/lyft-cover.png'); background-size: cover; background-position: center; background-color: #fdf7fc; }
 .ph-asm {

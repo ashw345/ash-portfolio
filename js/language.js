@@ -19,11 +19,6 @@ const translations = {
     member_desc: "喜马拉雅会员等级视觉体系升级——从老旧的金属勋章，到统一的 V1–V8 宝石等级体系，强化用户的进阶感与尊贵感。",
     member_link: "查看详情 →",
 
-    wisdom_meta: "2025 &nbsp;—&nbsp; UIUX · 喜马拉雅解忧小店",
-    wisdom_title: "智慧大师",
-    wisdom_desc: "喜马拉雅解忧小店的 AI 情绪咨询产品——挑一位大师说出烦恼，得到一份能读、能存、能分享的深度解忧报告。",
-    wisdom_link: "查看详情 →",
-
     skygo_meta: "2024 &nbsp;—&nbsp; UIUX · SKY GO 流媒体",
     skygo_title: "SKY GO 短视频创作",
     skygo_desc: "为英国流媒体平台 Sky 设计的短视频创作链路——让看剧的人成为创作者，把观看与创作接成闭环。",
@@ -182,11 +177,6 @@ const translations = {
     member_title: "Membership Level Redesign",
     member_desc: "A visual system upgrade for Ximalaya's membership levels—from outdated metal medals to a unified V1–V8 gemstone hierarchy that elevates progression and prestige.",
     member_link: "View Details →",
-
-    wisdom_meta: "2025 &nbsp;—&nbsp; UIUX · Ximalaya Worry-Relief Shop",
-    wisdom_title: "Wisdom Master",
-    wisdom_desc: "An AI emotional-counselling product in Ximalaya's Worry-Relief Shop—pick a master, tell them what's bothering you, and get a report worth reading, keeping and sharing.",
-    wisdom_link: "View Details →",
 
     skygo_meta: "2024 &nbsp;—&nbsp; UIUX · SKY GO Streaming",
     skygo_title: "SKYGO CLIP",
