@@ -253,7 +253,7 @@
       gap: 20px;
       margin-top: 40px;
     }
-    /* 入口卡里的「已知上下文 / 切入位置 / 用户状态」三行对照 */
+    /* 入口卡里的「已知上下文 / 用户状态」对照 */
     .sg-entry-rows {
       display: flex;
       flex-direction: column;
@@ -491,6 +491,30 @@
       border: 1px solid rgba(255, 255, 255, 0.10);
       background: rgba(255, 255, 255, 0.03);
     }
+    /* 悬停放大当前那台、压暗另外两台，方便逐个细看。
+       只在真有 hover 的设备上启用，触屏上点一下不会卡在放大态。 */
+    @media (hover: hover) {
+      .sg-device-card {
+        transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+                    opacity 0.35s ease;
+        will-change: transform;
+      }
+      .sg-devices:hover .sg-device-card {
+        transform: scale(0.94);
+        opacity: 0.4;
+      }
+      .sg-devices .sg-device-card:hover {
+        transform: scale(1.06);
+        opacity: 1;
+        position: relative;
+        z-index: 2; /* 放大后压住相邻两张 */
+      }
+      .sg-device-frame { transition: border-color 0.35s ease; }
+      .sg-devices .sg-device-card:hover .sg-device-frame {
+        border-color: rgba(59, 125, 246, 0.45);
+      }
+    }
+
     /* 全局 img 规则是 width/height 100% + cover，这里要逐条覆盖才能 contain */
     .sg-device-frame img {
       display: block;
@@ -570,23 +594,131 @@
       margin-bottom: 8px;
     }
 
-    /* ── ⑨ 视觉规范 ── */
+    /* ── ⑩ 视觉规范 ──
+       原来只有三个色块 + 一个占位，太单薄。补成一块完整的规格板：
+       色彩 / 蓝色梯度 / 字阶 / 表面层级，四组同处一个底板。 */
+    .sg-vis-board {
+      margin-top: 44px;
+      padding: 36px 38px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.018);
+    }
+    .sg-vis-group + .sg-vis-group {
+      margin-top: 38px;
+      padding-top: 34px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .sg-vis-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .sg-vis-title {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sg-blue-soft);
+    }
+    .sg-vis-note {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.38);
+      text-align: right;
+    }
+
+    /* 色彩 */
     .sg-visual {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 20px;
-      margin-top: 44px;
+      gap: 18px;
     }
     .sg-swatch {
-      height: 96px;
+      height: 104px;
       border-radius: 14px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      /* 顶部一道内高光，让纯色块有一点材质而不是死板方块 */
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22),
+                  inset 0 0 0 1px rgba(255, 255, 255, 0.06);
     }
-    .sg-swatch-name { display: block; font-size: 14px; color: #fff; margin-bottom: 3px; }
+    .sg-swatch-name { display: block; font-size: 14px; color: #fff; margin-bottom: 4px; }
     .sg-swatch-hex {
       display: block;
       font-family: 'JetBrains Mono', ui-monospace, monospace;
       font-size: 12px;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 6px;
+    }
+    .sg-swatch-use {
+      display: block;
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.42);
+    }
+
+    /* 蓝色梯度条 */
+    .sg-ramp {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .sg-ramp span {
+      height: 46px;
+      display: block;
+    }
+    .sg-ramp-labels {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      margin-top: 8px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* 字阶 */
+    .sg-type-scale { display: flex; flex-direction: column; }
+    .sg-type-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: baseline;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .sg-type-row:last-child { border-bottom: none; }
+    .sg-type-sample { color: #fff; line-height: 1.3; }
+    .sg-type-spec {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.4);
+      white-space: nowrap;
+    }
+
+    /* 表面层级 */
+    .sg-surfaces {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .sg-surface {
+      padding: 22px 20px;
+      border-radius: 14px;
+      min-height: 96px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 5px;
+    }
+    .sg-surface-name { font-size: 13.5px; color: #fff; }
+    .sg-surface-spec {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
       color: rgba(255, 255, 255, 0.45);
     }
 
@@ -637,6 +769,10 @@
         margin-top: 18px;
       }
       .sg-visual { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sg-vis-board { padding: 30px 28px; }
+      /* 规格说明右对齐在窄屏会跟标题挤在一起，改成上下堆 */
+      .sg-vis-head { flex-direction: column; gap: 6px; }
+      .sg-vis-note { text-align: left; }
       /* 三栏挤不下「原图 / 新图 / 说明」，说明降到整行 */
       .sg-compare-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
       .sg-compare-why { grid-column: 1 / -1; padding-top: 4px; }
@@ -682,6 +818,10 @@
       .sg-compare { gap: 48px; }
       .sg-retro { grid-template-columns: minmax(0, 1fr); }
       .sg-visual { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sg-vis-board { padding: 26px 22px; }
+      .sg-surfaces { grid-template-columns: minmax(0, 1fr); }
+      /* 字阶：规格标签换行到样例下方，样例才有完整宽度 */
+      .sg-type-row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
     }
 
     @media (max-width: 560px) {
@@ -689,6 +829,8 @@
       /* 单列后手机图不必再收窄 */
       .sg-compare-row .ph--phone { width: 100%; }
       .sg-visual { grid-template-columns: minmax(0, 1fr); }
+      .sg-ramp { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .sg-ramp-labels { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .sg-video-chapters { grid-template-columns: minmax(0, 1fr); gap: 16px; }
       .sg-path { padding: 26px 22px; }
       .sg-junction { padding: 24px 22px; }
@@ -731,7 +873,7 @@
     <div class="container">
       <div class="pd-hero-info">
         <p class="pd-meta">2024 &nbsp;—&nbsp; UIUX · SKY GO 流媒体</p>
-        <h1 class="pd-title" data-i18n-zh="SKY GO 短视频创作" data-i18n-en="SKY GO Short-Video Creation">SKY GO 短视频创作</h1>
+        <h1 class="pd-title" data-i18n-zh="SKY GO 短视频创作" data-i18n-en="SKYGO CLIP">SKY GO 短视频创作</h1>
         <p class="pd-tagline" data-i18n-zh="为英国流媒体平台 Sky 设计的短视频创作链路——让看剧的人成为创作者。" data-i18n-en="A short-video creation flow for UK streaming platform Sky—turning the people who watch into the people who make.">为英国流媒体平台 Sky 设计的短视频创作链路——让看剧的人成为创作者。</p>
       </div>
     </div>
@@ -745,7 +887,7 @@
         <div class="pd-meta-grid">
           <div class="pd-meta-item">
             <span class="pd-meta-label" data-i18n-zh="我负责" data-i18n-en="Role">我负责</span>
-            <span class="pd-meta-value" data-i18n-zh="三入口串联架构 / 主页入口优化" data-i18n-en="Three-entry architecture / home entry">三入口串联架构 / 主页入口优化</span>
+            <span class="pd-meta-value" data-i18n-zh="全局链路梳理 / 主页 AI 创作流程" data-i18n-en="Flow architecture / home AI path">全局链路梳理 / 主页 AI 创作流程</span>
           </div>
           <div class="pd-meta-item">
             <span class="pd-meta-label" data-i18n-zh="时长" data-i18n-en="Duration">时长</span>
@@ -763,7 +905,7 @@
 
         <div class="sg-scope">
           <span class="sg-scope-label">Scope</span>
-          <span class="sg-scope-text" data-i18n-zh="这是一个三人小组课题，我主要负责 UX 部分：把三个创建入口在产品里串成一套完整体验——决定每个入口切进主干的位置、共用哪段流程、在哪里可以提前收尾；以及第一版就已存在的「主页新建」入口的重做。视觉与部分界面由组内其他同学完成。" data-i18n-en="A three-person student brief. I owned the UX side: wiring the three creation entries into one coherent experience—deciding where each one cuts into the shared spine, how much of the pipeline they hold in common, and where a user can finish early—plus rebuilding the home-screen create entry that already existed in v1. Visual work and some screens were done by teammates.">这是一个三人小组课题，我主要负责 UX 部分：把三个创建入口在产品里串成一套完整体验——决定每个入口切进主干的位置、共用哪段流程、在哪里可以提前收尾；以及第一版就已存在的「主页新建」入口的重做。视觉与部分界面由组内其他同学完成。</span>
+          <span class="sg-scope-text" data-i18n-zh="这是一个三人小组课题，我主要负责 UX：一是全局链路梳理，把三个创建入口在产品里串成一套完整体验——决定每个入口切进主干的位置、共用哪段流程、哪里可以提前收尾；二是主页创建视频那条 AI 流程的重做，它在第一版里就已存在。视觉与部分界面由组内其他同学完成。" data-i18n-en="A three-person student brief. I owned the UX: first the flow architecture, wiring the three creation entries into one coherent experience—where each cuts into the shared spine, how much of the pipeline they hold in common, where a user can finish early; second, rebuilding the AI creation path behind the home entry, which already existed in v1. Visual work and some screens were done by teammates.">这是一个三人小组课题，我主要负责 UX：一是全局链路梳理，把三个创建入口在产品里串成一套完整体验——决定每个入口切进主干的位置、共用哪段流程、哪里可以提前收尾；二是主页创建视频那条 AI 流程的重做，它在第一版里就已存在。视觉与部分界面由组内其他同学完成。</span>
         </div>
       </div>
     </div>
@@ -921,10 +1063,6 @@
               <span class="sg-entry-val" data-i18n-zh="无" data-i18n-en="None">无</span>
             </span>
             <span class="sg-entry-row">
-              <span class="sg-entry-key" data-i18n-zh="切入位置" data-i18n-en="Cuts in at">切入位置</span>
-              <span class="sg-entry-val" data-i18n-zh="主干最前端 · 选择影视" data-i18n-en="Top of the spine · pick a title">主干最前端 · 选择影视</span>
-            </span>
-            <span class="sg-entry-row">
               <span class="sg-entry-key" data-i18n-zh="用户状态" data-i18n-en="User state">用户状态</span>
               <span class="sg-entry-val" data-i18n-zh="我今天就是想做条视频" data-i18n-en="I came here to make something">我今天就是想做条视频</span>
             </span>
@@ -939,10 +1077,6 @@
             <span class="sg-entry-row">
               <span class="sg-entry-key" data-i18n-zh="已知上下文" data-i18n-en="Known context">已知上下文</span>
               <span class="sg-entry-val" data-i18n-zh="影视、片段" data-i18n-en="Title, scene">影视、片段</span>
-            </span>
-            <span class="sg-entry-row">
-              <span class="sg-entry-key" data-i18n-zh="切入位置" data-i18n-en="Cuts in at">切入位置</span>
-              <span class="sg-entry-val" data-i18n-zh="主干中段 · 选择特效" data-i18n-en="Mid-spine · pick an effect">主干中段 · 选择特效</span>
             </span>
             <span class="sg-entry-row">
               <span class="sg-entry-key" data-i18n-zh="用户状态" data-i18n-en="User state">用户状态</span>
@@ -961,10 +1095,6 @@
               <span class="sg-entry-val" data-i18n-zh="影视、模板、特效" data-i18n-en="Title, template, effect">影视、模板、特效</span>
             </span>
             <span class="sg-entry-row">
-              <span class="sg-entry-key" data-i18n-zh="切入位置" data-i18n-en="Cuts in at">切入位置</span>
-              <span class="sg-entry-val" data-i18n-zh="主干末端 · 细节调整" data-i18n-en="End of spine · fine-tune">主干末端 · 细节调整</span>
-            </span>
-            <span class="sg-entry-row">
               <span class="sg-entry-key" data-i18n-zh="用户状态" data-i18n-en="User state">用户状态</span>
               <span class="sg-entry-val" data-i18n-zh="他这条不错，我也来一个" data-i18n-en="Theirs is good—I'll make one too">他这条不错，我也来一个</span>
             </span>
@@ -974,12 +1104,12 @@
 
       <div class="sg-junction">
         <span class="sg-junction-label" data-i18n-zh="判断一 · 深浅不是不统一，是上下文差异的结果" data-i18n-en="Call one · the depth gap isn't inconsistency, it's context">判断一 · 深浅不是不统一，是上下文差异的结果</span>
-        <span class="sg-junction-text" data-i18n-zh="三个入口的流程长短差很多，但这不是设计没对齐——是「已知多少就少问多少」的必然结果。最典型的是观看页：换完脸之后可以直接发布，也可以选择进编辑器细调。之所以给出「不进编辑器」这个选项，是因为用户此刻正在看剧，把他拉进一个完整编辑器就等于打断观影连贯性——创作不该以牺牲正在进行的观看为代价。" data-i18n-en="The three flows differ a lot in length, but that's not misalignment—it follows from asking only for what isn't already known. The clearest case is the player entry: after the face swap you can publish immediately, or step into the editor to fine-tune. That opt-out exists because the user is mid-episode, and pulling them into a full editor would break the continuity of what they're watching. Creating shouldn't cost you the viewing you were already doing.">三个入口的流程长短差很多，但这不是设计没对齐——是「已知多少就少问多少」的必然结果。最典型的是观看页：换完脸之后可以直接发布，也可以选择进编辑器细调。之所以给出「不进编辑器」这个选项，是因为用户此刻正在看剧，把他拉进一个完整编辑器就等于打断观影连贯性——创作不该以牺牲正在进行的观看为代价。</span>
+        <span class="sg-junction-text" data-i18n-zh="流程长短的差异来自「已知多少就少问多少」。观看页最典型：换完脸可以直接发布，也可以进编辑器细调——留出「不进编辑器」这个选项，是因为用户正在看剧，完整编辑器会打断观影连贯性。" data-i18n-en="The difference in length comes from asking only for what isn't already known. The player entry shows it best: after a face swap you can publish straight away, or step into the editor to fine-tune. That opt-out exists because the user is mid-episode, and a full editor would break the continuity of what they're watching.">流程长短的差异来自「已知多少就少问多少」。观看页最典型：换完脸可以直接发布，也可以进编辑器细调——留出「不进编辑器」这个选项，是因为用户正在看剧，完整编辑器会打断观影连贯性。</span>
       </div>
 
       <div class="sg-junction">
         <span class="sg-junction-label" data-i18n-zh="判断二 · 主页入口看似孤立，它的职责是启动循环" data-i18n-en="Call two · the home entry looks isolated because its job is to start the loop">判断二 · 主页入口看似孤立，它的职责是启动循环</span>
-        <span class="sg-junction-text" data-i18n-zh="观看页与拍同款能自己转成一个环：看剧 → 创作 → 发布 → 别人刷到 → 拍同款 → 再发布。主页新建不在这个环里，但这恰恰是它存在的理由——如果所有入口都依赖「你已经在消费内容」，新用户就永远进不来：想创作得先刷到别人的作品，而别人的作品又来自创作。主页新建是唯一不需要前置条件的入口，负责把人放进环里。它也不是完全断开的，短视频页可以回到主页，只是需要主动导航——这个「弱连接」是刻意的，它服务的是主动意图，不该被内容推着走。" data-i18n-en="The player and use-this-template entries spin into a loop on their own: watch, create, publish, someone sees it, they make their own, publish again. The home entry sits outside that loop—which is exactly why it has to exist. If every entry depended on already consuming content, new users could never get in: creating would require having seen someone else's clip, and those clips come from creating. The home entry is the only one with no precondition; its job is to put people into the loop. Nor is it fully cut off—the feed leads back to home—it just takes deliberate navigation. That weaker link is intentional: it serves deliberate intent, and shouldn't be pushed along by content.">观看页与拍同款能自己转成一个环：看剧 → 创作 → 发布 → 别人刷到 → 拍同款 → 再发布。主页新建不在这个环里，但这恰恰是它存在的理由——如果所有入口都依赖「你已经在消费内容」，新用户就永远进不来：想创作得先刷到别人的作品，而别人的作品又来自创作。主页新建是唯一不需要前置条件的入口，负责把人放进环里。它也不是完全断开的，短视频页可以回到主页，只是需要主动导航——这个「弱连接」是刻意的，它服务的是主动意图，不该被内容推着走。</span>
+        <span class="sg-junction-text" data-i18n-zh="观看页与拍同款能自成一环：看剧 → 创作 → 发布 → 别人刷到 → 拍同款。主页新建不在环里，但这正是它的职责——其余两个入口都要求「你已经在消费内容」，新用户无从进入。它是唯一没有前置条件的那个口子，负责把人放进环里。" data-i18n-en="The player and use-this-template entries spin into a loop on their own: watch, create, publish, someone sees it, they make their own. The home entry sits outside it—which is precisely its job. The other two both require that you're already consuming content, leaving new users no way in. This is the one entry with no precondition; it puts people into the loop.">观看页与拍同款能自成一环：看剧 → 创作 → 发布 → 别人刷到 → 拍同款。主页新建不在环里，但这正是它的职责——其余两个入口都要求「你已经在消费内容」，新用户无从进入。它是唯一没有前置条件的那个口子，负责把人放进环里。</span>
       </div>
 
       <div class="sg-video" data-duration="48">
@@ -1078,8 +1208,8 @@
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label">Iteration</span>
-      <h2 class="pd-section-title" data-i18n-zh="我重做了什么" data-i18n-en="What I Rebuilt">我重做了什么</h2>
-      <p class="pd-body" data-i18n-zh="我负责的这条链路在第一版里已经存在，所以我的产出不是「多一个功能」，而是把三套割裂的特效场景重新组织成一条线：统一入口、按内容而不是按技术命名步骤、把编辑器换成贴合影视片段的模型。下面两组对比是其中判断成本最高的两处——它们看的不是执行，是为什么第一版看起来没错、对这个产品却是错的。" data-i18n-en="The path I owned already existed in v1, so what I produced wasn't another feature—it was a restructure: three disconnected effect scenes pulled into one line, steps named after content rather than technology, and an editor rebuilt around a model that fits film clips. The two comparisons below are the calls that cost the most to make. They aren't about execution; they're about why the first version looked fine and was still wrong for this product.">我负责的这条链路在第一版里已经存在，所以我的产出不是「多一个功能」，而是把三套割裂的特效场景重新组织成一条线：统一入口、按内容而不是按技术命名步骤、把编辑器换成贴合影视片段的模型。下面两组对比是其中判断成本最高的两处——它们看的不是执行，是为什么第一版看起来没错、对这个产品却是错的。</p>
+      <h2 class="pd-section-title" data-i18n-zh="全局链路梳理，与主页 AI 创作流程的重做" data-i18n-en="Wiring the Whole Flow, and Rebuilding the Home AI Path">全局链路梳理，与主页 AI 创作流程的重做</h2>
+      <p class="pd-body" data-i18n-zh="我在这个项目里的产出是两块。一块是上一节的全局链路梳理——三个入口切在主干哪里、共用哪段流程、哪里可以提前收尾。另一块是主页那条创建链路的 AI 流程重做：它在第一版里就已经存在，所以我要交付的不是「多一个功能」，而是把三套割裂的特效场景重新组织成一条线——统一入口、按内容而不是按技术命名每一步、把编辑器换成贴合影视片段的模型。下面两组对比是其中判断成本最高的两处。" data-i18n-en="My output on this project came in two parts. One is the flow architecture in the previous section—where each of the three entries cuts into the spine, how much of the pipeline they share, and where a user can finish early. The other is rebuilding the AI creation path behind the home entry: it already existed in v1, so what I had to deliver wasn't another feature but a restructure—three disconnected effect scenes pulled into one line, every step named after content rather than technology, and an editor rebuilt around a model that fits film clips. The two comparisons below are the calls that cost the most to make.">我在这个项目里的产出是两块。一块是上一节的全局链路梳理——三个入口切在主干哪里、共用哪段流程、哪里可以提前收尾。另一块是主页那条创建链路的 AI 流程重做：它在第一版里就已经存在，所以我要交付的不是「多一个功能」，而是把三套割裂的特效场景重新组织成一条线——统一入口、按内容而不是按技术命名每一步、把编辑器换成贴合影视片段的模型。下面两组对比是其中判断成本最高的两处。</p>
       <div class="sg-compare">
 
         <div class="sg-compare-row">
@@ -1122,28 +1252,105 @@
       <span class="pd-section-label">Visual</span>
       <h2 class="pd-section-title" data-i18n-zh="视觉规范" data-i18n-en="Visual System">视觉规范</h2>
       <p class="pd-body" data-i18n-zh="沿用 Sky 的品牌蓝并向暗色环境适配：深色底保证影视画面是屏幕上最亮的东西，蓝色只用在可操作元素上，让「哪里能点」在一片剧照里始终清晰。" data-i18n-en="Sky's brand blue, adapted for a dark environment: a deep ground keeps the film stills the brightest thing on screen, and blue is reserved for interactive elements so 'what can I tap' stays legible against a wall of imagery.">沿用 Sky 的品牌蓝并向暗色环境适配：深色底保证影视画面是屏幕上最亮的东西，蓝色只用在可操作元素上，让「哪里能点」在一片剧照里始终清晰。</p>
-      <div class="sg-visual">
-        <div>
-          <div class="sg-swatch" style="background:#3B7DF6"></div>
-          <span class="sg-swatch-name" data-i18n-zh="主色 · 可操作" data-i18n-en="Primary · interactive">主色 · 可操作</span>
-          <span class="sg-swatch-hex">#3B7DF6</span>
+      <div class="sg-vis-board">
+
+        <div class="sg-vis-group">
+          <div class="sg-vis-head">
+            <span class="sg-vis-title">Colour</span>
+            <span class="sg-vis-note" data-i18n-zh="蓝色只给可点击元素，剧照永远是屏幕上最亮的东西" data-i18n-en="Blue is reserved for tappable elements; film stills stay the brightest thing on screen">蓝色只给可点击元素，剧照永远是屏幕上最亮的东西</span>
+          </div>
+          <div class="sg-visual">
+            <div>
+              <div class="sg-swatch" style="background:#3B7DF6"></div>
+              <span class="sg-swatch-name" data-i18n-zh="主色" data-i18n-en="Primary">主色</span>
+              <span class="sg-swatch-hex">#3B7DF6</span>
+              <span class="sg-swatch-use" data-i18n-zh="主按钮、选中态、进度" data-i18n-en="Primary buttons, selected state, progress">主按钮、选中态、进度</span>
+            </div>
+            <div>
+              <div class="sg-swatch" style="background:#6BA3FF"></div>
+              <span class="sg-swatch-name" data-i18n-zh="辅助蓝" data-i18n-en="Accent blue">辅助蓝</span>
+              <span class="sg-swatch-hex">#6BA3FF</span>
+              <span class="sg-swatch-use" data-i18n-zh="小字强调、序号、图标" data-i18n-en="Small emphasis, numerals, icons">小字强调、序号、图标</span>
+            </div>
+            <div>
+              <div class="sg-swatch" style="background:#0D1117"></div>
+              <span class="sg-swatch-name" data-i18n-zh="页面底色" data-i18n-en="Page ground">页面底色</span>
+              <span class="sg-swatch-hex">#0D1117</span>
+              <span class="sg-swatch-use" data-i18n-zh="全局背景，压住所有画面" data-i18n-en="Global background, sits under every frame">全局背景，压住所有画面</span>
+            </div>
+            <div>
+              <div class="sg-swatch" style="background:#F5F7FA"></div>
+              <span class="sg-swatch-name" data-i18n-zh="正文白" data-i18n-en="Text white">正文白</span>
+              <span class="sg-swatch-hex">#F5F7FA</span>
+              <span class="sg-swatch-use" data-i18n-zh="标题与正文，配 60% / 40% 两档降级" data-i18n-en="Headings and body, stepped down to 60% / 40%">标题与正文，配 60% / 40% 两档降级</span>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="sg-swatch" style="background:#6BA3FF"></div>
-          <span class="sg-swatch-name" data-i18n-zh="辅助 · 强调" data-i18n-en="Secondary · accent">辅助 · 强调</span>
-          <span class="sg-swatch-hex">#6BA3FF</span>
+
+        <div class="sg-vis-group">
+          <div class="sg-vis-head">
+            <span class="sg-vis-title">Blue Ramp</span>
+            <span class="sg-vis-note" data-i18n-zh="同一支蓝的六档明度，用于状态与层级区分" data-i18n-en="Six steps of one blue, used to separate state and hierarchy">同一支蓝的六档明度，用于状态与层级区分</span>
+          </div>
+          <div class="sg-ramp">
+            <span style="background:#0E1B33"></span>
+            <span style="background:#16305C"></span>
+            <span style="background:#204B94"></span>
+            <span style="background:#3B7DF6"></span>
+            <span style="background:#6BA3FF"></span>
+            <span style="background:#A9C9FF"></span>
+          </div>
+          <div class="sg-ramp-labels">
+            <span>900</span><span>700</span><span>500</span><span>400</span><span>300</span><span>100</span>
+          </div>
         </div>
-        <div>
-          <div class="sg-swatch" style="background:#0D1117;border:1px solid rgba(255,255,255,0.12)"></div>
-          <span class="sg-swatch-name" data-i18n-zh="背景 · 深色底" data-i18n-en="Ground · dark">背景 · 深色底</span>
-          <span class="sg-swatch-hex">#0D1117</span>
+
+        <div class="sg-vis-group">
+          <div class="sg-vis-head">
+            <span class="sg-vis-title">Type · Sky Text</span>
+            <span class="sg-vis-note" data-i18n-zh="品牌字，四档字阶；数字与时长统一用等宽" data-i18n-en="Brand face, four steps; numerals and durations always monospaced">品牌字，四档字阶；数字与时长统一用等宽</span>
+          </div>
+          <div class="sg-type-scale">
+            <div class="sg-type-row">
+              <span class="sg-type-sample" style="font-size:34px;font-weight:700;letter-spacing:-0.02em">Make it yours</span>
+              <span class="sg-type-spec">Display · 34 / 700</span>
+            </div>
+            <div class="sg-type-row">
+              <span class="sg-type-sample" style="font-size:20px;font-weight:600">选择一个特效</span>
+              <span class="sg-type-spec">Title · 20 / 600</span>
+            </div>
+            <div class="sg-type-row">
+              <span class="sg-type-sample" style="font-size:15px;font-weight:400;color:rgba(255,255,255,0.75)">上传素材，在编辑器里完成合成</span>
+              <span class="sg-type-spec">Body · 15 / 400</span>
+            </div>
+            <div class="sg-type-row">
+              <span class="sg-type-sample" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:rgba(255,255,255,0.5)">00:38 / 00:56 &nbsp;·&nbsp; 67.5 MB</span>
+              <span class="sg-type-spec">Caption · 12 / mono</span>
+            </div>
+          </div>
         </div>
-        <div>
-          <!-- TODO images/skygo-type.png（Sky Text 字体规范，PPT p22） -->
-          <div class="ph" style="height:96px;margin-bottom:12px">Sky Text<br />skygo-type.png</div>
-          <span class="sg-swatch-name" data-i18n-zh="字体 · Sky Text" data-i18n-en="Type · Sky Text">字体 · Sky Text</span>
-          <span class="sg-swatch-hex" data-i18n-zh="品牌字，三档字重" data-i18n-en="Brand face, three weights">品牌字，三档字重</span>
+
+        <div class="sg-vis-group">
+          <div class="sg-vis-head">
+            <span class="sg-vis-title">Surface</span>
+            <span class="sg-vis-note" data-i18n-zh="深色环境下不用阴影分层，改用底色与描边的三档递进" data-i18n-en="No shadows in a dark environment—depth comes from three steps of fill and stroke">深色环境下不用阴影分层，改用底色与描边的三档递进</span>
+          </div>
+          <div class="sg-surfaces">
+            <div class="sg-surface" style="background:#0D1117;border:1px solid rgba(255,255,255,0.06)">
+              <span class="sg-surface-name" data-i18n-zh="底层 · 页面" data-i18n-en="Base · page">底层 · 页面</span>
+              <span class="sg-surface-spec">#0D1117</span>
+            </div>
+            <div class="sg-surface" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+              <span class="sg-surface-name" data-i18n-zh="中层 · 卡片" data-i18n-en="Raised · card">中层 · 卡片</span>
+              <span class="sg-surface-spec">white 4% + 8%</span>
+            </div>
+            <div class="sg-surface" style="background:rgba(59,125,246,0.10);border:1px solid rgba(59,125,246,0.42)">
+              <span class="sg-surface-name" data-i18n-zh="强调 · 选中" data-i18n-en="Active · selected">强调 · 选中</span>
+              <span class="sg-surface-spec">blue 10% + 42%</span>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </section>

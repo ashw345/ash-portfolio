@@ -189,7 +189,7 @@ const translations = {
     wisdom_link: "View Details →",
 
     skygo_meta: "2024 &nbsp;—&nbsp; UIUX · SKY GO Streaming",
-    skygo_title: "SKY GO Short-Video Creation",
+    skygo_title: "SKYGO CLIP",
     skygo_desc: "A short-video creation flow for UK streaming platform Sky—turning viewers into creators and closing the loop between watching and making.",
     skygo_link: "View Details →",
 
