@@ -19,6 +19,11 @@ const translations = {
     member_desc: "喜马拉雅会员等级视觉体系升级——从老旧的金属勋章，到统一的 V1–V8 宝石等级体系，强化用户的进阶感与尊贵感。",
     member_link: "查看详情 →",
 
+    slashvibe_meta: "2026 &nbsp;—&nbsp; UIUX · SlashVibe AI 控制面",
+    slashvibe_title: "SlashVibe AI 控制面",
+    slashvibe_desc: "为硬件团队自然映射设计的 AI 控制面——给并行的 AI Agent 一个能用余光读懂的界面，一屏看完全部会话，拨一下摇杆完成决策。",
+    slashvibe_link: "查看详情 →",
+
     skygo_meta: "2024 &nbsp;—&nbsp; UIUX · SKY GO 流媒体",
     skygo_title: "SKY GO 短视频创作",
     skygo_desc: "为英国流媒体平台 Sky 设计的短视频创作链路——让看剧的人成为创作者，把观看与创作接成闭环。",
@@ -177,6 +182,11 @@ const translations = {
     member_title: "Membership Level Redesign",
     member_desc: "A visual system upgrade for Ximalaya's membership levels—from outdated metal medals to a unified V1–V8 gemstone hierarchy that elevates progression and prestige.",
     member_link: "View Details →",
+
+    slashvibe_meta: "2026 &nbsp;—&nbsp; UIUX · SlashVibe Control Surface",
+    slashvibe_title: "SlashVibe Control Surface",
+    slashvibe_desc: "An AI control surface for hardware team Natural Mapping—giving parallel AI agents an interface you can read from the corner of your eye: every session on one screen, a decision made with one flick of the stick.",
+    slashvibe_link: "View Details →",
 
     skygo_meta: "2024 &nbsp;—&nbsp; UIUX · SKY GO Streaming",
     skygo_title: "SKYGO CLIP",

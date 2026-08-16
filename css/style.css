@@ -506,6 +506,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .ph-snapfit { background-image: url('../images/snapfit-hero.jpg'); background-size: cover; background-position: center; background-color: #0e0e0e; }
 .ph-member { background-image: url('../images/member-cover.jpg'); background-size: cover; background-position: center; background-color: #0d0d0d; }
 .ph-skygo { background-image: url('../images/skygo-cover.png'); background-size: cover; background-position: center; background-color: #142542; }
+.ph-slashvibe { background-image: url('../images/slashvibe-cover.jpg'); background-size: cover; background-position: center; background-color: #e9e9ec; }
 .ph-lyft { background-image: url('../images/lyft-cover.png'); background-size: cover; background-position: center; background-color: #fdf7fc; }
 .ph-asm {
   overflow: hidden;
