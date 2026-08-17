@@ -295,24 +295,12 @@
     .sv-th-green { color: var(--sv-green) !important; }
 
     /* ── 表格变体：用面来分组，不用线（FIG.02 使用条件对照） ──
-       隔行填一层极淡背景代替分隔线；SLASHVIBE 列再叠一层淡绿，
-       让「这一列是我们」在扫视时先于文字被读出来。方形直角，不用圆角；
-       高亮用绝对定位的 ::before 铺底色，不动文字本身的位置。
-       inset 不做水平出血——出血会在手机堆叠视图里把背景推出容器右边缘，
-       跟其他行对不齐，所以直接贴文字自身的盒子，桌面 3 列、手机堆叠都一样对齐。 */
+       隔行填一层极淡背景代替分隔线；SLASHVIBE 那一列不再铺绿底，
+       改成加粗——重量本身就够把「这一列是我们」推到前面，
+       不用再借颜色，也就不会跟状态色语言抢意义。 */
     .sv-table--fill .sv-tr { border-bottom: 0; }
     .sv-table--fill .sv-tr:not(.sv-tr--head):nth-child(even) { background: rgba(255,255,255,0.03); }
-    .sv-table--fill .sv-tr--3:not(.sv-tr--head) > *:last-child {
-      position: relative;
-      z-index: 1;
-    }
-    .sv-table--fill .sv-tr--3:not(.sv-tr--head) > *:last-child::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(110, 255, 75, 0.05);
-      z-index: -1;
-    }
+    .sv-table--fill .sv-tr--3:not(.sv-tr--head) > *:last-child { font-weight: 600; }
     .sv-key {
       display: flex;
       align-items: center;
@@ -368,6 +356,59 @@
       letter-spacing: 0.08em;
       text-align: right;
       color: var(--sv-faint);
+    }
+
+    /* ── 流程图取景框 ──
+       完整流程图很长（约 2.2 倍页宽），全铺出来会把整节撑散。
+       所以固定成 4:3 的取景框，鼠标移进去滚动看全图，
+       页面本身的滚动不受影响（overscroll-behavior 挡住滚动链）。 */
+    .sv-flowframe {
+      position: relative;
+      margin-top: 40px;
+      aspect-ratio: 4 / 3;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      background: #0d0d0d;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.22) transparent;
+    }
+    .sv-flowframe::-webkit-scrollbar { width: 8px; }
+    .sv-flowframe::-webkit-scrollbar-track { background: transparent; }
+    .sv-flowframe::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 4px;
+    }
+    .sv-flowframe:hover::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); }
+    .sv-flowframe img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    /* 取景框底部的渐隐，暗示「下面还有」 */
+    .sv-flowwrap { position: relative; }
+    .sv-flowwrap::after {
+      content: '';
+      position: absolute;
+      left: 1px; right: 9px; bottom: 1px;
+      height: 64px;
+      border-radius: 0 0 17px 17px;
+      background: linear-gradient(to bottom, rgba(13,13,13,0), rgba(13,13,13,0.92));
+      pointer-events: none;
+    }
+    .sv-flowhint {
+      position: absolute;
+      right: 22px;
+      bottom: 16px;
+      z-index: 2;
+      font-family: var(--sv-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sv-faint);
+      pointer-events: none;
     }
 
     /* ── 图片 ── */
@@ -729,7 +770,7 @@
         </div>
 
         <div class="sv-photo" style="margin-top:36px">
-          <img src="images/slashvibe-team.jpg" alt="SlashVibe 真机：WORKING 状态在屏幕上展示思考过程" width="1800" height="1226" loading="lazy" />
+          <img src="images/slashvibe-team.jpg" alt="SlashVibe 真机：Mission Board 上同时显示 WAITING / DONE / WORKING / ERROR 四种状态" width="1920" height="1080" loading="lazy" />
         </div>
       </div>
     </div>
@@ -752,7 +793,7 @@
             <div class="sv-path-item"><span>01</span><span data-i18n-zh="问题：并行 Agent 的注意力税" data-i18n-en="The problem: the attention tax of parallel agents">问题：并行 Agent 的注意力税</span></div>
             <div class="sv-path-item"><span>02</span><span data-i18n-zh="硬件给的三条约束，与真机验证" data-i18n-en="Three constraints from hardware, tested on the real device">硬件给的三条约束，与真机验证</span></div>
             <div class="sv-path-item"><span>03</span><span data-i18n-zh="三条原则（后面所有分歧的裁判）" data-i18n-en="Three principles—the referee for everything that follows">三条原则（后面所有分歧的裁判）</span></div>
-            <div class="sv-path-item"><span>04</span><span data-i18n-zh="一个回合：从口述到点头" data-i18n-en="One round: from speaking to nodding">一个回合：从口述到点头</span></div>
+            <div class="sv-path-item"><span>04</span><span data-i18n-zh="任务循环使用流程（含完整状态机）" data-i18n-en="The task loop, with the full state machine">任务循环使用流程（含完整状态机）</span></div>
             <div class="sv-path-item"><span>05</span><span data-i18n-zh="按键映射矩阵" data-i18n-en="The key-mapping matrix">按键映射矩阵</span></div>
           </div>
         </div>
@@ -764,7 +805,7 @@
           <div class="sv-path-list">
             <div class="sv-path-item"><span>06</span><span data-i18n-zh="Mission Board 版式解剖" data-i18n-en="Anatomy of the Mission Board">Mission Board 版式解剖</span></div>
             <div class="sv-path-item"><span>07</span><span data-i18n-zh="两个设计决策，都是用原则判出来的" data-i18n-en="Two decisions, both settled by the principles">两个设计决策，都是用原则判出来的</span></div>
-            <div class="sv-path-item"><span>08</span><span data-i18n-zh="界面全集：一套骨架跑完所有状态" data-i18n-en="Every screen: one skeleton, every state">界面全集：一套骨架跑完所有状态</span></div>
+            <div class="sv-path-item"><span>08</span><span data-i18n-zh="详情页展示：一套骨架跑完所有状态" data-i18n-en="The Task Window: one skeleton, every state">详情页展示：一套骨架跑完所有状态</span></div>
           </div>
           <div class="sv-path-head" style="margin-top:36px">
             <span class="sv-path-part" style="color:var(--sv-faint)">END</span>
@@ -872,7 +913,7 @@
           <div class="sv-tr sv-tr--3 sv-tr--head">
             <span data-i18n-zh="条件" data-i18n-en="Condition">条件</span>
             <span data-i18n-zh="手机" data-i18n-en="Phone">手机</span>
-            <span class="sv-th-green">SLASHVIBE</span>
+            <span>SLASHVIBE</span>
           </div>
           <div class="sv-tr sv-tr--3">
             <span data-i18n-zh="注视方式" data-i18n-en="How it's looked at">注视方式</span>
@@ -897,7 +938,7 @@
           <div class="sv-tr sv-tr--3">
             <span data-i18n-zh="分组方式" data-i18n-en="Grouping">分组方式</span>
             <span class="sv-td-dim" data-col="PHONE" data-i18n-zh="用容器" data-i18n-en="With containers">用容器</span>
-            <span class="sv-td-green" data-col="SLASHVIBE" data-i18n-zh="用间距与颜色" data-i18n-en="With spacing and colour">用间距与颜色</span>
+            <span data-col="SLASHVIBE" data-i18n-zh="用间距与颜色" data-i18n-en="With spacing and colour">用间距与颜色</span>
           </div>
         </div>
         <p class="sv-caption" data-i18n-zh="现场验证得到的三个结论：颜色比文字先到达；屏效等于信息密度；夜间是常态工况。" data-i18n-en="Three conclusions from testing on the real device: colour arrives before text; screen efficiency is information density; night is the normal operating condition.">现场验证得到的三个结论：颜色比文字先到达；屏效等于信息密度；夜间是常态工况。</p>
@@ -914,7 +955,7 @@
       <div class="sv-cards">
         <div>
           <span class="sv-tag sv-tag--green">P—01</span>
-          <div class="sv-principle-name" data-i18n-zh="余光可读" data-i18n-en="Readable at a glance">余光可读</div>
+          <div class="sv-principle-name" data-i18n-zh="余光感知" data-i18n-en="Peripheral awareness">余光感知</div>
           <div class="sv-card-desc" data-i18n-zh="状态由颜色承担，内容由白字承担。不读字也能判断要不要现在管它。" data-i18n-en="Colour carries state, white text carries content. You can decide whether it needs you now without reading a word.">状态由颜色承担，内容由白字承担。不读字也能判断要不要现在管它。</div>
         </div>
         <div>
@@ -930,7 +971,7 @@
       </div>
 
       <div class="sv-photo" style="margin-top:48px">
-        <img src="images/slashvibe-principles.jpg" alt="SlashVibe 真机：屏幕上同时显示 WAITING / DONE / WORKING / ERROR 四种状态色行" width="1920" height="854" loading="lazy" />
+        <img src="images/slashvibe-principles.jpg" alt="SlashVibe 真机：WORKING 状态，蓝色低调不动，明确表示现在不用管" width="1920" height="854" loading="lazy" />
       </div>
     </div>
   </section>
@@ -938,8 +979,9 @@
   <!-- ⑧ 一个回合 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label"><span class="sv-num">04</span>One Round</span>
-      <h2 class="pd-section-title" data-i18n-zh="一个回合：从口述到点头，手不离桌" data-i18n-en="One Round: From Speaking to Nodding, Hands Never Leave the Desk">一个回合：从口述到点头，手不离桌</h2>
+      <span class="pd-section-label"><span class="sv-num">04</span>Task Loop</span>
+      <h2 class="pd-section-title" data-i18n-zh="任务循环使用流程" data-i18n-en="The Task Loop">任务循环使用流程</h2>
+      <p class="pd-body" data-i18n-zh="一个回合：从口述到点头，手不离桌。下面先看五步的骨架，再看完整状态机——WAITING / READY / ERROR 三条分支最终都汇回同一个语音输入口。" data-i18n-en="One round: from speaking to nodding, hands never leaving the desk. The five-step skeleton comes first, then the full state machine—where the WAITING / READY / ERROR branches all converge back on the same voice input.">一个回合：从口述到点头，手不离桌。下面先看五步的骨架，再看完整状态机——WAITING / READY / ERROR 三条分支最终都汇回同一个语音输入口。</p>
 
       <div class="sv-cards sv-cards--2" style="margin-bottom:48px">
         <div>
@@ -981,6 +1023,17 @@
         <span class="sv-step-name" data-i18n-zh="收尾或纠错" data-i18n-en="Finish, or fix">收尾或纠错</span>
         <span class="sv-step-desc" data-i18n-zh="绿色安静收尾；红色把堆栈直接呈现，不必回终端翻日志。" data-i18n-en="Green closes quietly; red puts the stack trace right there, so you never go back to the terminal to dig through logs.">绿色安静收尾；红色把堆栈直接呈现，不必回终端翻日志。</span>
         <span class="sv-step-tag">DONE / ERROR</span>
+      </div>
+
+      <div style="margin-top:72px">
+        <span class="sv-fig">FIG.05 — 完整任务状态机</span>
+        <div class="sv-flowwrap">
+          <div class="sv-flowframe">
+            <img src="images/slashvibe-flow.svg" alt="SlashVibe 完整任务状态机：从开机到语音输入回到 WORKING 的全流程，含 WAITING / READY / ERROR 三条分支" width="1180" height="2560" loading="lazy" />
+          </div>
+          <span class="sv-flowhint" data-i18n-zh="框内可滚动 ↕" data-i18n-en="Scroll inside ↕">框内可滚动 ↕</span>
+        </div>
+        <p class="sv-caption" data-i18n-zh="T0 开机到 T15 回到 WORKING 的完整状态机。颜色沿用产品自己的状态语言：黄 = 等你、绿 = 就绪、红 = 出错、蓝 = 在跑，紫 = 用户操作页，灰 = 系统自动事件。" data-i18n-en="The full state machine from T0 boot to T15 back in WORKING. Colours reuse the product's own state language: yellow waits on you, green is ready, red has failed, blue is running; purple marks user-facing pages and grey marks automatic system events.">T0 开机到 T15 回到 WORKING 的完整状态机。颜色沿用产品自己的状态语言：黄 = 等你、绿 = 就绪、红 = 出错、蓝 = 在跑，紫 = 用户操作页，灰 = 系统自动事件。</p>
       </div>
     </div>
   </section>
@@ -1059,7 +1112,7 @@
 
       <div class="sv-anatomy">
         <div>
-          <img class="sv-render" src="images/slashvibe-board.jpg" alt="Mission Board 定稿：左列状态词，右列会话标题" width="1600" height="992" loading="lazy" />
+          <img class="sv-render" src="images/slashvibe-board.jpg" alt="Mission Board 定稿：左列状态词，右列会话标题" width="1600" height="957" loading="lazy" />
         </div>
         <div>
           <p style="font-size:15px; line-height:1.85; color:var(--sv-dim)" data-i18n-zh="左列固定宽度只放状态词，右列放内容——两列一刀切开，颜色在余光里连成一条竖带。人扫过去看的是「有没有黄和红」，而不是逐行阅读。" data-i18n-en="A fixed-width left column holds nothing but the state word; the right column holds content. Cut cleanly in two, the colours join into a vertical band in peripheral vision. What you scan for is whether there is any yellow or red—not a row-by-row read.">左列固定宽度只放状态词，右列放内容——两列一刀切开，颜色在余光里连成一条竖带。人扫过去看的是「有没有黄和红」，而不是逐行阅读。</p>
@@ -1104,12 +1157,12 @@
       <div class="sv-cards" style="margin-bottom:48px">
         <div>
           <span class="sv-tag sv-tag--green" data-i18n-zh="判据 01" data-i18n-en="Test 01">判据 01</span>
-          <div class="sv-card-title" data-i18n-zh="余光感应" data-i18n-en="Peripheral pickup">余光感应</div>
+          <div class="sv-card-title" data-i18n-zh="余光感知" data-i18n-en="Peripheral awareness">余光感知</div>
           <div class="sv-card-desc" data-i18n-zh="不看屏也要察觉有事发生——颜色够明显、位置固定。" data-i18n-en="You notice something happened without looking—colour is loud enough, position never moves.">不看屏也要察觉有事发生——颜色够明显、位置固定。</div>
         </div>
         <div>
           <span class="sv-tag sv-tag--green" data-i18n-zh="判据 02" data-i18n-en="Test 02">判据 02</span>
-          <div class="sv-card-title" data-i18n-zh="文字可读性" data-i18n-en="Text legibility">文字可读性</div>
+          <div class="sv-card-title" data-i18n-zh="高易读性" data-i18n-en="High legibility">高易读性</div>
           <div class="sv-card-desc" data-i18n-zh="任务标题一律白色。彩色标题在深色屏上牺牲阅读速度。" data-i18n-en="Task titles are always white. Coloured titles cost reading speed on a dark screen.">任务标题一律白色。彩色标题在深色屏上牺牲阅读速度。</div>
         </div>
         <div>
@@ -1143,7 +1196,7 @@
         <div class="sv-tr sv-tr--5 sv-tr--head">
           <span data-i18n-zh="候选" data-i18n-en="Candidate">候选</span>
           <span data-i18n-zh="余光" data-i18n-en="Glance">余光</span>
-          <span data-i18n-zh="可读性" data-i18n-en="Legibility">可读性</span>
+          <span data-i18n-zh="易读性" data-i18n-en="Legibility">易读性</span>
           <span data-i18n-zh="屏效" data-i18n-en="Efficiency">屏效</span>
           <span data-i18n-zh="结论" data-i18n-en="Verdict">结论</span>
         </div>
@@ -1208,8 +1261,8 @@
   <section class="pd-section">
     <div class="container">
       <span class="pd-section-label"><span class="sv-num">08</span>Screens</span>
-      <h2 class="pd-section-title" data-i18n-zh="同一套骨架跑完全部状态" data-i18n-en="One Skeleton, Every State">同一套骨架跑完全部状态</h2>
-      <p class="pd-body" data-i18n-zh="顶部状态条、中部内容、底部动作提示——结构不变，状态只改颜色。从任何一屏切到另一屏都不用重新找位置。" data-i18n-en="A status bar on top, content in the middle, action hints at the bottom—the structure never moves, only the colour changes with state. Switching between any two screens costs no re-orientation.">顶部状态条、中部内容、底部动作提示——结构不变，状态只改颜色。从任何一屏切到另一屏都不用重新找位置。</p>
+      <h2 class="pd-section-title" data-i18n-zh="详情页展示" data-i18n-en="The Task Window">详情页展示</h2>
+      <p class="pd-body" data-i18n-zh="同一套骨架跑完全部状态：顶部状态条、中部内容、底部动作提示——结构不变，状态只改颜色。从任何一屏切到另一屏都不用重新找位置。" data-i18n-en="One skeleton, every state: a status bar on top, content in the middle, action hints at the bottom—the structure never moves, only the colour changes with state. Switching between any two screens costs no re-orientation.">同一套骨架跑完全部状态：顶部状态条、中部内容、底部动作提示——结构不变，状态只改颜色。从任何一屏切到另一屏都不用重新找位置。</p>
 
       <div class="sv-screens">
         <div class="sv-screen">
@@ -1253,7 +1306,7 @@
         </div>
         <div>
           <span class="sv-tag sv-tag--green" data-i18n-zh="上线后想验证" data-i18n-en="To validate after launch">上线后想验证</span>
-          <p class="sv-end-item" data-i18n-zh="WAITING 出现到用户响应的时间——「余光可读」是否成立的唯一硬指标。" data-i18n-en="Time from WAITING appearing to the user responding—the only hard measure of whether &quot;readable at a glance&quot; actually holds.">WAITING 出现到用户响应的时间——「余光可读」是否成立的唯一硬指标。</p>
+          <p class="sv-end-item" data-i18n-zh="WAITING 出现到用户响应的时间——「余光感知」是否成立的唯一硬指标。" data-i18n-en="Time from WAITING appearing to the user responding—the only hard measure of whether &quot;peripheral awareness&quot; actually holds.">WAITING 出现到用户响应的时间——「余光感知」是否成立的唯一硬指标。</p>
           <p class="sv-end-item" data-i18n-zh="A–E 预置选项的采纳率，以及「Others 回桌面输入」的触发比例：它决定语音层要不要再往前一步。" data-i18n-en="Take-up of the preset A–E options, and how often &quot;Others, type on the desktop&quot; gets triggered—that decides whether the voice layer needs to go one step further.">A–E 预置选项的采纳率，以及「Others 回桌面输入」的触发比例：它决定语音层要不要再往前一步。</p>
         </div>
       </div>
