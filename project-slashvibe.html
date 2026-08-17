@@ -422,7 +422,7 @@
       width: 100%;
       height: auto;
     }
-    .sv-photo--band img { aspect-ratio: 2.6 / 1; object-fit: cover; }
+    /* 长带图现在出图就是 2.6:1，交给图片自己的比例，不再二次裁切 */
     .sv-figcap {
       margin-top: 12px;
       font-family: var(--sv-mono);
@@ -885,8 +885,8 @@
         <p data-i18n-zh="真机一放上桌，手机习惯先被推翻：屏很矮、字很大、离眼睛更远，而人根本不会一直盯着它。卡片、分组容器、滚动列表——全部要重新验证。" data-i18n-en="The moment a real unit sits on the desk, phone habits collapse: the screen is short, the type is large, the eyes are further away, and nobody stares at it continuously. Cards, grouping containers, scrolling lists—all of it had to be re-tested.">真机一放上桌，手机习惯先被推翻：屏很矮、字很大、离眼睛更远，而人根本不会一直盯着它。卡片、分组容器、滚动列表——全部要重新验证。</p>
       </div>
 
-      <div class="sv-photo sv-photo--band">
-        <img src="images/slashvibe-hw-alt.jpg" alt="控制器与底座的形态关系" width="2000" height="1125" loading="lazy" />
+      <div class="sv-photo">
+        <img src="images/slashvibe-hw-alt.jpg" alt="控制器与底座的形态关系：屏幕横且矮，麦克风模块可从控制器上分离" width="1920" height="738" loading="lazy" />
       </div>
 
       <div class="sv-cards" style="margin-top:40px">
@@ -983,14 +983,18 @@
       <h2 class="pd-section-title" data-i18n-zh="任务循环使用流程" data-i18n-en="The Task Loop">任务循环使用流程</h2>
       <p class="pd-body" data-i18n-zh="一个回合：从口述到点头，手不离桌。下面先看五步的骨架，再看完整状态机——WAITING / READY / ERROR 三条分支最终都汇回同一个语音输入口。" data-i18n-en="One round: from speaking to nodding, hands never leaving the desk. The five-step skeleton comes first, then the full state machine—where the WAITING / READY / ERROR branches all converge back on the same voice input.">一个回合：从口述到点头，手不离桌。下面先看五步的骨架，再看完整状态机——WAITING / READY / ERROR 三条分支最终都汇回同一个语音输入口。</p>
 
-      <div class="sv-cards sv-cards--2" style="margin-bottom:48px">
+      <div class="sv-cards" style="margin-bottom:48px">
         <div>
-          <div class="sv-photo"><img src="images/slashvibe-hw-working.jpg" alt="WORKING 状态在真机上的样子" width="2000" height="1125" loading="lazy" /></div>
+          <div class="sv-photo"><img src="images/slashvibe-hw-working.jpg" alt="WORKING 状态在真机上的样子：蓝色，列出正在推进的步骤" width="1400" height="1050" loading="lazy" /></div>
           <div class="sv-figcap">FIG.03 — STEP 2 · WORKING</div>
         </div>
         <div>
-          <div class="sv-photo"><img src="images/slashvibe-hw-waiting.jpg" alt="WAITING 状态在真机上的样子" width="2000" height="1125" loading="lazy" /></div>
+          <div class="sv-photo"><img src="images/slashvibe-hw-waiting.jpg" alt="WAITING 状态在真机上的样子：黄色，列出 A–E 待选项" width="1400" height="1050" loading="lazy" /></div>
           <div class="sv-figcap">FIG.04 — STEP 3 · WAITING ON YOU</div>
+        </div>
+        <div>
+          <div class="sv-photo"><img src="images/slashvibe-hw-error.jpg" alt="ERROR 状态在真机上的样子：红色，直接呈现出错的那一轮" width="1400" height="1050" loading="lazy" /></div>
+          <div class="sv-figcap">FIG.05 — STEP 5 · ERROR</div>
         </div>
       </div>
 
@@ -1026,7 +1030,7 @@
       </div>
 
       <div style="margin-top:72px">
-        <span class="sv-fig">FIG.05 — 完整任务状态机</span>
+        <span class="sv-fig">FIG.06 — 完整任务状态机</span>
         <div class="sv-flowwrap">
           <div class="sv-flowframe">
             <img src="images/slashvibe-flow.svg" alt="SlashVibe 完整任务状态机：从开机到语音输入回到 WORKING 的全流程，含 WAITING / READY / ERROR 三条分支" width="1180" height="2560" loading="lazy" />
