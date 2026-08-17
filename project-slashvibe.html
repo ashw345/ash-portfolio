@@ -122,20 +122,17 @@
       line-height: 1.8;
       color: var(--sv-dim);
     }
-    /* 痛点插画：浅底卡片承住白底插画，不与深色页面硬切 */
+    /* 痛点插画：透明底，直接落在深色页面上，不另加卡片背景 */
     .sv-pain-shot {
       aspect-ratio: 4 / 3;
-      border-radius: 14px;
-      background: #efeeea;
       margin-bottom: 16px;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .sv-pain-shot img {
-      width: 84%;
-      height: 84%;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
     }
 
@@ -947,8 +944,9 @@
         </div>
       </div>
 
-      <!-- TODO 三条原则在真机上的体现，比例约 2.6:1 -->
-      <div class="ph" style="aspect-ratio:2.6/1; margin-top:48px">三条原则 · 真机对照<br />images/slashvibe-principles.jpg</div>
+      <div class="sv-photo" style="margin-top:48px">
+        <img src="images/slashvibe-principles.jpg" alt="SlashVibe 真机：屏幕上同时显示 WAITING / DONE / WORKING / ERROR 四种状态色行" loading="lazy" />
+      </div>
     </div>
   </section>
 
