@@ -85,14 +85,15 @@
       color: var(--sv-dim);
     }
 
-    /* ── 双栏导语：标题下面并排两段 ── */
+    /* ── 导语：标题下面的正文段落，统一上下堆叠 ── */
     .sv-lede {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px 48px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
       margin-bottom: 56px;
     }
     .sv-lede p {
+      max-width: 720px;
       font-size: 15px;
       line-height: 1.85;
       color: var(--sv-dim);
@@ -102,7 +103,7 @@
       font-weight: 500;
     }
 
-    /* ── 通用三栏卡片（痛点 / 约束 / 原则 / 判据 / 回写规则） ── */
+    /* ── 通用三栏卡片（痛点 / 约束 / 原则 / 判据） ── */
     .sv-cards {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -121,25 +122,21 @@
       line-height: 1.8;
       color: var(--sv-dim);
     }
-    /* 痛点卡片顶部的斜纹占位块 */
-    .sv-card-slab {
+    /* 痛点插画：浅底卡片承住白底插画，不与深色页面硬切 */
+    .sv-pain-shot {
       aspect-ratio: 4 / 3;
       border-radius: 14px;
-      background:
-        repeating-linear-gradient(135deg,
-          rgba(255,255,255,0.022) 0 9px,
-          rgba(255,255,255,0.05) 9px 18px);
-      border: 1px solid var(--sv-line-soft);
-      display: flex;
-      align-items: flex-end;
-      padding: 16px;
+      background: #efeeea;
       margin-bottom: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .sv-card-slab span {
-      font-family: var(--sv-mono);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--sv-faint);
+    .sv-pain-shot img {
+      width: 84%;
+      height: 84%;
+      object-fit: contain;
     }
 
     /* 三条原则：数字大一点，是全页的判据来源 */
@@ -225,6 +222,18 @@
     .sv-td-dim   { color: var(--sv-dim); }
     .sv-td-green { color: var(--sv-green); }
     .sv-th-green { color: var(--sv-green) !important; }
+
+    /* ── 表格变体：用面来分组，不用线（FIG.02 使用条件对照） ──
+       隔行填一层极淡背景代替分隔线；SLASHVIBE 列再叠一层淡绿，
+       让「这一列是我们」在扫视时先于文字被读出来。 */
+    .sv-table--fill .sv-tr { border-bottom: 0; border-radius: 10px; }
+    .sv-table--fill .sv-tr:not(.sv-tr--head):nth-child(even) { background: rgba(255,255,255,0.03); }
+    .sv-table--fill .sv-tr--3:not(.sv-tr--head) > *:last-child {
+      background: rgba(110, 255, 75, 0.05);
+      border-radius: 8px;
+      margin: 0 -14px;
+      padding: 18px 14px;
+    }
     .sv-key {
       display: flex;
       align-items: center;
@@ -371,66 +380,6 @@
       color: var(--sv-faint);
     }
 
-    /* ── 状态判定矩阵 ── */
-    .sv-matrix { margin-top: 4px; }
-    .sv-mx-row {
-      display: grid;
-      grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1fr);
-      gap: 20px;
-      border-bottom: 1px solid var(--sv-line-soft);
-      align-items: center;
-    }
-    .sv-mx-row:last-child { border-bottom: 0; }
-    .sv-mx-row > * { padding: 24px 0; }
-    .sv-mx-row--head > * {
-      padding: 16px 0;
-      font-family: var(--sv-mono);
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--sv-faint);
-    }
-    .sv-mx-axis {
-      font-family: var(--sv-mono);
-      font-size: 10.5px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-    .sv-mx-cell {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 20px;
-    }
-    .sv-mx-empty { color: rgba(255, 255, 255, 0.16); }
-    /* 状态徽标：一个发光圆点 + 等宽大写状态词 */
-    .sv-state {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--sv-mono);
-      font-size: 11.5px;
-      letter-spacing: 0.1em;
-      white-space: nowrap;
-    }
-    .sv-state::before {
-      content: '';
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: currentColor;
-      box-shadow: 0 0 11px currentColor;
-      flex: none;
-    }
-    .sv-state--waiting { color: var(--sv-waiting); }
-    .sv-state--error   { color: var(--sv-error); }
-    .sv-state--working { color: var(--sv-working); }
-    .sv-state--done    { color: var(--sv-done); }
-    .sv-state--idle    { color: var(--sv-idle); }
-    .sv-state--unknown { color: var(--sv-unknown); }
-    /* 灰阶两态不发光——它们本来就不该抢注意力 */
-    .sv-state--idle::before,
-    .sv-state--unknown::before { box-shadow: none; }
-
     /* ── 图片 ── */
     .sv-shot {
       background: #050505;
@@ -525,23 +474,6 @@
       line-height: 1.8;
       color: var(--sv-dim);
     }
-    /* 线框示意：用抽象色块演示「容器 vs 间距」的屏效差别 */
-    .sv-demo { margin-top: 24px; }
-    .sv-demo--boxed { border: 1px solid rgba(255,255,255,0.22); border-radius: 10px; padding: 12px; }
-    .sv-demo-item { padding: 10px 12px; }
-    .sv-demo--boxed .sv-demo-item {
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 7px;
-    }
-    .sv-demo--boxed .sv-demo-item + .sv-demo-item { margin-top: 8px; }
-    .sv-demo--open .sv-demo-item { padding: 0; }
-    .sv-demo--open .sv-demo-item + .sv-demo-item { margin-top: 30px; }
-    .sv-demo-l1, .sv-demo-l2 { height: 9px; border-radius: 3px; }
-    .sv-demo-l2 { height: 7px; margin-top: 8px; }
-    .sv-demo--boxed .sv-demo-l1 { background: rgba(255,255,255,0.42); }
-    .sv-demo--boxed .sv-demo-l2 { background: rgba(255,255,255,0.16); }
-    .sv-demo--open  .sv-demo-l1 { background: rgba(255,255,255,0.85); }
-    .sv-demo--open  .sv-demo-l2 { background: rgba(255,255,255,0.24); }
     /* 选项条：决策 03 的 before / after */
     .sv-opt { display: grid; gap: 8px; margin-top: 24px; }
     .sv-opt-item {
@@ -600,8 +532,9 @@
     }
     .sv-screen { display: flex; flex-direction: column; }
     .sv-screen-frame {
-      background: #050505;
-      border: 1px solid var(--sv-line-soft);
+      /* 半透明底，不用纯黑——纯黑框住黑底截图时两者会糊成一块 */
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 16px;
       aspect-ratio: 3 / 4;
       position: relative;
@@ -634,8 +567,9 @@
     /* ── 复盘 ── */
     .sv-end {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 40px;
+      max-width: 720px;
     }
     .sv-end-lead {
       font-size: 19px;
@@ -673,6 +607,24 @@
     }
     .ph--board  { aspect-ratio: 16 / 10; }
     .ph--screen { aspect-ratio: 3 / 4; }
+    .ph--58     { aspect-ratio: 800 / 480; }
+    .ph--wide   { aspect-ratio: 24 / 7; }
+
+    /* 决策 01：前后对比占位，两张并排 */
+    .sv-ph-pair {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    /* 决策 02：四个候选方案的横排占位 */
+    .sv-ph-row4 {
+      margin: 40px 0 44px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .sv-ph-row4 .ph { font-size: 10px; }
 
     /* ═══════════ 响应式 ═══════════ */
     @media (max-width: 1024px) {
@@ -685,7 +637,6 @@
         transform: rotate(90deg);
       }
       .sv-anatomy { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-      .sv-end { grid-template-columns: minmax(0, 1fr); gap: 40px; }
       .sv-verb-row { grid-template-columns: 130px 1fr; gap: 12px 24px; }
       .sv-verb-why { grid-column: 1 / -1; }
       .sv-step { grid-template-columns: 62px 1fr 116px; gap: 10px 18px; }
@@ -697,16 +648,19 @@
       .sv-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
       .sv-screens { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
       .sv-ab { gap: 28px; }
-      .sv-lede { grid-template-columns: minmax(0, 1fr); gap: 18px; margin-bottom: 44px; }
+      .sv-ph-row4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
     }
 
     @media (max-width: 700px) {
       .sv-cards,
       .sv-cards--2,
       .sv-screens,
-      .sv-ab { grid-template-columns: minmax(0, 1fr); }
+      .sv-ab,
+      .sv-ph-pair,
+      .sv-ph-row4 { grid-template-columns: minmax(0, 1fr); }
       .sv-cards { gap: 32px; }
       .sv-screens { gap: 28px; }
+      .sv-ph-row4 { gap: 20px; }
       .sv-scope { padding: 22px 20px; }
 
       /* 表格在手机上换成「标签在上、数值在下」的堆叠块，
@@ -729,22 +683,6 @@
         margin-bottom: 3px;
       }
       .sv-tr--picked > *:first-child { padding-left: 12px; }
-
-      .sv-mx-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
-      .sv-mx-row > * { padding: 10px 0; }
-      .sv-mx-row--head { display: none; }
-      .sv-mx-cell[data-col]::before,
-      .sv-mx-row > .sv-mx-axis::before { content: none; }
-      .sv-mx-cell[data-col]::before {
-        content: attr(data-col);
-        display: block;
-        font-family: var(--sv-mono);
-        font-size: 9.5px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--sv-faint);
-        margin-bottom: 8px;
-      }
 
       .sv-verb-row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
       .sv-step { grid-template-columns: minmax(0, 1fr); gap: 6px; }
@@ -852,6 +790,9 @@
           <span class="sv-scope-label">Scope</span>
           <span class="sv-scope-text" data-i18n-zh="这是一个 0→1 的项目，没有可参照的旧版本，硬件也在同步定型。我的工作从「人到底在为什么付出成本」开始，推导出三条原则，再用它们裁判后面每一个分歧——从层级要压到几层、四个动作各自落在哪一块界面，到状态该给几种颜色、选中态能不能发亮。视觉与界面全部由我完成。" data-i18n-en="A 0→1 project with no prior version to lean on, and hardware still taking shape alongside it. I started from what people were actually paying for in attention, derived three principles, and used them to settle every argument that followed—how many levels the hierarchy could hold, where each of the four actions lands in the interface, how many colours a state deserves, whether a selected item may glow. All visual and interface work is mine.">这是一个 0→1 的项目，没有可参照的旧版本，硬件也在同步定型。我的工作从「人到底在为什么付出成本」开始，推导出三条原则，再用它们裁判后面每一个分歧——从层级要压到几层、四个动作各自落在哪一块界面，到状态该给几种颜色、选中态能不能发亮。视觉与界面全部由我完成。</span>
         </div>
+
+        <!-- TODO 团队 / 产品在使用场景中的实拍照，比例约 2.6:1 -->
+        <div class="ph" style="aspect-ratio:2.6/1; margin-top:36px">团队 / 产品实拍<br />images/slashvibe-team.jpg</div>
       </div>
     </div>
   </section>
@@ -869,17 +810,17 @@
 
       <div class="sv-cards">
         <div>
-          <div class="sv-card-slab"><span>PAIN 01</span></div>
+          <div class="sv-pain-shot"><img src="images/slashvibe-pain-01.png" alt="看不见状态：几个会话卡片悬浮在人物周围，问号表示不确定哪个在跑" loading="lazy" /></div>
           <div class="sv-card-title" data-i18n-zh="看不见状态" data-i18n-en="State is invisible">看不见状态</div>
           <div class="sv-card-desc" data-i18n-zh="终端里「还在跑」和「已经停了」长得一模一样。" data-i18n-en="In a terminal, &quot;still running&quot; and &quot;stopped a while ago&quot; look identical.">终端里「还在跑」和「已经停了」长得一模一样。</div>
         </div>
         <div>
-          <div class="sv-card-slab"><span>PAIN 02</span></div>
+          <div class="sv-pain-shot"><img src="images/slashvibe-pain-02.png" alt="回复要打字：人物俯身敲键盘，伸手去够远处的会话卡片" loading="lazy" /></div>
           <div class="sv-card-title" data-i18n-zh="回复要打字" data-i18n-en="Replying means typing">回复要打字</div>
           <div class="sv-card-desc" data-i18n-zh="一个「继续」要抢回焦点、找窗口、输入、回车。" data-i18n-en="A single &quot;go on&quot; costs you focus, a window hunt, typing, and a return key.">一个「继续」要抢回焦点、找窗口、输入、回车。</div>
         </div>
         <div>
-          <div class="sv-card-slab"><span>PAIN 03</span></div>
+          <div class="sv-pain-shot"><img src="images/slashvibe-pain-03.png" alt="上下文断掉：人物在两大块会话卡片之间搬运碎片化的信息" loading="lazy" /></div>
           <div class="sv-card-title" data-i18n-zh="上下文断掉" data-i18n-en="Context breaks">上下文断掉</div>
           <div class="sv-card-desc" data-i18n-zh="换一个会话，等于把整个项目重新解释一遍。" data-i18n-en="Switching sessions means explaining the whole project over again.">换一个会话，等于把整个项目重新解释一遍。</div>
         </div>
@@ -945,7 +886,7 @@
 
       <div style="margin-top:72px">
         <span class="sv-fig">FIG.02 — 使用条件对照</span>
-        <div class="sv-table">
+        <div class="sv-table sv-table--fill">
           <div class="sv-tr sv-tr--3 sv-tr--head">
             <span data-i18n-zh="条件" data-i18n-en="Condition">条件</span>
             <span data-i18n-zh="手机" data-i18n-en="Phone">手机</span>
@@ -1005,6 +946,9 @@
           <div class="sv-card-desc" data-i18n-zh="任何视觉元素都要用「它挤掉了几行任务」来结算。" data-i18n-en="Every visual element is billed in the currency of &quot;how many task rows did it push off the screen&quot;.">任何视觉元素都要用「它挤掉了几行任务」来结算。</div>
         </div>
       </div>
+
+      <!-- TODO 三条原则在真机上的体现，比例约 2.6:1 -->
+      <div class="ph" style="aspect-ratio:2.6/1; margin-top:48px">三条原则 · 真机对照<br />images/slashvibe-principles.jpg</div>
     </div>
   </section>
 
@@ -1014,6 +958,9 @@
       <span class="pd-section-label">Verbs</span>
       <h2 class="pd-section-title" data-i18n-zh="四个动词，各自落在界面的哪一块" data-i18n-en="Four Verbs, Each With One Place to Live">四个动词，各自落在界面的哪一块</h2>
       <p class="pd-body" data-i18n-zh="Direct / Glance / Memory / Decide 是产品定义层的四个动作。我的工作是给每个动作找到一个具体、唯一的界面落点——一个动作对应两处，人就得先想「该用哪个」。" data-i18n-en="Direct / Glance / Memory / Decide are the four actions defined at the product level. My job was to give each one a single, specific home in the interface—if an action lands in two places, the user has to stop and pick.">Direct / Glance / Memory / Decide 是产品定义层的四个动作。我的工作是给每个动作找到一个具体、唯一的界面落点——一个动作对应两处，人就得先想「该用哪个」。</p>
+
+      <!-- TODO 四个动词的分镜，每格一张使用瞬间，比例约 24:7 -->
+      <div class="ph ph--wide" style="margin-bottom:44px">四个动词 · 分镜<br />images/slashvibe-verbs.jpg</div>
 
       <div class="sv-verb-row">
         <span class="sv-verb-name"><span>/</span>Direct</span>
@@ -1141,6 +1088,9 @@
       <h2 class="pd-section-title" data-i18n-zh="三颗键、四个方向，覆盖全部操作" data-i18n-en="Three Keys and Four Directions Cover Everything">三颗键、四个方向，覆盖全部操作</h2>
       <p class="pd-body" data-i18n-zh="映射表先写完，界面再画——界面必须长成映射表的样子，而不是反过来让操作去迁就画面。" data-i18n-en="The mapping table was finished before any screen was drawn: the interface has to grow into the shape of the table, not the other way round.">映射表先写完，界面再画——界面必须长成映射表的样子，而不是反过来让操作去迁就画面。</p>
 
+      <!-- TODO 三键 + 摇杆的实拍特写，比例约 2.6:1 -->
+      <div class="ph" style="aspect-ratio:2.6/1; margin-bottom:44px">按键与摇杆 · 特写<br />images/slashvibe-keys.jpg</div>
+
       <div class="sv-table">
         <div class="sv-tr sv-tr--4 sv-tr--head">
           <span data-i18n-zh="输入" data-i18n-en="Input">输入</span>
@@ -1189,49 +1139,6 @@
       <div class="sv-lede" style="margin-top:32px; margin-bottom:0">
         <p data-i18n-zh="方向语义三处不变。右永远是往前一步，左永远是退一步——包括在语音层里，右是发送、左是放弃。" data-i18n-en="Direction means the same thing in all three columns. Right is always one step forward, left is always one step back—including inside voice, where right sends and left abandons.">方向语义三处不变。右永远是往前一步，左永远是退一步——包括在语音层里，右是发送、左是放弃。</p>
         <p data-i18n-zh="按键与摇杆有意重叠。发送既能按键也能拨右——手在哪就用哪个，不必先低头找。" data-i18n-en="Keys and stick deliberately overlap. Send is both a key and a flick to the right—use whichever your hand is already on, without looking down.">按键与摇杆有意重叠。发送既能按键也能拨右——手在哪就用哪个，不必先低头找。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑩ 状态语义 -->
-  <section class="pd-section">
-    <div class="container">
-      <span class="pd-section-label">State Semantics</span>
-      <h2 class="pd-section-title" data-i18n-zh="六种状态，只回答两个问题" data-i18n-en="Six States, Answering Only Two Questions">六种状态，只回答两个问题</h2>
-      <p class="pd-body" data-i18n-zh="状态数量不是按技术枚举定的，而是按「人要不要动手」定的。任何新状态如果不改变这两个答案，就不该拿到一个颜色。" data-i18n-en="The number of states wasn't set by enumerating what the system can be, but by whether a person has to act. Any new state that doesn't change these two answers doesn't get a colour.">状态数量不是按技术枚举定的，而是按「人要不要动手」定的。任何新状态如果不改变这两个答案，就不该拿到一个颜色。</p>
-
-      <span class="sv-fig">FIG.05 — 状态判定矩阵</span>
-      <div class="sv-matrix">
-        <div class="sv-mx-row sv-mx-row--head">
-          <span></span>
-          <span data-i18n-zh="正在推进" data-i18n-en="Still moving">正在推进</span>
-          <span data-i18n-zh="已停下" data-i18n-en="Stopped">已停下</span>
-        </div>
-        <div class="sv-mx-row">
-          <span class="sv-mx-axis" data-i18n-zh="需要我" data-i18n-en="Needs me">需要我</span>
-          <span class="sv-mx-cell sv-mx-empty" data-col="STILL MOVING">—</span>
-          <span class="sv-mx-cell" data-col="STOPPED">
-            <span class="sv-state sv-state--waiting">WAITING</span>
-            <span class="sv-state sv-state--error">ERROR</span>
-          </span>
-        </div>
-        <div class="sv-mx-row">
-          <span class="sv-mx-axis sv-td-dim" data-i18n-zh="不需要我" data-i18n-en="Doesn't need me">不需要我</span>
-          <span class="sv-mx-cell" data-col="STILL MOVING">
-            <span class="sv-state sv-state--working">WORKING</span>
-          </span>
-          <span class="sv-mx-cell" data-col="STOPPED">
-            <span class="sv-state sv-state--done">DONE</span>
-            <span class="sv-state sv-state--idle">IDLE</span>
-            <span class="sv-state sv-state--unknown">UNKNOWN</span>
-          </span>
-        </div>
-      </div>
-
-      <div class="sv-cards" style="margin-top:32px">
-        <div class="sv-card-desc" style="margin-top:0" data-i18n-zh="黄与红是唯一两个会主动叫人的颜色，因此只给真正需要动作的两态。" data-i18n-en="Yellow and red are the only two colours allowed to call out, so they go only to the two states that genuinely need a hand.">黄与红是唯一两个会主动叫人的颜色，因此只给真正需要动作的两态。</div>
-        <div class="sv-card-desc" style="margin-top:0" data-i18n-zh="蓝色只表示「在跑，别管」，必须够低调——一屏五个蓝点不能变成噪音。" data-i18n-en="Blue only means &quot;running, leave it&quot;, so it has to stay quiet—five blue dots on one screen must not become noise.">蓝色只表示「在跑，别管」，必须够低调——一屏五个蓝点不能变成噪音。</div>
-        <div class="sv-card-desc" style="margin-top:0" data-i18n-zh="IDLE 与 UNKNOWN 共用灰阶但亮度不同：一个是没开始，一个是失去连接。" data-i18n-en="IDLE and UNKNOWN share the greyscale at different brightness: one hasn't started, the other has lost its connection.">IDLE 与 UNKNOWN 共用灰阶但亮度不同：一个是没开始，一个是失去连接。</div>
       </div>
     </div>
   </section>
@@ -1291,19 +1198,15 @@
         <div>
           <div class="sv-ab-head"><span>OPTION A</span><span class="sv-ab-verdict--no" data-i18n-zh="未采用" data-i18n-en="Rejected">未采用</span></div>
           <div class="sv-ab-name" data-i18n-zh="容器分组" data-i18n-en="Grouped in containers">容器分组</div>
-          <div class="sv-demo sv-demo--boxed">
-            <div class="sv-demo-item"><div class="sv-demo-l1" style="width:60%"></div><div class="sv-demo-l2" style="width:38%"></div></div>
-            <div class="sv-demo-item"><div class="sv-demo-l1" style="width:52%"></div><div class="sv-demo-l2" style="width:44%"></div></div>
-          </div>
+          <!-- TODO 换成容器分组版的前后对比图，800×480 -->
+          <div class="ph ph--58" style="margin-top:24px">容器分组 · 定稿前<br />images/slashvibe-d1-before.jpg</div>
           <div class="sv-ab-note" data-i18n-zh="一屏 ≈ 3 行 · 边框成为最强对比" data-i18n-en="≈3 rows per screen · the border becomes the strongest contrast">一屏 ≈ 3 行 · 边框成为最强对比</div>
         </div>
         <div>
           <div class="sv-ab-head"><span class="sv-td-green">OPTION B</span><span class="sv-ab-verdict--yes" data-i18n-zh="定稿" data-i18n-en="Shipped">定稿</span></div>
           <div class="sv-ab-name" data-i18n-zh="间距 + 字重 + 色态" data-i18n-en="Spacing + weight + state colour">间距 + 字重 + 色态</div>
-          <div class="sv-demo sv-demo--open">
-            <div class="sv-demo-item"><div class="sv-demo-l1" style="width:60%"></div><div class="sv-demo-l2" style="width:38%"></div></div>
-            <div class="sv-demo-item"><div class="sv-demo-l1" style="width:52%"></div><div class="sv-demo-l2" style="width:44%"></div></div>
-          </div>
+          <!-- TODO 换成间距分层版的定稿图，800×480 -->
+          <div class="ph ph--58" style="margin-top:24px">间距分层 · 定稿<br />images/slashvibe-d1-after.jpg</div>
           <div class="sv-ab-note sv-ab-note--good" data-i18n-zh="一屏 ≈ 6 行 · 状态色是唯一亮点" data-i18n-en="≈6 rows per screen · state colour is the only highlight">一屏 ≈ 6 行 · 状态色是唯一亮点</div>
         </div>
       </div>
@@ -1348,6 +1251,14 @@
           <div class="sv-card-title" data-i18n-zh="屏效" data-i18n-en="Screen efficiency">屏效</div>
           <div class="sv-card-desc" data-i18n-zh="矮屏上能排下的行数越多，「一览」才成立。" data-i18n-en="The more rows a short screen holds, the more &quot;at a glance&quot; is actually true.">矮屏上能排下的行数越多，「一览」才成立。</div>
         </div>
+      </div>
+
+      <!-- TODO 四个候选方案的截图，800×480，按 FIG.07 表格顺序对应 -->
+      <div class="sv-ph-row4">
+        <div class="ph ph--58">彩色标题 · 无状态列<br />images/slashvibe-p6-1.jpg</div>
+        <div class="ph ph--58">卡片 · 状态徽标<br />images/slashvibe-p6-2.jpg</div>
+        <div class="ph ph--58">纯文字 · 图标状态<br />images/slashvibe-p6-3.jpg</div>
+        <div class="ph ph--58">状态色列 + 白色标题<br />images/slashvibe-p6-4.jpg</div>
       </div>
 
       <span class="sv-fig">FIG.07 — 候选方案筛选</span>
@@ -1411,24 +1322,6 @@
             <div class="sv-opt-item sv-opt-item--rest"><span class="sv-opt-key">B</span>Head out to handle errands</div>
           </div>
           <div class="sv-ab-why" data-i18n-zh="选中 = 描边发光，确认 = 摇杆右。与 Mission Board 用同一套选中语言。" data-i18n-en="Selected is a glowing stroke; confirmed is a flick right. The same selection language as the Mission Board.">选中 = 描边发光，确认 = 摇杆右。与 Mission Board 用同一套选中语言。</div>
-        </div>
-      </div>
-
-      <div class="sv-cards" style="margin-top:56px">
-        <div>
-          <span class="sv-tag" data-i18n-zh="回写规则 01" data-i18n-en="Rule 01">回写规则 01</span>
-          <div class="sv-card-title" data-i18n-zh="亮度预算只有一份，优先给状态。" data-i18n-en="There is one brightness budget, and state spends it first.">亮度预算只有一份，优先给状态。</div>
-          <div class="sv-card-desc" data-i18n-zh="此后所有描边、分隔线压到 12% 不透明度以下。" data-i18n-en="From then on, every stroke and divider sits below 12% opacity.">此后所有描边、分隔线压到 12% 不透明度以下。</div>
-        </div>
-        <div>
-          <span class="sv-tag" data-i18n-zh="回写规则 02" data-i18n-en="Rule 02">回写规则 02</span>
-          <div class="sv-card-title" data-i18n-zh="颜色管状态，文字管内容。" data-i18n-en="Colour handles state; text handles content.">颜色管状态，文字管内容。</div>
-          <div class="sv-card-desc" data-i18n-zh="此后任何用颜色区分内容类别的提案都直接否掉。" data-i18n-en="From then on, any proposal that colour-codes content categories is rejected outright.">此后任何用颜色区分内容类别的提案都直接否掉。</div>
-        </div>
-        <div>
-          <span class="sv-tag" data-i18n-zh="回写规则 03" data-i18n-en="Rule 03">回写规则 03</span>
-          <div class="sv-card-title" data-i18n-zh="选中 ≠ 已确认。" data-i18n-en="Selected is not confirmed.">选中 ≠ 已确认。</div>
-          <div class="sv-card-desc" data-i18n-zh="默认选中必须是最弱的视觉状态，确认才升级反馈。" data-i18n-en="A default selection must be the weakest visual state; only confirmation escalates the feedback.">默认选中必须是最弱的视觉状态，确认才升级反馈。</div>
         </div>
       </div>
     </div>
