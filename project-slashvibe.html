@@ -791,10 +791,11 @@
           </div>
           <div class="sv-path-list">
             <div class="sv-path-item"><span>01</span><span data-i18n-zh="问题：并行 Agent 的注意力税" data-i18n-en="The problem: the attention tax of parallel agents">问题：并行 Agent 的注意力税</span></div>
-            <div class="sv-path-item"><span>02</span><span data-i18n-zh="硬件给的三条约束，与真机验证" data-i18n-en="Three constraints from hardware, tested on the real device">硬件给的三条约束，与真机验证</span></div>
-            <div class="sv-path-item"><span>03</span><span data-i18n-zh="三条原则（后面所有分歧的裁判）" data-i18n-en="Three principles—the referee for everything that follows">三条原则（后面所有分歧的裁判）</span></div>
-            <div class="sv-path-item"><span>04</span><span data-i18n-zh="任务循环使用流程（含完整状态机）" data-i18n-en="The task loop, with the full state machine">任务循环使用流程（含完整状态机）</span></div>
-            <div class="sv-path-item"><span>05</span><span data-i18n-zh="按键映射矩阵" data-i18n-en="The key-mapping matrix">按键映射矩阵</span></div>
+            <div class="sv-path-item"><span>02</span><span data-i18n-zh="为什么是硬件，不是软件面板" data-i18n-en="Why a device rather than another window">为什么是硬件，不是软件面板</span></div>
+            <div class="sv-path-item"><span>03</span><span data-i18n-zh="硬件给的三条约束，与真机验证" data-i18n-en="Three constraints from hardware, tested on the real device">硬件给的三条约束，与真机验证</span></div>
+            <div class="sv-path-item"><span>04</span><span data-i18n-zh="三条原则（后面所有分歧的裁判）" data-i18n-en="Three principles—the referee for everything that follows">三条原则（后面所有分歧的裁判）</span></div>
+            <div class="sv-path-item"><span>05</span><span data-i18n-zh="任务循环使用流程（含完整状态机）" data-i18n-en="The task loop, with the full state machine">任务循环使用流程（含完整状态机）</span></div>
+            <div class="sv-path-item"><span>06</span><span data-i18n-zh="按键映射矩阵" data-i18n-en="The key-mapping matrix">按键映射矩阵</span></div>
           </div>
         </div>
         <div>
@@ -803,9 +804,9 @@
             <span class="sv-path-name" data-i18n-zh="UI · 把界面做出来" data-i18n-en="UI · Building It">UI · 把界面做出来</span>
           </div>
           <div class="sv-path-list">
-            <div class="sv-path-item"><span>06</span><span data-i18n-zh="Mission Board 版式解剖" data-i18n-en="Anatomy of the Mission Board">Mission Board 版式解剖</span></div>
-            <div class="sv-path-item"><span>07</span><span data-i18n-zh="两个设计决策，都是用原则判出来的" data-i18n-en="Two decisions, both settled by the principles">两个设计决策，都是用原则判出来的</span></div>
-            <div class="sv-path-item"><span>08</span><span data-i18n-zh="详情页展示：一套骨架跑完所有状态" data-i18n-en="The Task Window: one skeleton, every state">详情页展示：一套骨架跑完所有状态</span></div>
+            <div class="sv-path-item"><span>07</span><span data-i18n-zh="Mission Board 版式解剖" data-i18n-en="Anatomy of the Mission Board">Mission Board 版式解剖</span></div>
+            <div class="sv-path-item"><span>08</span><span data-i18n-zh="两个设计决策，都是用原则判出来的" data-i18n-en="Two decisions, both settled by the principles">两个设计决策，都是用原则判出来的</span></div>
+            <div class="sv-path-item"><span>09</span><span data-i18n-zh="详情页展示：一套骨架跑完所有状态" data-i18n-en="The Task Window: one skeleton, every state">详情页展示：一套骨架跑完所有状态</span></div>
           </div>
           <div class="sv-path-head" style="margin-top:36px">
             <span class="sv-path-part" style="color:var(--sv-faint)">END</span>
@@ -874,10 +875,46 @@
     </div>
   </section>
 
+  <!-- 为什么是硬件：回答「为啥不做成软件」「是不是只能在书桌前用」 -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label"><span class="sv-num">02</span>Why Hardware</span>
+      <h2 class="pd-section-title" data-i18n-zh="为什么是一台硬件，不是一个软件面板" data-i18n-en="Why a Device, Not Another Window">为什么是一台硬件，不是一个软件面板</h2>
+
+      <div class="sv-lede">
+        <p data-i18n-zh="软件的毛病是 all-in-one：只要打开，信息必然一起涌进来。而人在指挥 AI 的时候，屏幕本来就是过载的——每个终端背后都连着一堆页面，同时开三五个会话，人甚至会找不到自己当前在哪一个里面。" data-i18n-en="The trouble with software is that it's all-in-one: the moment you open it, everything arrives at once. And when you're directing AI, the screen is already overloaded—every terminal has a stack of pages behind it, and with three to five sessions running you can lose track of which one you're even in.">软件的毛病是 all-in-one：只要打开，信息必然一起涌进来。而人在指挥 AI 的时候，屏幕本来就是过载的——每个终端背后都连着一堆页面，同时开三五个会话，人甚至会找不到自己当前在哪一个里面。</p>
+        <p data-i18n-zh="再加一个软件面板，只是往同一块已经挤满的屏幕里再塞一个窗口——那是加法。SlashVibe 是一块独立的物理表面，它做的是减法：从外往内过滤，只把「现在需要你」的那部分留在眼前。" data-i18n-en="Adding another software panel just puts one more window into an already crowded screen—that's addition. SlashVibe is a separate physical surface, and what it does is subtraction: it filters from the outside in, leaving only the part that needs you right now.">再加一个软件面板，只是往同一块已经挤满的屏幕里再塞一个窗口——那是加法。SlashVibe 是一块独立的物理表面，它做的是减法：从外往内过滤，只把「现在需要你」的那部分留在眼前。</p>
+      </div>
+
+      <img class="sv-render" src="images/slashvibe-hold.jpg" alt="单手握住可分离的控制器与麦克风模块，可以离开书桌" width="1600" height="675" loading="lazy" />
+      <p class="sv-figcap" style="margin-bottom:44px" data-i18n-zh="麦克风模块可以从底座上取下带走——使用场景并不锁死在书桌前。" data-i18n-en="The mic module detaches and travels with you—the use case isn't locked to the desk.">麦克风模块可以从底座上取下带走——使用场景并不锁死在书桌前。</p>
+
+      <div class="sv-cards">
+        <div>
+          <span class="sv-tag sv-tag--green">WHY 01</span>
+          <div class="sv-card-title" data-i18n-zh="软件做加法，硬件做减法" data-i18n-en="Software adds, hardware subtracts">软件做加法，硬件做减法</div>
+          <div class="sv-card-desc" data-i18n-zh="软件面板要和终端、编辑器、浏览器抢同一块屏幕。只有把状态搬到那块屏幕之外，「过滤」才真的成立。" data-i18n-en="A software panel competes with the terminal, the editor and the browser for the same screen. Only by moving state off that screen does filtering actually mean anything.">软件面板要和终端、编辑器、浏览器抢同一块屏幕。只有把状态搬到那块屏幕之外，「过滤」才真的成立。</div>
+        </div>
+        <div>
+          <span class="sv-tag sv-tag--green">WHY 02</span>
+          <div class="sv-card-title" data-i18n-zh="它不锁在书桌前" data-i18n-en="It isn't chained to the desk">它不锁在书桌前</div>
+          <div class="sv-card-desc" data-i18n-zh="控制器与麦克风能从底座分离，拿着就能在家里走动。做饭、做家务时想派一个新任务，开口说就行。" data-i18n-en="Controller and mic detach from the dock, so you can carry them around the house. Want to dispatch a new task while cooking or doing chores? Just say it.">控制器与麦克风能从底座分离，拿着就能在家里走动。做饭、做家务时想派一个新任务，开口说就行。</div>
+        </div>
+        <div>
+          <span class="sv-tag sv-tag--green">WHY 03</span>
+          <div class="sv-card-title" data-i18n-zh="大部分时候不用看屏幕" data-i18n-en="Most of the time you don't look at it">大部分时候不用看屏幕</div>
+          <div class="sv-card-desc" data-i18n-zh="派发靠说，推进靠等。只有走到 WAITING / DONE、真的需要你点头时，屏幕才值得被看一眼。" data-i18n-en="Dispatch by speaking, then simply wait. Only when a task reaches WAITING or DONE—when it genuinely needs your nod—is the screen worth a glance.">派发靠说，推进靠等。只有走到 WAITING / DONE、真的需要你点头时，屏幕才值得被看一眼。</div>
+        </div>
+      </div>
+
+      <p class="sv-caption" data-i18n-zh="定位可以压成一句：它不是又一个要盯着的仪表盘，而是一个只管 agent 任务的 Siri——外加一块能用余光扫的状态屏。" data-i18n-en="The positioning compresses into one line: not another dashboard to stare at, but a Siri that only handles agent tasks—plus a status screen you can read from the corner of your eye.">定位可以压成一句：它不是又一个要盯着的仪表盘，而是一个只管 agent 任务的 Siri——外加一块能用余光扫的状态屏。</p>
+    </div>
+  </section>
+
   <!-- ④ 硬件约束 + 真机验证 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label"><span class="sv-num">02</span>Constraints</span>
+      <span class="pd-section-label"><span class="sv-num">03</span>Constraints</span>
       <h2 class="pd-section-title" data-i18n-zh="硬件先定，界面只能顺着它长" data-i18n-en="Hardware Comes First; the Interface Grows Around It">硬件先定，界面只能顺着它长</h2>
 
       <div class="sv-lede">
@@ -949,7 +986,7 @@
   <!-- ⑤ 三条原则 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label"><span class="sv-num">03</span>Principles</span>
+      <span class="pd-section-label"><span class="sv-num">04</span>Principles</span>
       <h2 class="pd-section-title" data-i18n-zh="三条原则，后面所有分歧都用它们裁判" data-i18n-en="Three Principles That Settle Every Later Argument">三条原则，后面所有分歧都用它们裁判</h2>
 
       <div class="sv-cards">
@@ -979,7 +1016,7 @@
   <!-- ⑧ 一个回合 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label"><span class="sv-num">04</span>Task Loop</span>
+      <span class="pd-section-label"><span class="sv-num">05</span>Task Loop</span>
       <h2 class="pd-section-title" data-i18n-zh="任务循环使用流程" data-i18n-en="The Task Loop">任务循环使用流程</h2>
       <p class="pd-body" data-i18n-zh="一个回合：从口述到点头，手不离桌。下面先看五步的骨架，再看完整状态机——WAITING / READY / ERROR 三条分支最终都汇回同一个语音输入口。" data-i18n-en="One round: from speaking to nodding, hands never leaving the desk. The five-step skeleton comes first, then the full state machine—where the WAITING / READY / ERROR branches all converge back on the same voice input.">一个回合：从口述到点头，手不离桌。下面先看五步的骨架，再看完整状态机——WAITING / READY / ERROR 三条分支最终都汇回同一个语音输入口。</p>
 
@@ -1045,12 +1082,9 @@
   <!-- ⑨ 按键映射矩阵 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label"><span class="sv-num">05</span>Key Mapping</span>
+      <span class="pd-section-label"><span class="sv-num">06</span>Key Mapping</span>
       <h2 class="pd-section-title" data-i18n-zh="三颗键、四个方向，覆盖全部操作" data-i18n-en="Three Keys and Four Directions Cover Everything">三颗键、四个方向，覆盖全部操作</h2>
       <p class="pd-body" data-i18n-zh="映射表先写完，界面再画——界面必须长成映射表的样子，而不是反过来让操作去迁就画面。" data-i18n-en="The mapping table was finished before any screen was drawn: the interface has to grow into the shape of the table, not the other way round.">映射表先写完，界面再画——界面必须长成映射表的样子，而不是反过来让操作去迁就画面。</p>
-
-      <img class="sv-render" src="images/slashvibe-hold.jpg" alt="单手握持控制器：拇指正好落在三颗按键上" width="1600" height="675" loading="lazy" />
-      <p class="sv-figcap" style="margin-bottom:28px" data-i18n-zh="单手握住就能操作：拇指自然落在三颗按键上，麦克风朝上。" data-i18n-en="Operable in one hand: the thumb falls naturally on the three keys, mic facing up.">单手握住就能操作：拇指自然落在三颗按键上，麦克风朝上。</p>
 
       <img class="sv-render" src="images/slashvibe-keys.jpg" alt="控制器拆解：按键模块与可分离的麦克风模块" width="1600" height="675" loading="lazy" />
       <p class="sv-figcap" style="margin-bottom:44px" data-i18n-zh="拆开看：左边按键模块（取消 / 发送 / 语音）＋ 右边可分离的麦克风模块。全部操作只能落在这几个输入上。" data-i18n-en="Taken apart: the key module on the left (cancel / send / voice) plus the detachable mic module on the right. Every operation has to land on these few inputs.">拆开看：左边按键模块（取消 / 发送 / 语音）＋ 右边可分离的麦克风模块。全部操作只能落在这几个输入上。</p>
@@ -1114,7 +1148,7 @@
         <span class="sv-partbar-l">PART 02 — UI</span>
         <span class="sv-partbar-r" data-i18n-zh="把界面做出来" data-i18n-en="Building it">把界面做出来</span>
       </div>
-      <span class="pd-section-label"><span class="sv-num">06</span>Anatomy</span>
+      <span class="pd-section-label"><span class="sv-num">07</span>Anatomy</span>
       <h2 class="pd-section-title" data-i18n-zh="Mission Board 版式解剖" data-i18n-en="Anatomy of the Mission Board">Mission Board 版式解剖</h2>
 
       <div class="sv-anatomy">
@@ -1153,7 +1187,7 @@
   <!-- ⑫ 三个设计决策 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label"><span class="sv-num">07</span>Decisions</span>
+      <span class="pd-section-label"><span class="sv-num">08</span>Decisions</span>
       <h2 class="pd-section-title" data-i18n-zh="两个决策，都是用原则判出来的" data-i18n-en="Two Decisions, Both Settled by the Principles">两个决策，都是用原则判出来的</h2>
 
       <!-- 决策 01 -->
@@ -1267,7 +1301,7 @@
   <!-- ⑬ 界面全集 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label"><span class="sv-num">08</span>Screens</span>
+      <span class="pd-section-label"><span class="sv-num">09</span>Screens</span>
       <h2 class="pd-section-title" data-i18n-zh="详情页展示" data-i18n-en="The Task Window">详情页展示</h2>
       <p class="pd-body" data-i18n-zh="同一套骨架跑完全部状态：顶部状态条、中部内容、底部动作提示——结构不变，状态只改颜色。从任何一屏切到另一屏都不用重新找位置。" data-i18n-en="One skeleton, every state: a status bar on top, content in the middle, action hints at the bottom—the structure never moves, only the colour changes with state. Switching between any two screens costs no re-orientation.">同一套骨架跑完全部状态：顶部状态条、中部内容、底部动作提示——结构不变，状态只改颜色。从任何一屏切到另一屏都不用重新找位置。</p>
 
