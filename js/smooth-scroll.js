@@ -1,5 +1,5 @@
 /**
- * smooth-scroll.js  v5
+ * smooth-scroll.js  v6
  *
  * Top-level pages use the browser's native, free scrolling.
  * Project detail pages keep light exponential damping.
@@ -42,9 +42,30 @@
     return Math.max(0, Math.min(y, document.body.scrollHeight - window.innerHeight));
   }
 
+  /* ── 嵌套可滚动容器 ──────────────────────────────────
+     详情页的整页阻尼会 preventDefault 掉所有 wheel 事件，
+     这会连带吃掉页面内部可滚动容器（比如 SlashVibe 的流程图
+     取景框）的滚动。指针停在这类容器里、且它在该方向上还没到底时，
+     直接把事件交还给浏览器，让容器自己滚。
+     滚到尽头再落回整页阻尼，不会把人困在框里。 */
+  function innerScrollable(node, deltaY) {
+    while (node && node.nodeType === 1 && node !== document.body && node !== document.documentElement) {
+      var st = window.getComputedStyle(node);
+      var oy = st.overflowY;
+      if ((oy === 'auto' || oy === 'scroll') && node.scrollHeight > node.clientHeight + 1) {
+        var atTop    = node.scrollTop <= 0;
+        var atBottom = node.scrollTop + node.clientHeight >= node.scrollHeight - 1;
+        if (!(deltaY < 0 && atTop) && !(deltaY > 0 && atBottom)) return node;
+      }
+      node = node.parentNode;
+    }
+    return null;
+  }
+
   /* ── Wheel ───────────────────────────────────────────── */
   window.addEventListener('wheel', function (e) {
     if (isTopLevelPage) return;
+    if (innerScrollable(e.target, e.deltaY)) return;   // 交给容器自己滚
     e.preventDefault();
     targetY = clamp(targetY + e.deltaY * 0.8);
     startAnim();
