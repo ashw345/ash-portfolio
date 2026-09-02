@@ -167,6 +167,21 @@
       font-weight: 500;
     }
 
+    /* ── 框起来的导语：给单段落一个安静的边框，用在图前作说明 ── */
+    .sv-callout {
+      margin-bottom: 32px;
+      padding: 26px 30px;
+      border: 1px solid var(--sv-line);
+      background: rgba(255, 255, 255, 0.025);
+      border-radius: 16px;
+    }
+    .sv-callout p {
+      max-width: 760px;
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--sv-dim);
+    }
+
     /* ── 通用三栏卡片（痛点 / 约束 / 原则 / 判据） ── */
     .sv-cards {
       display: grid;
@@ -417,7 +432,8 @@
       overflow: hidden;
       background: #141414;
     }
-    .sv-photo img {
+    .sv-photo img,
+    .sv-photo video {
       display: block;
       width: 100%;
       height: auto;
@@ -770,7 +786,9 @@
         </div>
 
         <div class="sv-photo" style="margin-top:36px">
-          <img src="images/slashvibe-team.jpg" alt="SlashVibe 真机：Mission Board 上同时显示 WAITING / DONE / WORKING / ERROR 四种状态" width="1920" height="1080" loading="lazy" />
+          <video autoplay muted loop playsinline disablepictureinpicture aria-label="SlashVibe 使用演示视频，循环播放">
+            <source src="images/slashvibe-usage.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
     </div>
@@ -781,7 +799,7 @@
     <div class="container">
       <span class="pd-section-label">How to Read This</span>
       <h2 class="pd-section-title" data-i18n-zh="这个案例分两段讲" data-i18n-en="This Case Study Runs in Two Halves">这个案例分两段讲</h2>
-      <p class="pd-body" data-i18n-zh="前半段是 UX：从「人到底在为什么付出成本」推到三条原则，再用原则定架构、定流程、定按键。后半段是 UI：把定好的规则画成界面，并交代其中三个最难的取舍。两段之间是同一条因果链——后面每一个界面决定，都能追溯到前面某一条原则。" data-i18n-en="The first half is UX: starting from what people actually pay attention-cost for, deriving three principles, then using them to settle the architecture, the flow and the keys. The second half is UI: turning those rules into screens, and accounting for the three hardest trade-offs. The two halves are one causal chain—every interface decision in the second traces back to a principle in the first.">前半段是 UX：从「人到底在为什么付出成本」推到三条原则，再用原则定架构、定流程、定按键。后半段是 UI：把定好的规则画成界面，并交代其中三个最难的取舍。两段之间是同一条因果链——后面每一个界面决定，都能追溯到前面某一条原则。</p>
+      <p class="pd-body" data-i18n-zh="前半段 UX：从注意力成本推出三条原则，定架构、定流程、定按键。后半段 UI：把规则画成界面，交代三个最难的取舍。一条因果链贯穿始终——每个界面决定都能追到某条原则。" data-i18n-en="The first half is UX: from the cost of attention to three principles, then architecture, flow and keys. The second half is UI: turning those rules into screens, plus the three hardest trade-offs. One causal chain runs through both—every interface decision traces back to a principle.">前半段 UX：从注意力成本推出三条原则，定架构、定流程、定按键。后半段 UI：把规则画成界面，交代三个最难的取舍。一条因果链贯穿始终——每个界面决定都能追到某条原则。</p>
 
       <div class="sv-path">
         <div>
@@ -793,9 +811,9 @@
             <div class="sv-path-item"><span>01</span><span data-i18n-zh="问题：并行 Agent 的注意力税" data-i18n-en="The problem: the attention tax of parallel agents">问题：并行 Agent 的注意力税</span></div>
             <div class="sv-path-item"><span>02</span><span data-i18n-zh="为什么是硬件，不是软件面板" data-i18n-en="Why a device rather than another window">为什么是硬件，不是软件面板</span></div>
             <div class="sv-path-item"><span>03</span><span data-i18n-zh="硬件给的三条约束，与真机验证" data-i18n-en="Three constraints from hardware, tested on the real device">硬件给的三条约束，与真机验证</span></div>
-            <div class="sv-path-item"><span>04</span><span data-i18n-zh="三条原则（后面所有分歧的裁判）" data-i18n-en="Three principles—the referee for everything that follows">三条原则（后面所有分歧的裁判）</span></div>
-            <div class="sv-path-item"><span>05</span><span data-i18n-zh="任务循环使用流程（含完整状态机）" data-i18n-en="The task loop, with the full state machine">任务循环使用流程（含完整状态机）</span></div>
-            <div class="sv-path-item"><span>06</span><span data-i18n-zh="按键映射矩阵" data-i18n-en="The key-mapping matrix">按键映射矩阵</span></div>
+            <div class="sv-path-item"><span>04</span><span data-i18n-zh="按键映射矩阵" data-i18n-en="The key-mapping matrix">按键映射矩阵</span></div>
+            <div class="sv-path-item"><span>05</span><span data-i18n-zh="三条原则（后面所有分歧的裁判）" data-i18n-en="Three principles—the referee for everything that follows">三条原则（后面所有分歧的裁判）</span></div>
+            <div class="sv-path-item"><span>06</span><span data-i18n-zh="任务循环使用流程（含完整状态机）" data-i18n-en="The task loop, with the full state machine">任务循环使用流程（含完整状态机）</span></div>
           </div>
         </div>
         <div>
@@ -828,8 +846,8 @@
       <h2 class="pd-section-title" data-i18n-zh="Agent 越多，人越忙" data-i18n-en="The More Agents, the Busier You Get">Agent 越多，人越忙</h2>
 
       <div class="sv-lede">
-        <p data-i18n-zh="开发者同时挂着 3–6 个会话，每一个都可能正在思考、已经完成、或者停在一个等你点头的岔路口。屏幕上没有任何一处能「扫一眼就知道」，于是人被迫轮询。被消耗的不是时间，是切换。" data-i18n-en="A developer keeps three to six sessions running at once. Each of them might be thinking, already finished, or parked at a fork waiting for a nod. Nowhere on screen can you simply glance and know—so people are forced to poll. What gets consumed isn't time; it's switching.">开发者同时挂着 3–6 个会话，每一个都可能正在思考、已经完成、或者停在一个等你点头的岔路口。屏幕上没有任何一处能「扫一眼就知道」，于是人被迫轮询。被消耗的不是时间，是切换。</p>
-        <p data-i18n-zh="我的解法可以压成一句：把「查询」变成余光就能完成的动作，把「回复」降级成拨一下摇杆。" data-i18n-en="My answer compresses into one line: turn checking into something peripheral vision can finish, and demote replying to a flick of the stick.">我的解法可以压成一句：把「查询」变成余光就能完成的动作，把「回复」降级成拨一下摇杆。</p>
+        <p data-i18n-zh="开发者同时挂着 3–6 个会话，每一个都可能正在思考、已经完成、或停在等你点头的岔路口——屏幕上没有一处能扫一眼就知道，人被迫轮询。被消耗的不是时间，是切换。" data-i18n-en="A developer keeps three to six sessions running at once—each might be thinking, already finished, or parked at a fork waiting for a nod. Nowhere on screen can you simply glance and know, so people are forced to poll. What gets consumed isn't time; it's switching.">开发者同时挂着 3–6 个会话，每一个都可能正在思考、已经完成、或停在等你点头的岔路口——屏幕上没有一处能扫一眼就知道，人被迫轮询。被消耗的不是时间，是切换。</p>
+        <p data-i18n-zh="解法压成一句：把「查询」变成余光就能完成的动作，「回复」降级成拨一下摇杆。" data-i18n-en="The answer compresses into one line: turn checking into something peripheral vision can finish, and demote replying to a flick of the stick.">解法压成一句：把「查询」变成余光就能完成的动作，「回复」降级成拨一下摇杆。</p>
       </div>
 
       <div class="sv-cards">
@@ -882,8 +900,7 @@
       <h2 class="pd-section-title" data-i18n-zh="为什么是一台硬件，不是一个软件面板" data-i18n-en="Why a Device, Not Another Window">为什么是一台硬件，不是一个软件面板</h2>
 
       <div class="sv-lede">
-        <p data-i18n-zh="软件的毛病是 all-in-one：只要打开，信息必然一起涌进来。而人在指挥 AI 的时候，屏幕本来就是过载的——每个终端背后都连着一堆页面，同时开三五个会话，人甚至会找不到自己当前在哪一个里面。" data-i18n-en="The trouble with software is that it's all-in-one: the moment you open it, everything arrives at once. And when you're directing AI, the screen is already overloaded—every terminal has a stack of pages behind it, and with three to five sessions running you can lose track of which one you're even in.">软件的毛病是 all-in-one：只要打开，信息必然一起涌进来。而人在指挥 AI 的时候，屏幕本来就是过载的——每个终端背后都连着一堆页面，同时开三五个会话，人甚至会找不到自己当前在哪一个里面。</p>
-        <p data-i18n-zh="再加一个软件面板，只是往同一块已经挤满的屏幕里再塞一个窗口——那是加法。SlashVibe 是一块独立的物理表面，它做的是减法：从外往内过滤，只把「现在需要你」的那部分留在眼前。" data-i18n-en="Adding another software panel just puts one more window into an already crowded screen—that's addition. SlashVibe is a separate physical surface, and what it does is subtraction: it filters from the outside in, leaving only the part that needs you right now.">再加一个软件面板，只是往同一块已经挤满的屏幕里再塞一个窗口——那是加法。SlashVibe 是一块独立的物理表面，它做的是减法：从外往内过滤，只把「现在需要你」的那部分留在眼前。</p>
+        <p data-i18n-zh="软件的毛病是 all-in-one：再加一个面板，只是往已经过载的屏幕里再塞一个窗口——那是加法。SlashVibe 是一块独立的物理表面，它做的是减法：从外往内过滤，只把「现在需要你」的那部分留在眼前。" data-i18n-en="The trouble with software is that it's all-in-one: another panel just crams one more window into an already overloaded screen—that's addition. SlashVibe is a separate physical surface, and what it does is subtraction: it filters from the outside in, leaving only the part that needs you right now.">软件的毛病是 all-in-one：再加一个面板，只是往已经过载的屏幕里再塞一个窗口——那是加法。SlashVibe 是一块独立的物理表面，它做的是减法：从外往内过滤，只把「现在需要你」的那部分留在眼前。</p>
       </div>
 
       <img class="sv-render" src="images/slashvibe-hold.jpg" alt="单手握住可分离的控制器与麦克风模块，可以离开书桌" width="1600" height="675" loading="lazy" />
@@ -918,29 +935,28 @@
       <h2 class="pd-section-title" data-i18n-zh="硬件先定，界面只能顺着它长" data-i18n-en="Hardware Comes First; the Interface Grows Around It">硬件先定，界面只能顺着它长</h2>
 
       <div class="sv-lede">
-        <p data-i18n-zh="和工业设计同步推进，屏幕比例、按键数量、麦克风能不能分离，都会反过来改写界面。我把这三条依赖显式写下来，双边才好同时改。" data-i18n-en="Running in parallel with industrial design meant screen ratio, key count and whether the mic detaches all rewrote the interface in return. I wrote the three dependencies down explicitly so both sides could move at once.">和工业设计同步推进，屏幕比例、按键数量、麦克风能不能分离，都会反过来改写界面。我把这三条依赖显式写下来，双边才好同时改。</p>
-        <p data-i18n-zh="真机一放上桌，手机习惯先被推翻：屏很矮、字很大、离眼睛更远，而人根本不会一直盯着它。卡片、分组容器、滚动列表——全部要重新验证。" data-i18n-en="The moment a real unit sits on the desk, phone habits collapse: the screen is short, the type is large, the eyes are further away, and nobody stares at it continuously. Cards, grouping containers, scrolling lists—all of it had to be re-tested.">真机一放上桌，手机习惯先被推翻：屏很矮、字很大、离眼睛更远，而人根本不会一直盯着它。卡片、分组容器、滚动列表——全部要重新验证。</p>
+        <p data-i18n-zh="和工业设计同步推进，屏幕比例、按键数量、麦克风能不能分离，都会反过来改写界面。真机一放上桌，手机习惯先被推翻：屏矮字大、离眼更远，卡片、容器、滚动列表全部要重新验证。" data-i18n-en="Running in parallel with industrial design, screen ratio, key count and whether the mic detaches all rewrote the interface in return. The moment a real unit sat on the desk, phone habits collapsed: the screen was short, the type large, the eyes further away—cards, containers and scrolling lists all had to be re-tested.">和工业设计同步推进，屏幕比例、按键数量、麦克风能不能分离，都会反过来改写界面。真机一放上桌，手机习惯先被推翻：屏矮字大、离眼更远，卡片、容器、滚动列表全部要重新验证。</p>
       </div>
 
-      <div class="sv-photo">
-        <img src="images/slashvibe-hw-alt.jpg" alt="控制器与底座的形态关系：屏幕横且矮，麦克风模块可从控制器上分离" width="1920" height="1080" loading="lazy" />
-      </div>
+      <img class="sv-render" src="images/slashvibe-modes.png" alt="三种使用形态：手持离开书桌、贴近轻声说话、桌面旋转让摇杆落在拇指下" width="1920" height="828" loading="lazy" />
 
-      <div class="sv-cards" style="margin-top:40px">
-        <div>
-          <span class="sv-tag">CONSTRAINT 01</span>
-          <div class="sv-card-title" data-i18n-zh="屏幕横且矮" data-i18n-en="Wide and short">屏幕横且矮</div>
-          <div class="sv-card-desc" data-i18n-zh="纵向预算极紧，容器和边框成了奢侈品。" data-i18n-en="The vertical budget is tight enough that containers and borders become luxuries.">纵向预算极紧，容器和边框成了奢侈品。</div>
-        </div>
-        <div>
-          <span class="sv-tag">CONSTRAINT 02</span>
-          <div class="sv-card-title" data-i18n-zh="只有 3 键 + 4 向" data-i18n-en="Three keys, four directions">只有 3 键 + 4 向</div>
-          <div class="sv-card-desc" data-i18n-zh="不能新增输入，只能重新分配语义。" data-i18n-en="No new inputs can be added—only the meanings can be redistributed.">不能新增输入，只能重新分配语义。</div>
-        </div>
-        <div>
-          <span class="sv-tag">CONSTRAINT 03</span>
-          <div class="sv-card-title" data-i18n-zh="麦克风可分离" data-i18n-en="The mic detaches">麦克风可分离</div>
-          <div class="sv-card-desc" data-i18n-zh="语音要能在任何页面唤起，因此它不进层级。" data-i18n-en="Voice must be reachable from any page, so it never enters the hierarchy.">语音要能在任何页面唤起，因此它不进层级。</div>
+      <div class="sv-callout" style="margin-top:40px; margin-bottom:0">
+        <div class="sv-cards">
+          <div>
+            <span class="sv-tag">CONSTRAINT 01</span>
+            <div class="sv-card-title" data-i18n-zh="屏幕横且矮" data-i18n-en="Wide and short">屏幕横且矮</div>
+            <div class="sv-card-desc" data-i18n-zh="纵向预算极紧，容器和边框成了奢侈品。" data-i18n-en="The vertical budget is tight enough that containers and borders become luxuries.">纵向预算极紧，容器和边框成了奢侈品。</div>
+          </div>
+          <div>
+            <span class="sv-tag">CONSTRAINT 02</span>
+            <div class="sv-card-title" data-i18n-zh="只有 3 键 + 4 向" data-i18n-en="Three keys, four directions">只有 3 键 + 4 向</div>
+            <div class="sv-card-desc" data-i18n-zh="不能新增输入，只能重新分配语义。" data-i18n-en="No new inputs can be added—only the meanings can be redistributed.">不能新增输入，只能重新分配语义。</div>
+          </div>
+          <div>
+            <span class="sv-tag">CONSTRAINT 03</span>
+            <div class="sv-card-title" data-i18n-zh="麦克风可分离" data-i18n-en="The mic detaches">麦克风可分离</div>
+            <div class="sv-card-desc" data-i18n-zh="语音要能在任何页面唤起，因此它不进层级。" data-i18n-en="Voice must be reachable from any page, so it never enters the hierarchy.">语音要能在任何页面唤起，因此它不进层级。</div>
+          </div>
         </div>
       </div>
 
@@ -983,10 +999,83 @@
     </div>
   </section>
 
-  <!-- ⑤ 三条原则 -->
+  <!-- ⑤ 按键映射矩阵 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label"><span class="sv-num">04</span>Principles</span>
+      <span class="pd-section-label"><span class="sv-num">04</span>Key Mapping</span>
+      <h2 class="pd-section-title" data-i18n-zh="三颗键、四个方向，覆盖全部操作" data-i18n-en="Three Keys and Four Directions Cover Everything">三颗键、四个方向，覆盖全部操作</h2>
+      <p class="pd-body" data-i18n-zh="映射表先写完，界面再画——界面必须长成映射表的样子，而不是反过来让操作去迁就画面。" data-i18n-en="The mapping table was finished before any screen was drawn: the interface has to grow into the shape of the table, not the other way round.">映射表先写完，界面再画——界面必须长成映射表的样子，而不是反过来让操作去迁就画面。</p>
+
+      <img class="sv-render" src="images/slashvibe-keys.jpg" alt="控制器拆解：按键模块与可分离的麦克风模块" width="1600" height="675" loading="lazy" />
+      <p class="sv-figcap" style="margin-bottom:44px" data-i18n-zh="拆开看：左边按键模块（取消 / 发送 / 语音）＋ 右边可分离的麦克风模块。全部操作只能落在这几个输入上。" data-i18n-en="Taken apart: the key module on the left (cancel / send / voice) plus the detachable mic module on the right. Every operation has to land on these few inputs.">拆开看：左边按键模块（取消 / 发送 / 语音）＋ 右边可分离的麦克风模块。全部操作只能落在这几个输入上。</p>
+
+      <div class="sv-cards sv-cards--2" style="margin-bottom:44px">
+        <div>
+          <div class="sv-photo"><img src="images/slashvibe-exploded.jpg" alt="控制器分解图：外壳、电池、主板与麦克风模块逐层拆开" width="1200" height="750" loading="lazy" /></div>
+          <div class="sv-figcap" data-i18n-zh="模块分解：外壳、电池、主板与麦克风模块可逐层拆开" data-i18n-en="Exploded view: shell, battery, board and mic module come apart layer by layer">模块分解：外壳、电池、主板与麦克风模块可逐层拆开</div>
+        </div>
+        <div>
+          <div class="sv-photo"><img src="images/slashvibe-joint-detail.jpg" alt="按键模块与麦克风模块的接缝细节，指示灯特写" width="1200" height="750" loading="lazy" /></div>
+          <div class="sv-figcap" data-i18n-zh="接缝细节：模块咬合处与指示灯，决定长期手感" data-i18n-en="Joint detail: where modules lock together, and the status light">接缝细节：模块咬合处与指示灯，决定长期手感</div>
+        </div>
+      </div>
+
+      <div class="sv-table">
+        <div class="sv-tr sv-tr--4 sv-tr--head">
+          <span data-i18n-zh="输入" data-i18n-en="Input">输入</span>
+          <span>MISSION BOARD</span>
+          <span>TASK WINDOW</span>
+          <span class="sv-th-green">VOICE</span>
+        </div>
+        <div class="sv-tr sv-tr--4">
+          <span class="sv-key"><span class="sv-key-glyph">↑ ↓</span><span data-i18n-zh="摇杆 上/下" data-i18n-en="Stick up / down">摇杆 上/下</span></span>
+          <span data-col="MISSION BOARD" data-i18n-zh="切换任务行" data-i18n-en="Move between task rows">切换任务行</span>
+          <span data-col="TASK WINDOW" data-i18n-zh="在选项 / 历史间移动" data-i18n-en="Move between options and history">在选项 / 历史间移动</span>
+          <span class="sv-td-dim" data-col="VOICE">—</span>
+        </div>
+        <div class="sv-tr sv-tr--4">
+          <span class="sv-key"><span class="sv-key-glyph">→</span><span data-i18n-zh="摇杆 右" data-i18n-en="Stick right">摇杆 右</span></span>
+          <span data-col="MISSION BOARD" data-i18n-zh="进入该会话" data-i18n-en="Enter that session">进入该会话</span>
+          <span data-col="TASK WINDOW" data-i18n-zh="确认并发送当前选项" data-i18n-en="Confirm and send the current option">确认并发送当前选项</span>
+          <span data-col="VOICE" data-i18n-zh="结束录音并发送" data-i18n-en="End recording and send">结束录音并发送</span>
+        </div>
+        <div class="sv-tr sv-tr--4">
+          <span class="sv-key"><span class="sv-key-glyph">←</span><span data-i18n-zh="摇杆 左" data-i18n-en="Stick left">摇杆 左</span></span>
+          <span class="sv-td-dim" data-col="MISSION BOARD" data-i18n-zh="已在顶层" data-i18n-en="Already at the top">已在顶层</span>
+          <span data-col="TASK WINDOW" data-i18n-zh="返回 Mission Board" data-i18n-en="Back to Mission Board">返回 Mission Board</span>
+          <span data-col="VOICE" data-i18n-zh="放弃本次录音" data-i18n-en="Discard this recording">放弃本次录音</span>
+        </div>
+        <div class="sv-tr sv-tr--4">
+          <span class="sv-key"><span class="sv-key-glyph" style="color:var(--sv-green)">⏎</span><span data-i18n-zh="发送键" data-i18n-en="Send key">发送键</span></span>
+          <span data-col="MISSION BOARD" data-i18n-zh="对选中会话直接继续" data-i18n-en="Continue the selected session directly">对选中会话直接继续</span>
+          <span data-col="TASK WINDOW" data-i18n-zh="发送" data-i18n-en="Send">发送</span>
+          <span data-col="VOICE" data-i18n-zh="结束并发送" data-i18n-en="End and send">结束并发送</span>
+        </div>
+        <div class="sv-tr sv-tr--4">
+          <span class="sv-key"><span class="sv-key-glyph" style="color:var(--sv-error)">⊘</span><span data-i18n-zh="取消键" data-i18n-en="Cancel key">取消键</span></span>
+          <span data-col="MISSION BOARD" data-i18n-zh="消除该行提醒" data-i18n-en="Clear the alert on that row">消除该行提醒</span>
+          <span data-col="TASK WINDOW" data-i18n-zh="中断当前生成" data-i18n-en="Interrupt the current generation">中断当前生成</span>
+          <span data-col="VOICE" data-i18n-zh="丢弃" data-i18n-en="Discard">丢弃</span>
+        </div>
+        <div class="sv-tr sv-tr--4">
+          <span class="sv-key"><span class="sv-key-glyph">〜</span><span data-i18n-zh="语音键" data-i18n-en="Voice key">语音键</span></span>
+          <span data-col="MISSION BOARD" data-i18n-zh="对选中会话口述" data-i18n-en="Speak to the selected session">对选中会话口述</span>
+          <span data-col="TASK WINDOW" data-i18n-zh="对本会话口述" data-i18n-en="Speak to this session">对本会话口述</span>
+          <span data-col="VOICE" data-i18n-zh="按住说话 · 松开预览" data-i18n-en="Hold to talk · release to preview">按住说话 · 松开预览</span>
+        </div>
+      </div>
+
+      <div class="sv-lede" style="margin-top:32px; margin-bottom:0">
+        <p data-i18n-zh="方向语义三处不变。右永远是往前一步，左永远是退一步——包括在语音层里，右是发送、左是放弃。" data-i18n-en="Direction means the same thing in all three columns. Right is always one step forward, left is always one step back—including inside voice, where right sends and left abandons.">方向语义三处不变。右永远是往前一步，左永远是退一步——包括在语音层里，右是发送、左是放弃。</p>
+        <p data-i18n-zh="按键与摇杆有意重叠。发送既能按键也能拨右——手在哪就用哪个，不必先低头找。" data-i18n-en="Keys and stick deliberately overlap. Send is both a key and a flick to the right—use whichever your hand is already on, without looking down.">按键与摇杆有意重叠。发送既能按键也能拨右——手在哪就用哪个，不必先低头找。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 三条原则 -->
+  <section class="pd-section">
+    <div class="container">
+      <span class="pd-section-label"><span class="sv-num">05</span>Principles</span>
       <h2 class="pd-section-title" data-i18n-zh="三条原则，后面所有分歧都用它们裁判" data-i18n-en="Three Principles That Settle Every Later Argument">三条原则，后面所有分歧都用它们裁判</h2>
 
       <div class="sv-cards">
@@ -1013,10 +1102,10 @@
     </div>
   </section>
 
-  <!-- ⑧ 一个回合 -->
+  <!-- ⑦ 一个回合 -->
   <section class="pd-section">
     <div class="container">
-      <span class="pd-section-label"><span class="sv-num">05</span>Task Loop</span>
+      <span class="pd-section-label"><span class="sv-num">06</span>Task Loop</span>
       <h2 class="pd-section-title" data-i18n-zh="任务循环使用流程" data-i18n-en="The Task Loop">任务循环使用流程</h2>
       <p class="pd-body" data-i18n-zh="一个回合：从口述到点头，手不离桌。下面先看五步的骨架，再看完整状态机——WAITING / READY / ERROR 三条分支最终都汇回同一个语音输入口。" data-i18n-en="One round: from speaking to nodding, hands never leaving the desk. The five-step skeleton comes first, then the full state machine—where the WAITING / READY / ERROR branches all converge back on the same voice input.">一个回合：从口述到点头，手不离桌。下面先看五步的骨架，再看完整状态机——WAITING / READY / ERROR 三条分支最终都汇回同一个语音输入口。</p>
 
@@ -1075,68 +1164,6 @@
           <span class="sv-flowhint" data-i18n-zh="框内可滚动 ↕" data-i18n-en="Scroll inside ↕">框内可滚动 ↕</span>
         </div>
         <p class="sv-caption" data-i18n-zh="T0 开机到 T15 回到 WORKING 的完整状态机。颜色沿用产品自己的状态语言：黄 = 等你、绿 = 就绪、红 = 出错、蓝 = 在跑，紫 = 用户操作页，灰 = 系统自动事件。" data-i18n-en="The full state machine from T0 boot to T15 back in WORKING. Colours reuse the product's own state language: yellow waits on you, green is ready, red has failed, blue is running; purple marks user-facing pages and grey marks automatic system events.">T0 开机到 T15 回到 WORKING 的完整状态机。颜色沿用产品自己的状态语言：黄 = 等你、绿 = 就绪、红 = 出错、蓝 = 在跑，紫 = 用户操作页，灰 = 系统自动事件。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑨ 按键映射矩阵 -->
-  <section class="pd-section">
-    <div class="container">
-      <span class="pd-section-label"><span class="sv-num">06</span>Key Mapping</span>
-      <h2 class="pd-section-title" data-i18n-zh="三颗键、四个方向，覆盖全部操作" data-i18n-en="Three Keys and Four Directions Cover Everything">三颗键、四个方向，覆盖全部操作</h2>
-      <p class="pd-body" data-i18n-zh="映射表先写完，界面再画——界面必须长成映射表的样子，而不是反过来让操作去迁就画面。" data-i18n-en="The mapping table was finished before any screen was drawn: the interface has to grow into the shape of the table, not the other way round.">映射表先写完，界面再画——界面必须长成映射表的样子，而不是反过来让操作去迁就画面。</p>
-
-      <img class="sv-render" src="images/slashvibe-keys.jpg" alt="控制器拆解：按键模块与可分离的麦克风模块" width="1600" height="675" loading="lazy" />
-      <p class="sv-figcap" style="margin-bottom:44px" data-i18n-zh="拆开看：左边按键模块（取消 / 发送 / 语音）＋ 右边可分离的麦克风模块。全部操作只能落在这几个输入上。" data-i18n-en="Taken apart: the key module on the left (cancel / send / voice) plus the detachable mic module on the right. Every operation has to land on these few inputs.">拆开看：左边按键模块（取消 / 发送 / 语音）＋ 右边可分离的麦克风模块。全部操作只能落在这几个输入上。</p>
-
-      <div class="sv-table">
-        <div class="sv-tr sv-tr--4 sv-tr--head">
-          <span data-i18n-zh="输入" data-i18n-en="Input">输入</span>
-          <span>MISSION BOARD</span>
-          <span>TASK WINDOW</span>
-          <span class="sv-th-green">VOICE</span>
-        </div>
-        <div class="sv-tr sv-tr--4">
-          <span class="sv-key"><span class="sv-key-glyph">↑ ↓</span><span data-i18n-zh="摇杆 上/下" data-i18n-en="Stick up / down">摇杆 上/下</span></span>
-          <span data-col="MISSION BOARD" data-i18n-zh="切换任务行" data-i18n-en="Move between task rows">切换任务行</span>
-          <span data-col="TASK WINDOW" data-i18n-zh="在选项 / 历史间移动" data-i18n-en="Move between options and history">在选项 / 历史间移动</span>
-          <span class="sv-td-dim" data-col="VOICE">—</span>
-        </div>
-        <div class="sv-tr sv-tr--4">
-          <span class="sv-key"><span class="sv-key-glyph">→</span><span data-i18n-zh="摇杆 右" data-i18n-en="Stick right">摇杆 右</span></span>
-          <span data-col="MISSION BOARD" data-i18n-zh="进入该会话" data-i18n-en="Enter that session">进入该会话</span>
-          <span data-col="TASK WINDOW" data-i18n-zh="确认并发送当前选项" data-i18n-en="Confirm and send the current option">确认并发送当前选项</span>
-          <span data-col="VOICE" data-i18n-zh="结束录音并发送" data-i18n-en="End recording and send">结束录音并发送</span>
-        </div>
-        <div class="sv-tr sv-tr--4">
-          <span class="sv-key"><span class="sv-key-glyph">←</span><span data-i18n-zh="摇杆 左" data-i18n-en="Stick left">摇杆 左</span></span>
-          <span class="sv-td-dim" data-col="MISSION BOARD" data-i18n-zh="已在顶层" data-i18n-en="Already at the top">已在顶层</span>
-          <span data-col="TASK WINDOW" data-i18n-zh="返回 Mission Board" data-i18n-en="Back to Mission Board">返回 Mission Board</span>
-          <span data-col="VOICE" data-i18n-zh="放弃本次录音" data-i18n-en="Discard this recording">放弃本次录音</span>
-        </div>
-        <div class="sv-tr sv-tr--4">
-          <span class="sv-key"><span class="sv-key-glyph" style="color:var(--sv-green)">⏎</span><span data-i18n-zh="发送键" data-i18n-en="Send key">发送键</span></span>
-          <span data-col="MISSION BOARD" data-i18n-zh="对选中会话直接继续" data-i18n-en="Continue the selected session directly">对选中会话直接继续</span>
-          <span data-col="TASK WINDOW" data-i18n-zh="发送" data-i18n-en="Send">发送</span>
-          <span data-col="VOICE" data-i18n-zh="结束并发送" data-i18n-en="End and send">结束并发送</span>
-        </div>
-        <div class="sv-tr sv-tr--4">
-          <span class="sv-key"><span class="sv-key-glyph" style="color:var(--sv-error)">⊘</span><span data-i18n-zh="取消键" data-i18n-en="Cancel key">取消键</span></span>
-          <span data-col="MISSION BOARD" data-i18n-zh="消除该行提醒" data-i18n-en="Clear the alert on that row">消除该行提醒</span>
-          <span data-col="TASK WINDOW" data-i18n-zh="中断当前生成" data-i18n-en="Interrupt the current generation">中断当前生成</span>
-          <span data-col="VOICE" data-i18n-zh="丢弃" data-i18n-en="Discard">丢弃</span>
-        </div>
-        <div class="sv-tr sv-tr--4">
-          <span class="sv-key"><span class="sv-key-glyph">〜</span><span data-i18n-zh="语音键" data-i18n-en="Voice key">语音键</span></span>
-          <span data-col="MISSION BOARD" data-i18n-zh="对选中会话口述" data-i18n-en="Speak to the selected session">对选中会话口述</span>
-          <span data-col="TASK WINDOW" data-i18n-zh="对本会话口述" data-i18n-en="Speak to this session">对本会话口述</span>
-          <span data-col="VOICE" data-i18n-zh="按住说话 · 松开预览" data-i18n-en="Hold to talk · release to preview">按住说话 · 松开预览</span>
-        </div>
-      </div>
-
-      <div class="sv-lede" style="margin-top:32px; margin-bottom:0">
-        <p data-i18n-zh="方向语义三处不变。右永远是往前一步，左永远是退一步——包括在语音层里，右是发送、左是放弃。" data-i18n-en="Direction means the same thing in all three columns. Right is always one step forward, left is always one step back—including inside voice, where right sends and left abandons.">方向语义三处不变。右永远是往前一步，左永远是退一步——包括在语音层里，右是发送、左是放弃。</p>
-        <p data-i18n-zh="按键与摇杆有意重叠。发送既能按键也能拨右——手在哪就用哪个，不必先低头找。" data-i18n-en="Keys and stick deliberately overlap. Send is both a key and a flick to the right—use whichever your hand is already on, without looking down.">按键与摇杆有意重叠。发送既能按键也能拨右——手在哪就用哪个，不必先低头找。</p>
       </div>
     </div>
   </section>
