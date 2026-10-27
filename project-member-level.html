@@ -198,39 +198,6 @@
       .ml-ba-divider { display: none; }
     }
 
-    /* ── Outcome 数据 ── */
-    .ml-metrics {
-      display: grid;
-      /* 1fr 的下限是 min-content，「高等级（V6–V8）用户占比」这类长标签
-         会把列撑破，四张卡横向溢出、最后一张被裁掉，所以显式压到 0。 */
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 24px;
-      margin-top: 48px;
-    }
-    .ml-metric {
-      padding: 32px 24px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      text-align: left;
-    }
-    .ml-metric-num {
-      font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
-      font-size: clamp(34px, 4.2vw, 52px);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: #B8A6FF;
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-    .ml-metric-label { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
-    .ml-metric-note {
-      margin-top: 16px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.3);
-      letter-spacing: 0.03em;
-    }
-
     /* ── Design System：一块共享底板，色彩 + 权益图标同处一个"系统场" ── */
     .ml-ds-board {
       margin-top: 40px;
@@ -379,10 +346,6 @@
       .ml-problem-num { grid-column: 1; }
       .ml-problem-title { grid-column: 2; }
       .ml-problem-desc { grid-column: 1 / -1; }
-
-      .ml-metrics {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
     }
 
     @media (max-width: 560px) {
@@ -900,34 +863,6 @@
         </div>
       </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ⑧ OUTCOME -->
-  <section class="pd-section">
-    <div class="container">
-      <span class="pd-section-label">Outcome</span>
-      <h2 class="pd-section-title" data-i18n-zh="项目成果" data-i18n-en="Outcome">项目成果</h2>
-      <p class="pd-body" data-i18n-zh="全新等级视觉体系配合会员权益升级灰度上线，等级页的进阶感与尊贵感明显增强，带动了用户的升级与活跃。" data-i18n-en="The new level visual system rolled out gradually alongside the membership benefit upgrade, strengthening the sense of progression and prestige and lifting user upgrades and engagement.">全新等级视觉体系配合会员权益升级灰度上线，等级页的进阶感与尊贵感明显增强，带动了用户的升级与活跃。</p>
-      <div class="ml-metrics">
-        <div class="ml-metric">
-          <div class="ml-metric-num">+7%</div>
-          <div class="ml-metric-label" data-i18n-zh="会员升级转化率" data-i18n-en="Level upgrade conversion">会员升级转化率</div>
-        </div>
-        <div class="ml-metric">
-          <div class="ml-metric-num">+4%</div>
-          <div class="ml-metric-label" data-i18n-zh="高等级（V6–V8）用户占比" data-i18n-en="High-tier (V6–V8) user share">高等级（V6–V8）用户占比</div>
-        </div>
-        <div class="ml-metric">
-          <div class="ml-metric-num">+12%</div>
-          <div class="ml-metric-label" data-i18n-zh="等级页人均停留时长" data-i18n-en="Avg. time on level page">等级页人均停留时长</div>
-        </div>
-        <div class="ml-metric">
-          <div class="ml-metric-num">+2%</div>
-          <div class="ml-metric-label" data-i18n-zh="会员次日留存" data-i18n-en="Next-day retention">会员次日留存</div>
-        </div>
-      </div>
-      <p class="ml-metric-note" data-i18n-zh="* 数据为新版 A/B 实验（部分放量）阶段的表现，用于示意设计价值。" data-i18n-en="* Figures from the new version's A/B test (partial rollout) phase, shown to illustrate design impact.">* 数据为新版 A/B 实验（部分放量）阶段的表现，用于示意设计价值。</p>
     </div>
   </section>
 
